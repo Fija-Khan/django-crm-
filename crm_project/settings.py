@@ -42,8 +42,8 @@ INSTALLED_APPS = [
     'leads',
     'deals',
     'tasks',
-    'interactions',
     'notes',
+    'interactions',
     'dashboard',
 
 ]
