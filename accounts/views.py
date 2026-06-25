@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 
 def login_view(request):
+
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -11,7 +12,13 @@ def login_view(request):
 
         if user is not None:
             login(request, user)
-            return redirect('/')
+
+            # ✅ ROLE BASED REDIRECT (IMPORTANT)
+            if user.role == "admin":
+                return redirect('dashboard')
+            else:
+                return redirect('dashboard')
+
         else:
             messages.error(request, 'Invalid credentials')
 
@@ -20,4 +27,4 @@ def login_view(request):
 
 def logout_view(request):
     logout(request)
-    return redirect('/accounts/login/')
+    return redirect('login')

@@ -1,61 +1,89 @@
 {% extends 'base.html' %}
 
-{% block title %}Dashboard - CRM{% endblock %}
-
-{% block extra_css %}
-<style>
-    .dashboard-title {
-        margin-bottom: 20px;
-        color: #333;
-    }
-
-    .card-container {
-        display: flex;
-        gap: 20px;
-        flex-wrap: wrap;
-    }
-
-    .card {
-        background: white;
-        padding: 20px;
-        width: 200px;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        text-align: center;
-    }
-
-    .card h2 {
-        margin: 0;
-        color: #5e0f13;
-    }
-
-    .card p {
-        margin-top: 10px;
-        font-size: 14px;
-        color: #555;
-    }
-</style>
-{% endblock %}
+{% block title %}Dashboard{% endblock %}
 
 {% block content %}
 
-<h1 class="dashboard-title">CRM Dashboard</h1>
+<h3 class="mb-4">📊 CRM Dashboard</h3>
 
-<div class="card-container">
+<!-- KPI CARDS -->
+<div class="row g-3">
 
-    <div class="card">
-        <h2>{{ total_leads }}</h2>
-        <p>Total Leads</p>
+    <div class="col-md-4">
+        <div class="card shadow-sm border-0">
+            <div class="card-body text-center">
+                <h2 class="text-primary">{{ total_leads }}</h2>
+                <p class="mb-0">Total Leads</p>
+            </div>
+        </div>
     </div>
 
-    <div class="card">
-        <h2>{{ total_contacts }}</h2>
-        <p>Total Contacts</p>
+    <div class="col-md-4">
+        <div class="card shadow-sm border-0">
+            <div class="card-body text-center">
+                <h2 class="text-success">{{ total_contacts }}</h2>
+                <p class="mb-0">Total Contacts</p>
+            </div>
+        </div>
     </div>
 
-    <div class="card">
-        <h2>{{ total_deals }}</h2>
-        <p>Total Deals</p>
+    <div class="col-md-4">
+        <div class="card shadow-sm border-0">
+            <div class="card-body text-center">
+                <h2 class="text-danger">{{ total_deals }}</h2>
+                <p class="mb-0">Total Deals</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- MAIN SECTION -->
+<div class="row mt-4 g-3">
+
+    <!-- TASKS -->
+    <div class="col-md-6">
+        <div class="card shadow-sm">
+            <div class="card-header bg-primary text-white">
+                📝 My Tasks
+            </div>
+            <div class="card-body p-0">
+
+                <ul class="list-group list-group-flush">
+                    {% for task in my_tasks %}
+                        <li class="list-group-item d-flex justify-content-between">
+                            {{ task.title }}
+                            <span class="badge bg-warning">{{ task.status }}</span>
+                        </li>
+                    {% empty %}
+                        <li class="list-group-item">No tasks today 🎉</li>
+                    {% endfor %}
+                </ul>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- ACTIVITY -->
+    <div class="col-md-6">
+        <div class="card shadow-sm">
+            <div class="card-header bg-dark text-white">
+                📌 Recent Activity
+            </div>
+            <div class="card-body p-0">
+
+                <ul class="list-group list-group-flush">
+                    {% for activity in recent_activities %}
+                        <li class="list-group-item">
+                            {{ activity }}
+                        </li>
+                    {% empty %}
+                        <li class="list-group-item">No recent activity</li>
+                    {% endfor %}
+                </ul>
+
+            </div>
+        </div>
     </div>
 
 </div>
