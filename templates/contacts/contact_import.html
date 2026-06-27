@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block title %}Import Contacts{% endblock %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+
+            <h3 class="mb-3">📥 Import Contacts (CSV)</h3>
+
+            <!-- Messages -->
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-success">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+            <!-- Instructions -->
+            <div class="alert alert-info">
+                <b>CSV Format Required:</b><br>
+                First Name, Last Name, Email, Phone, Company
+            </div>
+
+            <!-- Upload Form -->
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <div class="mb-3">
+                    <label class="form-label">Select CSV File</label>
+                    <input type="file" name="file" class="form-control" accept=".csv" required>
+                </div>
+
+                <button type="submit" class="btn btn-success">
+                    ⬆ Upload & Import
+                </button>
+
+                <a href="{% url 'contact_list' %}" class="btn btn-secondary">
+                    Cancel
+                </a>
+
+            </form>
+
+            <!-- Warning -->
+            <div class="mt-3 text-muted small">
+                ⚠ Duplicate emails will be automatically skipped.
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

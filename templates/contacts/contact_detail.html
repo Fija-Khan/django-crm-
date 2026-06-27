@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block title %}Contact Detail{% endblock %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <!-- Header -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+
+        <h2>Contact Detail</h2>
+
+        <a href="{% url 'contact_list' %}" class="btn btn-secondary">
+            ← Back to List
+        </a>
+
+    </div>
+
+    <!-- Card -->
+    <div class="card shadow-sm border-0">
+
+        <div class="card-body">
+
+            <!-- Name -->
+            <h3 class="mb-3">
+                {{ contact.first_name }} {{ contact.last_name }}
+            </h3>
+
+            <hr>
+
+            <!-- Info Grid -->
+            <div class="row">
+
+                <div class="col-md-6 mb-2">
+                    <strong>Email:</strong>
+                    <p>{{ contact.email }}</p>
+                </div>
+
+                <div class="col-md-6 mb-2">
+                    <strong>Phone:</strong>
+                    <p>{{ contact.phone|default:"-" }}</p>
+                </div>
+
+                <div class="col-md-6 mb-2">
+                    <strong>Company:</strong>
+                    <p>{{ contact.company|default:"-" }}</p>
+                </div>
+
+                <div class="col-md-6 mb-2">
+                    <strong>Source:</strong>
+                    <p>{{ contact.get_source_display }}</p>
+                </div>
+
+                <div class="col-md-6 mb-2">
+                    <strong>Assigned To:</strong>
+                    <p>{{ contact.assigned_to|default:"-" }}</p>
+                </div>
+
+                <div class="col-md-6 mb-2">
+                    <strong>Created At:</strong>
+                    <p>{{ contact.created_at }}</p>
+                </div>
+
+            </div>
+
+            <!-- Actions -->
+            <div class="mt-4 d-flex gap-2">
+
+                <a href="{% url 'contact_edit' contact.id %}" class="btn btn-warning">
+                    ✏️ Edit
+                </a>
+
+               <a href="{% url 'contact_delete' contact.id %}" class="btn btn-danger">
+                     🗑 Delete
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
