@@ -1,0 +1,91 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-info px-3">
+
+    <!-- STYLE (add once) -->
+    <style>
+        .text-purple {
+            color: #6f42c1 !important;
+        }
+
+        .nav-link {
+            color: #4b2a91 !important;
+        }
+
+        .nav-link:hover {
+            color: #2a1459 !important;
+        }
+
+        .navbar-brand {
+            color: #6f42c1 !important;
+        }
+    </style>
+
+    <!-- Logo -->
+    <a class="navbar-brand fw-bold text-purple" href="/">CRM System</a>
+
+    <!-- Toggle (mobile) -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+
+        <!-- LEFT SIDE MENU -->
+        <ul class="navbar-nav me-auto">
+
+            {% if user.is_authenticated %}
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Dashboard</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/contacts/">Contacts</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/leads/">Leads</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/deals/">Deals</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/tasks/">Tasks</a>
+                </li>
+
+            {% endif %}
+
+        </ul>
+
+        <!-- RIGHT SIDE (USER AREA) -->
+        <div class="d-flex align-items-center">
+
+            {% if user.is_authenticated %}
+
+                <span class="text-purple me-2 fw-bold">{{ user.username }}</span>
+
+                <a href="/accounts/profile/" class="btn btn-outline-dark btn-sm me-2">
+                    Profile
+                </a>
+
+                <a href="/accounts/logout/" class="btn btn-danger btn-sm">
+                    Logout
+                </a>
+
+            {% else %}
+
+                <a href="/accounts/login/" class="btn btn-outline-dark btn-sm me-2">
+                    Login
+                </a>
+
+                <a href="/accounts/register/" class="btn btn-success btn-sm">
+                    Register
+                </a>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+</nav>
