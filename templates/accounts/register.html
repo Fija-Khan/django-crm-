@@ -1,0 +1,210 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container-fluid bg-light py-5">
+
+    <div class="row justify-content-center align-items-center">
+
+        <div class="col-lg-8">
+
+            <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+
+                <div class="row g-0">
+
+                    <!-- Left Side -->
+
+                    <div class="col-md-5 bg-primary text-white d-flex flex-column justify-content-center p-5">
+
+                        <h1 class="fw-bold mb-3">
+                            CRM System
+                        </h1>
+
+                        <p class="mb-4">
+                            Register your account to access the Customer Relationship Management System.
+                        </p>
+
+                        <hr>
+
+                        <h5>Features</h5>
+
+                        <ul class="list-unstyled mt-3">
+
+                            <li class="mb-2">
+                                ✅ Contact Management
+                            </li>
+
+                            <li class="mb-2">
+                                ✅ Lead Tracking
+                            </li>
+
+                            <li class="mb-2">
+                                ✅ Deal Pipeline
+                            </li>
+
+                            <li class="mb-2">
+                                ✅ Task Management
+                            </li>
+
+                            <li class="mb-2">
+                                ✅ Reports & Dashboard
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+                    <!-- Right Side -->
+
+                    <div class="col-md-7">
+
+                        <div class="card-body p-5">
+
+                            <h2 class="fw-bold mb-1">
+                                Create Account
+                            </h2>
+
+                            <p class="text-muted mb-4">
+                                Fill in your information below.
+                            </p>
+
+                            {% if messages %}
+                                {% for message in messages %}
+                                    <div class="alert alert-success">
+                                        {{ message }}
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+
+                            <form method="POST">
+
+                                {% csrf_token %}
+
+                                <div class="row">
+
+                                    <div class="col-md-6 mb-3">
+
+                                        <label class="form-label">
+                                            First Name
+                                        </label>
+
+                                        {{ form.first_name }}
+
+                                    </div>
+
+                                    <div class="col-md-6 mb-3">
+
+                                        <label class="form-label">
+                                            Last Name
+                                        </label>
+
+                                        {{ form.last_name }}
+
+                                    </div>
+
+                                </div>
+
+                                <div class="mb-3">
+
+                                    <label class="form-label">
+                                        Username
+                                    </label>
+
+                                    {{ form.username }}
+
+                                </div>
+
+                                <div class="mb-3">
+
+                                    <label class="form-label">
+                                        Email Address
+                                    </label>
+
+                                    {{ form.email }}
+
+                                </div>
+
+                                <div class="mb-3">
+
+                                    <label class="form-label">
+                                        Phone Number
+                                    </label>
+
+                                    {{ form.phone }}
+
+                                </div>
+
+                                <div class="row">
+
+                                    <div class="col-md-6 mb-3">
+
+                                        <label class="form-label">
+                                            Password
+                                        </label>
+
+                                        {{ form.password1 }}
+
+                                    </div>
+
+                                    <div class="col-md-6 mb-4">
+
+                                        <label class="form-label">
+                                            Confirm Password
+                                        </label>
+
+                                        {{ form.password2 }}
+
+                                    </div>
+
+                                </div>
+
+                                <div class="alert alert-warning small">
+
+                                    <strong>Note:</strong><br>
+
+                                    After registration your account will remain
+                                    <strong>Inactive</strong> until approved by the Administrator.
+
+                                </div>
+
+                                <div class="d-grid">
+
+                                    <button class="btn btn-primary btn-lg">
+
+                                        Register Account
+
+                                    </button>
+
+                                </div>
+
+                            </form>
+
+                            <hr>
+
+                            <div class="text-center">
+
+                                Already have an account?
+
+                                <a href="{% url 'login' %}" class="fw-bold text-decoration-none">
+
+                                    Login Here
+
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
