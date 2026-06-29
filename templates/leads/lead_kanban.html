@@ -1,0 +1,319 @@
+{% extends "base.html" %}
+
+{% block title %}
+Lead Kanban Board
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid mt-4">
+
+    <!-- Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <h2 class="fw-bold">Lead Kanban Board</h2>
+
+        <a href="{% url 'lead_add' %}" class="btn btn-success">
+            + Add Lead
+        </a>
+
+    </div>
+
+    <div class="row">
+
+        <!-- NEW -->
+        <div class="col-lg-2 col-md-4 mb-4">
+            <div class="card shadow-sm">
+
+                <div class="card-header bg-primary text-white text-center">
+                    <strong>New</strong>
+                </div>
+
+                <div class="card-body kanban-column" data-status="new">
+
+                    {% for lead in new_leads %}
+                    <div class="card mb-2 border-primary lead-card"
+                         draggable="true"
+                         data-id="{{ lead.id }}">
+
+                        <div class="card-body p-2">
+                            <h6>{{ lead.title }}</h6>
+                            <small class="text-muted">{{ lead.contact }}</small>
+                            <hr class="my-2">
+
+                            <a href="{% url 'lead_detail' lead.id %}"
+                               class="btn btn-primary btn-sm w-100">
+                                View
+                            </a>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <p class="text-muted text-center">No Leads</p>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTACTED -->
+        <div class="col-lg-2 col-md-4 mb-4">
+            <div class="card shadow-sm">
+
+                <div class="card-header bg-info text-white text-center">
+                    <strong>Contacted</strong>
+                </div>
+
+                <div class="card-body kanban-column" data-status="contacted">
+
+                    {% for lead in contacted_leads %}
+                    <div class="card mb-2 border-info lead-card"
+                         draggable="true"
+                         data-id="{{ lead.id }}">
+
+                        <div class="card-body p-2">
+                            <h6>{{ lead.title }}</h6>
+                            <small>{{ lead.contact }}</small>
+                            <hr class="my-2">
+
+                            <a href="{% url 'lead_detail' lead.id %}"
+                               class="btn btn-info btn-sm w-100 text-white">
+                                View
+                            </a>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <p class="text-muted text-center">No Leads</p>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+
+        <!-- QUALIFIED -->
+        <div class="col-lg-2 col-md-4 mb-4">
+            <div class="card shadow-sm">
+
+                <div class="card-header bg-warning text-dark text-center">
+                    <strong>Qualified</strong>
+                </div>
+
+                <div class="card-body kanban-column" data-status="qualified">
+
+                    {% for lead in qualified_leads %}
+                    <div class="card mb-2 border-warning lead-card"
+                         draggable="true"
+                         data-id="{{ lead.id }}">
+
+                        <div class="card-body p-2">
+                            <h6>{{ lead.title }}</h6>
+                            <small>{{ lead.contact }}</small>
+                            <hr class="my-2">
+
+                            <a href="{% url 'lead_detail' lead.id %}"
+                               class="btn btn-warning btn-sm w-100">
+                                View
+                            </a>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <p class="text-muted text-center">No Leads</p>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+
+        <!-- PROPOSAL -->
+        <div class="col-lg-2 col-md-4 mb-4">
+            <div class="card shadow-sm">
+
+                <div class="card-header bg-secondary text-white text-center">
+                    <strong>Proposal</strong>
+                </div>
+
+                <div class="card-body kanban-column" data-status="proposal">
+
+                    {% for lead in proposal_leads %}
+                    <div class="card mb-2 border-secondary lead-card"
+                         draggable="true"
+                         data-id="{{ lead.id }}">
+
+                        <div class="card-body p-2">
+                            <h6>{{ lead.title }}</h6>
+                            <small>{{ lead.contact }}</small>
+                            <hr class="my-2">
+
+                            <a href="{% url 'lead_detail' lead.id %}"
+                               class="btn btn-secondary btn-sm w-100">
+                                View
+                            </a>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <p class="text-muted text-center">No Leads</p>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+
+        <!-- WON -->
+        <div class="col-lg-2 col-md-4 mb-4">
+            <div class="card shadow-sm">
+
+                <div class="card-header bg-success text-white text-center">
+                    <strong>Won</strong>
+                </div>
+
+                <div class="card-body kanban-column" data-status="won">
+
+                    {% for lead in won_leads %}
+                    <div class="card mb-2 border-success lead-card"
+                         draggable="true"
+                         data-id="{{ lead.id }}">
+
+                        <div class="card-body p-2">
+                            <h6>{{ lead.title }}</h6>
+                            <small>{{ lead.contact }}</small>
+                            <hr class="my-2">
+
+                            <a href="{% url 'lead_detail' lead.id %}"
+                               class="btn btn-success btn-sm w-100">
+                                View
+                            </a>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <p class="text-muted text-center">No Leads</p>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+
+        <!-- LOST -->
+        <div class="col-lg-2 col-md-4 mb-4">
+            <div class="card shadow-sm">
+
+                <div class="card-header bg-danger text-white text-center">
+                    <strong>Lost</strong>
+                </div>
+
+                <div class="card-body kanban-column" data-status="lost">
+
+                    {% for lead in lost_leads %}
+                    <div class="card mb-2 border-danger lead-card"
+                         draggable="true"
+                         data-id="{{ lead.id }}">
+
+                        <div class="card-body p-2">
+                            <h6>{{ lead.title }}</h6>
+                            <small>{{ lead.contact }}</small>
+                            <hr class="my-2">
+
+                            <a href="{% url 'lead_detail' lead.id %}"
+                               class="btn btn-danger btn-sm w-100">
+                                View
+                            </a>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <p class="text-muted text-center">No Leads</p>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
+
+
+{% block extra_js %}
+<script>
+
+const updateUrl = "{% url 'update_stage' %}";
+
+// DRAG START
+document.querySelectorAll(".lead-card").forEach(card => {
+    card.addEventListener("dragstart", function(e) {
+        e.dataTransfer.setData("lead_id", this.dataset.id);
+        this.style.opacity = "0.5";
+    });
+
+    card.addEventListener("dragend", function() {
+        this.style.opacity = "1";
+    });
+});
+
+// DROP ZONES
+document.querySelectorAll(".kanban-column").forEach(column => {
+
+    column.addEventListener("dragover", function(e) {
+        e.preventDefault();
+        this.style.background = "#f8f9fa";
+    });
+
+    column.addEventListener("dragleave", function() {
+        this.style.background = "";
+    });
+
+    column.addEventListener("drop", function(e) {
+        e.preventDefault();
+        this.style.background = "";
+
+        let lead_id = e.dataTransfer.getData("lead_id");
+        let new_status = this.dataset.status;
+
+        fetch(updateUrl, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+                "X-CSRFToken": getCookie("csrftoken")
+            },
+            body: new URLSearchParams({
+                lead_id: lead_id,
+                status: new_status
+            })
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data.success){
+                location.reload();
+            } else {
+                alert(data.message || "Update failed");
+            }
+        })
+        .catch(err => {
+            console.log(err);
+            alert("Server error");
+        });
+
+    });
+
+});
+
+// CSRF TOKEN
+function getCookie(name) {
+    let cookieValue = null;
+
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+
+    return cookieValue;
+}
+
+</script>
+{% endblock %}

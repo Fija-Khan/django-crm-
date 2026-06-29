@@ -10,3 +10,4 @@ class LeadAdmin(admin.ModelAdmin):
 class LeadActivityAdmin(admin.ModelAdmin):
     list_display = ('lead','old_status', 'new_status', 'changed_by', 'changed_at')
     readonly_fields = ( 'lead', 'old_status', 'new_status', 'changed_by', 'changed_at')
+    
