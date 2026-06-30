@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}
+Deal Detail
+{% endblock %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <div class="card shadow">
+
+        <div class="card-header">
+
+            <h3>Deal Detail</h3>
+
+        </div>
+
+        <div class="card-body">
+
+            <p><strong>Lead:</strong> {{ deal.lead }}</p>
+
+            <p><strong>Stage:</strong> {{ deal.get_stage_display }}</p>
+
+            <p><strong>Amount:</strong> ₹ {{ deal.amount }}</p>
+
+            <p><strong>Close Date:</strong> {{ deal.close_date|default:"-" }}</p>
+
+            <p><strong>Notes:</strong> {{ deal.notes|default:"-" }}</p>
+
+            <p><strong>Created At:</strong> {{ deal.created_at }}</p>
+
+            <a href="{% url 'deal_edit' deal.id %}" class="btn btn-warning">
+                Edit
+            </a>
+
+            <a href="{% url 'deal_list' %}" class="btn btn-secondary">
+                Back
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

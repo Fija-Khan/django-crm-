@@ -11,5 +11,6 @@ urlpatterns = [
     path("<int:pk>/delete/", views.lead_delete, name="lead_delete"),
     path("kanban/", views.lead_kanban, name="lead_kanban"),
     path("update-stage/", views.update_stage, name="update_stage"),
+    path("<int:pk>/convert/", views.lead_convert, name="lead_convert"),
 
 ]

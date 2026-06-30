@@ -28,6 +28,7 @@ urlpatterns = [
     path('', include('dashboard.urls')),
     path("contacts/", include("contacts.urls")),
     path('leads/', include('leads.urls')),
+    path("deals/", include("deals.urls")),
 ]
 
 if settings.DEBUG:

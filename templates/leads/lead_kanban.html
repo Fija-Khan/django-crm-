@@ -236,83 +236,154 @@ Lead Kanban Board
 
 const updateUrl = "{% url 'update_stage' %}";
 
-// DRAG START
+let draggedCard = null;
+
+// ---------------------------
+// Drag Start
+// ---------------------------
 document.querySelectorAll(".lead-card").forEach(card => {
-    card.addEventListener("dragstart", function(e) {
+
+    card.addEventListener("dragstart", function (e) {
+
+        draggedCard = this;
+
         e.dataTransfer.setData("lead_id", this.dataset.id);
+
         this.style.opacity = "0.5";
+
+        console.log("Dragging Lead:", this.dataset.id);
+
     });
 
-    card.addEventListener("dragend", function() {
+    card.addEventListener("dragend", function () {
+
         this.style.opacity = "1";
+
     });
+
 });
 
-// DROP ZONES
+
+// ---------------------------
+// Drop Columns
+// ---------------------------
 document.querySelectorAll(".kanban-column").forEach(column => {
 
-    column.addEventListener("dragover", function(e) {
+    column.addEventListener("dragover", function (e) {
+
         e.preventDefault();
-        this.style.background = "#f8f9fa";
+
+        this.classList.add("bg-light");
+
     });
 
-    column.addEventListener("dragleave", function() {
-        this.style.background = "";
+    column.addEventListener("dragleave", function () {
+
+        this.classList.remove("bg-light");
+
     });
 
-    column.addEventListener("drop", function(e) {
-        e.preventDefault();
-        this.style.background = "";
+    column.addEventListener("drop", function (e) {
 
-        let lead_id = e.dataTransfer.getData("lead_id");
-        let new_status = this.dataset.status;
+        e.preventDefault();
+
+        this.classList.remove("bg-light");
+
+        const lead_id = e.dataTransfer.getData("lead_id");
+        const new_status = this.dataset.status;
+
+        console.log("Lead ID :", lead_id);
+        console.log("Status :", new_status);
+        console.log("URL :", updateUrl);
 
         fetch(updateUrl, {
+
             method: "POST",
+
             headers: {
+
                 "Content-Type": "application/x-www-form-urlencoded",
+
                 "X-CSRFToken": getCookie("csrftoken")
+
             },
-            body: new URLSearchParams({
-                lead_id: lead_id,
-                status: new_status
-            })
+
+            body: `lead_id=${lead_id}&status=${new_status}`
+
         })
-        .then(res => res.json())
-        .then(data => {
-            if(data.success){
-                location.reload();
-            } else {
-                alert(data.message || "Update failed");
+
+        .then(response => {
+
+            console.log("Response Status:", response.status);
+
+            if (!response.ok) {
+
+                throw new Error("Server Error");
+
             }
+
+            return response.json();
+
         })
-        .catch(err => {
-            console.log(err);
-            alert("Server error");
+
+        .then(data => {
+
+            console.log(data);
+
+            if (data.success) {
+
+                location.reload();
+
+            } else {
+
+                alert(data.message);
+
+            }
+
+        })
+
+        .catch(error => {
+
+            console.error(error);
+
+            alert("Something went wrong.");
+
         });
 
     });
 
 });
 
-// CSRF TOKEN
+
+// ---------------------------
+// Get CSRF Cookie
+// ---------------------------
 function getCookie(name) {
+
     let cookieValue = null;
 
-    if (document.cookie && document.cookie !== '') {
-        const cookies = document.cookie.split(';');
+    if (document.cookie && document.cookie !== "") {
+
+        const cookies = document.cookie.split(";");
 
         for (let i = 0; i < cookies.length; i++) {
+
             const cookie = cookies[i].trim();
 
-            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+            if (cookie.startsWith(name + "=")) {
+
                 cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+
                 break;
+
             }
+
         }
+
     }
 
     return cookieValue;
+
 }
 
 </script>

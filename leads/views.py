@@ -5,6 +5,8 @@ from django.http import JsonResponse
 
 from .models import Lead
 from .forms import LeadForm
+from deals.models import Deal
+
 
 
 # -------------------------
@@ -142,4 +144,24 @@ def update_stage(request):
         return JsonResponse({
             "success": False,
             "message": "Lead not found"
-        })
+        })  
+        
+        
+def lead_convert(request, pk):
+    lead = get_object_or_404(Lead, pk=pk)
+
+    # avoid duplicate deal creation
+    if hasattr(lead, 'deal'):
+        return redirect('deal_detail', pk=lead.deal.pk)
+
+    if request.method == "POST":
+
+        Deal.objects.create(
+            lead=lead,
+            amount=0,          # default value (user can edit later)
+            stage='negotiation'
+        )
+
+        return redirect('deal_list')
+
+    return render(request, "leads/lead_convert.html", {"lead": lead})
