@@ -1,0 +1,238 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-9">
+
+            <div class="card shadow-lg border-0 rounded-4">
+
+                <div class="card-header bg-primary text-white py-3">
+
+                    <h3 class="mb-0">
+
+                        {% if object %}
+
+                            ✏ Edit Task
+
+                        {% else %}
+
+                            ➕ Create New Task
+
+                        {% endif %}
+
+                    </h3>
+
+                </div>
+
+                <div class="card-body p-4">
+
+                    {% if form.errors %}
+
+                        <div class="alert alert-danger">
+
+                            Please fix the errors below.
+
+                        </div>
+
+                    {% endif %}
+
+                    <form method="POST">
+
+                        {% csrf_token %}
+
+                        <!-- Task Information -->
+
+                        <h5 class="border-bottom pb-2 mb-4">
+
+                            Task Information
+
+                        </h5>
+
+                        <div class="mb-3">
+
+                            <label class="form-label fw-bold">
+
+                                Task Title
+                                <span class="text-danger">*</span>
+
+                            </label>
+
+                            {{ form.title }}
+
+                            {{ form.title.errors }}
+
+                        </div>
+
+                        <div class="mb-4">
+
+                            <label class="form-label fw-bold">
+
+                                Description
+
+                            </label>
+
+                            {{ form.description }}
+
+                            {{ form.description.errors }}
+
+                        </div>
+
+                        <!-- Assignment -->
+
+                        <h5 class="border-bottom pb-2 mb-4">
+
+                            Assignment
+
+                        </h5>
+
+                        <div class="row">
+
+                            <div class="col-md-6 mb-3">
+
+                                <label class="form-label fw-bold">
+
+                                    Assigned To
+
+                                </label>
+
+                                {{ form.assigned_to }}
+
+                                {{ form.assigned_to.errors }}
+
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+
+                                <label class="form-label fw-bold">
+
+                                    Due Date
+
+                                </label>
+
+                                {{ form.due_date }}
+
+                                {{ form.due_date.errors }}
+
+                            </div>
+
+                        </div>
+
+                        <!-- Related Records -->
+
+                        <h5 class="border-bottom pb-2 mb-4">
+
+                            Related Records
+
+                        </h5>
+
+                        <div class="row">
+
+                            <div class="col-md-6 mb-3">
+
+                                <label class="form-label fw-bold">
+
+                                    Contact
+
+                                </label>
+
+                                {{ form.related_contact }}
+
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+
+                                <label class="form-label fw-bold">
+
+                                    Lead
+
+                                </label>
+
+                                {{ form.related_lead }}
+
+                            </div>
+
+                        </div>
+
+                        <!-- Status -->
+
+                        <h5 class="border-bottom pb-2 mb-4">
+
+                            Status
+
+                        </h5>
+
+                        <div class="row">
+
+                            <div class="col-md-6 mb-3">
+
+                                <label class="form-label fw-bold">
+
+                                    Priority
+
+                                </label>
+
+                                {{ form.priority }}
+
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+
+                                <label class="form-label fw-bold">
+
+                                    Status
+
+                                </label>
+
+                                {{ form.status }}
+
+                            </div>
+
+                        </div>
+
+                        <hr class="my-4">
+
+                        <div class="d-flex justify-content-between">
+
+                            <a href="{% url 'task_list' %}"
+
+                               class="btn btn-outline-secondary px-4">
+
+                                ← Back
+
+                            </a>
+
+                            <button type="submit"
+
+                                    class="btn btn-primary px-5">
+
+                                {% if object %}
+
+                                    Update Task
+
+                                {% else %}
+
+                                    Save Task
+
+                                {% endif %}
+
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

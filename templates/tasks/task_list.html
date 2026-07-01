@@ -1,0 +1,215 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container-fluid mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <div>
+
+            <h2 class="fw-bold">
+                Task Management
+            </h2>
+
+            <p class="text-muted">
+                Manage all assigned tasks
+            </p>
+
+        </div>
+
+        <a href="{% url 'task_add' %}" class="btn btn-primary">
+
+            + Add Task
+
+        </a>
+
+    </div>
+
+    <div class="card shadow-sm border-0">
+
+        <div class="card-body">
+
+            <div class="table-responsive">
+
+                <table class="table table-hover align-middle">
+
+                    <thead class="table-dark">
+
+                        <tr>
+
+                            <th>Title</th>
+
+                            <th>Assigned To</th>
+
+                            <th>Contact</th>
+
+                            <th>Lead</th>
+
+                            <th>Due Date</th>
+
+                            <th>Priority</th>
+
+                            <th>Status</th>
+
+                            <th width="180">Actions</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        {% for task in tasks %}
+
+                        <tr>
+
+                            <td>
+
+                                <strong>{{ task.title }}</strong>
+
+                            </td>
+
+                            <td>
+
+                                {{ task.assigned_to }}
+
+                            </td>
+
+                            <td>
+
+                                {{ task.related_contact|default:"-" }}
+
+                            </td>
+
+                            <td>
+
+                                {{ task.related_lead|default:"-" }}
+
+                            </td>
+
+                            <td>
+
+                                {{ task.due_date }}
+
+                            </td>
+
+                            <td>
+
+                                {% if task.priority == "low" %}
+
+                                    <span class="badge bg-success">
+                                        Low
+                                    </span>
+
+                                {% elif task.priority == "medium" %}
+
+                                    <span class="badge bg-warning text-dark">
+                                        Medium
+                                    </span>
+
+                                {% elif task.priority == "high" %}
+
+                                    <span class="badge bg-danger">
+                                        High
+                                    </span>
+
+                                {% else %}
+
+                                    <span class="badge bg-dark">
+                                        Urgent
+                                    </span>
+
+                                {% endif %}
+
+                            </td>
+
+                            <td>
+
+                                {% if task.status == "pending" %}
+
+                                    <span class="badge bg-warning text-dark">
+                                        Pending
+                                    </span>
+
+                                {% elif task.status == "in_progress" %}
+
+                                    <span class="badge bg-info">
+                                        In Progress
+                                    </span>
+
+                                {% else %}
+
+                                    <span class="badge bg-success">
+                                        Completed
+                                    </span>
+
+                                {% endif %}
+
+                            </td>
+
+                            <td>
+
+                                <a href="{% url 'task_edit' task.id %}"
+
+                                   class="btn btn-sm btn-outline-primary">
+
+                                    Edit
+
+                                </a>
+
+                                {% if task.status != "done" %}
+
+                                <a href="{% url 'task_complete' task.id %}"
+
+                                   class="btn btn-sm btn-success">
+
+                                    Complete
+
+                                </a>
+
+                                {% endif %}
+
+                            </td>
+
+                        </tr>
+
+                        {% empty %}
+
+                        <tr>
+
+                            <td colspan="8" class="text-center py-5">
+
+                                <h5 class="text-muted">
+
+                                    No Tasks Found
+
+                                </h5>
+
+                                <a href="{% url 'task_add' %}"
+
+                                   class="btn btn-primary mt-3">
+
+                                    Create First Task
+
+                                </a>
+
+                            </td>
+
+                        </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

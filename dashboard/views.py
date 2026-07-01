@@ -21,12 +21,19 @@ def dashboard_view(request):
         leads_qs = Lead.objects.all()
         contacts_qs = Contact.objects.all()
         deals_qs = Deal.objects.all()
+
+        # ADMIN CAN SEE ALL TASKS
+        my_tasks = Task.objects.all().order_by('due_date')
+
     else:
         leads_qs = Lead.objects.filter(assigned_to=request.user)
         contacts_qs = Contact.objects.filter(assigned_to=request.user)
-
-        # FIXED LINE (IMPORTANT)
         deals_qs = Deal.objects.filter(lead__assigned_to=request.user)
+
+        # USER TASKS (ASSIGNED ONLY)
+        my_tasks = Task.objects.filter(
+            assigned_to=request.user
+        ).order_by('due_date')
 
     # =========================
     # KPI COUNTS
@@ -36,13 +43,12 @@ def dashboard_view(request):
     total_deals = deals_qs.count()
 
     # =========================
-    # TASKS (TODAY + OVERDUE)
+    # FILTER TODAY + OVERDUE TASKS (OPTIONAL DISPLAY LOGIC)
     # =========================
-    my_tasks = Task.objects.filter(
-        assigned_to=request.user,
-        due_date__lte=today,
-        status='pending'
-    ).order_by('due_date')
+    pending_tasks = my_tasks.filter(
+        status__iexact='pending',
+        due_date__lte=today
+    )
 
     # =========================
     # RECENT ACTIVITY
@@ -56,7 +62,10 @@ def dashboard_view(request):
         'total_leads': total_leads,
         'total_contacts': total_contacts,
         'total_deals': total_deals,
-        'my_tasks': my_tasks,
+
+        # show filtered tasks in dashboard
+        'my_tasks': pending_tasks,
+
         'recent_activities': recent_activities,
     }
 
