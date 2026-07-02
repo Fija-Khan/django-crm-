@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+
+{% block title %}Interactions{% endblock %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Interactions</h2>
+
+        <a href="{% url 'interaction_add' %}" class="btn btn-primary">
+            + Log Interaction
+        </a>
+    </div>
+
+    <div class="card shadow-sm">
+
+        <div class="card-body">
+
+            {% if interactions %}
+
+            <div class="table-responsive">
+
+                <table class="table table-hover align-middle">
+
+                    <thead class="table-dark">
+
+                        <tr>
+                            <th>Contact</th>
+                            <th>Lead</th>
+                            <th>Type</th>
+                            <th>Summary</th>
+                            <th>Date</th>
+                            <th>Logged By</th>
+                            <th width="180">Actions</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        {% for interaction in interactions %}
+
+                        <tr>
+
+                            <td>
+                                {{ interaction.contact }}
+                            </td>
+
+                            <td>
+                                {% if interaction.lead %}
+                                    {{ interaction.lead }}
+                                {% else %}
+                                    -
+                                {% endif %}
+                            </td>
+
+                            <td>
+                                <span class="badge bg-info text-dark">
+                                    {{ interaction.get_type_display }}
+                                </span>
+                            </td>
+
+                            <td>
+                                {{ interaction.summary|truncatechars:50 }}
+                            </td>
+
+                            <td>
+                                {{ interaction.interaction_date|date:"d M Y H:i" }}
+                            </td>
+
+                            <td>
+                                {{ interaction.logged_by }}
+                            </td>
+
+                            <td>
+
+                                <a href="{% url 'interaction_edit' interaction.pk %}"
+                                   class="btn btn-sm btn-warning">
+                                    Edit
+                                </a>
+
+                                <a href="{% url 'interaction_delete' interaction.pk %}"
+                                   class="btn btn-sm btn-danger">
+                                    Delete
+                                </a>
+
+                            </td>
+
+                        </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            {% else %}
+
+            <div class="text-center py-5">
+
+                <h5>No interactions found.</h5>
+
+                <a href="{% url 'interaction_add' %}"
+                   class="btn btn-primary mt-3">
+                    Add First Interaction
+                </a>
+
+            </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

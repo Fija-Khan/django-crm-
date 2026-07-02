@@ -30,6 +30,8 @@ urlpatterns = [
     path('leads/', include('leads.urls')),
     path("deals/", include("deals.urls")),
     path("tasks/", include("tasks.urls")),
+    path("interactions/", include("interactions.urls")),
+
 ]
 
 if settings.DEBUG:
