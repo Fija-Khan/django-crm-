@@ -31,6 +31,8 @@ urlpatterns = [
     path("deals/", include("deals.urls")),
     path("tasks/", include("tasks.urls")),
     path("interactions/", include("interactions.urls")),
+    path("notes/", include("notes.urls")),
+
 
 ]
 

@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block title %}
+{% if object %}
+Edit Note
+{% else %}
+Add Note
+{% endif %}
+{% endblock %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <div class="card shadow">
+
+        <div class="card-header bg-primary text-white">
+
+            <h4 class="mb-0">
+
+                {% if object %}
+                    Edit Note
+                {% else %}
+                    Add Note
+                {% endif %}
+
+            </h4>
+
+        </div>
+
+        <div class="card-body">
+
+            <form method="post">
+
+                {% csrf_token %}
+
+                {% if form.errors %}
+                    <div class="alert alert-danger">
+                        <strong>Please fix the following errors:</strong>
+                        {{ form.errors }}
+                    </div>
+                {% endif %}
+
+                <div class="mb-3">
+                    <label class="form-label">Contact</label>
+                    {{ form.contact }}
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Lead</label>
+                    {{ form.lead }}
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Note</label>
+                    {{ form.content }}
+                </div>
+
+                <div class="mt-3">
+
+                    <button type="submit" class="btn btn-success">
+                        Save Note
+                    </button>
+
+                    <a href="{% url 'note_list' %}" class="btn btn-secondary">
+                        Cancel
+                    </a>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
