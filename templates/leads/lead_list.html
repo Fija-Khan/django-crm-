@@ -6,142 +6,135 @@ Lead List
 
 {% block content %}
 
-<div class="container mt-4">
+<!-- HEADER -->
+<div class="d-flex justify-content-between align-items-center mb-4">
 
-    <!-- Header -->
-    <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="crm-title">Lead Management</h2>
 
-        <h2 class="fw-bold">Lead Management</h2>
+    <div>
+        <a href="{% url 'lead_kanban' %}" class="btn crm-btn-secondary me-2">
+            Kanban Board
+        </a>
 
-        <div>
-            <a href="{% url 'lead_kanban' %}" class="btn btn-info me-2">
-                Kanban Board
-            </a>
+        <a href="{% url 'lead_add' %}" class="btn crm-btn-primary">
+            + Add Lead
+        </a>
+    </div>
 
-            <a href="{% url 'lead_add' %}" class="btn btn-success">
-                + Add Lead
-            </a>
-        </div>
+</div>
+
+<!-- TABLE CARD -->
+<div class="card crm-card">
+
+    <div class="card-body p-0">
+
+        <div class="table-responsive">
+
+            <table class="table crm-table align-middle">
+
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>Contact</th>
+                        <th>Status</th>
+                        <th>Assigned To</th>
+                        <th>Value</th>
+                        <th>Expected Close</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    {% for lead in leads %}
+
+                    <tr>
+
+                        <td>{{ lead.id }}</td>
+
+                        <td class="fw-semibold">{{ lead.title }}</td>
+
+                        <td>{{ lead.contact }}</td>
+
+                        <td>
+                            {% if lead.status == "new" %}
+                                <span class="crm-badge-primary">New</span>
+
+                            {% elif lead.status == "contacted" %}
+                                <span class="crm-badge-info">Contacted</span>
+
+                            {% elif lead.status == "qualified" %}
+                                <span class="crm-badge-warning">Qualified</span>
+
+                            {% elif lead.status == "proposal" %}
+                                <span class="crm-badge-secondary">Proposal</span>
+
+                            {% elif lead.status == "won" %}
+                                <span class="crm-badge-success">Won</span>
+
+                            {% elif lead.status == "lost" %}
+                                <span class="crm-badge-danger">Lost</span>
+                            {% endif %}
+                        </td>
+
+                        <td>{{ lead.assigned_to|default:"Unassigned" }}</td>
+
+                        <td>₹ {{ lead.estimated_value|floatformat:2 }}</td>
+
+                        <td>{{ lead.expected_close|date:"d M Y"|default:"-" }}</td>
+
+ <td class="text-center">
+
+    <div class="action-buttons">
+
+        <!-- View -->
+        <a href="{% url 'lead_detail' lead.id %}"
+           class="action-btn view-btn"
+           title="View Lead">
+            <i class="bi bi-eye"></i>
+        </a>
+
+        <!-- Edit -->
+        <a href="{% url 'lead_edit' lead.id %}"
+           class="action-btn edit-btn"
+           title="Edit Lead">
+            <i class="bi bi-pencil-square"></i>
+        </a>
+
+        <!-- Delete -->
+        <a href="{% url 'lead_delete' lead.id %}"
+           class="action-btn delete-btn"
+           title="Delete Lead">
+            <i class="bi bi-trash"></i>
+        </a>
+
+        <!-- Convert -->
+        <a href="{% url 'lead_convert' lead.id %}"
+           class="action-btn convert-btn"
+           title="Convert to Deal">
+            <i class="bi bi-arrow-repeat"></i>
+        </a>
 
     </div>
 
-    <!-- Table Card -->
-    <div class="card shadow-sm">
+</td>
 
-        <div class="card-body">
+                    </tr>
 
-            <div class="table-responsive">
+                    {% empty %}
 
-                <table class="table table-hover table-bordered align-middle">
+                    <tr>
+                        <td colspan="8" class="text-center text-muted py-4">
+                            No Leads Found
+                        </td>
+                    </tr>
 
-                    <!-- Table Head -->
-                    <thead class="table-dark text-center">
+                    {% endfor %}
 
-                        <tr>
-                            <th>ID</th>
-                            <th>Title</th>
-                            <th>Contact</th>
-                            <th>Status</th>
-                            <th>Assigned To</th>
-                            <th>Value</th>
-                            <th>Expected Close</th>
-                            <th>Actions</th>
-                        </tr>
+                </tbody>
 
-                    </thead>
-
-                    <!-- Table Body -->
-                    <tbody>
-
-                        {% for lead in leads %}
-
-                        <tr>
-
-                            <td class="text-center">{{ lead.id }}</td>
-
-                            <td class="fw-semibold">{{ lead.title }}</td>
-
-                            <td>{{ lead.contact }}</td>
-
-                            <td class="text-center">
-
-                                {% if lead.status == "new" %}
-                                    <span class="badge bg-primary">New</span>
-
-                                {% elif lead.status == "contacted" %}
-                                    <span class="badge bg-info text-dark">Contacted</span>
-
-                                {% elif lead.status == "qualified" %}
-                                    <span class="badge bg-warning text-dark">Qualified</span>
-
-                                {% elif lead.status == "proposal" %}
-                                    <span class="badge bg-secondary">Proposal</span>
-
-                                {% elif lead.status == "won" %}
-                                    <span class="badge bg-success">Won</span>
-
-                                {% elif lead.status == "lost" %}
-                                    <span class="badge bg-danger">Lost</span>
-
-                                {% endif %}
-
-                            </td>
-
-                            <td>
-                                {{ lead.assigned_to|default:"Unassigned" }}
-                            </td>
-
-                            <td>
-                                ₹ {{ lead.estimated_value|floatformat:2 }}
-                            </td>
-
-                            <td>
-                                {{ lead.expected_close|date:"d M Y"|default:"-" }}
-                            </td>
-
-                            <!-- Actions -->
-                            <td class="text-center">
-
-                                <a href="{% url 'lead_detail' lead.id %}"
-                                   class="btn btn-primary btn-sm mb-1">
-                                    View
-                                </a>
-
-                                <a href="{% url 'lead_edit' lead.id %}"
-                                   class="btn btn-warning btn-sm mb-1">
-                                    Edit
-                                </a>
-
-                                <a href="{% url 'lead_delete' lead.id %}"
-                                   class="btn btn-danger btn-sm mb-1">
-                                    Delete
-                                </a>
-
-                                <!-- ✅ CONVERT TO DEAL BUTTON -->
-                                <a href="{% url 'lead_convert' lead.id %}"
-                                   class="btn btn-success btn-sm mb-1">
-                                    Convert to Deal
-                                </a>
-
-                            </td>
-
-                        </tr>
-
-                        {% empty %}
-
-                        <tr>
-                            <td colspan="8" class="text-center text-muted py-4">
-                                No Leads Found
-                            </td>
-                        </tr>
-
-                        {% endfor %}
-
-                    </tbody>
-
-                </table>
-
-            </div>
+            </table>
 
         </div>
 

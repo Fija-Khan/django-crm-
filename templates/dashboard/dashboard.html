@@ -10,27 +10,27 @@
 <div class="row g-3">
 
     <div class="col-md-4">
-        <div class="card shadow-sm border-0">
+        <div class="card crm-card">
             <div class="card-body text-center">
-                <h2 class="text-primary">{{ total_leads }}</h2>
+                <h2 class="text-crm-primary">{{ total_leads }}</h2>
                 <p class="mb-0">Total Leads</p>
             </div>
         </div>
     </div>
 
     <div class="col-md-4">
-        <div class="card shadow-sm border-0">
+        <div class="card crm-card">
             <div class="card-body text-center">
-                <h2 class="text-success">{{ total_contacts }}</h2>
+                <h2 class="text-crm-success">{{ total_contacts }}</h2>
                 <p class="mb-0">Total Contacts</p>
             </div>
         </div>
     </div>
 
     <div class="col-md-4">
-        <div class="card shadow-sm border-0">
+        <div class="card crm-card">
             <div class="card-body text-center">
-                <h2 class="text-danger">{{ total_deals }}</h2>
+                <h2 class="text-crm-danger">{{ total_deals }}</h2>
                 <p class="mb-0">Total Deals</p>
             </div>
         </div>
@@ -43,17 +43,18 @@
 
     <!-- TASKS -->
     <div class="col-md-6">
-        <div class="card shadow-sm">
-            <div class="card-header bg-primary text-white">
+        <div class="card crm-card">
+            <div class="card-header crm-header">
                 📝 My Tasks
             </div>
+
             <div class="card-body p-0">
 
-                <ul class="list-group list-group-flush">
+                <ul class="list-group list-group-flush crm-list">
                     {% for task in my_tasks %}
                         <li class="list-group-item d-flex justify-content-between">
                             {{ task.title }}
-                            <span class="badge bg-warning">{{ task.status }}</span>
+                            <span class="badge crm-badge">{{ task.status }}</span>
                         </li>
                     {% empty %}
                         <li class="list-group-item">No tasks today 🎉</li>
@@ -66,13 +67,14 @@
 
     <!-- ACTIVITY -->
     <div class="col-md-6">
-        <div class="card shadow-sm">
-            <div class="card-header bg-dark text-white">
+        <div class="card crm-card">
+            <div class="card-header crm-header-alt">
                 📌 Recent Activity
             </div>
+
             <div class="card-body p-0">
 
-                <ul class="list-group list-group-flush">
+                <ul class="list-group list-group-flush crm-list">
                     {% for activity in recent_activities %}
                         <li class="list-group-item">
                             {{ activity }}

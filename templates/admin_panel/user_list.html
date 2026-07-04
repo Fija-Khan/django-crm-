@@ -1,0 +1,197 @@
+{% extends "base.html" %}
+
+{% block title %}
+User Management
+{% endblock %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <!-- Page Heading -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <h2>
+            <i class="bi bi-people-fill"></i>
+            User Management
+        </h2>
+
+        <a href="{% url 'user_add' %}" class="btn btn-primary">
+
+            <i class="bi bi-person-plus-fill"></i>
+            Add User
+
+        </a>
+
+    </div>
+
+    <!-- User Table -->
+
+    <div class="card shadow">
+
+        <div class="card-body">
+
+            {% if users %}
+
+            <table class="table table-hover table-bordered align-middle">
+
+                <thead class="table-dark">
+
+                    <tr>
+
+                        <th>ID</th>
+
+                        <th>Profile</th>
+
+                        <th>Username</th>
+
+                        <th>Email</th>
+
+                        <th>Phone</th>
+
+                        <th>Role</th>
+
+                        <th>Status</th>
+
+                        <th>Joined</th>
+
+                        <th width="180">Actions</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for user in users %}
+
+                    <tr>
+
+                        <td>{{ user.id }}</td>
+
+                        <td>
+
+                            {% if user.profile_pic %}
+
+                                <img src="{{ user.profile_pic.url }}"
+                                     width="45"
+                                     height="45"
+                                     class="rounded-circle">
+
+                            {% else %}
+
+                                <i class="bi bi-person-circle fs-3"></i>
+
+                            {% endif %}
+
+                        </td>
+
+                        <td>
+
+                            <strong>
+
+                                {{ user.username }}
+
+                            </strong>
+
+                        </td>
+
+                        <td>{{ user.email }}</td>
+
+                        <td>{{ user.phone }}</td>
+
+                        <td>
+
+                            {% if user.role == "admin" %}
+
+                                <span class="badge bg-danger">
+
+                                    Admin
+
+                                </span>
+
+                            {% else %}
+
+                                <span class="badge bg-primary">
+
+                                    Agent
+
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+                        <td>
+
+                            {% if user.is_active %}
+
+                                <span class="badge bg-success">
+
+                                    Approved
+
+                                </span>
+
+                            {% else %}
+
+                                <span class="badge bg-warning text-dark">
+
+                                    Pending
+
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+                        <td>
+
+                            {{ user.date_joined|date:"d M Y" }}
+
+                        </td>
+
+                        <td>
+
+                            <a href="{% url 'user_edit' user.pk %}"
+                               class="btn btn-warning btn-sm">
+
+                                <i class="bi bi-pencil-square"></i>
+
+                            </a>
+
+                            <a href="{% url 'user_delete' user.pk %}"
+                               class="btn btn-danger btn-sm">
+
+                                <i class="bi bi-trash-fill"></i>
+
+                            </a>
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+            {% else %}
+
+            <div class="alert alert-info">
+
+                <i class="bi bi-info-circle-fill"></i>
+
+                No users found.
+
+            </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
