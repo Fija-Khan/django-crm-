@@ -6,77 +6,116 @@ Lead Detail
 
 {% block content %}
 
-<div class="container mt-4">
+<div class="container-fluid">
 
-    <div class="card shadow">
+    <!-- Page Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
 
-        <div class="card-header bg-primary text-white">
-            <h3 class="mb-0">Lead Details</h3>
-        </div>
+        <h2 class="crm-title">
+            <i class="bi bi-person-vcard-fill me-2"></i>
+            Lead Details
+        </h2>
 
-        <div class="card-body">
+        <a href="{% url 'lead_list' %}" class="btn crm-btn-secondary">
+            <i class="bi bi-arrow-left me-1"></i>
+            Back
+        </a>
 
-            <table class="table table-bordered">
+    </div>
 
-                <tr>
-                    <th width="30%">Title</th>
-                    <td>{{ lead.title }}</td>
-                </tr>
+    <div class="card crm-card">
 
-                <tr>
-                    <th>Contact</th>
-                    <td>{{ lead.contact }}</td>
-                </tr>
+        <div class="card-body p-4">
 
-                <tr>
-                    <th>Status</th>
-                    <td>
-                        <span class="badge bg-info">
-                            {{ lead.get_status_display }}
-                        </span>
-                    </td>
-                </tr>
+            <div class="row">
 
-                <tr>
-                    <th>Assigned To</th>
-                    <td>{{ lead.assigned_to }}</td>
-                </tr>
+                <div class="col-md-6 mb-4">
+                    <label class="crm-label">Lead Title</label>
+                    <div class="crm-detail-box">
+                        {{ lead.title }}
+                    </div>
+                </div>
 
-                <tr>
-                    <th>Estimated Value</th>
-                    <td>₹ {{ lead.estimated_value }}</td>
-                </tr>
+                <div class="col-md-6 mb-4">
+                    <label class="crm-label">Contact</label>
+                    <div class="crm-detail-box">
+                        {{ lead.contact }}
+                    </div>
+                </div>
 
-                <tr>
-                    <th>Expected Close Date</th>
-                    <td>{{ lead.expected_close }}</td>
-                </tr>
+                <div class="col-md-6 mb-4">
+                    <label class="crm-label">Status</label>
+                    <div class="crm-detail-box">
 
-                <tr>
-                    <th>Created At</th>
-                    <td>{{ lead.created_at }}</td>
-                </tr>
+                        {% if lead.status == "new" %}
+                            <span class="badge bg-primary">New</span>
 
-                <tr>
-                    <th>Last Updated</th>
-                    <td>{{ lead.updated_at }}</td>
-                </tr>
+                        {% elif lead.status == "contacted" %}
+                            <span class="badge bg-info">Contacted</span>
 
-            </table>
+                        {% elif lead.status == "qualified" %}
+                            <span class="badge bg-warning text-dark">Qualified</span>
 
-            <div class="mt-4">
+                        {% elif lead.status == "proposal" %}
+                            <span class="badge bg-secondary">Proposal</span>
 
-                <a href="{% url 'lead_edit' lead.id %}" class="btn btn-warning">
-                    Edit Lead
+                        {% elif lead.status == "won" %}
+                            <span class="badge bg-success">Won</span>
+
+                        {% endif %}
+
+                    </div>
+                </div>
+
+                <div class="col-md-6 mb-4">
+                    <label class="crm-label">Assigned To</label>
+                    <div class="crm-detail-box">
+                        {{ lead.assigned_to }}
+                    </div>
+                </div>
+
+                <div class="col-md-6 mb-4">
+                    <label class="crm-label">Estimated Value</label>
+                    <div class="crm-detail-box">
+                        ₹ {{ lead.estimated_value }}
+                    </div>
+                </div>
+
+                <div class="col-md-6 mb-4">
+                    <label class="crm-label">Expected Close Date</label>
+                    <div class="crm-detail-box">
+                        {{ lead.expected_close }}
+                    </div>
+                </div>
+
+                <div class="col-md-6 mb-4">
+                    <label class="crm-label">Created At</label>
+                    <div class="crm-detail-box">
+                        {{ lead.created_at }}
+                    </div>
+                </div>
+
+                <div class="col-md-6 mb-4">
+                    <label class="crm-label">Last Updated</label>
+                    <div class="crm-detail-box">
+                        {{ lead.updated_at }}
+                    </div>
+                </div>
+
+            </div>
+
+            <hr class="my-4">
+
+            <div class="d-flex gap-2">
+
+                <a href="{% url 'lead_edit' lead.id %}" class="btn crm-btn-warning">
+                    <i class="bi bi-pencil-square me-1"></i>
+                    Edit
                 </a>
 
-                <a href="{% url 'lead_delete' lead.id %}" class="btn btn-danger">
+                <a href="{% url 'lead_delete' lead.id %}" class="btn crm-btn-danger">
+                    <i class="bi bi-trash me-1"></i>
                     Delete
-                </a>
-
-
-                <a href="{% url 'lead_list' %}" class="btn btn-secondary">
-                    Back to Leads
                 </a>
 
             </div>

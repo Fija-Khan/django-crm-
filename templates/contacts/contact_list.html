@@ -7,119 +7,126 @@
 <div class="container mt-4">
 
     <!-- Header -->
-    <div class="d-flex justify-content-between align-items-center mb-3">
+    <div class="crm-page-header d-flex justify-content-between align-items-center mb-4">
 
-        <h2>Contact List</h2>
+        <h2 class="crm-title">
+            <i class="bi bi-people-fill me-2"></i>
+            Contact List
+        </h2>
 
-        <a href="{% url 'contact_add' %}" class="btn btn-success">
-            + Add Contact
-        </a>
-
+       <a href="{% url 'contact_add' %}" class="crm-btn-add">
+    <i class="bi bi-plus-circle me-2"></i>
+    Add Contact
+</a>
     </div>
 
-    <!-- Search Form -->
-    <form method="GET" class="row mb-3">
+    <!-- Search -->
+    <form method="GET" class="crm-search-box row g-2 mb-4">
 
         <div class="col-md-4">
             <input
                 type="text"
                 name="search"
-                class="form-control"
-                placeholder="Search by First Name"
+                class="form-control crm-input"
+                placeholder="Search contacts..."
                 value="{{ search|default:'' }}"
             >
         </div>
 
         <div class="col-md-2">
-            <button class="btn btn-primary w-100">
+            <button class="crm-btn-secondary w-100">
                 Search
             </button>
         </div>
 
     </form>
 
-    <!-- Table -->
-    <div class="table-responsive">
+    <!-- Table Card -->
+    <div class="crm-card p-3">
 
-        <table class="table table-bordered table-hover">
+        <div class="table-responsive">
 
-            <thead class="table-dark">
+            <table class="table crm-table table-hover">
 
-                <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Phone</th>
-                    <th>Company</th>
-                    <th>Source</th>
-                </tr>
+                <thead>
 
-            </thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Company</th>
+                        <th>Source</th>
+                    </tr>
 
-            <tbody>
+                </thead>
 
-                {% for contact in page_obj %}
+                <tbody>
 
-                <tr>
+                    {% for contact in page_obj %}
 
-                    <td>
-                        <a href="{% url 'contact_detail' contact.id %}">
-                            {{ contact.first_name }} {{ contact.last_name }}
-                        </a>
-                    </td>
+                    <tr>
 
-                    <td>
-                        <a href="mailto:{{ contact.email }}">
-                            {{ contact.email }}
-                        </a>
-                    </td>
+                        <td>
+                            <a class="crm-link"
+                               href="{% url 'contact_detail' contact.id %}">
+                                {{ contact.first_name }} {{ contact.last_name }}
+                            </a>
+                        </td>
 
-                    <td>
-                        {{ contact.phone|default:"-" }}
-                    </td>
+                        <td>
+                            <a class="crm-link"
+                               href="mailto:{{ contact.email }}">
+                                {{ contact.email }}
+                            </a>
+                        </td>
 
-                    <td>
-                        {{ contact.company|default:"-" }}
-                    </td>
+                        <td>{{ contact.phone|default:"-" }}</td>
 
-                    <td>
-                        {{ contact.get_source_display }}
-                    </td>
+                        <td>{{ contact.company|default:"-" }}</td>
 
-                </tr>
+                        <td>
+                            <span class="crm-badge">
+                                {{ contact.get_source_display }}
+                            </span>
+                        </td>
 
-                {% empty %}
+                    </tr>
 
-                <tr>
-                    <td colspan="5" class="text-center text-muted">
-                        No Contacts Found
-                    </td>
-                </tr>
+                    {% empty %}
 
-                {% endfor %}
+                    <tr>
+                        <td colspan="5" class="text-center text-muted py-4">
+                            No Contacts Found
+                        </td>
+                    </tr>
 
-            </tbody>
+                    {% endfor %}
 
-        </table>
+                </tbody>
+
+            </table>
+
+        </div>
 
     </div>
 
     <!-- Pagination -->
-    <div class="d-flex justify-content-center">
+    <div class="crm-pagination d-flex justify-content-center mt-4">
 
         {% if page_obj.has_previous %}
-            <a class="btn btn-outline-primary me-2"
-               href="?page={{ page_obj.previous_page_number }}&search={{ search }}">
+            <a class="crm-btn-secondary me-2"
+               href="?page={{ page_obj.previous_page_number }}&search={{ search|urlencode }}">
                 Previous
             </a>
         {% endif %}
 
-        <span class="align-self-center">
+        <span class="crm-page-info">
             Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
         </span>
 
         {% if page_obj.has_next %}
-            <a class="btn btn-outline-primary ms-2"
-               href="?page={{ page_obj.next_page_number }}&search={{ search }}">
+            <a class="crm-btn-secondary ms-2"
+               href="?page={{ page_obj.next_page_number }}&search={{ search|urlencode }}">
                 Next
             </a>
         {% endif %}

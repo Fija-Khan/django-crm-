@@ -1,0 +1,53 @@
+/* =========================
+   LEADS PAGE
+========================= */
+.crm-title {
+    color: #fff;
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+/* =========================
+   KANBAN
+========================= */
+.kanban-column {
+    background: #161026;
+    height: 420px;
+    overflow-y: auto;
+}
+
+.lead-card {
+    background: #22193a;
+    border-radius: 16px;
+    margin-bottom: 16px;
+}
+
+/* =========================
+   LOGIN / REGISTER
+========================= */
+.login-card {
+    width: 420px;
+    background: #1a1330;
+    padding: 40px;
+    border-radius: 20px;
+}
+
+.register-left {
+    background: linear-gradient(135deg,#7c3aed,#4f46e5);
+}
+
+/* =========================
+   PROFILE
+========================= */
+.profile-card {
+    max-width: 700px;
+    margin: auto;
+    background: #1a1330;
+    padding: 35px;
+    border-radius: 18px;
+}

@@ -1,71 +1,88 @@
 {% extends "base.html" %}
 
+{% block title %}
+Register
+{% endblock %}
+
 {% block content %}
 
-<div class="container-fluid bg-light py-5">
+<div class="container-fluid py-5">
 
-    <div class="row justify-content-center align-items-center">
+    <div class="row justify-content-center">
 
-        <div class="col-lg-8">
+        <div class="col-xl-10">
 
-            <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+            <div class="card crm-card overflow-hidden">
 
                 <div class="row g-0">
 
-                    <!-- Left Side -->
+                    <!-- LEFT PANEL -->
 
-                    <div class="col-md-5 bg-primary text-white d-flex flex-column justify-content-center p-5">
+                    <div class="col-lg-5 register-left p-5">
 
-                        <h1 class="fw-bold mb-3">
-                            CRM System
-                        </h1>
+                        <div class="h-100 d-flex flex-column justify-content-center">
 
-                        <p class="mb-4">
-                            Register your account to access the Customer Relationship Management System.
-                        </p>
+                            <h2 class="fw-bold text-white mb-3">
+                                <i class="bi bi-kanban-fill me-2"></i>
+                                CRM System
+                            </h2>
 
-                        <hr>
+                            <p class="text-light mb-4">
+                                Create your account and start managing contacts,
+                                leads, deals and tasks from one place.
+                            </p>
 
-                        <h5>Features</h5>
+                            <hr class="border-light opacity-25">
 
-                        <ul class="list-unstyled mt-3">
+                            <h5 class="text-white mb-3">
+                                Features
+                            </h5>
 
-                            <li class="mb-2">
-                                ✅ Contact Management
-                            </li>
+                            <ul class="feature-list">
 
-                            <li class="mb-2">
-                                ✅ Lead Tracking
-                            </li>
+                                <li>
+                                    <i class="bi bi-check-circle-fill"></i>
+                                    Contact Management
+                                </li>
 
-                            <li class="mb-2">
-                                ✅ Deal Pipeline
-                            </li>
+                                <li>
+                                    <i class="bi bi-check-circle-fill"></i>
+                                    Lead Tracking
+                                </li>
 
-                            <li class="mb-2">
-                                ✅ Task Management
-                            </li>
+                                <li>
+                                    <i class="bi bi-check-circle-fill"></i>
+                                    Deal Pipeline
+                                </li>
 
-                            <li class="mb-2">
-                                ✅ Reports & Dashboard
-                            </li>
+                                <li>
+                                    <i class="bi bi-check-circle-fill"></i>
+                                    Task Management
+                                </li>
 
-                        </ul>
+                                <li>
+                                    <i class="bi bi-check-circle-fill"></i>
+                                    Reports & Dashboard
+                                </li>
+
+                            </ul>
+
+                        </div>
 
                     </div>
 
-                    <!-- Right Side -->
+                    <!-- RIGHT PANEL -->
 
-                    <div class="col-md-7">
+                    <div class="col-lg-7">
 
                         <div class="card-body p-5">
 
-                            <h2 class="fw-bold mb-1">
+                            <h2 class="crm-title mb-1">
                                 Create Account
                             </h2>
 
-                            <p class="text-muted mb-4">
-                                Fill in your information below.
+                            <p class="crm-small mb-4">
+                                Fill your details below.
                             </p>
 
                             {% if messages %}
@@ -83,109 +100,74 @@
                                 <div class="row">
 
                                     <div class="col-md-6 mb-3">
-
-                                        <label class="form-label">
-                                            First Name
-                                        </label>
-
+                                        <label class="crm-label">First Name</label>
                                         {{ form.first_name }}
-
                                     </div>
 
                                     <div class="col-md-6 mb-3">
-
-                                        <label class="form-label">
-                                            Last Name
-                                        </label>
-
+                                        <label class="crm-label">Last Name</label>
                                         {{ form.last_name }}
-
                                     </div>
 
                                 </div>
 
                                 <div class="mb-3">
-
-                                    <label class="form-label">
-                                        Username
-                                    </label>
-
+                                    <label class="crm-label">Username</label>
                                     {{ form.username }}
-
                                 </div>
 
                                 <div class="mb-3">
-
-                                    <label class="form-label">
-                                        Email Address
-                                    </label>
-
+                                    <label class="crm-label">Email</label>
                                     {{ form.email }}
-
                                 </div>
 
                                 <div class="mb-3">
-
-                                    <label class="form-label">
-                                        Phone Number
-                                    </label>
-
+                                    <label class="crm-label">Phone Number</label>
                                     {{ form.phone }}
-
                                 </div>
 
                                 <div class="row">
 
                                     <div class="col-md-6 mb-3">
-
-                                        <label class="form-label">
-                                            Password
-                                        </label>
-
+                                        <label class="crm-label">Password</label>
                                         {{ form.password1 }}
-
                                     </div>
 
-                                    <div class="col-md-6 mb-4">
-
-                                        <label class="form-label">
-                                            Confirm Password
-                                        </label>
-
+                                    <div class="col-md-6 mb-3">
+                                        <label class="crm-label">Confirm Password</label>
                                         {{ form.password2 }}
-
                                     </div>
 
                                 </div>
 
-                                <div class="alert alert-warning small">
+                                <div class="alert register-note">
 
-                                    <strong>Note:</strong><br>
+                                    <i class="bi bi-info-circle-fill me-2"></i>
 
-                                    After registration your account will remain
-                                    <strong>Inactive</strong> until approved by the Administrator.
-
-                                </div>
-
-                                <div class="d-grid">
-
-                                    <button class="btn btn-primary btn-lg">
-
-                                        Register Account
-
-                                    </button>
+                                    Your account will remain
+                                    <strong>Inactive</strong>
+                                    until approved by the administrator.
 
                                 </div>
+
+                                <button class="btn crm-btn-primary w-100 mt-3">
+
+                                    <i class="bi bi-person-plus-fill me-2"></i>
+
+                                    Register Account
+
+                                </button>
 
                             </form>
 
-                            <hr>
+                            <hr class="my-4">
 
-                            <div class="text-center">
+                            <div class="text-center crm-small">
 
                                 Already have an account?
 
-                                <a href="{% url 'login' %}" class="fw-bold text-decoration-none">
+                                <a href="{% url 'login' %}"
+                                   class="register-link">
 
                                     Login Here
 

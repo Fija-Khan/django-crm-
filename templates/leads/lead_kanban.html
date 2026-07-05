@@ -22,7 +22,7 @@ Lead Kanban Board
 
         </h2>
 
-        <a href="{% url 'lead_add' %}" class="btn crm-btn-primary">
+        <a href="{% url 'lead_add' %}" class="crm-btn-primary">
 
             <i class="bi bi-plus-circle me-1"></i>
 
@@ -64,30 +64,29 @@ Lead Kanban Board
                  draggable="true"
                  data-id="{{ lead.id }}">
 
-                <div class="card-body">
+            <div class="card-body">
 
-                    <h6 class="lead-title">
-                        {{ lead.title }}
-                    </h6>
+    <h6 class="lead-title">
+        {{ lead.title }}
+    </h6>
 
-                    <p class="crm-small mb-3">
+    <p class="crm-small mb-2">
+        <i class="bi bi-person-circle me-2"></i>
+        {{ lead.contact }}
+    </p>
 
-                        <i class="bi bi-person-circle me-1"></i>
+    <p class="crm-small mb-3">
+        <i class="bi bi-calendar3 me-2"></i>
+        {{ lead.created_at|date:"d M Y" }}
+    </p>
 
-                        {{ lead.contact }}
+    <a href="{% url 'lead_detail' lead.id %}"
+       class="btn crm-btn-view">
+        <i class="bi bi-eye me-1"></i>
+        View Details
+    </a>
 
-                    </p>
-
-                    <a href="{% url 'lead_detail' lead.id %}"
-                       class="btn crm-btn-view w-100">
-
-                        <i class="bi bi-eye"></i>
-
-                        View
-
-                    </a>
-
-                </div>
+</div>
 
             </div>
 
@@ -340,40 +339,6 @@ Lead Kanban Board
 
 </div>
 
-        <!-- WON -->
-        <div class="col-lg-2 col-md-4 mb-4">
-            <div class="card shadow-sm">
-
-                <div class="card-header bg-success text-white text-center">
-                    <strong>Won</strong>
-                </div>
-
-                <div class="card-body kanban-column" data-status="won">
-
-                    {% for lead in won_leads %}
-                    <div class="card mb-2 border-success lead-card"
-                         draggable="true"
-                         data-id="{{ lead.id }}">
-
-                        <div class="card-body p-2">
-                            <h6>{{ lead.title }}</h6>
-                            <small>{{ lead.contact }}</small>
-                            <hr class="my-2">
-
-                            <a href="{% url 'lead_detail' lead.id %}"
-                               class="btn btn-success btn-sm w-100">
-                                View
-                            </a>
-                        </div>
-                    </div>
-                    {% empty %}
-                    <p class="text-muted text-center">No Leads</p>
-                    {% endfor %}
-
-                </div>
-            </div>
-        </div>
-
 <!-- ===========================
         WON
 =========================== -->
@@ -450,31 +415,33 @@ Lead Kanban Board
     </div>
 
 </div>
+
+
 <!-- ===========================
-        WON
+        Lost
 =========================== -->
 
-<div class="col-lg-2 col-md-4">
+<div class="col">
 
-    <div class="card crm-card shadow-sm">
+    <div class="card crm-card1">
 
-        <div class="card-header kanban-header-won">
+        <div class="card-header kanban-header-lost">
 
             <strong>
-                <i class="bi bi-trophy-fill me-1"></i>
-                Won
+                <i class="bi bi-x-circle-fill me-1"></i>
+                Lost
             </strong>
 
-            <span class="badge float-end">
-                {{ won_leads|length }}
+            <span class="badge">
+                {{ lost_leads|length }}
             </span>
 
         </div>
 
         <div class="card-body kanban-column"
-             data-status="won">
+             data-status="lost">
 
-            {% for lead in won_leads %}
+            {% for lead in lost_leads %}
 
             <div class="lead-card"
                  draggable="true"
@@ -487,20 +454,14 @@ Lead Kanban Board
                     </h6>
 
                     <p class="crm-small mb-3">
-
-                        <i class="bi bi-person-circle me-1"></i>
-
+                        <i class="bi bi-person-circle me-2"></i>
                         {{ lead.contact }}
-
                     </p>
 
                     <a href="{% url 'lead_detail' lead.id %}"
                        class="btn crm-btn-view w-100">
-
-                        <i class="bi bi-eye"></i>
-
+                        <i class="bi bi-eye me-1"></i>
                         View
-
                     </a>
 
                 </div>
@@ -509,14 +470,9 @@ Lead Kanban Board
 
             {% empty %}
 
-            <div class="empty-kanban text-center">
-
-                <i class="bi bi-inbox fs-3"></i>
-
-                <p class="mt-2 mb-0">
-                    No Leads
-                </p>
-
+            <div class="empty-kanban">
+                <i class="bi bi-inbox"></i>
+                <p>No Leads</p>
             </div>
 
             {% endfor %}
