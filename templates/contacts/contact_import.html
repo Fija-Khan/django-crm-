@@ -4,56 +4,90 @@
 
 {% block content %}
 
-<div class="container mt-4">
+<div class="container mt-4 crm-import-page">
 
-    <div class="crm-card p-4">
+    <div class="crm-card">
 
-        <!-- Title -->
-        <h3 class="crm-title mb-3">
-            📥 Import Contacts (CSV)
-        </h3>
+        <!-- Page Heading -->
+        <div class="mb-4">
 
-        <!-- Messages -->
+            <h2 class="crm-title">
+                <i class="bi bi-upload me-2"></i>
+                Import Contacts
+            </h2>
+
+            <p class="crm-page-subtitle">
+                Upload a CSV file to import contacts into your CRM.
+            </p>
+
+        </div>
+
+        <!-- Success Messages -->
         {% if messages %}
             {% for message in messages %}
                 <div class="crm-alert-success mb-3">
+                    <i class="bi bi-check-circle-fill me-2"></i>
                     {{ message }}
                 </div>
             {% endfor %}
         {% endif %}
 
         <!-- Instructions -->
-        <div class="crm-alert-info mb-3">
-            <b>CSV Format Required:</b><br>
-            First Name, Last Name, Email, Phone, Company
+        <div class="crm-alert-info mb-4">
+
+            <h6 class="mb-2">
+                <i class="bi bi-info-circle-fill me-2"></i>
+                CSV Format
+            </h6>
+
+            <p class="mb-0">
+                First Name, Last Name, Email, Phone, Company
+            </p>
+
         </div>
 
-        <!-- Form -->
+        <!-- Upload Form -->
         <form method="POST" enctype="multipart/form-data">
 
             {% csrf_token %}
 
-            <div class="mb-3">
-                <label class="crm-label">Select CSV File</label>
-                <input type="file" name="file" class="form-control crm-input" accept=".csv" required>
+            <div class="mb-4">
+
+                <label for="id_file" class="crm-label">
+                    Select CSV File
+                </label>
+
+                <input
+                    id="id_file"
+                    type="file"
+                    name="file"
+                    class="form-control crm-input"
+                    accept=".csv"
+                    required
+                >
+
             </div>
 
             <div class="d-flex gap-2">
 
-                <button type="submit" class="btn crm-btn-primary">
-                    ⬆ Upload & Import
+                <button type="submit" class="crm-btn-primary">
+                    <i class="bi bi-upload me-2"></i>
+                    Upload & Import
                 </button>
 
-                <a href="{% url 'contact_list' %}" class="btn crm-btn-secondary">
-                    Cancel
+                <a href="{% url 'contact_list' %}" class="crm-btn-secondary">
+                    <i class="bi bi-arrow-left me-2"></i>
+                    Back
                 </a>
 
             </div>
 
         </form>
 
-        <p class="crm-note mt-3">
-            ⚠ Duplicate emails will be automatically skipped.
+        <!-- Note -->
+        <p class="crm-note mt-4 mb-0">
+            <i class="bi bi-exclamation-triangle me-2"></i>
+            Duplicate email addresses will be automatically skipped during import.
         </p>
 
     </div>

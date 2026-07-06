@@ -4,30 +4,55 @@
 
 {% block content %}
 
-<div class="container mt-5">
+<div class="container mt-4">
 
-    <div class="card border-danger">
+    <div class="crm-delete-page">
 
-        <div class="card-body text-center">
+        <div class="crm-card text-center">
 
-            <h3 class="text-danger">⚠️ Delete Contact</h3>
+            <div class="card-body">
 
-            <p class="mt-3">
-                Are you sure you want to delete
-                <strong>{{ object.first_name }} {{ object.last_name }}</strong>?
-            </p>
+                <div class="crm-delete-icon">
+                    <i class="bi bi-trash-fill"></i>
+                </div>
 
-            <form method="POST">
-                {% csrf_token %}
+                <h2 class="crm-title mt-3">
+                    Delete Contact
+                </h2>
 
-                <button type="submit" class="btn btn-danger">
-                    Yes, Delete
-                </button>
+                <p class="crm-page-subtitle">
+                    This action cannot be undone.
+                </p>
 
-                <a href="{% url 'contact_detail' object.id %}" class="btn btn-secondary">
-                    Cancel
-                </a>
-            </form>
+                <div class="crm-detail-box mt-4">
+
+                    <strong>
+                        {{ object.first_name }} {{ object.last_name }}
+                    </strong>
+
+                </div>
+
+                <p class="mt-4 text-light">
+                    Are you sure you want to permanently delete this contact?
+                </p>
+
+                <form method="POST" class="d-flex justify-content-center gap-2 mt-4">
+
+                    {% csrf_token %}
+
+                    <button type="submit" class="crm-btn-danger">
+                        <i class="bi bi-trash"></i>
+                        Delete
+                    </button>
+
+                    <a href="{% url 'contact_detail' object.id %}" class="crm-btn-secondary">
+                        <i class="bi bi-arrow-left"></i>
+                        Cancel
+                    </a>
+
+                </form>
+
+            </div>
 
         </div>
 

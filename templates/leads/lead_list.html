@@ -1,48 +1,70 @@
 {% extends 'base.html' %}
 
-{% block title %}
-Lead List
-{% endblock %}
+{% block title %}Lead Management{% endblock %}
 
 {% block content %}
 
-<!-- HEADER -->
+<!-- =========================
+        PAGE HEADER
+========================= -->
 <div class="d-flex justify-content-between align-items-center mb-4">
 
-    <h2 class="crm-title">Lead Management</h2>
+    <h2 class="crm-title mb-0">
+        Lead Management
+    </h2>
 
-    <div>
-        <a href="{% url 'lead_kanban' %}" class="btn crm-btn-secondary me-2">
+    <div class="d-flex gap-2">
+
+        <a href="{% url 'lead_kanban' %}" class="crm-btn-secondary">
+            <i class="bi bi-kanban me-1"></i>
             Kanban Board
         </a>
 
-        <a href="{% url 'lead_add' %}" class="btn crm-btn-primary">
-            + Add Lead
+        <a href="{% url 'lead_add' %}" class="crm-btn-primary">
+            <i class="bi bi-plus-circle me-1"></i>
+            Add Lead
         </a>
+
     </div>
 
 </div>
 
-<!-- TABLE CARD -->
-<div class="card crm-card">
+
+<!-- =========================
+        LEADS TABLE
+========================= -->
+<div class="card crm-card shadow-sm">
 
     <div class="card-body p-0">
 
         <div class="table-responsive">
 
-            <table class="table crm-table align-middle">
+            <table class="table crm-table align-middle mb-0">
 
                 <thead>
+
                     <tr>
-                        <th>ID</th>
+
+                        <th style="width:70px;">ID</th>
+
                         <th>Title</th>
+
                         <th>Contact</th>
+
                         <th>Status</th>
+
                         <th>Assigned To</th>
-                        <th>Value</th>
+
+                        <th>Estimated Value</th>
+
                         <th>Expected Close</th>
-                        <th>Actions</th>
+
+                        <th class="text-center" style="width:180px;">
+                            Actions
+                        </th>
+
                     </tr>
+
                 </thead>
 
                 <tbody>
@@ -51,83 +73,182 @@ Lead List
 
                     <tr>
 
-                        <td>{{ lead.id }}</td>
-
-                        <td class="fw-semibold">{{ lead.title }}</td>
-
-                        <td>{{ lead.contact }}</td>
-
+                        <!-- ID -->
                         <td>
-                            {% if lead.status == "new" %}
-                                <span class="crm-badge-primary">New</span>
-
-                            {% elif lead.status == "contacted" %}
-                                <span class="crm-badge-info">Contacted</span>
-
-                            {% elif lead.status == "qualified" %}
-                                <span class="crm-badge-warning">Qualified</span>
-
-                            {% elif lead.status == "proposal" %}
-                                <span class="crm-badge-secondary">Proposal</span>
-
-                            {% elif lead.status == "won" %}
-                                <span class="crm-badge-success">Won</span>
-
-                            {% elif lead.status == "lost" %}
-                                <span class="crm-badge-danger">Lost</span>
-                            {% endif %}
+                            #{{ lead.id }}
                         </td>
 
-                        <td>{{ lead.assigned_to|default:"Unassigned" }}</td>
+                        <!-- Title -->
+                        <td class="fw-semibold">
+                            {{ lead.title }}
+                        </td>
 
-                        <td>₹ {{ lead.estimated_value|floatformat:2 }}</td>
+                        <!-- Contact -->
+                        <td>
 
-                        <td>{{ lead.expected_close|date:"d M Y"|default:"-" }}</td>
+                            {% if lead.contact %}
 
- <td class="text-center">
+                                {{ lead.contact }}
 
-    <div class="action-buttons">
+                            {% else %}
 
-        <!-- View -->
-        <a href="{% url 'lead_detail' lead.id %}"
-           class="action-btn view-btn"
-           title="View Lead">
-            <i class="bi bi-eye"></i>
-        </a>
+                                <span class="text-muted">
+                                    No Contact
+                                </span>
 
-        <!-- Edit -->
-        <a href="{% url 'lead_edit' lead.id %}"
-           class="action-btn edit-btn"
-           title="Edit Lead">
-            <i class="bi bi-pencil-square"></i>
-        </a>
+                            {% endif %}
 
-        <!-- Delete -->
-        <a href="{% url 'lead_delete' lead.id %}"
-           class="action-btn delete-btn"
-           title="Delete Lead">
-            <i class="bi bi-trash"></i>
-        </a>
+                        </td>
 
-        <!-- Convert -->
-        <a href="{% url 'lead_convert' lead.id %}"
-           class="action-btn convert-btn"
-           title="Convert to Deal">
-            <i class="bi bi-arrow-repeat"></i>
-        </a>
+                        <!-- Status -->
+                        <td>
 
-    </div>
+                            {% if lead.status == "new" %}
 
-</td>
+                                <span class="crm-badge-primary">
+                                    New
+                                </span>
+
+                            {% elif lead.status == "contacted" %}
+
+                                <span class="crm-badge-info">
+                                    Contacted
+                                </span>
+
+                            {% elif lead.status == "qualified" %}
+
+                                <span class="crm-badge-warning">
+                                    Qualified
+                                </span>
+
+                            {% elif lead.status == "proposal" %}
+
+                                <span class="crm-badge-secondary">
+                                    Proposal
+                                </span>
+
+                            {% elif lead.status == "won" %}
+
+                                <span class="crm-badge-success">
+                                    Won
+                                </span>
+
+                            {% elif lead.status == "lost" %}
+
+                                <span class="crm-badge-danger">
+                                    Lost
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+                        <!-- Assigned -->
+                        <td>
+
+                            {% if lead.assigned_to %}
+
+                                {{ lead.assigned_to }}
+
+                            {% else %}
+
+                                <span class="text-muted">
+                                    Unassigned
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+                        <!-- Estimated Value -->
+                        <td>
+
+                            ₹ {{ lead.estimated_value|default:0|floatformat:2 }}
+
+                        </td>
+
+                        <!-- Expected Close -->
+                        <td>
+
+                            {% if lead.expected_close %}
+
+                                {{ lead.expected_close|date:"d M Y" }}
+
+                            {% else %}
+
+                                <span class="text-muted">-</span>
+
+                            {% endif %}
+
+                        </td>
+
+                        <!-- ACTIONS -->
+                        <td class="text-center">
+
+                            <div class="action-buttons">
+
+                                <!-- View -->
+                                <a href="{% url 'lead_detail' lead.id %}"
+                                   class="action-btn view-btn"
+                                   title="View Lead">
+
+                                    <i class="bi bi-eye"></i>
+
+                                </a>
+
+                                <!-- Edit -->
+                                <a href="{% url 'lead_edit' lead.id %}"
+                                   class="action-btn edit-btn"
+                                   title="Edit Lead">
+
+                                    <i class="bi bi-pencil-square"></i>
+
+                                </a>
+
+                                <!-- Delete -->
+                                <a href="{% url 'lead_delete' lead.id %}"
+                                   class="action-btn delete-btn"
+                                   title="Delete Lead">
+
+                                    <i class="bi bi-trash"></i>
+
+                                </a>
+
+                                <!-- Convert -->
+                                <a href="{% url 'lead_convert' lead.id %}"
+                                   class="action-btn convert-btn"
+                                   title="Convert to Deal">
+
+                                    <i class="bi bi-arrow-repeat"></i>
+
+                                </a>
+
+                            </div>
+
+                        </td>
 
                     </tr>
 
                     {% empty %}
 
                     <tr>
-                        <td colspan="8" class="text-center text-muted py-4">
-                            No Leads Found
+
+                        <td colspan="8" class="text-center py-5">
+
+                            <div class="text-muted">
+
+                                <i class="bi bi-inbox fs-2 d-block mb-2"></i>
+
+                                <strong>No Leads Found</strong>
+
+                                <div class="small mt-1">
+                                    Start by creating your first lead.
+                                </div>
+
+                            </div>
+
                         </td>
+
                     </tr>
 
                     {% endfor %}

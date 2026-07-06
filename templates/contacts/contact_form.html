@@ -6,33 +6,49 @@
 
 <div class="container mt-4">
 
-    <div class="row justify-content-center">
+    <div class="crm-contact-page">
 
-        <div class="col-md-7">
+        <div class="crm-card">
 
-            <div class="crm-card p-4">
+            <!-- Header -->
+            <div class="mb-4">
 
-                <!-- Title -->
-                <h3 class="crm-title mb-4">
-                    ➕ Add New Contact
-                </h3>
+                <h2 class="crm-title">
+                    <i class="bi bi-person-plus-fill me-2"></i>
+                    Add New Contact
+                </h2>
 
-                <!-- Form -->
-                <form method="POST">
+                <p class="crm-page-subtitle">
+                    Enter the contact details below to create a new contact.
+                </p>
 
-                    {% csrf_token %}
+            </div>
 
-                    <div class="crm-form-wrapper">
-                        {{ form.as_p }}
-                    </div>
+            <!-- Form -->
+            <form method="POST">
 
-                    <button type="submit" class="btn crm-btn-primary w-100 mt-3">
+                {% csrf_token %}
+
+                <div class="crm-form-wrapper">
+                    {{ form.as_p }}
+                </div>
+
+                <!-- Buttons -->
+                <div class="d-flex gap-2 mt-4">
+
+                    <button type="submit" class="crm-btn-primary">
+                        <i class="bi bi-check-circle me-2"></i>
                         Save Contact
                     </button>
 
-                </form>
+                    <a href="{% url 'contact_list' %}" class="crm-btn-secondary">
+                        <i class="bi bi-arrow-left me-2"></i>
+                        Cancel
+                    </a>
 
-            </div>
+                </div>
+
+            </form>
 
         </div>
 

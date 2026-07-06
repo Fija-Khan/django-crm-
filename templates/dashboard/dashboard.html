@@ -4,88 +4,166 @@
 
 {% block content %}
 
-<h3 class="mb-4">📊 CRM Dashboard</h3>
+<!-- Dashboard Heading -->
+<h2 class="dashboard-title">
+    <i class="bi bi-speedometer2 me-2"></i>
+    CRM Dashboard
+</h2>
 
-<!-- KPI CARDS -->
-<div class="row g-3">
+<!-- ==========================
+        KPI CARDS
+========================== -->
 
-    <div class="col-md-4">
+<div class="row g-4 dashboard-kpi">
+
+    <div class="col-lg-4 col-md-6">
         <div class="card crm-card">
+
             <div class="card-body text-center">
-                <h2 class="text-crm-primary">{{ total_leads }}</h2>
-                <p class="mb-0">Total Leads</p>
+
+                <h2 class="text-crm-primary">
+                    {{ total_leads }}
+                </h2>
+
+                <p>Total Leads</p>
+
             </div>
+
         </div>
     </div>
 
-    <div class="col-md-4">
+    <div class="col-lg-4 col-md-6">
         <div class="card crm-card">
+
             <div class="card-body text-center">
-                <h2 class="text-crm-success">{{ total_contacts }}</h2>
-                <p class="mb-0">Total Contacts</p>
+
+                <h2 class="text-crm-success">
+                    {{ total_contacts }}
+                </h2>
+
+                <p>Total Contacts</p>
+
             </div>
+
         </div>
     </div>
 
-    <div class="col-md-4">
+    <div class="col-lg-4 col-md-12">
         <div class="card crm-card">
+
             <div class="card-body text-center">
-                <h2 class="text-crm-danger">{{ total_deals }}</h2>
-                <p class="mb-0">Total Deals</p>
+
+                <h2 class="text-crm-danger">
+                    {{ total_deals }}
+                </h2>
+
+                <p>Total Deals</p>
+
             </div>
+
         </div>
     </div>
 
 </div>
 
-<!-- MAIN SECTION -->
-<div class="row mt-4 g-3">
+<!-- ==========================
+        TASKS & ACTIVITY
+========================== -->
 
-    <!-- TASKS -->
-    <div class="col-md-6">
-        <div class="card crm-card">
+<div class="row mt-4 g-4">
+
+    <!-- Tasks -->
+
+    <div class="col-lg-6">
+
+        <div class="card crm-card dashboard-card">
+
             <div class="card-header crm-header">
-                📝 My Tasks
+
+                <i class="bi bi-list-task me-2"></i>
+
+                My Tasks
+
             </div>
 
             <div class="card-body p-0">
 
                 <ul class="list-group list-group-flush crm-list">
+
                     {% for task in my_tasks %}
-                        <li class="list-group-item d-flex justify-content-between">
-                            {{ task.title }}
-                            <span class="badge crm-badge">{{ task.status }}</span>
-                        </li>
+
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+
+                        {{ task.title }}
+
+                        <span class="badge crm-badge">
+
+                            {{ task.status }}
+
+                        </span>
+
+                    </li>
+
                     {% empty %}
-                        <li class="list-group-item">No tasks today 🎉</li>
+
+                    <li class="list-group-item text-center">
+
+                        No tasks today 🎉
+
+                    </li>
+
                     {% endfor %}
+
                 </ul>
 
             </div>
+
         </div>
+
     </div>
 
-    <!-- ACTIVITY -->
-    <div class="col-md-6">
-        <div class="card crm-card">
+    <!-- Activity -->
+
+    <div class="col-lg-6">
+
+        <div class="card crm-card dashboard-card">
+
             <div class="card-header crm-header-alt">
-                📌 Recent Activity
+
+                <i class="bi bi-clock-history me-2"></i>
+
+                Recent Activity
+
             </div>
 
             <div class="card-body p-0">
 
                 <ul class="list-group list-group-flush crm-list">
+
                     {% for activity in recent_activities %}
-                        <li class="list-group-item">
-                            {{ activity }}
-                        </li>
+
+                    <li class="list-group-item">
+
+                        {{ activity }}
+
+                    </li>
+
                     {% empty %}
-                        <li class="list-group-item">No recent activity</li>
+
+                    <li class="list-group-item text-center">
+
+                        No recent activity
+
+                    </li>
+
                     {% endfor %}
+
                 </ul>
 
             </div>
+
         </div>
+
     </div>
 
 </div>
