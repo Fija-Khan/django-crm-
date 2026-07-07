@@ -795,3 +795,319 @@
         text-align: center;
     }
 }
+/* ======================================================
+   Convert Lead Page
+====================================================== */
+
+.convert-lead-page{
+
+    padding:35px 15px;
+
+}
+
+.convert-lead-page .row{
+
+    min-height:75vh;
+
+}
+
+.convert-card{
+
+    max-width:580px;
+
+    margin:auto;
+
+}
+
+.convert-card .card-body{
+
+    padding:45px;
+
+}
+
+.convert-icon{
+
+    width:90px;
+
+    height:90px;
+
+    margin:auto;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:rgba(124,58,237,.12);
+
+    border:1px solid rgba(124,58,237,.25);
+
+}
+
+.convert-icon i{
+
+    font-size:42px;
+
+    color:#7c3aed;
+
+}
+
+.convert-description{
+
+    max-width:430px;
+
+    margin:15px auto 25px;
+
+    line-height:1.8;
+
+}
+
+.convert-title{
+
+    color:#ffffff;
+
+    font-weight:600;
+
+}
+
+.convert-contact{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:10px;
+
+    width:fit-content;
+
+    margin:0 auto;
+
+}
+
+.convert-contact i{
+
+    color:#38bdf8;
+
+    font-size:20px;
+
+}
+
+.convert-actions{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:15px;
+
+    flex-wrap:wrap;
+
+}
+
+.convert-actions .crm-btn-success,
+
+.convert-actions .crm-btn-secondary{
+
+    min-width:170px;
+
+}
+
+@media(max-width:768px){
+
+    .convert-card .card-body{
+
+        padding:30px 20px;
+
+    }
+
+    .convert-icon{
+
+        width:75px;
+
+        height:75px;
+
+    }
+
+    .convert-icon i{
+
+        font-size:34px;
+
+    }
+
+    .convert-actions{
+
+        flex-direction:column;
+
+    }
+
+    .convert-actions .crm-btn-success,
+
+    .convert-actions .crm-btn-secondary{
+
+        width:100%;
+
+    }
+
+}
+/* =====================================================
+   Delete Lead Page
+===================================================== */
+
+.delete-lead-page{
+
+    padding:35px 15px;
+
+}
+
+.delete-lead-page .row{
+
+    min-height:75vh;
+
+}
+
+.delete-card{
+
+    max-width:580px;
+
+    margin:auto;
+
+}
+
+.delete-card .card-body{
+
+    padding:45px;
+
+}
+
+.delete-icon{
+
+    width:90px;
+
+    height:90px;
+
+    margin:auto;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:rgba(239,68,68,.10);
+
+    border:1px solid rgba(239,68,68,.25);
+
+}
+
+.delete-icon i{
+
+    font-size:42px;
+
+    color:#ef4444;
+
+}
+
+.delete-description{
+
+    max-width:430px;
+
+    margin:15px auto 30px;
+
+    line-height:1.8;
+
+}
+
+.delete-info{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:15px;
+
+}
+
+.delete-info .crm-detail-box{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+.delete-actions{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:15px;
+
+    flex-wrap:wrap;
+
+}
+
+.delete-actions .crm-btn-danger,
+
+.delete-actions .crm-btn-secondary{
+
+    min-width:170px;
+
+}
+
+@media (max-width:768px){
+
+    .delete-card .card-body{
+
+        padding:30px 20px;
+
+    }
+
+    .delete-icon{
+
+        width:75px;
+
+        height:75px;
+
+    }
+
+    .delete-icon i{
+
+        font-size:34px;
+
+    }
+
+    .delete-info .crm-detail-box{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:6px;
+
+    }
+
+    .delete-actions{
+
+        flex-direction:column;
+
+    }
+
+    .delete-actions .crm-btn-danger,
+
+    .delete-actions .crm-btn-secondary{
+
+        width:100%;
+
+    }
+
+}

@@ -60,24 +60,18 @@ body {
 /* =========================
    NAVBAR
 ========================= */
-.navbar {
-    background: #1a1330 !important;
+.crm-navbar{
+
     position: fixed;
+
     top: 0;
+
     left: 260px;
+
     right: 0;
+
     z-index: 1000;
-    padding: 12px 20px;
-}
 
-.navbar h5 {
-    color: #e5e7eb;
-}
-
-.navbar .form-control {
-    background: #0f0b1a;
-    color: #fff;
-    border: 1px solid rgba(255,255,255,0.1);
 }
 
 /* =========================
