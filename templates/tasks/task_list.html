@@ -1,215 +1,251 @@
 {% extends "base.html" %}
 
+{% block title %}
+Task Management
+{% endblock %}
+
 {% block content %}
 
 <div class="container-fluid mt-4">
 
+    <!-- Header -->
     <div class="d-flex justify-content-between align-items-center mb-4">
 
         <div>
-
-            <h2 class="fw-bold">
+            <h2 class="fw-bold text-white">
+                <i class="bi bi-list-task me-2 text-info"></i>
                 Task Management
             </h2>
-
-            <p class="text-muted">
-                Manage all assigned tasks
+            <p class="text-secondary mb-0">
+                Manage your daily tasks efficiently
             </p>
-
         </div>
 
-        <a href="{% url 'task_add' %}" class="btn btn-primary">
-
-            + Add Task
-
+        <a href="#" class="btn btn-primary px-4">
+            <i class="bi bi-plus-lg me-2"></i>
+            Add Task
         </a>
 
     </div>
 
-    <div class="card shadow-sm border-0">
 
-        <div class="card-body">
+    <!-- Task Stats -->
+    <div class="row g-4 mb-4">
 
-            <div class="table-responsive">
+        <div class="col-md-3">
+            <div class="crm-card p-3">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <p class="text-secondary mb-1">
+                            Total Tasks
+                        </p>
+                        <h3 class="text-white fw-bold">
+                            24
+                        </h3>
+                    </div>
 
-                <table class="table table-hover align-middle">
+                    <i class="bi bi-list-check fs-2 text-info"></i>
+                </div>
+            </div>
+        </div>
 
-                    <thead class="table-dark">
 
-                        <tr>
+        <div class="col-md-3">
+            <div class="crm-card p-3">
+                <p class="text-secondary mb-1">
+                    Pending
+                </p>
 
-                            <th>Title</th>
+                <h3 class="text-warning fw-bold">
+                    10
+                </h3>
+            </div>
+        </div>
 
-                            <th>Assigned To</th>
 
-                            <th>Contact</th>
+        <div class="col-md-3">
+            <div class="crm-card p-3">
+                <p class="text-secondary mb-1">
+                    In Progress
+                </p>
 
-                            <th>Lead</th>
+                <h3 class="text-info fw-bold">
+                    8
+                </h3>
+            </div>
+        </div>
 
-                            <th>Due Date</th>
 
-                            <th>Priority</th>
+        <div class="col-md-3">
+            <div class="crm-card p-3">
+                <p class="text-secondary mb-1">
+                    Completed
+                </p>
 
-                            <th>Status</th>
+                <h3 class="text-success fw-bold">
+                    6
+                </h3>
+            </div>
+        </div>
 
-                            <th width="180">Actions</th>
+    </div>
 
-                        </tr>
 
-                    </thead>
 
-                    <tbody>
+    <!-- Task Board -->
 
-                        {% for task in tasks %}
+    <div class="row g-4">
 
-                        <tr>
 
-                            <td>
+        <!-- Pending -->
+        <div class="col-md-4">
 
-                                <strong>{{ task.title }}</strong>
+            <div class="task-column">
 
-                            </td>
+                <div class="d-flex justify-content-between mb-3">
+                    <h5 class="text-white">
+                        <i class="bi bi-clock text-warning me-2"></i>
+                        Pending
+                    </h5>
 
-                            <td>
+                    <span class="badge bg-warning text-dark">
+                        10
+                    </span>
+                </div>
 
-                                {{ task.assigned_to }}
 
-                            </td>
+                <div class="task-card">
 
-                            <td>
+                    <h6 class="text-white">
+                        Client Follow Up
+                    </h6>
 
-                                {{ task.related_contact|default:"-" }}
+                    <p class="text-secondary small">
+                        Contact new lead and update details.
+                    </p>
 
-                            </td>
 
-                            <td>
+                    <div class="d-flex justify-content-between">
 
-                                {{ task.related_lead|default:"-" }}
+                        <span class="badge bg-danger">
+                            High
+                        </span>
 
-                            </td>
+                        <small class="text-secondary">
+                            Today
+                        </small>
 
-                            <td>
+                    </div>
 
-                                {{ task.due_date }}
+                </div>
 
-                            </td>
-
-                            <td>
-
-                                {% if task.priority == "low" %}
-
-                                    <span class="badge bg-success">
-                                        Low
-                                    </span>
-
-                                {% elif task.priority == "medium" %}
-
-                                    <span class="badge bg-warning text-dark">
-                                        Medium
-                                    </span>
-
-                                {% elif task.priority == "high" %}
-
-                                    <span class="badge bg-danger">
-                                        High
-                                    </span>
-
-                                {% else %}
-
-                                    <span class="badge bg-dark">
-                                        Urgent
-                                    </span>
-
-                                {% endif %}
-
-                            </td>
-
-                            <td>
-
-                                {% if task.status == "pending" %}
-
-                                    <span class="badge bg-warning text-dark">
-                                        Pending
-                                    </span>
-
-                                {% elif task.status == "in_progress" %}
-
-                                    <span class="badge bg-info">
-                                        In Progress
-                                    </span>
-
-                                {% else %}
-
-                                    <span class="badge bg-success">
-                                        Completed
-                                    </span>
-
-                                {% endif %}
-
-                            </td>
-
-                            <td>
-
-                                <a href="{% url 'task_edit' task.id %}"
-
-                                   class="btn btn-sm btn-outline-primary">
-
-                                    Edit
-
-                                </a>
-
-                                {% if task.status != "done" %}
-
-                                <a href="{% url 'task_complete' task.id %}"
-
-                                   class="btn btn-sm btn-success">
-
-                                    Complete
-
-                                </a>
-
-                                {% endif %}
-
-                            </td>
-
-                        </tr>
-
-                        {% empty %}
-
-                        <tr>
-
-                            <td colspan="8" class="text-center py-5">
-
-                                <h5 class="text-muted">
-
-                                    No Tasks Found
-
-                                </h5>
-
-                                <a href="{% url 'task_add' %}"
-
-                                   class="btn btn-primary mt-3">
-
-                                    Create First Task
-
-                                </a>
-
-                            </td>
-
-                        </tr>
-
-                        {% endfor %}
-
-                    </tbody>
-
-                </table>
 
             </div>
 
         </div>
 
+
+
+
+        <!-- Progress -->
+        <div class="col-md-4">
+
+            <div class="task-column">
+
+                <div class="d-flex justify-content-between mb-3">
+
+                    <h5 class="text-white">
+                        <i class="bi bi-hourglass-split text-info me-2"></i>
+                        In Progress
+                    </h5>
+
+                    <span class="badge bg-info">
+                        8
+                    </span>
+
+                </div>
+
+
+                <div class="task-card">
+
+                    <h6 class="text-white">
+                        Website Update
+                    </h6>
+
+                    <p class="text-secondary small">
+                        Update homepage design.
+                    </p>
+
+
+                    <div class="d-flex justify-content-between">
+
+                        <span class="badge bg-primary">
+                            Medium
+                        </span>
+
+                        <small class="text-secondary">
+                            Tomorrow
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+
+        <!-- Completed -->
+        <div class="col-md-4">
+
+            <div class="task-column">
+
+
+                <div class="d-flex justify-content-between mb-3">
+
+                    <h5 class="text-white">
+                        <i class="bi bi-check-circle text-success me-2"></i>
+                        Completed
+                    </h5>
+
+                    <span class="badge bg-success">
+                        6
+                    </span>
+
+                </div>
+
+
+
+                <div class="task-card">
+
+                    <h6 class="text-white">
+                        Database Setup
+                    </h6>
+
+                    <p class="text-secondary small">
+                        Completed database configuration.
+                    </p>
+
+
+                    <span class="badge bg-success">
+                        Done
+                    </span>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
     </div>
 
+
 </div>
+
 
 {% endblock %}

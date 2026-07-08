@@ -6,37 +6,111 @@ Delete Deal
 
 {% block content %}
 
-<div class="container mt-5">
+<div class="container-fluid">
 
-    <div class="card shadow">
+    <div class="crm-page-header">
 
-        <div class="card-body text-center">
+        <div>
 
-            <h3 class="text-danger">Delete Deal</h3>
+            <h2 class="crm-page-title text-danger">
 
-            <p class="mt-3">
+                <i class="bi bi-trash3-fill me-2"></i>
 
-                Are you sure you want to delete
+                Delete Deal
 
-                <strong>{{ deal.lead }}</strong> ?
+            </h2>
+
+            <p class="crm-page-subtitle">
+
+                This action cannot be undone.
 
             </p>
 
-            <p>
-                <strong>Amount:</strong> ₹ {{ deal.amount }}
+        </div>
+
+    </div>
+
+    <div class="crm-card crm-delete-card">
+
+        <div class="crm-card-body text-center">
+
+            <div class="crm-delete-icon">
+
+                <i class="bi bi-exclamation-triangle-fill"></i>
+
+            </div>
+
+            <h4 class="mt-4 mb-3">
+
+                Are you sure?
+
+            </h4>
+            
+            <p class="text-white mb-4">
+
+                You are about to permanently delete this deal.
+
             </p>
 
-            <form method="POST">
+            <div class="crm-delete-details">
+
+                <div class="crm-detail-item">
+
+                    <label class="crm-label">
+
+                        Lead
+
+                    </label>
+
+                    <div class="crm-detail-box">
+
+                        {{ deal.lead }}
+
+                    </div>
+
+                </div>
+
+                <div class="crm-detail-item">
+
+                    <label class="crm-label">
+
+                        Amount
+
+                    </label>
+
+                    <div class="crm-detail-box">
+
+                        ₹ {{ deal.amount }}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <form method="POST" class="mt-4">
 
                 {% csrf_token %}
 
-                <button type="submit" class="btn btn-danger">
-                    Yes, Delete
-                </button>
+                <div class="crm-form-actions justify-content-center">
 
-                <a href="{% url 'deal_list' %}" class="btn btn-secondary">
-                    Cancel
-                </a>
+                    <button type="submit" class="crm-btn-danger">
+
+                        <i class="bi bi-trash"></i>
+
+                        Yes, Delete
+
+                    </button>
+
+                    <a href="{% url 'deal_list' %}" class="crm-btn-secondary">
+
+                        <i class="bi bi-arrow-left"></i>
+
+                        Cancel
+
+                    </a>
+
+                </div>
 
             </form>
 

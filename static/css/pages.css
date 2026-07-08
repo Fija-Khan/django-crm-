@@ -1,5 +1,3 @@
-
-
 /* =========================
    KANBAN
 ========================= */
@@ -26,7 +24,7 @@
 }
 
 .register-left {
-    background: linear-gradient(135deg,#7c3aed,#4f46e5);
+    background: linear-gradient(135deg, #7c3aed, #4f46e5);
 }
 
 /* =========================
@@ -46,67 +44,67 @@
             DASHBOARD
 =================================== */
 
-.dashboard-title{
+.dashboard-title {
 
-    color:#fff;
+    color: #fff;
 
-    font-size:30px;
+    font-size: 30px;
 
-    font-weight:700;
+    font-weight: 700;
 
-    margin-bottom:30px;
-
-}
-
-.dashboard-kpi .crm-card{
-
-    min-height:170px;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    transition:.3s;
+    margin-bottom: 30px;
 
 }
 
-.dashboard-kpi .crm-card:hover{
+.dashboard-kpi .crm-card {
 
-    transform:translateY(-5px);
+    min-height: 170px;
 
-}
+    display: flex;
 
-.dashboard-kpi h2{
+    justify-content: center;
 
-    font-size:42px;
+    align-items: center;
 
-    font-weight:700;
-
-    margin-bottom:12px;
+    transition: .3s;
 
 }
 
-.dashboard-kpi p{
+.dashboard-kpi .crm-card:hover {
 
-    color:#9ca3af;
-
-    font-size:15px;
-
-    margin:0;
+    transform: translateY(-5px);
 
 }
 
-.dashboard-card{
+.dashboard-kpi h2 {
 
-    height:100%;
+    font-size: 42px;
+
+    font-weight: 700;
+
+    margin-bottom: 12px;
 
 }
 
-.dashboard-card .card-body{
+.dashboard-kpi p {
 
-    padding:0;
+    color: #9ca3af;
+
+    font-size: 15px;
+
+    margin: 0;
+
+}
+
+.dashboard-card {
+
+    height: 100%;
+
+}
+
+.dashboard-card .card-body {
+
+    padding: 0;
 
 }
 
@@ -114,38 +112,38 @@
         IMPORT CONTACT PAGE
 ===================================== */
 
-.crm-import-page{
+.crm-import-page {
 
-    max-width:750px;
+    max-width: 750px;
 
-    margin:auto;
-
-}
-
-.crm-import-page .crm-card{
-
-    padding:32px;
+    margin: auto;
 
 }
 
-.crm-page-subtitle{
-    color:#9ca3af;
-    font-size:14px;
-    margin-top:8px;
-    margin-bottom:0;
-    line-height:1.6;
+.crm-import-page .crm-card {
+
+    padding: 32px;
+
 }
 
-.crm-import-page .crm-input{
+.crm-page-subtitle {
+    color: #9ca3af;
+    font-size: 14px;
+    margin-top: 8px;
+    margin-bottom: 0;
+    line-height: 1.6;
+}
 
-    height:48px;
+.crm-import-page .crm-input {
+
+    height: 48px;
 
 }
 
 .crm-import-page .crm-btn-primary,
-.crm-import-page .crm-btn-secondary{
+.crm-import-page .crm-btn-secondary {
 
-    min-width:160px;
+    min-width: 160px;
 
 }
 
@@ -153,297 +151,301 @@
    ADD CONTACT PAGE
 ===================================================== */
 
-.crm-contact-page{
-    max-width:850px;
-    margin:0 auto;
+.crm-contact-page {
+    max-width: 850px;
+    margin: 0 auto;
 }
 
-.crm-contact-page .crm-card{
-    padding:35px;
+.crm-contact-page .crm-card {
+    padding: 35px;
 }
 
-.crm-title{
-    color:#ffffff;
-    font-size:28px;
-    font-weight:600;
-    margin-bottom:8px;
+.crm-title {
+    color: #ffffff;
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 8px;
 }
 
 
 
 /* Django Form */
 
-.crm-form-wrapper p{
-    margin-bottom:20px;
+.crm-form-wrapper p {
+    margin-bottom: 20px;
 }
 
-.crm-form-wrapper label{
-    display:block;
-    margin-bottom:8px;
-    color:#38bdf8;
-    font-weight:500;
+.crm-form-wrapper label {
+    display: block;
+    margin-bottom: 8px;
+    color: #38bdf8;
+    font-weight: 500;
 }
 
 .crm-form-wrapper input,
 .crm-form-wrapper select,
-.crm-form-wrapper textarea{
-    width:100%;
-    background:#0f0b1a;
-    color:#fff;
-    border:1px solid rgba(255,255,255,.08);
-    border-radius:10px;
-    padding:12px 14px;
-    transition:.3s ease;
+.crm-form-wrapper textarea {
+    width: 100%;
+    background: #0f0b1a;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, .08);
+    border-radius: 10px;
+    padding: 12px 14px;
+    transition: .3s ease;
 }
 
-.crm-form-wrapper textarea{
-    min-height:120px;
-    resize:vertical;
+.crm-form-wrapper textarea {
+    min-height: 120px;
+    resize: vertical;
 }
 
 .crm-form-wrapper input:focus,
 .crm-form-wrapper select:focus,
-.crm-form-wrapper textarea:focus{
-    outline:none;
-    border-color:#7c3aed;
-    box-shadow:0 0 0 3px rgba(124,58,237,.15);
+.crm-form-wrapper textarea:focus {
+    outline: none;
+    border-color: #7c3aed;
+    box-shadow: 0 0 0 3px rgba(124, 58, 237, .15);
 }
 
 /* =====================================================
    CONTACT DETAIL PAGE
 ===================================================== */
 
-.crm-contact-detail-page{
-    max-width:1000px;
-    margin:0 auto;
+.crm-contact-detail-page {
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
-.crm-contact-detail-page .card-body{
-    padding:35px;
+.crm-contact-detail-page .card-body {
+    padding: 35px;
 }
+
 /* =====================================================
    DELETE CONTACT PAGE
 ===================================================== */
 
-.crm-delete-page{
-    max-width:650px;
-    margin:40px auto;
+.crm-delete-page {
+    max-width: 650px;
+    margin: 40px auto;
 }
 
-.crm-delete-page .card-body{
-    padding:40px;
+.crm-delete-page .card-body {
+    padding: 40px;
 }
 
-.crm-delete-icon{
-    width:80px;
-    height:80px;
+.crm-delete-icon {
+    width: 80px;
+    height: 80px;
 
-    margin:0 auto;
+    margin: 0 auto;
 
-    display:flex;
-    align-items:center;
-    justify-content:center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    border-radius:50%;
+    border-radius: 50%;
 
-    background:rgba(239,68,68,.12);
+    background: rgba(239, 68, 68, .12);
 
-    color:#ef4444;
+    color: #ef4444;
 
-    font-size:34px;
+    font-size: 34px;
 }
+
 /* ==========================================
             LEAD LIST PAGE
 ========================================== */
 
-.crm-table{
-    margin-bottom:0;
-    border-collapse:separate;
-    border-spacing:0;
+.crm-table {
+    margin-bottom: 0;
+    border-collapse: separate;
+    border-spacing: 0;
 }
 
 /* Header */
 
-.crm-table thead th{
-    background:#21173d;
-    color:#ffffff;
-    font-size:14px;
-    font-weight:600;
-    padding:18px 22px;
-    border:none;
-    white-space:nowrap;
-    border-bottom:1px solid rgba(255,255,255,.08);
+.crm-table thead th {
+    background: #21173d;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 18px 22px;
+    border: none;
+    white-space: nowrap;
+    border-bottom: 1px solid rgba(255, 255, 255, .08);
 }
 
-.crm-table thead th:first-child{
-    border-top-left-radius:16px;
+.crm-table thead th:first-child {
+    border-top-left-radius: 16px;
 }
 
-.crm-table thead th:last-child{
-    border-top-right-radius:16px;
+.crm-table thead th:last-child {
+    border-top-right-radius: 16px;
 }
 
 /* Body */
 
-.crm-table tbody td{
-    padding:18px 22px;
-    vertical-align:middle;
-    font-size:14px;
-    border-color:rgba(255,255,255,.08);
-    transition:.25s ease;
+.crm-table tbody td {
+    padding: 18px 22px;
+    vertical-align: middle;
+    font-size: 14px;
+    border-color: rgba(255, 255, 255, .08);
+    transition: .25s ease;
 }
 
-.crm-table tbody tr{
-    transition:.25s ease;
+.crm-table tbody tr {
+    transition: .25s ease;
 }
 
-.crm-table tbody tr:hover{
-    background:rgba(124,58,237,.08);
-    transform:translateY(-2px);
+.crm-table tbody tr:hover {
+    background: rgba(124, 58, 237, .08);
+    transform: translateY(-2px);
 }
 
 /* ID */
 
-.crm-table tbody td:first-child{
-    font-weight:700;
-    color:#38bdf8;
+.crm-table tbody td:first-child {
+    font-weight: 700;
+    color: #38bdf8;
 }
 
 /* Title */
 
-.crm-table tbody td:nth-child(2){
-    font-weight:600;
-    color:#ffffff;
+.crm-table tbody td:nth-child(2) {
+    font-weight: 600;
+    color: #ffffff;
 }
 
 /* Contact */
 
-.crm-table tbody td:nth-child(3){
-    color:#d1d5db;
+.crm-table tbody td:nth-child(3) {
+    color: #d1d5db;
 }
 
 /* Estimated Value */
 
-.crm-table tbody td:nth-child(6){
-    color:#22c55e;
-    font-weight:600;
+.crm-table tbody td:nth-child(6) {
+    color: #22c55e;
+    font-weight: 600;
 }
+
 /* Assigned To */
 
-.crm-table tbody td:nth-child(5){
-    color:#ffffff;
-    font-weight:500;
+.crm-table tbody td:nth-child(5) {
+    color: #ffffff;
+    font-weight: 500;
 }
+
 /* Date */
 
-.crm-table tbody td:nth-child(7){
-    color:#d1d5db;
+.crm-table tbody td:nth-child(7) {
+    color: #d1d5db;
 }
 
 /* =========================
       ACTION BUTTONS
 ========================= */
 
-.action-buttons{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:10px;
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
 }
 
-.action-btn{
-    width:40px;
-    height:40px;
-    border-radius:50%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-decoration:none;
-    font-size:16px;
-    transition:.25s ease;
-    box-shadow:0 4px 12px rgba(0,0,0,.20);
+.action-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 16px;
+    transition: .25s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, .20);
 }
 
-.action-btn i{
-    line-height:1;
+.action-btn i {
+    line-height: 1;
 }
 
-.action-btn:hover{
-    transform:translateY(-3px) scale(1.05);
+.action-btn:hover {
+    transform: translateY(-3px) scale(1.05);
 }
 
 /* View */
 
-.view-btn{
-    background:rgba(56,189,248,.15);
-    color:#38bdf8;
+.view-btn {
+    background: rgba(56, 189, 248, .15);
+    color: #38bdf8;
 }
 
-.view-btn:hover{
-    background:#38bdf8;
-    color:#fff;
+.view-btn:hover {
+    background: #38bdf8;
+    color: #fff;
 }
 
 /* Edit */
 
-.edit-btn{
-    background:rgba(124,58,237,.15);
-    color:#7c3aed;
+.edit-btn {
+    background: rgba(124, 58, 237, .15);
+    color: #7c3aed;
 }
 
-.edit-btn:hover{
-    background:#7c3aed;
-    color:#fff;
+.edit-btn:hover {
+    background: #7c3aed;
+    color: #fff;
 }
 
 /* Delete */
 
-.delete-btn{
-    background:rgba(239,68,68,.15);
-    color:#ef4444;
+.delete-btn {
+    background: rgba(239, 68, 68, .15);
+    color: #ef4444;
 }
 
-.delete-btn:hover{
-    background:#ef4444;
-    color:#fff;
+.delete-btn:hover {
+    background: #ef4444;
+    color: #fff;
 }
 
 /* Convert */
 
-.convert-btn{
-    background:rgba(34,197,94,.15);
-    color:#22c55e;
+.convert-btn {
+    background: rgba(34, 197, 94, .15);
+    color: #22c55e;
 }
 
-.convert-btn:hover{
-    background:#22c55e;
-    color:#fff;
+.convert-btn:hover {
+    background: #22c55e;
+    color: #fff;
 }
 
 /* Empty State */
 
-.crm-table .bi-inbox{
-    color:#7c3aed;
+.crm-table .bi-inbox {
+    color: #7c3aed;
 }
 
 /* Responsive */
 
-@media(max-width:992px){
+@media(max-width:992px) {
 
     .crm-table thead th,
-    .crm-table tbody td{
-        padding:14px;
-        font-size:13px;
+    .crm-table tbody td {
+        padding: 14px;
+        font-size: 13px;
     }
 
-    .action-buttons{
-        gap:6px;
+    .action-buttons {
+        gap: 6px;
     }
 
-    .action-btn{
-        width:34px;
-        height:34px;
-        font-size:14px;
+    .action-btn {
+        width: 34px;
+        height: 34px;
+        font-size: 14px;
     }
 
 }
@@ -465,17 +467,6 @@
 }
 
 
-/* ===========================
-   KANBAN COLUMN
-=========================== */
-
-.kanban-column {
-    padding: 10px;
-    min-height: 600px;
-    max-height: 75vh;
-    overflow-y: auto;
-    transition: 0.2s ease;
-}
 
 /* Drag hover state */
 .kanban-column.bg-light {
@@ -488,15 +479,7 @@
    LEAD CARD
 =========================== */
 
-.lead-card {
-    background: #0f0b1a;
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    border-radius: 10px;
-    padding: 10px;
-    margin-bottom: 10px;
-    cursor: grab;
-    transition: 0.2s ease;
-}
+
 
 .lead-card:hover {
     transform: translateY(-2px);
@@ -611,6 +594,7 @@
 .kanban-header-lost {
     background: #ef4444;
 }
+
 /* ==========================================
    ADD LEAD PAGE (SCOPED - NO CONFLICTS)
 ========================================== */
@@ -714,20 +698,7 @@
    LEAD DETAIL PAGE (SAFE SCOPED IMPROVEMENT)
 ========================================== */
 
-/* Card styling upgrade */
-.crm-card {
-    border: none;
-    border-radius: 16px;
-    background: #1a1330;
-    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.25);
-}
 
-/* Page title alignment fix */
-.crm-title {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
 
 /* Detail label */
 .crm-label {
@@ -795,319 +766,571 @@
         text-align: center;
     }
 }
+
 /* ======================================================
    Convert Lead Page
 ====================================================== */
 
-.convert-lead-page{
+.convert-lead-page {
 
-    padding:35px 15px;
-
-}
-
-.convert-lead-page .row{
-
-    min-height:75vh;
+    padding: 35px 15px;
 
 }
 
-.convert-card{
+.convert-lead-page .row {
 
-    max-width:580px;
-
-    margin:auto;
+    min-height: 75vh;
 
 }
 
-.convert-card .card-body{
+.convert-card {
 
-    padding:45px;
+    max-width: 580px;
 
-}
-
-.convert-icon{
-
-    width:90px;
-
-    height:90px;
-
-    margin:auto;
-
-    border-radius:50%;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    background:rgba(124,58,237,.12);
-
-    border:1px solid rgba(124,58,237,.25);
+    margin: auto;
 
 }
 
-.convert-icon i{
+.convert-card .card-body {
 
-    font-size:42px;
-
-    color:#7c3aed;
+    padding: 45px;
 
 }
 
-.convert-description{
+.convert-icon {
 
-    max-width:430px;
+    width: 90px;
 
-    margin:15px auto 25px;
+    height: 90px;
 
-    line-height:1.8;
+    margin: auto;
 
-}
+    border-radius: 50%;
 
-.convert-title{
+    display: flex;
 
-    color:#ffffff;
+    align-items: center;
 
-    font-weight:600;
+    justify-content: center;
 
-}
+    background: rgba(124, 58, 237, .12);
 
-.convert-contact{
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    gap:10px;
-
-    width:fit-content;
-
-    margin:0 auto;
+    border: 1px solid rgba(124, 58, 237, .25);
 
 }
 
-.convert-contact i{
+.convert-icon i {
 
-    color:#38bdf8;
+    font-size: 42px;
 
-    font-size:20px;
+    color: #7c3aed;
 
 }
 
-.convert-actions{
+.convert-description {
 
-    display:flex;
+    max-width: 430px;
 
-    justify-content:center;
+    margin: 15px auto 25px;
 
-    gap:15px;
+    line-height: 1.8;
 
-    flex-wrap:wrap;
+}
+
+.convert-title {
+
+    color: #ffffff;
+
+    font-weight: 600;
+
+}
+
+.convert-contact {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 10px;
+
+    width: fit-content;
+
+    margin: 0 auto;
+
+}
+
+.convert-contact i {
+
+    color: #38bdf8;
+
+    font-size: 20px;
+
+}
+
+.convert-actions {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 15px;
+
+    flex-wrap: wrap;
 
 }
 
 .convert-actions .crm-btn-success,
 
-.convert-actions .crm-btn-secondary{
+.convert-actions .crm-btn-secondary {
 
-    min-width:170px;
+    min-width: 170px;
 
 }
 
-@media(max-width:768px){
+@media(max-width:768px) {
 
-    .convert-card .card-body{
+    .convert-card .card-body {
 
-        padding:30px 20px;
-
-    }
-
-    .convert-icon{
-
-        width:75px;
-
-        height:75px;
+        padding: 30px 20px;
 
     }
 
-    .convert-icon i{
+    .convert-icon {
 
-        font-size:34px;
+        width: 75px;
+
+        height: 75px;
 
     }
 
-    .convert-actions{
+    .convert-icon i {
 
-        flex-direction:column;
+        font-size: 34px;
+
+    }
+
+    .convert-actions {
+
+        flex-direction: column;
 
     }
 
     .convert-actions .crm-btn-success,
 
-    .convert-actions .crm-btn-secondary{
+    .convert-actions .crm-btn-secondary {
 
-        width:100%;
+        width: 100%;
 
     }
 
 }
+
 /* =====================================================
    Delete Lead Page
 ===================================================== */
 
-.delete-lead-page{
+.delete-lead-page {
 
-    padding:35px 15px;
-
-}
-
-.delete-lead-page .row{
-
-    min-height:75vh;
+    padding: 35px 15px;
 
 }
 
-.delete-card{
+.delete-lead-page .row {
 
-    max-width:580px;
-
-    margin:auto;
+    min-height: 75vh;
 
 }
 
-.delete-card .card-body{
+.delete-card {
 
-    padding:45px;
+    max-width: 580px;
 
-}
-
-.delete-icon{
-
-    width:90px;
-
-    height:90px;
-
-    margin:auto;
-
-    border-radius:50%;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    background:rgba(239,68,68,.10);
-
-    border:1px solid rgba(239,68,68,.25);
+    margin: auto;
 
 }
 
-.delete-icon i{
+.delete-card .card-body {
 
-    font-size:42px;
-
-    color:#ef4444;
+    padding: 45px;
 
 }
 
-.delete-description{
+.delete-icon {
 
-    max-width:430px;
+    width: 90px;
 
-    margin:15px auto 30px;
+    height: 90px;
 
-    line-height:1.8;
+    margin: auto;
 
-}
+    border-radius: 50%;
 
-.delete-info{
+    display: flex;
 
-    display:flex;
+    align-items: center;
 
-    flex-direction:column;
+    justify-content: center;
 
-    gap:15px;
+    background: rgba(239, 68, 68, .10);
 
-}
-
-.delete-info .crm-detail-box{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
+    border: 1px solid rgba(239, 68, 68, .25);
 
 }
 
-.delete-actions{
+.delete-icon i {
 
-    display:flex;
+    font-size: 42px;
 
-    justify-content:center;
+    color: #ef4444;
 
-    gap:15px;
+}
 
-    flex-wrap:wrap;
+.delete-description {
+
+    max-width: 430px;
+
+    margin: 15px auto 30px;
+
+    line-height: 1.8;
+
+}
+
+.delete-info {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 15px;
+
+}
+
+.delete-info .crm-detail-box {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+}
+
+.delete-actions {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 15px;
+
+    flex-wrap: wrap;
 
 }
 
 .delete-actions .crm-btn-danger,
 
-.delete-actions .crm-btn-secondary{
+.delete-actions .crm-btn-secondary {
 
-    min-width:170px;
+    min-width: 170px;
 
 }
 
-@media (max-width:768px){
+@media (max-width:768px) {
 
-    .delete-card .card-body{
+    .delete-card .card-body {
 
-        padding:30px 20px;
-
-    }
-
-    .delete-icon{
-
-        width:75px;
-
-        height:75px;
+        padding: 30px 20px;
 
     }
 
-    .delete-icon i{
+    .delete-icon {
 
-        font-size:34px;
+        width: 75px;
 
-    }
-
-    .delete-info .crm-detail-box{
-
-        flex-direction:column;
-
-        align-items:flex-start;
-
-        gap:6px;
+        height: 75px;
 
     }
 
-    .delete-actions{
+    .delete-icon i {
 
-        flex-direction:column;
+        font-size: 34px;
+
+    }
+
+    .delete-info .crm-detail-box {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 6px;
+
+    }
+
+    .delete-actions {
+
+        flex-direction: column;
 
     }
 
     .delete-actions .crm-btn-danger,
 
-    .delete-actions .crm-btn-secondary{
+    .delete-actions .crm-btn-secondary {
 
-        width:100%;
+        width: 100%;
 
     }
+
+}
+
+/* =====================================================
+   DEAL LIST PAGE
+=====================================================*/
+
+.crm-page-header {
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.crm-page-title {
+
+    font-size: 30px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 6px;
+}
+
+
+
+.crm-card-body {
+
+    padding: 24px;
+}
+
+.crm-stage {
+
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 30px;
+    background: rgba(124, 58, 237, .15);
+    color: #7c3aed;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.crm-action-buttons {
+
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+
+.crm-action-buttons a {
+
+    width: 36px;
+    height: 36px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 8px;
+
+    text-decoration: none;
+}
+
+.crm-action-buttons i {
+
+    font-size: 15px;
+}
+
+
+
+
+
+
+.crm-table th:last-child,
+.crm-table td:last-child {
+
+    width: 150px;
+    text-align: center;
+}
+
+/* =====================================================
+   DEAL FORM PAGE
+===================================================== */
+
+.crm-form {
+
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.crm-form-group {
+
+    display: flex;
+    flex-direction: column;
+}
+
+.crm-form-group label {
+
+    margin-bottom: 8px;
+}
+
+.crm-form-group input,
+.crm-form-group select,
+.crm-form-group textarea {
+
+    width: 100%;
+    background: #0f0b1a;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, .08);
+    border-radius: 10px;
+    padding: 12px 14px;
+    transition: .3s;
+}
+
+.crm-form-group input:focus,
+.crm-form-group select:focus,
+.crm-form-group textarea:focus {
+
+    outline: none;
+    border-color: #7c3aed;
+    box-shadow: 0 0 0 3px rgba(124, 58, 237, .15);
+}
+
+.crm-form-group textarea {
+
+    resize: vertical;
+    min-height: 120px;
+}
+
+.crm-form-actions {
+
+    display: flex;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+/* =====================================================
+   DEAL DETAIL PAGE
+===================================================== */
+
+.crm-detail-grid {
+
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 24px;
+}
+
+.crm-detail-item {
+
+    display: flex;
+
+    flex-direction: column;
+}
+
+.crm-detail-full {
+
+    grid-column: 1/-1;
+}
+
+
+
+/* =====================================================
+   DEAL DELETE PAGE
+===================================================== */
+
+.crm-delete-card {
+
+    max-width: 700px;
+
+    margin: 0 auto;
+}
+
+.crm-delete-icon {
+
+    width: 90px;
+
+    height: 90px;
+
+    margin: 0 auto;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: rgba(239, 68, 68, .12);
+
+    border: 2px solid rgba(239, 68, 68, .25);
+}
+
+.crm-delete-icon i {
+
+    font-size: 42px;
+
+    color: #ef4444;
+}
+
+.crm-delete-details {
+
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 20px;
+
+    margin-top: 30px;
+
+    text-align: left;
+}
+
+
+/* =========================
+   TASK MANAGEMENT
+========================= */
+
+.task-column {
+    background: #1a1330;
+    padding: 20px;
+    border-radius: 16px;
+    min-height: 400px;
+}
+
+
+.crm-card {
+    background: #1a1330;
+    border-radius: 16px;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+
+.task-card {
+
+    background: #241b40;
+    padding: 18px;
+    border-radius: 14px;
+    margin-bottom: 15px;
+    transition: 0.3s;
+
+}
+
+
+.task-card:hover {
+
+    transform: translateY(-5px);
+    border:1px solid #7c3aed;
 
 }

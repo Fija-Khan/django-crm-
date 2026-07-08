@@ -1,44 +1,84 @@
 {% extends "base.html" %}
 
 {% block title %}
-Deal Form
+{% if form.instance.pk %}Edit Deal{% else %}Add Deal{% endif %}
 {% endblock %}
 
 {% block content %}
 
-<div class="container mt-4">
+<div class="container-fluid">
 
-    <div class="card shadow">
+    <div class="crm-page-header">
 
-        <div class="card-header">
+        <div>
 
-            <h3>
+            <h2 class="crm-page-title">
+                <i class="bi bi-briefcase me-2"></i>
 
                 {% if form.instance.pk %}
                     Edit Deal
                 {% else %}
                     Add Deal
                 {% endif %}
+            </h2>
 
-            </h3>
+            <p class="crm-page-subtitle">
+                Enter deal details below.
+            </p>
 
         </div>
 
-        <div class="card-body">
+    </div>
 
-            <form method="POST">
+    <div class="crm-card">
+
+        <div class="crm-card-body">
+
+            <form method="POST" class="crm-form">
 
                 {% csrf_token %}
 
-                {{ form.as_p }}
+                {% for field in form %}
 
-                <button type="submit" class="btn btn-success">
-                    Save
-                </button>
+                    <div class="crm-form-group">
 
-                <a href="{% url 'deal_list' %}" class="btn btn-secondary">
-                    Cancel
-                </a>
+                        <label class="crm-label">
+
+                            {{ field.label }}
+
+                        </label>
+
+                        {{ field }}
+
+                        {% if field.errors %}
+                            <small class="text-danger">
+                                {{ field.errors|striptags }}
+                            </small>
+                        {% endif %}
+
+                    </div>
+
+                {% endfor %}
+
+                <div class="crm-form-actions">
+
+                    <button type="submit" class="crm-btn-success">
+
+                        <i class="bi bi-check-circle"></i>
+
+                        Save Deal
+
+                    </button>
+
+                    <a href="{% url 'deal_list' %}" class="crm-btn-secondary">
+
+                        <i class="bi bi-arrow-left"></i>
+
+                        Cancel
+
+                    </a>
+
+                </div>
 
             </form>
 

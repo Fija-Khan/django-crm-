@@ -6,37 +6,106 @@ Deal Detail
 
 {% block content %}
 
-<div class="container mt-4">
+<div class="container-fluid">
 
-    <div class="card shadow">
+    <div class="crm-page-header">
 
-        <div class="card-header">
+        <div>
 
-            <h3>Deal Detail</h3>
+            <h2 class="crm-page-title">
+                <i class="bi bi-briefcase me-2"></i>
+                Deal Detail
+            </h2>
+
+            <p class="crm-page-subtitle">
+                View complete information about this deal.
+            </p>
 
         </div>
 
-        <div class="card-body">
+    </div>
 
-            <p><strong>Lead:</strong> {{ deal.lead }}</p>
+    <div class="crm-card">
 
-            <p><strong>Stage:</strong> {{ deal.get_stage_display }}</p>
+        <div class="crm-card-body">
 
-            <p><strong>Amount:</strong> ₹ {{ deal.amount }}</p>
+            <div class="crm-detail-grid">
 
-            <p><strong>Close Date:</strong> {{ deal.close_date|default:"-" }}</p>
+                <div class="crm-detail-item">
+                    <label class="crm-label">Lead</label>
+                    <div class="crm-detail-box">{{ deal.lead }}</div>
+                </div>
 
-            <p><strong>Notes:</strong> {{ deal.notes|default:"-" }}</p>
+                <div class="crm-detail-item">
+                    <label class="crm-label">Stage</label>
+                    <div class="crm-detail-box">
+                        {{ deal.get_stage_display }}
+                    </div>
+                </div>
 
-            <p><strong>Created At:</strong> {{ deal.created_at }}</p>
+                <div class="crm-detail-item">
+                    <label class="crm-label">Amount</label>
+                    <div class="crm-detail-box">
+                        ₹ {{ deal.amount }}
+                    </div>
+                </div>
 
-            <a href="{% url 'deal_edit' deal.id %}" class="btn btn-warning">
-                Edit
-            </a>
+                <div class="crm-detail-item">
+                    <label class="crm-label">Close Date</label>
+                    <div class="crm-detail-box">
+                        {{ deal.close_date|default:"-" }}
+                    </div>
+                </div>
 
-            <a href="{% url 'deal_list' %}" class="btn btn-secondary">
-                Back
-            </a>
+                <div class="crm-detail-item crm-detail-full">
+
+                    <label class="crm-label">Notes</label>
+
+                    <div class="crm-detail-box">
+
+                        {% if deal.notes %}
+                            {{ deal.notes }}
+                        {% else %}
+                            No Notes Available
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+                <div class="crm-detail-item">
+
+                    <label class="crm-label">
+                        Created At
+                    </label>
+
+                    <div class="crm-detail-box">
+                        {{ deal.created_at }}
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="crm-form-actions">
+
+                <a href="{% url 'deal_edit' deal.id %}" class="crm-btn-warning">
+
+                    <i class="bi bi-pencil-square"></i>
+
+                    Edit Deal
+
+                </a>
+
+                <a href="{% url 'deal_list' %}" class="crm-btn-secondary">
+
+                    <i class="bi bi-arrow-left"></i>
+
+                    Back
+
+                </a>
+
+            </div>
 
         </div>
 

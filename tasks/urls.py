@@ -5,23 +5,22 @@ from .views import (
     TaskCreateView,
     TaskUpdateView,
     task_complete,
+    task_detail,
+    task_delete,
 )
 
 urlpatterns = [
 
     path("", task_list, name="task_list"),
 
-    path(
-        "add/",
-        TaskCreateView.as_view(),
-        name="task_add"
-    ),
+    path("add/", TaskCreateView.as_view(), name="task_add"),
 
-    path('tasks/<int:pk>/edit/', TaskUpdateView.as_view(), name='task_edit'),
+    path("<int:pk>/", task_detail, name="task_detail"),
 
-    path(
-        "<int:pk>/complete/",
-        task_complete,
-        name="task_complete"
-    ),
+    path("<int:pk>/edit/", TaskUpdateView.as_view(), name="task_edit"),
+
+    path("<int:pk>/complete/", task_complete, name="task_complete"),
+
+    path("<int:pk>/delete/", task_delete, name="task_delete"),
+
 ]

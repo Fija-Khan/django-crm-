@@ -57,22 +57,7 @@ body {
     color: #fff;
 }
 
-/* =========================
-   NAVBAR
-========================= */
-.crm-navbar{
 
-    position: fixed;
-
-    top: 0;
-
-    left: 260px;
-
-    right: 0;
-
-    z-index: 1000;
-
-}
 
 /* =========================
    MAIN WRAPPER

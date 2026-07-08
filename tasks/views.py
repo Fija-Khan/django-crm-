@@ -84,3 +84,48 @@ def task_complete(request, pk):
     task.save()
 
     return redirect("task_list")
+
+# ---------------------------
+# TASK DETAIL
+# ---------------------------
+@login_required
+def task_detail(request, pk):
+
+    task = get_object_or_404(Task, pk=pk)
+
+    # Permission Check
+    if request.user.role != "admin" and task.assigned_to != request.user:
+        return redirect("task_list")
+
+    return render(
+        request,
+        "tasks/task_detail.html",
+        {
+            "task": task
+        }
+    )
+
+
+# ---------------------------
+# DELETE TASK
+# ---------------------------
+@login_required
+def task_delete(request, pk):
+
+    task = get_object_or_404(Task, pk=pk)
+
+    # Permission Check
+    if request.user.role != "admin" and task.assigned_to != request.user:
+        return redirect("task_list")
+
+    if request.method == "POST":
+        task.delete()
+        return redirect("task_list")
+
+    return render(
+        request,
+        "tasks/task_confirm_delete.html",
+        {
+            "task": task
+        }
+    )
