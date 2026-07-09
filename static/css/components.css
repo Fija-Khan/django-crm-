@@ -1052,3 +1052,79 @@
     color: #ef4444;
 }
 
+.delete-box {
+    background:#22193a;
+    padding:15px;
+    border-radius:12px;
+    border:1px solid rgba(255,255,255,0.05);
+}
+
+/* =========================
+   NOTES TABLE
+========================= */
+
+.crm-table {
+    color: #e5e7eb;
+    margin-bottom: 0;
+}
+
+
+.crm-table thead {
+    background: #22193a;
+}
+
+
+.crm-table th {
+    color: #a78bfa;
+    font-weight: 600;
+    border: none;
+    padding: 14px;
+}
+
+
+.crm-table td {
+    border-color: rgba(255,255,255,0.05);
+    padding: 14px;
+    vertical-align: middle;
+}
+
+
+.crm-table tbody tr:hover {
+    background: rgba(124,58,237,0.08);
+}
+
+
+/* =========================
+   EMPTY STATE
+========================= */
+
+.empty-state {
+
+    text-align: center;
+    padding: 50px;
+    color: #a1a1aa;
+
+}
+
+
+.empty-state i {
+
+    font-size: 45px;
+    margin-bottom: 15px;
+    display: block;
+
+}
+
+
+/* =========================
+   DELETE / WARNING BOX
+========================= */
+
+.delete-box {
+
+    background: #22193a;
+    padding: 15px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.05);
+
+}

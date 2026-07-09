@@ -8,49 +8,103 @@ Add Interaction
 {% endif %}
 {% endblock %}
 
+
 {% block content %}
 
-<div class="container mt-4">
+<div class="container-fluid mt-4">
 
-    <div class="card shadow">
+    <!-- Header -->
+    <div class="mb-4">
 
-        <div class="card-header bg-primary text-white">
+        <h2 class="fw-bold text-white">
 
-            <h4 class="mb-0">
+            <i class="bi bi-chat-left-dots text-purple me-2"></i>
 
-                {% if object %}
-                    Edit Interaction
-                {% else %}
-                    Log New Interaction
-                {% endif %}
+            {% if object %}
+                Edit Interaction
+            {% else %}
+                Log New Interaction
+            {% endif %}
 
-            </h4>
+        </h2>
 
-        </div>
-
-        <div class="card-body">
-
-            <form method="post">
-
-                {% csrf_token %}
-
-                {{ form.as_p }}
-
-                <button type="submit" class="btn btn-success">
-                    Save
-                </button>
-
-                <a href="{% url 'interaction_list' %}"
-                   class="btn btn-secondary">
-                    Cancel
-                </a>
-
-            </form>
-
-        </div>
+        <p class="text-muted">
+            Add communication details with your lead or contact.
+        </p>
 
     </div>
 
+
+    <!-- Form Card -->
+    <div class="crm-card p-4">
+
+
+        <form method="post">
+
+            {% csrf_token %}
+
+
+            <div class="row">
+
+                {% for field in form %}
+
+                <div class="col-md-6 mb-3">
+
+                    <label class="form-label text-white">
+                        {{ field.label }}
+                    </label>
+
+
+                    {{ field }}
+
+
+                    {% if field.errors %}
+
+                        <small class="text-danger">
+                            {{ field.errors }}
+                        </small>
+
+                    {% endif %}
+
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+
+
+            <div class="mt-4">
+
+
+                <button type="submit" 
+                        class="btn btn-purple px-4">
+
+                    <i class="bi bi-save me-1"></i>
+                    Save Interaction
+
+                </button>
+
+
+                <a href="{% url 'interaction_list' %}"
+                   class="btn btn-outline-light ms-2 px-4">
+
+                    Cancel
+
+                </a>
+
+
+            </div>
+
+
+        </form>
+
+
+    </div>
+
+
 </div>
+
 
 {% endblock %}
