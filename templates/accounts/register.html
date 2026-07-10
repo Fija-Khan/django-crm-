@@ -10,79 +10,80 @@ Register
 
     <div class="row justify-content-center">
 
-        <div class="col-xl-10">
+        <div class="col-xl-10 col-lg-11">
 
-            <div class="card crm-card overflow-hidden">
+            <div class="crm-card register-card">
 
                 <div class="row g-0">
 
-                    <!-- LEFT PANEL -->
+                    <!-- Left Side -->
 
-                    <div class="col-lg-5 register-left p-5">
+                    <div class="col-lg-5 register-left">
 
-                        <div class="h-100 d-flex flex-column justify-content-center">
+                        <div class="register-left-content">
 
-                            <h2 class="fw-bold text-white mb-3">
-                                <i class="bi bi-kanban-fill me-2"></i>
-                                CRM System
-                            </h2>
+                            <div class="brand-icon">
 
-                            <p class="text-light mb-4">
-                                Create your account and start managing contacts,
-                                leads, deals and tasks from one place.
+                                <i class="bi bi-kanban-fill"></i>
+
+                            </div>
+
+                            <h2>CRM System</h2>
+
+                            <p>
+                                Manage customers, leads, deals and daily tasks
+                                from one beautiful dashboard.
                             </p>
 
-                            <hr class="border-light opacity-25">
+                            <div class="feature-box">
 
-                            <h5 class="text-white mb-3">
-                                Features
-                            </h5>
-
-                            <ul class="feature-list">
-
-                                <li>
+                                <div class="feature-item">
                                     <i class="bi bi-check-circle-fill"></i>
                                     Contact Management
-                                </li>
+                                </div>
 
-                                <li>
+                                <div class="feature-item">
                                     <i class="bi bi-check-circle-fill"></i>
                                     Lead Tracking
-                                </li>
+                                </div>
 
-                                <li>
+                                <div class="feature-item">
                                     <i class="bi bi-check-circle-fill"></i>
                                     Deal Pipeline
-                                </li>
+                                </div>
 
-                                <li>
+                                <div class="feature-item">
                                     <i class="bi bi-check-circle-fill"></i>
                                     Task Management
-                                </li>
+                                </div>
 
-                                <li>
+                                <div class="feature-item">
                                     <i class="bi bi-check-circle-fill"></i>
-                                    Reports & Dashboard
-                                </li>
+                                    Dashboard & Reports
+                                </div>
 
-                            </ul>
+                            </div>
 
                         </div>
 
                     </div>
 
-                    <!-- RIGHT PANEL -->
+                    <!-- Right Side -->
 
                     <div class="col-lg-7">
 
-                        <div class="card-body p-5">
+                        <div class="register-form">
 
-                            <h2 class="crm-title mb-1">
-                                Create Account
+                            <h2 class="crm-title">
+
+                                Create Your Account
+
                             </h2>
 
                             <p class="crm-small mb-4">
-                                Fill your details below.
+
+                                Complete the form below to get started.
+
                             </p>
 
                             {% if messages %}
@@ -109,24 +110,20 @@ Register
                                         {{ form.last_name }}
                                     </div>
 
-                                </div>
+                                    <div class="col-12 mb-3">
+                                        <label class="crm-label">Username</label>
+                                        {{ form.username }}
+                                    </div>
 
-                                <div class="mb-3">
-                                    <label class="crm-label">Username</label>
-                                    {{ form.username }}
-                                </div>
+                                    <div class="col-12 mb-3">
+                                        <label class="crm-label">Email Address</label>
+                                        {{ form.email }}
+                                    </div>
 
-                                <div class="mb-3">
-                                    <label class="crm-label">Email</label>
-                                    {{ form.email }}
-                                </div>
-
-                                <div class="mb-3">
-                                    <label class="crm-label">Phone Number</label>
-                                    {{ form.phone }}
-                                </div>
-
-                                <div class="row">
+                                    <div class="col-12 mb-3">
+                                        <label class="crm-label">Phone Number</label>
+                                        {{ form.phone }}
+                                    </div>
 
                                     <div class="col-md-6 mb-3">
                                         <label class="crm-label">Password</label>
@@ -140,36 +137,33 @@ Register
 
                                 </div>
 
-                                <div class="alert register-note">
+                                <div class="register-note">
 
-                                    <i class="bi bi-info-circle-fill me-2"></i>
+                                    <i class="bi bi-shield-lock-fill me-2"></i>
 
                                     Your account will remain
-                                    <strong>Inactive</strong>
-                                    until approved by the administrator.
+                                    <strong>Pending Approval</strong>
+                                    until activated by the administrator.
 
                                 </div>
 
-                                <button class="crm-btn-primary w-100 mt-3">
+                                <button class="crm-btn-primary w-100 mt-4">
 
                                     <i class="bi bi-person-plus-fill me-2"></i>
 
-                                    Register Account
+                                    Create Account
 
                                 </button>
 
                             </form>
 
-                            <hr class="my-4">
-
-                            <div class="text-center crm-small">
+                            <div class="register-footer">
 
                                 Already have an account?
 
-                                <a href="{% url 'login' %}"
-                                   class="register-link">
+                                <a href="{% url 'login' %}" class="register-link">
 
-                                    Login Here
+                                    Login
 
                                 </a>
 

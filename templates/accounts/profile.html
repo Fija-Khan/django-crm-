@@ -6,75 +6,132 @@ My Profile
 
 {% block content %}
 
-<div class="container py-4">
+<div class="container-fluid py-4">
 
-    <div class="profile-card crm-card">
+    <div class="row justify-content-center">
 
-        <h3 class="crm-title mb-4">
-            <i class="bi bi-person-circle me-2"></i>
-            My Profile
-        </h3>
+        <div class="col-xl-7 col-lg-8 col-md-10">
 
-        <form method="POST" enctype="multipart/form-data">
+            <div class="crm-card profile-card">
 
-            {% csrf_token %}
+                <!-- Header -->
 
-            <div class="text-center mb-4">
+                <div class="profile-header">
 
-                {% if user.profile_pic %}
-                    <img src="{{ user.profile_pic.url }}" class="profile-img">
-                {% else %}
-                    <img src="https://via.placeholder.com/120" class="profile-img">
-                {% endif %}
+                    <h3 class="crm-title">
+                        <i class="bi bi-person-circle me-2"></i>
+                        My Profile
+                    </h3>
+
+                    <p class="profile-subtitle">
+                        Update your personal information and profile picture.
+                    </p>
+
+                </div>
+
+                <form method="POST" enctype="multipart/form-data">
+
+                    {% csrf_token %}
+
+                    <!-- Profile Image -->
+
+                    <div class="profile-image-wrapper">
+
+                        {% if user.profile_pic %}
+                        <img src="{{ user.profile_pic.url }}" alt="Profile Image" class="profile-img">
+                        {% else %}
+                        <img src="https://via.placeholder.com/150" alt="Profile Image" class="profile-img">
+                        {% endif %}
+
+                    </div>
+
+                    <div class="row">
+
+                        <!-- Username -->
+
+                        <div class="col-md-6 mb-4">
+
+                            <label class="crm-label">
+                                Username
+                            </label>
+
+                            <input
+                                type="text"
+                                name="username"
+                                value="{{ user.username }}"
+                                class="form-control crm-input"
+                                placeholder="Enter username">
+
+                        </div>
+
+                        <!-- Email -->
+
+                        <div class="col-md-6 mb-4">
+
+                            <label class="crm-label">
+                                Email Address
+                            </label>
+
+                            <input
+                                type="email"
+                                name="email"
+                                value="{{ user.email }}"
+                                class="form-control crm-input"
+                                placeholder="Enter email">
+
+                        </div>
+
+                        <!-- Phone -->
+
+                        <div class="col-md-6 mb-4">
+
+                            <label class="crm-label">
+                                Phone Number
+                            </label>
+
+                            <input
+                                type="text"
+                                name="phone"
+                                value="{{ user.phone }}"
+                                class="form-control crm-input"
+                                placeholder="Enter phone number">
+
+                        </div>
+
+                        <!-- Profile Picture -->
+
+                        <div class="col-md-6 mb-4">
+
+                            <label class="crm-label">
+                                Upload Profile Picture
+                            </label>
+
+                            <input
+                                type="file"
+                                name="profile_pic"
+                                class="form-control crm-input">
+
+                        </div>
+
+                    </div>
+
+                    <div class="text-end">
+
+                        <button type="submit" class="crm-btn-primary">
+
+                            <i class="bi bi-check-circle me-2"></i>
+
+                            Save Changes
+
+                        </button>
+
+                    </div>
+
+                </form>
 
             </div>
 
-            <div class="mb-3">
-                <label class="crm-label">Username</label>
-                <input
-                    type="text"
-                    name="username"
-                    value="{{ user.username }}"
-                    class="form-control crm-input">
-            </div>
-
-            <div class="mb-3">
-                <label class="crm-label">Email</label>
-                <input
-                    type="email"
-                    name="email"
-                    value="{{ user.email }}"
-                    class="form-control crm-input">
-            </div>
-
-            <div class="mb-3">
-                <label class="crm-label">Phone</label>
-                <input
-                    type="text"
-                    name="phone"
-                    value="{{ user.phone }}"
-                    class="form-control crm-input">
-            </div>
-
-            <div class="mb-4">
-                <label class="crm-label">Profile Picture</label>
-                <input
-                    type="file"
-                    name="profile_pic"
-                    class="form-control crm-input">
-            </div>
-
-            <button
-                type="submit"
-                class="crm-btn-primary w-100">
-
-                <i class="bi bi-check-circle me-2"></i>
-
-                Update Profile
-
-            </button>
-
-        </form>
+        </div>
 
     </div>
 

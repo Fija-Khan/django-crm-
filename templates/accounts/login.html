@@ -29,44 +29,68 @@
 
 <div class="login-container">
 
-    <!-- Left Side -->
+    <!-- LEFT SIDE -->
 
     <div class="login-left">
 
-        <div>
+        <div class="login-brand">
 
             <div class="brand-icon">
-
-                <i class="bi bi-buildings-fill"></i>
-
+                <i class="bi bi-kanban-fill"></i>
             </div>
 
             <h1>CRM System</h1>
 
             <p>
-
-                Manage Leads, Deals, Tasks, Contacts and
-                grow your business efficiently.
-
+                Organize your contacts, manage leads, track deals,
+                assign tasks, and grow your business from one dashboard.
             </p>
+
+            <div class="login-features">
+
+                <div class="feature-item">
+                    <i class="bi bi-check-circle-fill"></i>
+                    Contact Management
+                </div>
+
+                <div class="feature-item">
+                    <i class="bi bi-check-circle-fill"></i>
+                    Lead Tracking
+                </div>
+
+                <div class="feature-item">
+                    <i class="bi bi-check-circle-fill"></i>
+                    Deal Pipeline
+                </div>
+
+                <div class="feature-item">
+                    <i class="bi bi-check-circle-fill"></i>
+                    Task Management
+                </div>
+
+            </div>
 
         </div>
 
     </div>
 
-    <!-- Right Side -->
+    <!-- RIGHT SIDE -->
 
     <div class="login-right">
 
         <div class="login-card">
 
-            <h2>Welcome Back 👋</h2>
+            <div class="text-center mb-4">
 
-            <p class="subtitle">
+                <h2 class="mb-2">
+                    Welcome Back 👋
+                </h2>
 
-                Login to continue to your CRM Dashboard
+                <p class="subtitle">
+                    Sign in to access your CRM dashboard.
+                </p>
 
-            </p>
+            </div>
 
             {% if messages %}
                 {% for message in messages %}
@@ -83,56 +107,59 @@
                 <div class="mb-3">
 
                     <label class="form-label">
-
                         Username
-
                     </label>
 
                     <div class="input-group">
 
                         <span class="input-group-text">
-
                             <i class="bi bi-person-fill"></i>
-
                         </span>
 
-                        <input type="text"
-                               name="username"
-                               class="form-control"
-                               placeholder="Enter Username"
-                               required>
+                        <input
+                            type="text"
+                            name="username"
+                            class="form-control"
+                            placeholder="Enter your username"
+                            required>
 
                     </div>
 
                 </div>
 
-                <div class="mb-4">
+                <div class="mb-3">
 
                     <label class="form-label">
-
                         Password
-
                     </label>
 
                     <div class="input-group">
 
                         <span class="input-group-text">
-
                             <i class="bi bi-lock-fill"></i>
-
                         </span>
 
-                        <input type="password"
-                               name="password"
-                               class="form-control"
-                               placeholder="Enter Password"
-                               required>
+                        <input
+                            type="password"
+                            name="password"
+                            class="form-control"
+                            placeholder="Enter your password"
+                            required>
 
                     </div>
 
                 </div>
 
-                <button class="btn login-btn">
+                <!-- Optional -->
+                <div class="text-end mb-3">
+
+                    <a href="#" class="register-link">
+                        Forgot Password?
+                    </a>
+
+                </div>
+
+                <button class="btn login-btn w-100">
 
                     <i class="bi bi-box-arrow-in-right me-2"></i>
 
@@ -142,9 +169,33 @@
 
             </form>
 
-            <div class="footer-text">
+            <div class="alert register-note mt-4">
 
-                CRM System © 2026
+                <i class="bi bi-info-circle-fill me-2"></i>
+
+                New user?
+                <strong>Register first.</strong>
+                Your account must be approved by the administrator before you can log in.
+
+            </div>
+
+            <div class="text-center mt-4">
+
+                <span class="crm-small">
+                    Don't have an account?
+                </span>
+
+                <a href="{% url 'register' %}" class="register-link fw-semibold">
+
+                    Register Here
+
+                </a>
+
+            </div>
+
+            <div class="footer-text mt-4">
+
+                © 2026 CRM System • All Rights Reserved
 
             </div>
 
