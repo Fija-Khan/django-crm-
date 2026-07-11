@@ -40,74 +40,266 @@
 
 
 
-/* ===================================
-            DASHBOARD
-=================================== */
+/* ======================================================
+                    DASHBOARD
+====================================================== */
 
-.dashboard-title {
+/* Dashboard Title */
 
-    color: #fff;
-
-    font-size: 30px;
-
+.dashboard-title{
+    font-size: 2rem;
     font-weight: 700;
+    color: #ffffff;
+}
 
-    margin-bottom: 30px;
+
+/* ==============================
+        KPI CARDS
+============================== */
+
+.crm-card{
+
+    background:#1a1330;
+    border:none;
+    border-radius:18px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.30);
+
+    transition:.3s ease;
+}
+
+.crm-card:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:0 15px 35px rgba(124,58,237,.35);
 
 }
 
-.dashboard-kpi .crm-card {
 
-    min-height: 170px;
+.crm-card .card-body{
 
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-
-    transition: .3s;
+    padding:30px;
 
 }
 
-.dashboard-kpi .crm-card:hover {
 
-    transform: translateY(-5px);
+.crm-card h3{
 
-}
+    font-size:2rem;
 
-.dashboard-kpi h2 {
-
-    font-size: 42px;
-
-    font-weight: 700;
-
-    margin-bottom: 12px;
+    font-weight:700;
 
 }
 
-.dashboard-kpi p {
 
-    color: #9ca3af;
+.crm-card p{
 
-    font-size: 15px;
+    color:#a1a1aa;
 
-    margin: 0;
-
-}
-
-.dashboard-card {
-
-    height: 100%;
+    margin-bottom:0;
 
 }
 
-.dashboard-card .card-body {
 
-    padding: 0;
+/* Icons */
+
+.crm-card i{
+
+    opacity:.9;
 
 }
 
+
+/* ==============================
+            COLORS
+============================== */
+
+.text-crm-primary{
+
+    color:#7c3aed;
+
+}
+
+.text-crm-success{
+
+    color:#22c55e;
+
+}
+
+.text-warning{
+
+    color:#facc15 !important;
+
+}
+
+.text-danger{
+
+    color:#ef4444 !important;
+
+}
+
+
+/* ==============================
+        CARD HEADERS
+============================== */
+
+.crm-header{
+
+    background:#22173d;
+
+    color:#fff;
+
+    border:none;
+
+    font-weight:600;
+
+    padding:16px 22px;
+
+}
+
+
+.crm-header-alt{
+
+    background:#2a1d4d;
+
+    color:#fff;
+
+    border:none;
+
+    font-weight:600;
+
+    padding:16px 22px;
+
+}
+
+
+/* ==============================
+            TASKS
+============================== */
+
+.crm-card .border{
+
+    background:#24173f;
+
+    border:1px solid rgba(255,255,255,.08)!important;
+
+    transition:.3s;
+
+}
+
+.crm-card .border:hover{
+
+    border-color:#7c3aed!important;
+
+    transform:translateY(-3px);
+
+}
+
+
+.badge{
+
+    padding:8px 14px;
+
+    border-radius:50px;
+
+}
+
+
+/* ==============================
+        RECENT ACTIVITY
+============================== */
+
+.border-start{
+
+    background:#24173f;
+
+    padding:15px;
+
+    border-radius:12px;
+
+    border-left:4px solid #7c3aed!important;
+
+}
+
+.border-start p{
+
+    color:#d4d4d8;
+
+}
+
+
+/* ==============================
+            CHARTS
+============================== */
+
+.chart-container{
+
+    position:relative;
+
+    width:100%;
+
+    height:350px;
+
+}
+
+
+canvas{
+
+    width:100%!important;
+
+    height:100%!important;
+
+}
+
+
+/* ==============================
+        EMPTY STATE
+============================== */
+
+.text-center i{
+
+    opacity:.8;
+
+}
+
+
+/* ==============================
+        RESPONSIVE
+============================== */
+
+@media(max-width:992px){
+
+    .dashboard-title{
+
+        font-size:1.6rem;
+
+    }
+
+}
+
+
+@media(max-width:768px){
+
+    .crm-card .card-body{
+
+        padding:20px;
+
+    }
+
+    .crm-card h3{
+
+        font-size:1.6rem;
+
+    }
+
+    .chart-container{
+
+        height:280px;
+
+    }
+
+}
 /* =====================================
         IMPORT CONTACT PAGE
 ===================================== */
