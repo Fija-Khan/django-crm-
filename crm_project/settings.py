@@ -142,3 +142,14 @@ LOGOUT_REDIRECT_URL = '/accounts/login/'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+# -----------------------------------
+# Email Configuration
+# -----------------------------------
+
+# Temporary backend for development.
+# Emails will be printed in the terminal instead of being sent.
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+DEFAULT_FROM_EMAIL = 'crm@example.com'

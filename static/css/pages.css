@@ -2630,3 +2630,116 @@ textarea:focus {
     }
 
 }
+/* ==========================================
+   PASSWORD RESET PAGE
+========================================== */
+
+.password-reset-wrapper{
+    min-height:calc(100vh - 70px);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:40px 20px;
+}
+
+.password-reset-card{
+    width:100%;
+    max-width:480px;
+    background:#1a1330;
+    border-radius:18px;
+    padding:35px;
+    box-shadow:0 15px 40px rgba(0,0,0,.35);
+    border:1px solid rgba(124,58,237,.25);
+}
+
+.password-reset-header{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.password-reset-header h2{
+    color:#ffffff;
+    font-size:30px;
+    font-weight:700;
+    margin-bottom:10px;
+}
+
+.password-reset-header p{
+    color:#a1a1aa;
+    font-size:15px;
+    line-height:1.6;
+}
+
+.password-reset-card label{
+    color:#e5e7eb;
+    margin-bottom:8px;
+    font-weight:500;
+}
+
+.password-reset-card input{
+    width:100%;
+    background:#0f0b1a;
+    border:1px solid #2d2450;
+    color:#ffffff;
+    padding:12px 15px;
+    border-radius:10px;
+    transition:.3s;
+}
+
+.password-reset-card input:focus{
+    border-color:#7c3aed;
+    box-shadow:0 0 0 .2rem rgba(124,58,237,.25);
+    outline:none;
+}
+
+.btn-reset{
+    width:100%;
+    background:#7c3aed;
+    color:#ffffff;
+    border:none;
+    padding:12px;
+    border-radius:10px;
+    font-weight:600;
+    margin-top:15px;
+    transition:.3s;
+}
+
+.btn-reset:hover{
+    background:#6d28d9;
+    color:#ffffff;
+}
+
+.back-login{
+    margin-top:25px;
+    text-align:center;
+}
+
+.back-login a{
+    color:#a78bfa;
+    text-decoration:none;
+    font-weight:500;
+}
+
+.back-login a:hover{
+    color:#ffffff;
+}
+
+/* ==========================================
+   PASSWORD RESET DONE PAGE
+========================================== */
+
+.alert-success{
+    background:#1e293b;
+    border:1px solid #22c55e;
+    color:#22c55e;
+    border-radius:10px;
+    padding:15px;
+}
+/* ==========================================
+   PASSWORD RESET CONFIRM
+========================================== */
+
+.password-reset-card input{
+    width:100%;
+    margin-top:6px;
+}
