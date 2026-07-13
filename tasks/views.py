@@ -1,4 +1,6 @@
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView
@@ -28,23 +30,34 @@ def task_list(request):
             "related_lead"
         ).order_by("due_date")
 
-    return render(request, "tasks/task_list.html", {"tasks": tasks})
+    return render(
+        request,
+        "tasks/task_list.html",
+        {
+            "tasks": tasks
+        }
+    )
 
 
 # ---------------------------
 # CREATE TASK
 # ---------------------------
-class TaskCreateView(CreateView):
+class TaskCreateView(LoginRequiredMixin, CreateView):
+
     model = Task
     form_class = TaskForm
     template_name = "tasks/task_form.html"
     success_url = reverse_lazy("task_list")
 
     def form_valid(self, form):
-        # 🔥 CRM LOGIC FIX:
-        # If admin creates task but doesn't assign -> optional fallback
+
         if not form.instance.assigned_to:
             form.instance.assigned_to = self.request.user
+
+        messages.success(
+            self.request,
+            "Task created successfully."
+        )
 
         return super().form_valid(form)
 
@@ -52,20 +65,33 @@ class TaskCreateView(CreateView):
 # ---------------------------
 # UPDATE TASK
 # ---------------------------
-class TaskUpdateView(UpdateView):
+class TaskUpdateView(LoginRequiredMixin, UpdateView):
+
     model = Task
     form_class = TaskForm
     template_name = "tasks/task_form.html"
     success_url = reverse_lazy("task_list")
 
     def get_queryset(self):
-        # 🔐 Security Fix (important)
+
         user = self.request.user
 
         if user.role == "admin":
             return Task.objects.all()
 
-        return Task.objects.filter(assigned_to=user)
+        return Task.objects.filter(
+            assigned_to=user
+        )
+
+
+    def form_valid(self, form):
+
+        messages.success(
+            self.request,
+            "Task updated successfully."
+        )
+
+        return super().form_valid(form)
 
 
 # ---------------------------
@@ -74,16 +100,24 @@ class TaskUpdateView(UpdateView):
 @login_required
 def task_complete(request, pk):
 
-    task = get_object_or_404(Task, pk=pk)
+    task = get_object_or_404(
+        Task,
+        pk=pk
+    )
 
-    # 🔐 Permission check fix
     if request.user.role != "admin" and task.assigned_to != request.user:
         return redirect("task_list")
 
     task.status = "done"
     task.save()
 
+    messages.success(
+        request,
+        "Task marked as completed."
+    )
+
     return redirect("task_list")
+
 
 # ---------------------------
 # TASK DETAIL
@@ -91,9 +125,11 @@ def task_complete(request, pk):
 @login_required
 def task_detail(request, pk):
 
-    task = get_object_or_404(Task, pk=pk)
+    task = get_object_or_404(
+        Task,
+        pk=pk
+    )
 
-    # Permission Check
     if request.user.role != "admin" and task.assigned_to != request.user:
         return redirect("task_list")
 
@@ -112,14 +148,23 @@ def task_detail(request, pk):
 @login_required
 def task_delete(request, pk):
 
-    task = get_object_or_404(Task, pk=pk)
+    task = get_object_or_404(
+        Task,
+        pk=pk
+    )
 
-    # Permission Check
     if request.user.role != "admin" and task.assigned_to != request.user:
         return redirect("task_list")
 
     if request.method == "POST":
+
         task.delete()
+
+        messages.success(
+            request,
+            "Task deleted successfully."
+        )
+
         return redirect("task_list")
 
     return render(

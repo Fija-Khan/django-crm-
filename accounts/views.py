@@ -10,7 +10,9 @@ from .models import CustomUser
 from .forms import (
     RegisterForm,
     UserCreateForm,
-    UserUpdateForm,)
+    UserUpdateForm,
+)
+
 from contacts.models import Contact
 from leads.models import Lead
 from deals.models import Deal
@@ -138,6 +140,13 @@ def register(request):
             )
 
             return redirect("login")
+
+        else:
+
+            messages.error(
+                request,
+                "Please correct the errors below."
+            )
 
     else:
 
@@ -272,11 +281,11 @@ class UserDeleteView(
     template_name = "admin_panel/user_confirm_delete.html"
     success_url = reverse_lazy("user_list")
 
-    def delete(self, request, *args, **kwargs):
+    def form_valid(self, form):
 
         messages.success(
-            request,
+            self.request,
             "User deleted successfully."
         )
 
-        return super().delete(request, *args, **kwargs)
+        return super().form_valid(form)

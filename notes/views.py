@@ -1,8 +1,12 @@
-from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.views.generic import (
+    ListView,
+    CreateView,
+    UpdateView,
+    DeleteView,
+)
 
 from .models import Note
 from .forms import NoteForm
@@ -19,18 +23,20 @@ class NoteListView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
 
-        if self.request.user.role == "admin":
+        user = self.request.user
+
+        if user.role == "admin":
             return Note.objects.select_related(
                 "contact",
                 "lead",
-                "created_by"
+                "created_by",
             )
 
         return Note.objects.filter(
-            created_by=self.request.user
+            created_by=user
         ).select_related(
             "contact",
-            "lead"
+            "lead",
         )
 
 
@@ -48,6 +54,11 @@ class NoteCreateView(LoginRequiredMixin, CreateView):
 
         form.instance.created_by = self.request.user
 
+        messages.success(
+            self.request,
+            "Note created successfully."
+        )
+
         return super().form_valid(form)
 
 
@@ -63,12 +74,24 @@ class NoteUpdateView(LoginRequiredMixin, UpdateView):
 
     def get_queryset(self):
 
-        if self.request.user.role == "admin":
+        user = self.request.user
+
+        if user.role == "admin":
             return Note.objects.all()
 
         return Note.objects.filter(
-            created_by=self.request.user
+            created_by=user
         )
+
+
+    def form_valid(self, form):
+
+        messages.success(
+            self.request,
+            "Note updated successfully."
+        )
+
+        return super().form_valid(form)
 
 
 # -----------------------------
@@ -82,9 +105,21 @@ class NoteDeleteView(LoginRequiredMixin, DeleteView):
 
     def get_queryset(self):
 
-        if self.request.user.role == "admin":
+        user = self.request.user
+
+        if user.role == "admin":
             return Note.objects.all()
 
         return Note.objects.filter(
-            created_by=self.request.user
+            created_by=user
         )
+
+
+    def delete(self, request, *args, **kwargs):
+
+        messages.success(
+            request,
+            "Note deleted successfully."
+        )
+
+        return super().delete(request, *args, **kwargs)

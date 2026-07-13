@@ -1,9 +1,10 @@
-from django.shortcuts import render
-from django.utils import timezone
-from django.contrib.auth.decorators import login_required
+import json
 
+from django.contrib.auth.decorators import login_required
 from django.db.models import Count, Sum
 from django.db.models.functions import TruncMonth
+from django.shortcuts import render
+from django.utils import timezone
 
 from contacts.models import Contact
 from leads.models import Lead
@@ -11,16 +12,16 @@ from deals.models import Deal
 from tasks.models import Task
 from interactions.models import Interaction
 
-import json
-
 
 @login_required
 def dashboard_view(request):
+
     today = timezone.now().date()
 
     # ==========================================
     # ROLE-BASED QUERYSETS
     # ==========================================
+
     if request.user.role == "admin":
 
         contacts_qs = Contact.objects.all()
@@ -31,9 +32,17 @@ def dashboard_view(request):
 
         tasks_qs = Task.objects.all()
 
-        recent_activities = Interaction.objects.order_by(
-            "-interaction_date"
-        )[:10]
+        recent_activities = (
+            Interaction.objects
+            .select_related(
+                "contact",
+                "lead",
+                "logged_by",
+            )
+            .order_by(
+                "-interaction_date"
+            )[:10]
+        )
 
     else:
 
@@ -53,15 +62,25 @@ def dashboard_view(request):
             assigned_to=request.user
         )
 
-        recent_activities = Interaction.objects.filter(
-            logged_by=request.user
-        ).order_by(
-            "-interaction_date"
-        )[:10]
+        recent_activities = (
+            Interaction.objects
+            .filter(
+                logged_by=request.user
+            )
+            .select_related(
+                "contact",
+                "lead",
+            )
+            .order_by(
+                "-interaction_date"
+            )[:10]
+        )
+
 
     # ==========================================
     # KPI CARDS
     # ==========================================
+
     total_contacts = contacts_qs.count()
 
     total_leads = leads_qs.count()
@@ -70,36 +89,61 @@ def dashboard_view(request):
         stage="closed_won"
     ).count()
 
+
     # ==========================================
     # LEAD PIPELINE CHART DATA
     # ==========================================
+
     pipeline_data = (
         leads_qs
         .values("status")
-        .annotate(total=Count("id"))
+        .annotate(
+            total=Count("id")
+        )
+        .order_by("status")
     )
 
+
     pipeline_labels = []
+
     pipeline_counts = []
 
+
     for item in pipeline_data:
-        pipeline_labels.append(item["status"].title())
-        pipeline_counts.append(item["total"])
+
+        pipeline_labels.append(
+            item["status"].title()
+        )
+
+        pipeline_counts.append(
+            item["total"]
+        )
+
 
     # ==========================================
     # MONTHLY REVENUE CHART DATA
     # ==========================================
+
     revenue_data = (
         deals_qs
-        .filter(stage="closed_won")
-        .annotate(month=TruncMonth("close_date"))
+        .filter(
+            stage="closed_won"
+        )
+        .annotate(
+            month=TruncMonth("close_date")
+        )
         .values("month")
-        .annotate(total=Sum("amount"))
+        .annotate(
+            total=Sum("amount")
+        )
         .order_by("month")
     )
 
+
     revenue_labels = []
+
     revenue_totals = []
+
 
     for item in revenue_data:
 
@@ -113,9 +157,11 @@ def dashboard_view(request):
                 float(item["total"])
             )
 
+
     # ==========================================
     # TODAY'S TASKS
     # ==========================================
+
     my_tasks = (
         tasks_qs
         .filter(
@@ -124,12 +170,19 @@ def dashboard_view(request):
         .exclude(
             status="done"
         )
-        .order_by("due_date")
+        .order_by(
+            "due_date"
+        )
     )
+
+
+    total_pending_tasks = my_tasks.count()
+
 
     # ==========================================
     # CONTEXT
     # ==========================================
+
     context = {
 
         "total_contacts": total_contacts,
@@ -139,6 +192,8 @@ def dashboard_view(request):
         "won_deals": won_deals,
 
         "my_tasks": my_tasks,
+
+        "total_pending_tasks": total_pending_tasks,
 
         "recent_activities": recent_activities,
 
@@ -161,6 +216,7 @@ def dashboard_view(request):
         ),
 
     }
+
 
     return render(
         request,

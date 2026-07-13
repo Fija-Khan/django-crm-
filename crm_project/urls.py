@@ -83,6 +83,8 @@ urlpatterns = [
     # Notes
     # -----------------------------
     path('notes/', include('notes.urls')),
+    path("reports/",include("reports.urls")),
+
 ]
 
 

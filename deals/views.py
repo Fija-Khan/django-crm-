@@ -1,60 +1,188 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .models import Deal
+from django.shortcuts import (
+    get_object_or_404,
+    redirect,
+    render,
+)
+
 from .forms import DealForm
+from .models import Deal
 
 
-# 📋 DEAL LIST
+# ==========================================
+# DEAL LIST
+# ==========================================
+
 @login_required
 def deal_list(request):
-    deals = Deal.objects.select_related('lead').all()
-    return render(request, "deals/deal_list.html", {"deals": deals})
+
+    deals = (
+        Deal.objects
+        .select_related(
+            "lead",
+            "lead__contact",
+            "lead__assigned_to",
+        )
+        .all()
+        .order_by("-id")
+    )
+
+    return render(
+        request,
+        "deals/deal_list.html",
+        {
+            "deals": deals,
+        },
+    )
 
 
-# ➕ DEAL CREATE
+# ==========================================
+# CREATE DEAL
+# ==========================================
+
 @login_required
 def deal_create(request):
+
     if request.method == "POST":
+
         form = DealForm(request.POST)
+
         if form.is_valid():
+
             deal = form.save()
-            return redirect("deal_detail", pk=deal.pk)
+
+            messages.success(
+                request,
+                "Deal created successfully."
+            )
+
+            return redirect(
+                "deal_detail",
+                pk=deal.pk,
+            )
+
+        messages.error(
+            request,
+            "Please correct the errors below."
+        )
+
     else:
+
         form = DealForm()
 
-    return render(request, "deals/deal_form.html", {"form": form})
+    return render(
+        request,
+        "deals/deal_form.html",
+        {
+            "form": form,
+        },
+    )
+    
+# ==========================================
+# DEAL DETAIL
+# ==========================================
 
-
-# 👁️ DEAL DETAIL
 @login_required
 def deal_detail(request, pk):
-    deal = get_object_or_404(Deal, pk=pk)
-    return render(request, "deals/deal_detail.html", {"deal": deal})
+
+    deal = get_object_or_404(
+        Deal.objects.select_related(
+            "lead",
+        ),
+        pk=pk,
+    )
+
+    return render(
+        request,
+        "deals/deal_detail.html",
+        {
+            "deal": deal,
+        },
+    )
 
 
-# ✏️ DEAL EDIT
+# ==========================================
+# EDIT DEAL
+# ==========================================
+
 @login_required
 def deal_edit(request, pk):
-    deal = get_object_or_404(Deal, pk=pk)
+
+    deal = get_object_or_404(
+        Deal,
+        pk=pk,
+    )
 
     if request.method == "POST":
-        form = DealForm(request.POST, instance=deal)
+
+        form = DealForm(
+            request.POST,
+            instance=deal,
+        )
+
         if form.is_valid():
+
             form.save()
-            return redirect("deal_detail", pk=deal.pk)
+
+            messages.success(
+                request,
+                "Deal updated successfully."
+            )
+
+            return redirect(
+                "deal_detail",
+                pk=deal.pk,
+            )
+
+        messages.error(
+            request,
+            "Please correct the errors below."
+        )
+
     else:
-        form = DealForm(instance=deal)
 
-    return render(request, "deals/deal_form.html", {"form": form, "deal": deal})
+        form = DealForm(
+            instance=deal,
+        )
 
+    return render(
+        request,
+        "deals/deal_form.html",
+        {
+            "form": form,
+            "deal": deal,
+        },
+    )
+# ==========================================
+# DEAL DELETE
+# ==========================================
 
-# ❌ DEAL DELETE
 @login_required
 def deal_delete(request, pk):
-    deal = get_object_or_404(Deal, pk=pk)
+
+    deal = get_object_or_404(
+        Deal,
+        pk=pk,
+    )
 
     if request.method == "POST":
-        deal.delete()
-        return redirect("deal_list")
 
-    return render(request, "deals/deal_confirm_delete.html", {"deal": deal})
+        deal.delete()
+
+        messages.success(
+            request,
+            "Deal deleted successfully."
+        )
+
+        return redirect(
+            "deal_list",
+        )
+
+    return render(
+        request,
+        "deals/deal_confirm_delete.html",
+        {
+            "deal": deal,
+        },
+    )  

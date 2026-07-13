@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'notes',
     'interactions',
     'dashboard',
+    'reports',
 
 ]
 
