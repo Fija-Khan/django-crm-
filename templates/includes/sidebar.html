@@ -1,22 +1,22 @@
 <div class="sidebar">
 
-    <!-- ===========================
-         LOGO
-    ============================ -->
 
+    <!-- LOGO -->
     <div class="sidebar-logo">
 
         <i class="bi bi-buildings-fill fs-1 text-warning"></i>
 
         <h3>CRM System</h3>
 
-        <p>Customer Relationship Management</p>
+        <p>
+            Customer Relationship Management
+        </p>
 
     </div>
 
-    <!-- ===========================
-         MAIN MENU
-    ============================ -->
+
+
+    <!-- MAIN MENU -->
 
     <div class="px-3 mt-4">
 
@@ -26,7 +26,9 @@
 
     </div>
 
+
     <ul class="nav flex-column p-3">
+
 
         <li class="nav-item">
 
@@ -40,6 +42,8 @@
 
         </li>
 
+
+
         <li class="nav-item">
 
             <a href="/contacts/" class="nav-link">
@@ -51,6 +55,8 @@
             </a>
 
         </li>
+
+
 
         <li class="nav-item">
 
@@ -64,6 +70,8 @@
 
         </li>
 
+
+
         <li class="nav-item">
 
             <a href="/deals/" class="nav-link">
@@ -76,23 +84,28 @@
 
         </li>
 
+
     </ul>
 
-    <!-- ===========================
-         PRODUCTIVITY
-    ============================ -->
+
+
+
+
+    <!-- PRODUCTIVITY -->
 
     <div class="px-3">
 
         <small class="text-uppercase text-secondary fw-bold">
-
             Productivity
-
         </small>
 
     </div>
 
+
+
     <ul class="nav flex-column p-3 pt-2">
+
+
 
         <li class="nav-item">
 
@@ -106,6 +119,8 @@
 
         </li>
 
+
+
         <li class="nav-item">
 
             <a href="/interactions/" class="nav-link">
@@ -117,6 +132,8 @@
             </a>
 
         </li>
+
+
 
         <li class="nav-item">
 
@@ -130,25 +147,47 @@
 
         </li>
 
+
+
+        <li class="nav-item">
+
+            <a href="/reports/" class="nav-link">
+
+                <i class="bi bi-bar-chart-line-fill"></i>
+
+                Reports
+
+            </a>
+
+        </li>
+
+
     </ul>
 
-    <!-- ===========================
-         ADMIN PANEL
-    ============================ -->
+
+
+
+
+
+    <!-- ADMIN PANEL -->
+
 
     {% if request.user.is_authenticated and request.user.role == "admin" %}
+
 
     <div class="px-3">
 
         <small class="text-uppercase text-secondary fw-bold">
-
             Administration
-
         </small>
 
     </div>
 
+
+
     <ul class="nav flex-column p-3 pt-2">
+
+
 
         <li class="nav-item">
 
@@ -162,37 +201,34 @@
 
         </li>
 
-        <li class="nav-item">
 
-            <a href="/accounts/admin-panel/reports/" class="nav-link">
-
-                <i class="bi bi-bar-chart-line-fill"></i>
-
-                Reports
-
-            </a>
-
-        </li>
 
     </ul>
 
+
+
     {% endif %}
 
-    <!-- ===========================
-         ACCOUNT
-    ============================ -->
+
+
+
+
+
+    <!-- ACCOUNT -->
+
 
     <div class="px-3">
 
         <small class="text-uppercase text-secondary fw-bold">
-
             Account
-
         </small>
 
     </div>
 
+
+
     <ul class="nav flex-column p-3 pt-2">
+
 
         <li class="nav-item">
 
@@ -206,6 +242,8 @@
 
         </li>
 
+
+
         <li class="nav-item">
 
             <a href="/accounts/logout/" class="nav-link">
@@ -218,6 +256,8 @@
 
         </li>
 
+
     </ul>
+
 
 </div>

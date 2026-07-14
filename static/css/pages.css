@@ -2743,3 +2743,268 @@ textarea:focus {
     width:100%;
     margin-top:6px;
 }
+/* =====================================
+   Reports Dashboard
+===================================== */
+
+
+.reports-dashboard {
+
+    color: #e5e7eb;
+
+}
+
+
+
+/* Page Header */
+
+.reports-dashboard h2 {
+
+    color: #ffffff;
+    font-weight: 700;
+
+}
+
+
+.reports-dashboard .text-muted {
+
+    color: #a1a1aa !important;
+
+}
+
+
+
+
+
+/* =====================================
+   Summary Cards
+===================================== */
+
+
+.reports-dashboard .card {
+
+    background: #1a1330;
+
+    border: none;
+
+    border-radius: 16px;
+
+    transition: all 0.3s ease;
+
+}
+
+
+
+.reports-dashboard .card:hover {
+
+    transform: translateY(-5px);
+
+    box-shadow: 0 12px 30px rgba(124,58,237,0.25);
+
+}
+
+
+
+
+.reports-dashboard h3 {
+
+    color:#ffffff;
+
+}
+
+
+
+.reports-dashboard h6 {
+
+    color:#a1a1aa !important;
+
+}
+
+
+
+
+
+/* Card Icons */
+
+
+.reports-dashboard .rounded-circle {
+
+    width:55px;
+
+    height:55px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+
+
+
+
+
+/* =====================================
+   Charts
+===================================== */
+
+
+.reports-dashboard .card-header {
+
+
+    background:#1a1330 !important;
+
+    border-bottom:1px solid rgba(255,255,255,0.08);
+
+}
+
+
+
+.reports-dashboard .card-header h5 {
+
+
+    color:#ffffff;
+
+    font-weight:600;
+
+}
+
+
+
+.reports-dashboard .card-body {
+
+
+    color:#e5e7eb;
+
+}
+
+
+
+.reports-dashboard canvas {
+
+
+    max-height:260px;
+
+}
+
+
+
+
+
+/* =====================================
+   Recent Leads Table
+===================================== */
+
+
+.reports-dashboard table {
+
+
+    color:#e5e7eb;
+
+}
+
+
+
+.reports-dashboard thead {
+
+
+    background:#241b3d;
+
+}
+
+
+
+.reports-dashboard thead th {
+
+
+    color:#c4b5fd;
+
+    border:none;
+
+}
+
+
+
+.reports-dashboard tbody td {
+
+
+    color:#111111;
+
+}
+
+
+
+.reports-dashboard tbody tr {
+
+
+    border-color:rgba(255,255,255,0.08);
+
+}
+
+
+
+.reports-dashboard tbody tr:hover {
+
+
+    background:#241b3d;
+
+}
+
+
+
+
+
+/* =====================================
+   Icon Colors Override
+===================================== */
+
+
+.reports-dashboard .bg-primary {
+
+    background:#7c3aed !important;
+
+}
+
+
+.reports-dashboard .bg-success {
+
+    background:#16a34a !important;
+
+}
+
+
+.reports-dashboard .bg-warning {
+
+    background:#f59e0b !important;
+
+}
+
+
+.reports-dashboard .bg-info {
+
+    background:#0891b2 !important;
+
+}
+
+
+.reports-dashboard .bg-secondary {
+
+    background:#475569 !important;
+
+}
+
+
+.reports-dashboard .bg-dark {
+
+    background:#312e81 !important;
+
+}
+
+
+.reports-dashboard .bg-danger {
+
+    background:#dc2626 !important;
+
+}
