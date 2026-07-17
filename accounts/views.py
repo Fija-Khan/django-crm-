@@ -1,10 +1,11 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.db.models import Q
 
 from .models import CustomUser
 from .forms import (
@@ -56,7 +57,7 @@ def login_view(request):
         password = request.POST.get("password")
 
         user = authenticate(
-            request,
+            request=request,
             username=username,
             password=password,
         )
@@ -74,7 +75,7 @@ def login_view(request):
 
             messages.error(
                 request,
-                "Your account is waiting for admin approval."
+                "Your account is inactive. Please contact the administrator."
             )
 
             return redirect("login")
@@ -83,7 +84,7 @@ def login_view(request):
 
         messages.success(
             request,
-            f"Welcome, {user.username}!"
+            f"Welcome back, {user.username}!"
         )
 
         return redirect("dashboard")
@@ -130,23 +131,24 @@ def register(request):
 
             user.role = "agent"
             user.is_active = False
-            user.is_approved = False
+
+            # Remove this line if your model doesn't have is_approved
+            if hasattr(user, "is_approved"):
+                user.is_approved = False
 
             user.save()
 
             messages.success(
                 request,
-                "Registration successful. Please wait for admin approval."
+                "Registration submitted successfully. Please wait for admin approval."
             )
 
             return redirect("login")
 
-        else:
-
-            messages.error(
-                request,
-                "Please correct the errors below."
-            )
+        messages.error(
+            request,
+            "Please correct the errors below."
+        )
 
     else:
 
@@ -172,12 +174,13 @@ def profile_view(request):
 
     if request.method == "POST":
 
+        user.first_name = request.POST.get("first_name")
+        user.last_name = request.POST.get("last_name")
         user.username = request.POST.get("username")
         user.email = request.POST.get("email")
         user.phone = request.POST.get("phone")
 
         if request.FILES.get("profile_pic"):
-
             user.profile_pic = request.FILES["profile_pic"]
 
         user.save()
@@ -196,6 +199,62 @@ def profile_view(request):
             "user": user,
         },
     )
+    
+# ==========================================
+# ADMIN PANEL - DASHBOARD
+# ==========================================
+
+@login_required
+def admin_dashboard(request):
+
+    if request.user.role != "admin":
+
+        messages.error(
+            request,
+            "You don't have permission to access this page."
+        )
+
+        return redirect("dashboard")
+
+    context = {
+
+        "total_users": CustomUser.objects.count(),
+
+        "active_users": CustomUser.objects.filter(
+            is_active=True
+        ).count(),
+
+        "inactive_users": CustomUser.objects.filter(
+            is_active=False
+        ).count(),
+
+        "admin_users": CustomUser.objects.filter(
+            role="admin"
+        ).count(),
+
+        "agent_users": CustomUser.objects.filter(
+            role="agent"
+        ).count(),
+
+        "total_contacts": Contact.objects.count(),
+
+        "total_leads": Lead.objects.count(),
+
+        "total_deals": Deal.objects.count(),
+
+        "total_tasks": Task.objects.count(),
+
+        "recent_users": CustomUser.objects.order_by(
+            "-date_joined"
+        )[:5],
+
+    }
+
+    return render(
+        request,
+        "admin_panel/dashboard.html",
+        context,
+    )
 
 
 # ==========================================
@@ -209,14 +268,260 @@ class UserListView(
 ):
 
     model = CustomUser
+
     template_name = "admin_panel/user_list.html"
+
     context_object_name = "users"
+
+    paginate_by = 10
+
 
     def get_queryset(self):
 
-        return CustomUser.objects.order_by("username")
+        queryset = CustomUser.objects.order_by(
+            "-date_joined"
+        )
+
+        search = self.request.GET.get(
+            "search"
+        )
+
+        role = self.request.GET.get(
+            "role"
+        )
+
+        status = self.request.GET.get(
+            "status"
+        )
+
+        if search:
+
+            queryset = queryset.filter(
+
+                Q(username__icontains=search) |
+
+                Q(first_name__icontains=search) |
+
+                Q(last_name__icontains=search) |
+
+                Q(email__icontains=search)
+
+            )
+
+        if role:
+
+            queryset = queryset.filter(
+                role=role
+            )
+
+        if status == "active":
+
+            queryset = queryset.filter(
+                is_active=True
+            )
+
+        elif status == "inactive":
+
+            queryset = queryset.filter(
+                is_active=False
+            )
+
+        return queryset
 
 
+    def get_context_data(self, **kwargs):
+
+        context = super().get_context_data(
+            **kwargs
+        )
+
+        context["search"] = self.request.GET.get(
+            "search",
+            ""
+        )
+
+        context["selected_role"] = self.request.GET.get(
+            "role",
+            ""
+        )
+
+        context["selected_status"] = self.request.GET.get(
+            "status",
+            ""
+        )
+
+        context["total_users"] = CustomUser.objects.count()
+
+        context["total_admins"] = CustomUser.objects.filter(
+            role="admin"
+        ).count()
+
+        context["total_agents"] = CustomUser.objects.filter(
+            role="agent"
+        ).count()
+
+        return context
+# ==========================================
+# ADMIN PANEL - DASHBOARD
+# ==========================================
+
+@login_required
+def admin_dashboard(request):
+
+    if request.user.role != "admin":
+
+        messages.error(
+            request,
+            "You don't have permission to access this page."
+        )
+
+        return redirect("dashboard")
+
+    context = {
+
+        "total_users": CustomUser.objects.count(),
+
+        "active_users": CustomUser.objects.filter(
+            is_active=True
+        ).count(),
+
+        "inactive_users": CustomUser.objects.filter(
+            is_active=False
+        ).count(),
+
+        "admin_users": CustomUser.objects.filter(
+            role="admin"
+        ).count(),
+
+        "agent_users": CustomUser.objects.filter(
+            role="agent"
+        ).count(),
+
+        "total_contacts": Contact.objects.count(),
+
+        "total_leads": Lead.objects.count(),
+
+        "total_deals": Deal.objects.count(),
+
+        "total_tasks": Task.objects.count(),
+
+        "recent_users": CustomUser.objects.order_by(
+            "-date_joined"
+        )[:5],
+
+    }
+
+    return render(
+        request,
+        "admin_panel/dashboard.html",
+        context,
+    )
+
+
+# ==========================================
+# ADMIN PANEL - USER LIST
+# ==========================================
+
+class UserListView(
+    LoginRequiredMixin,
+    AdminRequiredMixin,
+    ListView,
+):
+
+    model = CustomUser
+
+    template_name = "admin_panel/user_list.html"
+
+    context_object_name = "users"
+
+    paginate_by = 10
+
+
+    def get_queryset(self):
+
+        queryset = CustomUser.objects.order_by(
+            "-date_joined"
+        )
+
+        search = self.request.GET.get(
+            "search"
+        )
+
+        role = self.request.GET.get(
+            "role"
+        )
+
+        status = self.request.GET.get(
+            "status"
+        )
+
+        if search:
+
+            queryset = queryset.filter(
+
+                Q(username__icontains=search) |
+
+                Q(first_name__icontains=search) |
+
+                Q(last_name__icontains=search) |
+
+                Q(email__icontains=search)
+
+            )
+
+        if role:
+
+            queryset = queryset.filter(
+                role=role
+            )
+
+        if status == "active":
+
+            queryset = queryset.filter(
+                is_active=True
+            )
+
+        elif status == "inactive":
+
+            queryset = queryset.filter(
+                is_active=False
+            )
+
+        return queryset
+
+
+    def get_context_data(self, **kwargs):
+
+        context = super().get_context_data(
+            **kwargs
+        )
+
+        context["search"] = self.request.GET.get(
+            "search",
+            ""
+        )
+
+        context["selected_role"] = self.request.GET.get(
+            "role",
+            ""
+        )
+
+        context["selected_status"] = self.request.GET.get(
+            "status",
+            ""
+        )
+
+        context["total_users"] = CustomUser.objects.count()
+
+        context["total_admins"] = CustomUser.objects.filter(
+            role="admin"
+        ).count()
+
+        context["total_agents"] = CustomUser.objects.filter(
+            role="agent"
+        ).count()
+
+        return context
 # ==========================================
 # ADMIN PANEL - CREATE USER
 # ==========================================
@@ -240,6 +545,15 @@ class UserCreateView(
         )
 
         return super().form_valid(form)
+
+    def form_invalid(self, form):
+
+        messages.error(
+            self.request,
+            "Please correct the errors below."
+        )
+
+        return super().form_invalid(form)
 
 
 # ==========================================
@@ -266,6 +580,15 @@ class UserUpdateView(
 
         return super().form_valid(form)
 
+    def form_invalid(self, form):
+
+        messages.error(
+            self.request,
+            "Please correct the errors below."
+        )
+
+        return super().form_invalid(form)
+
 
 # ==========================================
 # ADMIN PANEL - DELETE USER
@@ -281,11 +604,11 @@ class UserDeleteView(
     template_name = "admin_panel/user_confirm_delete.html"
     success_url = reverse_lazy("user_list")
 
-    def form_valid(self, form):
+    def delete(self, request, *args, **kwargs):
 
         messages.success(
-            self.request,
+            request,
             "User deleted successfully."
         )
 
-        return super().form_valid(form)
+        return super().delete(request, *args, **kwargs)

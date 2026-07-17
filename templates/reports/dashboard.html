@@ -13,9 +13,7 @@ Reports Dashboard
     <!-- ========================= -->
 
     <div class="d-flex justify-content-between align-items-center flex-wrap mb-4">
-
         <div>
-
             <h2 class="fw-bold mb-1">
                 <i class="bi bi-bar-chart-fill me-2"></i>
                 Reports Dashboard
@@ -24,9 +22,7 @@ Reports Dashboard
             <p class="text-muted mb-0">
                 Monitor CRM performance with key statistics.
             </p>
-
         </div>
-
     </div>
 
     <!-- ========================= -->
@@ -34,7 +30,6 @@ Reports Dashboard
     <!-- ========================= -->
 
     <div class="card shadow-sm border-0 mb-4">
-
         <div class="card-body">
 
             <form method="GET">
@@ -42,10 +37,7 @@ Reports Dashboard
                 <div class="row g-3 align-items-end">
 
                     <div class="col-md-4">
-
-                        <label class="form-label">
-                            From Date
-                        </label>
+                        <label class="form-label">From Date</label>
 
                         <input
                             type="date"
@@ -53,14 +45,10 @@ Reports Dashboard
                             class="form-control"
                             value="{{ start_date|default:'' }}"
                         >
-
                     </div>
 
                     <div class="col-md-4">
-
-                        <label class="form-label">
-                            To Date
-                        </label>
+                        <label class="form-label">To Date</label>
 
                         <input
                             type="date"
@@ -68,26 +56,20 @@ Reports Dashboard
                             class="form-control"
                             value="{{ end_date|default:'' }}"
                         >
-
                     </div>
 
                     <div class="col-md-4 d-flex gap-2">
 
-                        <button class="btn btn-primary">
-
+                        <button type="submit" class="btn btn-primary">
                             <i class="bi bi-funnel-fill me-1"></i>
-
                             Filter
-
                         </button>
 
                         <a
                             href="{% url 'reports:dashboard' %}"
                             class="btn btn-outline-secondary"
                         >
-
                             Reset
-
                         </a>
 
                     </div>
@@ -97,7 +79,6 @@ Reports Dashboard
             </form>
 
         </div>
-
     </div>
 
     <!-- ========================= -->
@@ -106,79 +87,72 @@ Reports Dashboard
 
     <div class="row g-4">
 
-        <div class="col-md-3">
+        <!-- Contacts -->
 
+        <div class="col-md-3">
             <div class="card shadow-sm border-0">
 
                 <div class="card-body text-center">
-
                     <i class="bi bi-people-fill display-6 text-primary"></i>
 
                     <h6 class="mt-3">Contacts</h6>
 
                     <h2>{{ total_contacts }}</h2>
-
                 </div>
 
             </div>
-
         </div>
 
-        <div class="col-md-3">
+        <!-- Companies -->
 
+        <div class="col-md-3">
             <div class="card shadow-sm border-0">
 
                 <div class="card-body text-center">
-
                     <i class="bi bi-buildings display-6 text-success"></i>
 
                     <h6 class="mt-3">Companies</h6>
 
                     <h2>{{ total_companies }}</h2>
-
                 </div>
 
             </div>
-
         </div>
 
-        <div class="col-md-3">
+        <!-- Leads -->
 
+        <div class="col-md-3">
             <div class="card shadow-sm border-0">
 
                 <div class="card-body text-center">
-
                     <i class="bi bi-person-plus-fill display-6 text-warning"></i>
 
                     <h6 class="mt-3">Leads</h6>
 
                     <h2>{{ total_leads }}</h2>
-
                 </div>
 
             </div>
-
         </div>
 
-        <div class="col-md-3">
+        <!-- Deals -->
 
+        <div class="col-md-3">
             <div class="card shadow-sm border-0">
 
                 <div class="card-body text-center">
-
                     <i class="bi bi-briefcase-fill display-6 text-info"></i>
 
                     <h6 class="mt-3">Deals</h6>
 
                     <h2>{{ total_deals }}</h2>
-
                 </div>
 
             </div>
-
         </div>
 
     </div>
+
     <!-- ========================= -->
     <!-- Summary Cards Row 2 -->
     <!-- ========================= -->
@@ -188,81 +162,65 @@ Reports Dashboard
         <!-- Tasks -->
 
         <div class="col-md-3">
-
             <div class="card shadow-sm border-0">
 
                 <div class="card-body text-center">
-
                     <i class="bi bi-list-check display-6 text-secondary"></i>
 
                     <h6 class="mt-3">Tasks</h6>
 
                     <h2>{{ total_tasks }}</h2>
-
                 </div>
 
             </div>
-
         </div>
 
         <!-- Revenue -->
 
         <div class="col-md-3">
-
             <div class="card shadow-sm border-0">
 
                 <div class="card-body text-center">
-
                     <i class="bi bi-currency-rupee display-6 text-dark"></i>
 
                     <h6 class="mt-3">Revenue</h6>
 
                     <h2>₹ {{ total_revenue|floatformat:0 }}</h2>
-
                 </div>
 
             </div>
-
         </div>
 
         <!-- Won Deals -->
 
         <div class="col-md-3">
-
             <div class="card shadow-sm border-0">
 
                 <div class="card-body text-center">
-
                     <i class="bi bi-trophy-fill display-6 text-success"></i>
 
                     <h6 class="mt-3">Won Deals</h6>
 
                     <h2>{{ won_deals }}</h2>
-
                 </div>
 
             </div>
-
         </div>
 
         <!-- Lost Deals -->
 
         <div class="col-md-3">
-
             <div class="card shadow-sm border-0">
 
                 <div class="card-body text-center">
-
                     <i class="bi bi-x-circle-fill display-6 text-danger"></i>
 
                     <h6 class="mt-3">Lost Deals</h6>
 
                     <h2>{{ lost_deals }}</h2>
-
                 </div>
 
             </div>
-
         </div>
 
     </div>
@@ -273,8 +231,6 @@ Reports Dashboard
 
     <div class="row mt-4">
 
-        <!-- Revenue Chart -->
-
         <div class="col-lg-12">
 
             <div class="card shadow-sm border-0">
@@ -282,11 +238,8 @@ Reports Dashboard
                 <div class="card-header bg-white">
 
                     <h5 class="mb-0">
-
                         <i class="bi bi-graph-up-arrow text-success me-2"></i>
-
                         Monthly Revenue Trend
-
                     </h5>
 
                 </div>
@@ -309,25 +262,7 @@ Reports Dashboard
 
     <div class="row mt-4">
 
-        <div class="col-md-4">
-
-            <div class="card border-0 shadow-sm">
-
-                <div class="card-body text-center">
-
-                    <h6 class="text-muted">Negotiation</h6>
-
-                    <h2 class="text-warning">
-
-                        {{ negotiation_deals }}
-
-                    </h2>
-
-                </div>
-
-            </div>
-
-        </div>
+        <!-- Negotiation -->
 
         <div class="col-md-4">
 
@@ -336,15 +271,33 @@ Reports Dashboard
                 <div class="card-body text-center">
 
                     <h6 class="text-muted">
+                        Negotiation
+                    </h6>
 
+                    <h2 class="text-warning">
+                        {{ negotiation_deals }}
+                    </h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Contract -->
+
+        <div class="col-md-4">
+
+            <div class="card border-0 shadow-sm">
+
+                <div class="card-body text-center">
+
+                    <h6 class="text-muted">
                         Contract
-
                     </h6>
 
                     <h2 class="text-primary">
-
                         {{ contract_deals }}
-
                     </h2>
 
                 </div>
@@ -352,6 +305,8 @@ Reports Dashboard
             </div>
 
         </div>
+
+        <!-- Open Deals -->
 
         <div class="col-md-4">
 
@@ -360,15 +315,11 @@ Reports Dashboard
                 <div class="card-body text-center">
 
                     <h6 class="text-muted">
-
                         Open Deals
-
                     </h6>
 
                     <h2 class="text-info">
-
                         {{ open_deals }}
-
                     </h2>
 
                 </div>
@@ -378,159 +329,7 @@ Reports Dashboard
         </div>
 
     </div>
-    <!-- ========================= -->
-    <!-- Recent Leads -->
-    <!-- ========================= -->
 
-    <div class="card shadow-sm border-0 mt-4">
-
-        <div class="card-header bg-white">
-
-            <div class="d-flex justify-content-between align-items-center">
-
-                <h5 class="mb-0">
-
-                    <i class="bi bi-person-lines-fill me-2 text-warning"></i>
-
-                    Recent Leads
-
-                </h5>
-
-                <a href="{% url 'leads:list' %}" class="btn btn-primary btn-sm">
-
-                    View All
-
-                </a>
-
-            </div>
-
-        </div>
-
-        <div class="table-responsive">
-
-            <table class="table table-hover align-middle mb-0">
-
-                <thead class="table-light">
-
-                    <tr>
-
-                        <th>Lead</th>
-                        <th>Company</th>
-                        <th>Status</th>
-                        <th>Assigned To</th>
-                        <th>Created</th>
-
-                    </tr>
-
-                </thead>
-
-                <tbody>
-
-                    {% for lead in recent_leads %}
-
-                    <tr>
-
-                        <td>
-
-                            <strong>{{ lead.title }}</strong>
-
-                        </td>
-
-                        <td>
-
-                            {% if lead.contact.company %}
-
-                                {{ lead.contact.company.name }}
-
-                            {% else %}
-
-                                -
-
-                            {% endif %}
-
-                        </td>
-
-                        <td>
-
-                            {% if lead.status == "new" %}
-
-                                <span class="badge bg-primary">New</span>
-
-                            {% elif lead.status == "contacted" %}
-
-                                <span class="badge bg-info">Contacted</span>
-
-                            {% elif lead.status == "qualified" %}
-
-                                <span class="badge bg-success">Qualified</span>
-
-                            {% elif lead.status == "proposal" %}
-
-                                <span class="badge bg-warning text-dark">Proposal</span>
-
-                            {% elif lead.status == "won" %}
-
-                                <span class="badge bg-success">Won</span>
-
-                            {% elif lead.status == "lost" %}
-
-                                <span class="badge bg-danger">Lost</span>
-
-                            {% else %}
-
-                                <span class="badge bg-secondary">
-
-                                    {{ lead.status }}
-
-                                </span>
-
-                            {% endif %}
-
-                        </td>
-
-                        <td>
-
-                            {% if lead.assigned_to %}
-
-                                {{ lead.assigned_to.get_full_name|default:lead.assigned_to.username }}
-
-                            {% else %}
-
-                                -
-
-                            {% endif %}
-
-                        </td>
-
-                        <td>
-
-                            {{ lead.created_at|date:"d M Y" }}
-
-                        </td>
-
-                    </tr>
-
-                    {% empty %}
-
-                    <tr>
-
-                        <td colspan="5" class="text-center py-4 text-muted">
-
-                            No recent leads found.
-
-                        </td>
-
-                    </tr>
-
-                    {% endfor %}
-
-                </tbody>
-
-            </table>
-
-        </div>
-
-    </div>
     <!-- ========================= -->
     <!-- Recent Deals -->
     <!-- ========================= -->
@@ -542,17 +341,13 @@ Reports Dashboard
             <div class="d-flex justify-content-between align-items-center">
 
                 <h5 class="mb-0">
-
                     <i class="bi bi-briefcase-fill me-2 text-primary"></i>
-
                     Recent Deals
-
                 </h5>
 
-                <a href="{% url 'deals:list' %}" class="btn btn-primary btn-sm">
-
+                <a href="{% url 'deals:deal_list' %}" class="btn btn-primary btn-sm">
+                    <i class="bi bi-eye me-1"></i>
                     View All
-
                 </a>
 
             </div>
@@ -566,12 +361,10 @@ Reports Dashboard
                 <thead class="table-light">
 
                     <tr>
-
                         <th>Lead</th>
                         <th>Amount</th>
                         <th>Stage</th>
                         <th>Close Date</th>
-
                     </tr>
 
                 </thead>
@@ -582,34 +375,44 @@ Reports Dashboard
 
                     <tr>
 
-                        <td>{{ deal.lead.title }}</td>
+                        <td>
+                            {{ deal.lead.title }}
+                        </td>
 
-                        <td>₹ {{ deal.amount|floatformat:0 }}</td>
+                        <td>
+                            ₹ {{ deal.amount|floatformat:0 }}
+                        </td>
 
                         <td>
 
                             {% if deal.stage == "closed_won" %}
 
-                                <span class="badge bg-success">Won</span>
+                                <span class="badge bg-success">
+                                    Won
+                                </span>
 
                             {% elif deal.stage == "closed_lost" %}
 
-                                <span class="badge bg-danger">Lost</span>
+                                <span class="badge bg-danger">
+                                    Lost
+                                </span>
 
                             {% elif deal.stage == "negotiation" %}
 
                                 <span class="badge bg-warning text-dark">
-
                                     Negotiation
-
                                 </span>
 
                             {% elif deal.stage == "contract" %}
 
                                 <span class="badge bg-primary">
-
                                     Contract
+                                </span>
 
+                            {% else %}
+
+                                <span class="badge bg-secondary">
+                                    {{ deal.stage }}
                                 </span>
 
                             {% endif %}
@@ -617,9 +420,7 @@ Reports Dashboard
                         </td>
 
                         <td>
-
                             {{ deal.close_date|date:"d M Y" }}
-
                         </td>
 
                     </tr>
@@ -629,9 +430,7 @@ Reports Dashboard
                     <tr>
 
                         <td colspan="4" class="text-center py-4 text-muted">
-
                             No recent deals found.
-
                         </td>
 
                     </tr>
@@ -645,21 +444,17 @@ Reports Dashboard
         </div>
 
     </div>
-
     <!-- ========================= -->
     <!-- Recent Tasks -->
     <!-- ========================= -->
 
     <div class="card shadow-sm border-0 mt-4">
 
-        <div class="card-header bg-white">
+        <div class="card-header bg-white d-flex justify-content-between align-items-center">
 
             <h5 class="mb-0">
-
                 <i class="bi bi-list-check me-2 text-success"></i>
-
                 Recent Tasks
-
             </h5>
 
         </div>
@@ -668,23 +463,44 @@ Reports Dashboard
 
             {% if recent_tasks %}
 
-                <div class="list-group">
+                <div class="list-group list-group-flush">
 
                     {% for task in recent_tasks %}
 
                         <div class="list-group-item">
 
-                            <strong>{{ task.title }}</strong>
+                            <div class="d-flex justify-content-between align-items-center">
 
-                            <br>
+                                <div>
 
-                            <small class="text-muted">
+                                    <strong>{{ task.title }}</strong>
 
-                                Assigned :
+                                    <br>
 
-                                {{ task.assigned_to }}
+                                    <small class="text-muted">
 
-                            </small>
+                                        Assigned To :
+                                        {{ task.assigned_to }}
+
+                                    </small>
+
+                                </div>
+
+                                {% if task.completed %}
+
+                                    <span class="badge bg-success">
+                                        Completed
+                                    </span>
+
+                                {% else %}
+
+                                    <span class="badge bg-warning text-dark">
+                                        Pending
+                                    </span>
+
+                                {% endif %}
+
+                            </div>
 
                         </div>
 
@@ -695,10 +511,10 @@ Reports Dashboard
             {% else %}
 
                 <p class="text-center text-muted my-3">
-
                     No recent tasks found.
+                </p>
 
-                {% endif %}
+            {% endif %}
 
         </div>
 
@@ -708,49 +524,74 @@ Reports Dashboard
 
 {% endblock %}
 
+
 {% block extra_js %}
 
 <script>
 
-const revenueCtx = document.getElementById("revenueChart");
+document.addEventListener("DOMContentLoaded", function () {
 
-if (revenueCtx){
+    const revenueCtx = document.getElementById("revenueChart");
 
-    new Chart(revenueCtx,{
+    if (revenueCtx) {
 
-        type:"line",
+        new Chart(revenueCtx, {
 
-        data:{
+            type: "line",
 
-            labels: {{ revenue_labels|safe }},
+            data: {
 
-            datasets:[{
+                labels: {{ revenue_labels|safe }},
 
-                label:"Revenue",
+                datasets: [{
 
-                data: {{ revenue_values|safe }},
+                    label: "Revenue",
 
-                borderWidth:2,
+                    data: {{ revenue_values|safe }},
 
-                tension:0.4,
+                    borderWidth: 2,
 
-                fill:false
+                    tension: 0.4,
 
-            }]
+                    fill: false
 
-        },
+                }]
 
-        options:{
+            },
 
-            responsive:true,
+            options: {
 
-            maintainAspectRatio:false
+                responsive: true,
 
-        }
+                maintainAspectRatio: false,
 
-    });
+                plugins: {
 
-}
+                    legend: {
+
+                        display: true
+
+                    }
+
+                },
+
+                scales: {
+
+                    y: {
+
+                        beginAtZero: true
+
+                    }
+
+                }
+
+            }
+
+        });
+
+    }
+
+});
 
 </script>
 

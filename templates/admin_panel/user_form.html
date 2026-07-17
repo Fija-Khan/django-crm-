@@ -1,106 +1,91 @@
-{% extends "base.html" %}
+{% extends "base.html" %} {% block title %} {% if object %} Edit User {% else %}
+Add User {% endif %} {% endblock %} {% block content %}
 
-{% block title %}
-{% if object %}
-Edit User
-{% else %}
-Add User
-{% endif %}
-{% endblock %}
+<div class="container-fluid py-4">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="card shadow border-0">
+        <div
+          class="card-header bg-primary text-white d-flex justify-content-between align-items-center"
+        >
+          <div>
+            {% if object %}
+            <h4 class="mb-0">
+              <i class="bi bi-pencil-square"></i>
+              Edit User
+            </h4>
+            <small>Update user information</small>
+            {% else %}
+            <h4 class="mb-0">
+              <i class="bi bi-person-plus-fill"></i>
+              Add New User
+            </h4>
+            <small>Create a new CRM user</small>
+            {% endif %}
+          </div>
 
-{% block content %}
-
-<div class="container mt-4">
-
-    <div class="row justify-content-center">
-
-        <div class="col-lg-8">
-
-            <div class="card shadow">
-
-                <div class="card-header bg-primary text-white">
-
-                    <h4 class="mb-0">
-
-                        {% if object %}
-
-                            <i class="bi bi-pencil-square"></i>
-                            Edit User
-
-                        {% else %}
-
-                            <i class="bi bi-person-plus-fill"></i>
-                            Add New User
-
-                        {% endif %}
-
-                    </h4>
-
-                </div>
-
-                <div class="card-body">
-
-                    <form method="POST" enctype="multipart/form-data">
-
-                        {% csrf_token %}
-
-                        {% for field in form %}
-
-                        <div class="mb-3">
-
-                            <label class="form-label">
-
-                                {{ field.label }}
-
-                            </label>
-
-                            {{ field }}
-
-                            {% if field.errors %}
-
-                            <div class="text-danger small mt-1">
-
-                                {{ field.errors }}
-
-                            </div>
-
-                            {% endif %}
-
-                        </div>
-
-                        {% endfor %}
-
-                        <div class="mt-4">
-
-                            <button type="submit" class="btn btn-success">
-
-                                <i class="bi bi-check-circle-fill"></i>
-
-                                Save User
-
-                            </button>
-
-                            <a href="{% url 'user_list' %}"
-                               class="btn btn-secondary">
-
-                                <i class="bi bi-arrow-left-circle"></i>
-
-                                Back
-
-                            </a>
-
-                        </div>
-
-                    </form>
-
-                </div>
-
-            </div>
-
+          <a href="{% url 'user_list' %}" class="btn btn-light btn-sm">
+            <i class="bi bi-arrow-left"></i>
+            Back
+          </a>
         </div>
 
+        <div class="card-body">
+          <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="row">
+              {% extends "base.html" %} {% block title %} {% if object %} Edit
+              User {% else %} Add User {% endif %} {% endblock %} {% block
+              content %}
+
+              <div class="container-fluid py-4">
+                <div class="row justify-content-center">
+                  <div class="col-lg-8">
+                    <div class="card shadow border-0">
+                      <div
+                        class="card-header bg-primary text-white d-flex justify-content-between align-items-center"
+                      >
+                        <div>
+                          {% if object %}
+                          <h4 class="mb-0">
+                            <i class="bi bi-pencil-square"></i>
+                            Edit User
+                          </h4>
+                          <small>Update user information</small>
+                          {% else %}
+                          <h4 class="mb-0">
+                            <i class="bi bi-person-plus-fill"></i>
+                            Add New User
+                          </h4>
+                          <small>Create a new CRM user</small>
+                          {% endif %}
+                        </div>
+
+                        <a
+                          href="{% url 'user_list' %}"
+                          class="btn btn-light btn-sm"
+                        >
+                          <i class="bi bi-arrow-left"></i>
+                          Back
+                        </a>
+                      </div>
+
+                      <div class="card-body">
+                        <form method="POST" enctype="multipart/form-data">
+                          {% csrf_token %}
+
+                          <div class="row"></div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
-
+  </div>
 </div>
-
-{% endblock %}

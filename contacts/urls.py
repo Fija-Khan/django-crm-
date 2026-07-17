@@ -5,9 +5,11 @@ from .views import ContactDetailView
 from .views import ContactUpdateView
 from .views import ContactDeleteView
 
+app_name = "contacts"
+
 urlpatterns = [
     path("", views.contact_list, name="contact_list"),
-    path("add/",ContactCreateView.as_view(),name="contact_add",),
+    path("add/", ContactCreateView.as_view(), name="contact_add"),
     path("<int:pk>/", ContactDetailView.as_view(), name="contact_detail"),
     path("<int:pk>/edit/", ContactUpdateView.as_view(), name="contact_edit"),
     path("<int:pk>/delete/", ContactDeleteView.as_view(), name="contact_delete"),
