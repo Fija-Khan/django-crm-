@@ -10,9 +10,9 @@ from .forms import DealForm
 from .models import Deal
 
 
-# ==========================================
+# ==========================================================
 # DEAL LIST
-# ==========================================
+# ==========================================================
 
 @login_required
 def deal_list(request):
@@ -24,7 +24,6 @@ def deal_list(request):
             "lead__contact",
             "lead__assigned_to",
         )
-        .all()
         .order_by("-id")
     )
 
@@ -37,9 +36,9 @@ def deal_list(request):
     )
 
 
-# ==========================================
+# ==========================================================
 # CREATE DEAL
-# ==========================================
+# ==========================================================
 
 @login_required
 def deal_create(request):
@@ -58,7 +57,7 @@ def deal_create(request):
             )
 
             return redirect(
-                "deal_detail",
+                "deals:deal_detail",
                 pk=deal.pk,
             )
 
@@ -78,10 +77,11 @@ def deal_create(request):
             "form": form,
         },
     )
-    
-# ==========================================
+
+
+# ==========================================================
 # DEAL DETAIL
-# ==========================================
+# ==========================================================
 
 @login_required
 def deal_detail(request, pk):
@@ -89,6 +89,8 @@ def deal_detail(request, pk):
     deal = get_object_or_404(
         Deal.objects.select_related(
             "lead",
+            "lead__contact",
+            "lead__assigned_to",
         ),
         pk=pk,
     )
@@ -102,9 +104,9 @@ def deal_detail(request, pk):
     )
 
 
-# ==========================================
+# ==========================================================
 # EDIT DEAL
-# ==========================================
+# ==========================================================
 
 @login_required
 def deal_edit(request, pk):
@@ -131,7 +133,7 @@ def deal_edit(request, pk):
             )
 
             return redirect(
-                "deal_detail",
+                "deals:deal_detail",
                 pk=deal.pk,
             )
 
@@ -154,9 +156,11 @@ def deal_edit(request, pk):
             "deal": deal,
         },
     )
-# ==========================================
-# DEAL DELETE
-# ==========================================
+
+
+# ==========================================================
+# DELETE DEAL
+# ==========================================================
 
 @login_required
 def deal_delete(request, pk):
@@ -176,7 +180,7 @@ def deal_delete(request, pk):
         )
 
         return redirect(
-            "deal_list",
+            "deals:deal_list",
         )
 
     return render(
@@ -185,4 +189,4 @@ def deal_delete(request, pk):
         {
             "deal": deal,
         },
-    )  
+    )

@@ -1,18 +1,22 @@
 {% extends "base.html" %}
 
 {% block title %}
-Deals
+Deal Management
 {% endblock %}
 
 {% block content %}
 
 <div class="container-fluid">
 
+    <!-- =========================
+         PAGE HEADER
+    ========================= -->
+
     <div class="crm-page-header">
 
         <div>
             <h2 class="crm-page-title">
-                <i class="bi bi-briefcase me-2"></i>
+                <i class="bi bi-briefcase-fill me-2"></i>
                 Deal Management
             </h2>
 
@@ -21,12 +25,16 @@ Deals
             </p>
         </div>
 
-        <a href="{% url 'deal_create' %}" class="crm-btn-add">
-            <i class="bi bi-plus-lg"></i>
+        <a href="{% url 'deals:deal_create' %}" class="crm-btn-add">
+            <i class="bi bi-plus-lg me-1"></i>
             Add Deal
         </a>
 
     </div>
+
+    <!-- =========================
+         DEAL TABLE
+    ========================= -->
 
     <div class="crm-card">
 
@@ -39,7 +47,6 @@ Deals
                     <thead>
 
                         <tr>
-
                             <th>ID</th>
                             <th>Lead</th>
                             <th>Stage</th>
@@ -47,7 +54,6 @@ Deals
                             <th>Close Date</th>
                             <th>Notes</th>
                             <th class="text-center">Actions</th>
-
                         </tr>
 
                     </thead>
@@ -60,7 +66,9 @@ Deals
 
                             <td>#{{ deal.id }}</td>
 
-                            <td>{{ deal.lead }}</td>
+                            <td>
+                                {{ deal.lead }}
+                            </td>
 
                             <td>
                                 <span class="crm-stage">
@@ -68,33 +76,45 @@ Deals
                                 </span>
                             </td>
 
-                            <td>₹ {{ deal.amount }}</td>
-
-                            <td>{{ deal.close_date }}</td>
+                            <td>
+                                ₹ {{ deal.amount|default:"0.00" }}
+                            </td>
 
                             <td>
+                                {% if deal.close_date %}
+                                    {{ deal.close_date|date:"d M Y" }}
+                                {% else %}
+                                    -
+                                {% endif %}
+                            </td>
 
+                            <td>
                                 {% if deal.notes %}
-                                    {{ deal.notes }}
+                                    {{ deal.notes|truncatechars:40 }}
                                 {% else %}
                                     <span class="text-muted">No Notes</span>
                                 {% endif %}
-
                             </td>
 
                             <td>
 
                                 <div class="crm-action-buttons">
 
-                                    <a href="{% url 'deal_detail' deal.id %}" class="crm-btn-primary">
+                                    <a href="{% url 'deals:deal_detail' deal.id %}"
+                                       class="crm-btn-primary"
+                                       title="View">
                                         <i class="bi bi-eye"></i>
                                     </a>
 
-                                    <a href="{% url 'deal_edit' deal.id %}" class="crm-btn-warning">
+                                    <a href="{% url 'deals:deal_edit' deal.id %}"
+                                       class="crm-btn-warning"
+                                       title="Edit">
                                         <i class="bi bi-pencil"></i>
                                     </a>
 
-                                    <a href="{% url 'deal_delete' deal.id %}" class="crm-btn-danger">
+                                    <a href="{% url 'deals:deal_delete' deal.id %}"
+                                       class="crm-btn-danger"
+                                       title="Delete">
                                         <i class="bi bi-trash"></i>
                                     </a>
 
@@ -110,11 +130,21 @@ Deals
 
                             <td colspan="7" class="text-center py-5">
 
-                                <i class="bi bi-inbox display-6 text-muted"></i>
+                                <i class="bi bi-inbox display-5 text-muted"></i>
 
-                                <p class="mt-3 mb-0">
+                                <h5 class="mt-3">
                                     No Deals Found
+                                </h5>
+
+                                <p class="text-muted">
+                                    Create your first deal to get started.
                                 </p>
+
+                                <a href="{% url 'deals:deal_create' %}"
+                                   class="crm-btn-add">
+                                    <i class="bi bi-plus-circle me-1"></i>
+                                    Add Deal
+                                </a>
 
                             </td>
 

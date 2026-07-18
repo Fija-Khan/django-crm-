@@ -13,17 +13,12 @@ Delete Deal
         <div>
 
             <h2 class="crm-page-title text-danger">
-
                 <i class="bi bi-trash3-fill me-2"></i>
-
                 Delete Deal
-
             </h2>
 
             <p class="crm-page-subtitle">
-
                 This action cannot be undone.
-
             </p>
 
         </div>
@@ -35,55 +30,37 @@ Delete Deal
         <div class="crm-card-body text-center">
 
             <div class="crm-delete-icon">
-
                 <i class="bi bi-exclamation-triangle-fill"></i>
-
             </div>
 
             <h4 class="mt-4 mb-3">
-
                 Are you sure?
-
             </h4>
-            
+
             <p class="text-white mb-4">
-
                 You are about to permanently delete this deal.
-
             </p>
 
             <div class="crm-delete-details">
 
                 <div class="crm-detail-item">
-
                     <label class="crm-label">
-
                         Lead
-
                     </label>
 
                     <div class="crm-detail-box">
-
                         {{ deal.lead }}
-
                     </div>
-
                 </div>
 
                 <div class="crm-detail-item">
-
                     <label class="crm-label">
-
                         Amount
-
                     </label>
 
                     <div class="crm-detail-box">
-
                         ₹ {{ deal.amount }}
-
                     </div>
-
                 </div>
 
             </div>
@@ -95,19 +72,13 @@ Delete Deal
                 <div class="crm-form-actions justify-content-center">
 
                     <button type="submit" class="crm-btn-danger">
-
                         <i class="bi bi-trash"></i>
-
                         Yes, Delete
-
                     </button>
 
-                    <a href="{% url 'deal_list' %}" class="crm-btn-secondary">
-
+                    <a href="{% url 'deals:deal_list' %}" class="crm-btn-secondary">
                         <i class="bi bi-arrow-left"></i>
-
                         Cancel
-
                     </a>
 
                 </div>

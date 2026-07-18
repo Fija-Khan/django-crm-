@@ -1,11 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
-from django.shortcuts import (
-    get_object_or_404,
-    redirect,
-    render,
-)
+from django.shortcuts import get_object_or_404, redirect, render
 from django.views.decorators.http import require_POST
 
 from .forms import LeadForm
@@ -22,10 +18,7 @@ def lead_list(request):
 
     leads = (
         Lead.objects
-        .select_related(
-            "contact",
-            "assigned_to",
-        )
+        .select_related("contact", "assigned_to")
         .all()
         .order_by("-created_at")
     )
@@ -33,9 +26,7 @@ def lead_list(request):
     return render(
         request,
         "leads/lead_list.html",
-        {
-            "leads": leads,
-        },
+        {"leads": leads},
     )
 
 
@@ -59,7 +50,7 @@ def lead_add(request):
                 "Lead created successfully."
             )
 
-            return redirect("lead_list")
+            return redirect("leads:lead_list")
 
         messages.error(
             request,
@@ -73,11 +64,10 @@ def lead_add(request):
     return render(
         request,
         "leads/lead_form.html",
-        {
-            "form": form,
-        },
+        {"form": form},
     )
-    
+
+
 # ==========================================
 # LEAD DETAIL
 # ==========================================
@@ -96,9 +86,7 @@ def lead_detail(request, pk):
     return render(
         request,
         "leads/lead_detail.html",
-        {
-            "lead": lead,
-        },
+        {"lead": lead},
     )
 
 
@@ -109,17 +97,11 @@ def lead_detail(request, pk):
 @login_required
 def lead_edit(request, pk):
 
-    lead = get_object_or_404(
-        Lead,
-        pk=pk,
-    )
+    lead = get_object_or_404(Lead, pk=pk)
 
     if request.method == "POST":
 
-        form = LeadForm(
-            request.POST,
-            instance=lead,
-        )
+        form = LeadForm(request.POST, instance=lead)
 
         if form.is_valid():
 
@@ -131,7 +113,7 @@ def lead_edit(request, pk):
             )
 
             return redirect(
-                "lead_detail",
+                "leads:lead_detail",
                 pk=lead.pk,
             )
 
@@ -142,9 +124,7 @@ def lead_edit(request, pk):
 
     else:
 
-        form = LeadForm(
-            instance=lead,
-        )
+        form = LeadForm(instance=lead)
 
     return render(
         request,
@@ -177,9 +157,7 @@ def lead_delete(request, pk):
             "Lead deleted successfully."
         )
 
-        return redirect(
-            "lead_list",
-        )
+        return redirect("leads:lead_list")
 
     return render(
         request,
@@ -188,6 +166,7 @@ def lead_delete(request, pk):
             "lead": lead,
         },
     )
+
 
 # ==========================================
 # LEAD KANBAN BOARD
@@ -198,29 +177,17 @@ def lead_kanban(request):
 
     context = {
 
-        "new_leads": Lead.objects.filter(
-            status="new"
-        ),
+        "new_leads": Lead.objects.filter(status="new"),
 
-        "contacted_leads": Lead.objects.filter(
-            status="contacted"
-        ),
+        "contacted_leads": Lead.objects.filter(status="contacted"),
 
-        "qualified_leads": Lead.objects.filter(
-            status="qualified"
-        ),
+        "qualified_leads": Lead.objects.filter(status="qualified"),
 
-        "proposal_leads": Lead.objects.filter(
-            status="proposal"
-        ),
+        "proposal_leads": Lead.objects.filter(status="proposal"),
 
-        "won_leads": Lead.objects.filter(
-            status="won"
-        ),
+        "won_leads": Lead.objects.filter(status="won"),
 
-        "lost_leads": Lead.objects.filter(
-            status="lost"
-        ),
+        "lost_leads": Lead.objects.filter(status="lost"),
     }
 
     return render(
@@ -266,9 +233,7 @@ def update_stage(request):
 
     try:
 
-        lead = Lead.objects.get(
-            id=lead_id
-        )
+        lead = Lead.objects.get(id=lead_id)
 
         lead.status = status
         lead.save()
@@ -293,10 +258,7 @@ def update_stage(request):
 @login_required
 def lead_convert(request, pk):
 
-    lead = get_object_or_404(
-        Lead,
-        pk=pk,
-    )
+    lead = get_object_or_404(Lead, pk=pk)
 
     # Prevent duplicate conversion
     if hasattr(lead, "deal"):
@@ -307,13 +269,13 @@ def lead_convert(request, pk):
         )
 
         return redirect(
-            "deal_detail",
+            "deals:deal_detail",
             pk=lead.deal.pk,
         )
 
     if request.method == "POST":
 
-        Deal.objects.create(
+        deal = Deal.objects.create(
             lead=lead,
             amount=0,
             stage="negotiation",
@@ -325,7 +287,8 @@ def lead_convert(request, pk):
         )
 
         return redirect(
-            "deal_list"
+            "deals:deal_detail",
+            pk=deal.pk,
         )
 
     return render(

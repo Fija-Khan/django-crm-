@@ -43,9 +43,7 @@
                     <div class="crm-form-group">
 
                         <label class="crm-label">
-
                             {{ field.label }}
-
                         </label>
 
                         {{ field }}
@@ -63,19 +61,13 @@
                 <div class="crm-form-actions">
 
                     <button type="submit" class="crm-btn-success">
-
                         <i class="bi bi-check-circle"></i>
-
                         Save Deal
-
                     </button>
 
-                    <a href="{% url 'deal_list' %}" class="crm-btn-secondary">
-
+                    <a href="{% url 'deals:deal_list' %}" class="crm-btn-secondary">
                         <i class="bi bi-arrow-left"></i>
-
                         Cancel
-
                     </a>
 
                 </div>

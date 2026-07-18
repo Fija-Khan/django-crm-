@@ -1,51 +1,92 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 
-{% block title %}Lead Management{% endblock %}
+{% block title %}
+Lead Management
+{% endblock %}
+
 
 {% block content %}
 
-<!-- =========================
-        PAGE HEADER
-========================= -->
-<div class="d-flex justify-content-between align-items-center mb-4">
+<div class="container-fluid">
 
-    <h2 class="crm-title mb-0">
-        Lead Management
-    </h2>
 
-    <div class="d-flex gap-2">
+    <!-- =========================
+            PAGE HEADER
+    ========================== -->
 
-        <a href="{% url 'lead_kanban' %}" class="crm-btn-secondary">
-            <i class="bi bi-kanban me-1"></i>
-            Kanban Board
-        </a>
+    <div class="d-flex justify-content-between align-items-center mb-4">
 
-        <a href="{% url 'lead_add' %}" class="crm-btn-primary">
-            <i class="bi bi-plus-circle me-1"></i>
-            Add Lead
-        </a>
+        <div>
+
+            <h2 class="crm-title mb-1">
+
+                <i class="bi bi-person-lines-fill me-2"></i>
+
+                Lead Management
+
+            </h2>
+
+
+            <p class="text-muted mb-0">
+                Manage your sales leads and track progress.
+            </p>
+
+        </div>
+
+
+
+        <div class="d-flex gap-2">
+
+
+            <a href="{% url 'leads:lead_kanban' %}"
+               class="crm-btn-secondary">
+
+                <i class="bi bi-kanban me-1"></i>
+
+                Kanban Board
+
+            </a>
+
+
+
+            <a href="{% url 'leads:lead_add' %}"
+               class="crm-btn-primary">
+
+                <i class="bi bi-plus-circle me-1"></i>
+
+                Add Lead
+
+            </a>
+
+
+        </div>
+
 
     </div>
 
-</div>
 
 
-<!-- =========================
-        LEADS TABLE
-========================= -->
-<div class="card crm-card shadow-sm">
 
-    <div class="card-body p-0">
+
+    <!-- =========================
+            LEADS TABLE
+    ========================== -->
+
+
+    <div class="crm-card shadow-sm">
+
 
         <div class="table-responsive">
 
+
             <table class="table crm-table align-middle mb-0">
+
 
                 <thead>
 
                     <tr>
 
-                        <th style="width:70px;">ID</th>
+                        <th>ID</th>
 
                         <th>Title</th>
 
@@ -55,36 +96,50 @@
 
                         <th>Assigned To</th>
 
-                        <th>Estimated Value</th>
+                        <th>Value</th>
 
                         <th>Expected Close</th>
 
-                        <th class="text-center" style="width:180px;">
+                        <th class="text-center">
                             Actions
                         </th>
 
+
                     </tr>
+
 
                 </thead>
 
+
+
+
                 <tbody>
 
-                    {% for lead in leads %}
+
+                {% for lead in leads %}
+
 
                     <tr>
 
-                        <!-- ID -->
+
                         <td>
                             #{{ lead.id }}
                         </td>
 
-                        <!-- Title -->
-                        <td class="fw-semibold">
-                            {{ lead.title }}
+
+
+                        <td>
+
+                            <strong>
+                                {{ lead.title }}
+                            </strong>
+
                         </td>
 
-                        <!-- Contact -->
+
+
                         <td>
+
 
                             {% if lead.contact %}
 
@@ -98,10 +153,14 @@
 
                             {% endif %}
 
+
                         </td>
 
-                        <!-- Status -->
+
+
+
                         <td>
+
 
                             {% if lead.status == "new" %}
 
@@ -109,11 +168,13 @@
                                     New
                                 </span>
 
+
                             {% elif lead.status == "contacted" %}
 
                                 <span class="crm-badge-info">
                                     Contacted
                                 </span>
+
 
                             {% elif lead.status == "qualified" %}
 
@@ -121,11 +182,13 @@
                                     Qualified
                                 </span>
 
+
                             {% elif lead.status == "proposal" %}
 
                                 <span class="crm-badge-secondary">
                                     Proposal
                                 </span>
+
 
                             {% elif lead.status == "won" %}
 
@@ -133,22 +196,30 @@
                                     Won
                                 </span>
 
+
                             {% elif lead.status == "lost" %}
 
                                 <span class="crm-badge-danger">
                                     Lost
                                 </span>
 
+
                             {% endif %}
+
 
                         </td>
 
-                        <!-- Assigned -->
+
+
+
+
                         <td>
+
 
                             {% if lead.assigned_to %}
 
                                 {{ lead.assigned_to }}
+
 
                             {% else %}
 
@@ -156,111 +227,178 @@
                                     Unassigned
                                 </span>
 
+
                             {% endif %}
+
 
                         </td>
 
-                        <!-- Estimated Value -->
+
+
+
+
                         <td>
 
                             ₹ {{ lead.estimated_value|default:0|floatformat:2 }}
 
                         </td>
 
-                        <!-- Expected Close -->
+
+
+
+
                         <td>
+
 
                             {% if lead.expected_close %}
 
                                 {{ lead.expected_close|date:"d M Y" }}
 
+
                             {% else %}
 
-                                <span class="text-muted">-</span>
+                                <span class="text-muted">
+                                    -
+                                </span>
+
 
                             {% endif %}
 
+
                         </td>
 
-                        <!-- ACTIONS -->
+
+
+
+
+
                         <td class="text-center">
+
 
                             <div class="action-buttons">
 
-                                <!-- View -->
-                                <a href="{% url 'lead_detail' lead.id %}"
+
+                                <a href="{% url 'leads:lead_detail' lead.id %}"
                                    class="action-btn view-btn"
-                                   title="View Lead">
+                                   title="View">
 
                                     <i class="bi bi-eye"></i>
 
                                 </a>
 
-                                <!-- Edit -->
-                                <a href="{% url 'lead_edit' lead.id %}"
+
+
+
+                                <a href="{% url 'leads:lead_edit' lead.id %}"
                                    class="action-btn edit-btn"
-                                   title="Edit Lead">
+                                   title="Edit">
 
                                     <i class="bi bi-pencil-square"></i>
 
                                 </a>
 
-                                <!-- Delete -->
-                                <a href="{% url 'lead_delete' lead.id %}"
+
+
+
+
+                                <a href="{% url 'leads:lead_delete' lead.id %}"
                                    class="action-btn delete-btn"
-                                   title="Delete Lead">
+                                   title="Delete">
 
                                     <i class="bi bi-trash"></i>
 
                                 </a>
 
-                                <!-- Convert -->
-                                <a href="{% url 'lead_convert' lead.id %}"
+
+
+
+
+                                {% if lead.status != "won" and lead.status != "lost" %}
+
+                                <a href="{% url 'leads:lead_convert' lead.id %}"
                                    class="action-btn convert-btn"
-                                   title="Convert to Deal">
+                                   title="Convert To Deal">
 
                                     <i class="bi bi-arrow-repeat"></i>
 
                                 </a>
 
+                                {% endif %}
+
+
+
                             </div>
+
 
                         </td>
 
+
+
                     </tr>
 
-                    {% empty %}
+
+
+                {% empty %}
+
+
 
                     <tr>
 
-                        <td colspan="8" class="text-center py-5">
 
-                            <div class="text-muted">
+                        <td colspan="8"
+                            class="text-center py-5">
 
-                                <i class="bi bi-inbox fs-2 d-block mb-2"></i>
 
-                                <strong>No Leads Found</strong>
+                            <i class="bi bi-inbox fs-1 text-muted"></i>
 
-                                <div class="small mt-1">
-                                    Start by creating your first lead.
-                                </div>
 
-                            </div>
+                            <h5 class="mt-3">
+                                No Leads Found
+                            </h5>
+
+
+
+                            <p class="text-muted">
+                                Create your first lead to get started.
+                            </p>
+
+
+
+
+                            <a href="{% url 'leads:lead_add' %}"
+                               class="crm-btn-primary">
+
+
+                                Add Lead
+
+
+                            </a>
+
 
                         </td>
 
+
                     </tr>
 
-                    {% endfor %}
+
+
+                {% endfor %}
+
+
 
                 </tbody>
 
+
             </table>
+
 
         </div>
 
+
     </div>
 
+
 </div>
+
 
 {% endblock %}

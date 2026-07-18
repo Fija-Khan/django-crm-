@@ -8,12 +8,16 @@ Deal Detail
 
 <div class="container-fluid">
 
+    <!-- =========================
+         PAGE HEADER
+    ========================= -->
+
     <div class="crm-page-header">
 
         <div>
 
             <h2 class="crm-page-title">
-                <i class="bi bi-briefcase me-2"></i>
+                <i class="bi bi-briefcase-fill me-2"></i>
                 Deal Detail
             </h2>
 
@@ -25,6 +29,10 @@ Deal Detail
 
     </div>
 
+    <!-- =========================
+         DEAL DETAILS
+    ========================= -->
+
     <div class="crm-card">
 
         <div class="crm-card-body">
@@ -33,7 +41,9 @@ Deal Detail
 
                 <div class="crm-detail-item">
                     <label class="crm-label">Lead</label>
-                    <div class="crm-detail-box">{{ deal.lead }}</div>
+                    <div class="crm-detail-box">
+                        {{ deal.lead }}
+                    </div>
                 </div>
 
                 <div class="crm-detail-item">
@@ -46,63 +56,64 @@ Deal Detail
                 <div class="crm-detail-item">
                     <label class="crm-label">Amount</label>
                     <div class="crm-detail-box">
-                        ₹ {{ deal.amount }}
+                        ₹ {{ deal.amount|default:"0.00" }}
                     </div>
                 </div>
 
                 <div class="crm-detail-item">
                     <label class="crm-label">Close Date</label>
                     <div class="crm-detail-box">
-                        {{ deal.close_date|default:"-" }}
+                        {% if deal.close_date %}
+                            {{ deal.close_date|date:"d M Y" }}
+                        {% else %}
+                            -
+                        {% endif %}
                     </div>
                 </div>
 
                 <div class="crm-detail-item crm-detail-full">
-
                     <label class="crm-label">Notes</label>
 
                     <div class="crm-detail-box">
-
                         {% if deal.notes %}
                             {{ deal.notes }}
                         {% else %}
-                            No Notes Available
+                            <span class="text-muted">
+                                No Notes Available
+                            </span>
                         {% endif %}
-
                     </div>
-
                 </div>
 
                 <div class="crm-detail-item">
-
-                    <label class="crm-label">
-                        Created At
-                    </label>
+                    <label class="crm-label">Created At</label>
 
                     <div class="crm-detail-box">
-                        {{ deal.created_at }}
+                        {{ deal.created_at|date:"d M Y, h:i A" }}
                     </div>
-
                 </div>
 
             </div>
 
+            <!-- =========================
+                 ACTION BUTTONS
+            ========================= -->
+
             <div class="crm-form-actions">
 
-                <a href="{% url 'deal_edit' deal.id %}" class="crm-btn-warning">
-
-                    <i class="bi bi-pencil-square"></i>
-
+                <a href="{% url 'deals:deal_edit' deal.id %}" class="crm-btn-warning">
+                    <i class="bi bi-pencil-square me-1"></i>
                     Edit Deal
-
                 </a>
 
-                <a href="{% url 'deal_list' %}" class="crm-btn-secondary">
+                <a href="{% url 'deals:deal_delete' deal.id %}" class="crm-btn-danger">
+                    <i class="bi bi-trash me-1"></i>
+                    Delete
+                </a>
 
-                    <i class="bi bi-arrow-left"></i>
-
+                <a href="{% url 'deals:deal_list' %}" class="crm-btn-secondary">
+                    <i class="bi bi-arrow-left me-1"></i>
                     Back
-
                 </a>
 
             </div>

@@ -1,14 +1,12 @@
 {% extends "base.html" %}
 
-{% block title %}
-Lead Detail
-{% endblock %}
+{% block title %}Lead Detail{% endblock %}
 
 {% block content %}
 
 <div class="container-fluid">
 
-    <!-- Page Header -->
+    <!-- Header -->
     <div class="d-flex justify-content-between align-items-center mb-4">
 
         <h2 class="crm-title">
@@ -16,89 +14,99 @@ Lead Detail
             Lead Details
         </h2>
 
-        <a href="{% url 'lead_list' %}" class="btn crm-btn-secondary">
+        <a href="{% url 'leads:lead_list' %}" class="crm-btn-secondary">
             <i class="bi bi-arrow-left me-1"></i>
             Back
         </a>
 
     </div>
 
-    <div class="card crm-card">
+    <div class="card crm-card shadow-sm">
 
         <div class="card-body p-4">
 
-            <div class="row">
+            <div class="row g-4">
 
-                <div class="col-md-6 mb-4">
+                <div class="col-md-6">
                     <label class="crm-label">Lead Title</label>
                     <div class="crm-detail-box">
                         {{ lead.title }}
                     </div>
                 </div>
 
-                <div class="col-md-6 mb-4">
+                <div class="col-md-6">
                     <label class="crm-label">Contact</label>
                     <div class="crm-detail-box">
-                        {{ lead.contact }}
+                        {{ lead.contact|default:"No Contact" }}
                     </div>
                 </div>
 
-                <div class="col-md-6 mb-4">
+                <div class="col-md-6">
                     <label class="crm-label">Status</label>
+
                     <div class="crm-detail-box">
 
                         {% if lead.status == "new" %}
-                            <span class="badge bg-primary">New</span>
+                            <span class="crm-badge-primary">New</span>
 
                         {% elif lead.status == "contacted" %}
-                            <span class="badge bg-info">Contacted</span>
+                            <span class="crm-badge-info">Contacted</span>
 
                         {% elif lead.status == "qualified" %}
-                            <span class="badge bg-warning text-dark">Qualified</span>
+                            <span class="crm-badge-warning">Qualified</span>
 
                         {% elif lead.status == "proposal" %}
-                            <span class="badge bg-secondary">Proposal</span>
+                            <span class="crm-badge-secondary">Proposal</span>
 
                         {% elif lead.status == "won" %}
-                            <span class="badge bg-success">Won</span>
+                            <span class="crm-badge-success">Won</span>
+
+                        {% elif lead.status == "lost" %}
+                            <span class="crm-badge-danger">Lost</span>
 
                         {% endif %}
 
                     </div>
+
                 </div>
 
-                <div class="col-md-6 mb-4">
+                <div class="col-md-6">
                     <label class="crm-label">Assigned To</label>
+
                     <div class="crm-detail-box">
-                        {{ lead.assigned_to }}
+                        {{ lead.assigned_to|default:"Unassigned" }}
                     </div>
                 </div>
 
-                <div class="col-md-6 mb-4">
+                <div class="col-md-6">
                     <label class="crm-label">Estimated Value</label>
+
                     <div class="crm-detail-box">
-                        ₹ {{ lead.estimated_value }}
+                        ₹ {{ lead.estimated_value|default:0|floatformat:2 }}
                     </div>
                 </div>
 
-                <div class="col-md-6 mb-4">
-                    <label class="crm-label">Expected Close Date</label>
+                <div class="col-md-6">
+                    <label class="crm-label">Expected Close</label>
+
                     <div class="crm-detail-box">
-                        {{ lead.expected_close }}
+                        {{ lead.expected_close|date:"d M Y"|default:"-" }}
                     </div>
                 </div>
 
-                <div class="col-md-6 mb-4">
-                    <label class="crm-label">Created At</label>
+                <div class="col-md-6">
+                    <label class="crm-label">Created</label>
+
                     <div class="crm-detail-box">
-                        {{ lead.created_at }}
+                        {{ lead.created_at|date:"d M Y H:i" }}
                     </div>
                 </div>
 
-                <div class="col-md-6 mb-4">
-                    <label class="crm-label">Last Updated</label>
+                <div class="col-md-6">
+                    <label class="crm-label">Updated</label>
+
                     <div class="crm-detail-box">
-                        {{ lead.updated_at }}
+                        {{ lead.updated_at|date:"d M Y H:i" }}
                     </div>
                 </div>
 
@@ -108,12 +116,12 @@ Lead Detail
 
             <div class="d-flex gap-2">
 
-                <a href="{% url 'lead_edit' lead.id %}" class="btn crm-btn-warning">
+                <a href="{% url 'leads:lead_edit' lead.id %}" class="crm-btn-warning">
                     <i class="bi bi-pencil-square me-1"></i>
                     Edit
                 </a>
 
-                <a href="{% url 'lead_delete' lead.id %}" class="btn crm-btn-danger">
+                <a href="{% url 'leads:lead_delete' lead.id %}" class="crm-btn-danger">
                     <i class="bi bi-trash me-1"></i>
                     Delete
                 </a>

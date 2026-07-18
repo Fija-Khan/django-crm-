@@ -1,75 +1,83 @@
 {% extends "base.html" %}
 
-{% block title %}
-Convert Lead
-{% endblock %}
+{% block title %}Convert Lead{% endblock %}
 
 {% block content %}
 
-<div class="container-fluid convert-lead-page">
+<div class="container-fluid">
 
-    <div class="row justify-content-center align-items-center">
+    <div class="row justify-content-center">
 
-        <div class="col-xl-5 col-lg-6 col-md-8">
+        <div class="col-lg-6 col-md-8">
 
-            <div class="card crm-card convert-card">
+            <div class="crm-card shadow-sm">
 
-                <div class="card-body text-center">
+                <div class="card-body text-center p-5">
 
-                    <div class="convert-icon">
-
-                        <i class="bi bi-arrow-repeat"></i>
-
+                    <div class="mb-4">
+                        <i class="bi bi-arrow-repeat display-3 text-primary"></i>
                     </div>
 
-                    <h2 class="crm-title mt-4">
+                    <h2 class="crm-title mb-3">
                         Convert Lead
                     </h2>
 
-                    <p class="crm-small convert-description">
-
-                        You are about to convert
-
-                        <span class="convert-title">
-                            "{{ lead.title }}"
-                        </span>
-
-                        into a Deal.
-
+                    <p class="text-muted mb-4">
+                        You are about to convert this lead into a deal.
                     </p>
 
-                    <div class="crm-detail-box convert-contact">
+                    <div class="crm-detail-box text-start mb-4">
 
-                        <i class="bi bi-person-circle"></i>
+                        <p class="mb-2">
+                            <strong>Lead Title:</strong><br>
+                            {{ lead.title }}
+                        </p>
 
-                        <span>{{ lead.contact }}</span>
+                        <p class="mb-2">
+                            <strong>Contact:</strong><br>
+                            {{ lead.contact|default:"No Contact" }}
+                        </p>
+
+                        <p class="mb-2">
+                            <strong>Status:</strong><br>
+
+                            {% if lead.status == "new" %}
+                                <span class="crm-badge-primary">New</span>
+
+                            {% elif lead.status == "contacted" %}
+                                <span class="crm-badge-info">Contacted</span>
+
+                            {% elif lead.status == "qualified" %}
+                                <span class="crm-badge-warning">Qualified</span>
+
+                            {% elif lead.status == "proposal" %}
+                                <span class="crm-badge-secondary">Proposal</span>
+
+                            {% elif lead.status == "won" %}
+                                <span class="crm-badge-success">Won</span>
+
+                            {% elif lead.status == "lost" %}
+                                <span class="crm-badge-danger">Lost</span>
+
+                            {% endif %}
+                        </p>
 
                     </div>
 
-                    <form method="POST" class="mt-4">
+                    <form method="POST">
 
                         {% csrf_token %}
 
-                        <div class="convert-actions">
+                        <div class="d-flex justify-content-center gap-3">
 
-                            <button
-                                type="submit"
-                                class="crm-btn-success">
-
-                                <i class="bi bi-check-circle-fill me-2"></i>
-
+                            <button type="submit" class="crm-btn-success">
+                                <i class="bi bi-check-circle me-1"></i>
                                 Convert Lead
-
                             </button>
 
-                            <a
-                                href="{% url 'lead_list' %}"
-                                class="crm-btn-secondary">
-
-                                <i class="bi bi-arrow-left-circle me-2"></i>
-
-                                Back
-
+                            <a href="{% url 'leads:lead_list' %}" class="crm-btn-secondary">
+                                <i class="bi bi-arrow-left me-1"></i>
+                                Cancel
                             </a>
 
                         </div>
