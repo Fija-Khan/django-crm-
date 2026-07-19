@@ -3,9 +3,9 @@ from django.contrib.auth.forms import UserCreationForm
 from .models import CustomUser
 
 
-# ==========================================
+# ==================================================
 # USER REGISTRATION FORM
-# ==========================================
+# ==================================================
 
 class RegisterForm(UserCreationForm):
 
@@ -47,7 +47,7 @@ class RegisterForm(UserCreationForm):
             "email": forms.EmailInput(
                 attrs={
                     "class": "form-control",
-                    "placeholder": "Enter Email Address",
+                    "placeholder": "Enter Email",
                 }
             ),
 
@@ -57,8 +57,8 @@ class RegisterForm(UserCreationForm):
                     "placeholder": "Enter Phone Number",
                 }
             ),
-
         }
+
 
     def __init__(self, *args, **kwargs):
 
@@ -66,22 +66,24 @@ class RegisterForm(UserCreationForm):
 
         self.fields["password1"].widget.attrs.update(
             {
-                "class": "form-control",
-                "placeholder": "Enter Password",
+                "class":"form-control",
+                "placeholder":"Enter Password"
             }
         )
+
 
         self.fields["password2"].widget.attrs.update(
             {
-                "class": "form-control",
-                "placeholder": "Confirm Password",
+                "class":"form-control",
+                "placeholder":"Confirm Password"
             }
         )
 
 
-# ==========================================
-# ADMIN - CREATE USER FORM
-# ==========================================
+
+# ==================================================
+# ADMIN CREATE USER FORM
+# ==================================================
 
 class UserCreateForm(UserCreationForm):
 
@@ -97,89 +99,106 @@ class UserCreateForm(UserCreationForm):
             "phone",
             "role",
             "is_active",
+            "is_approved",
             "profile_pic",
         )
+
 
         widgets = {
 
             "username": forms.TextInput(
                 attrs={
-                    "class": "form-control",
+                    "class":"form-control"
                 }
             ),
 
             "first_name": forms.TextInput(
                 attrs={
-                    "class": "form-control",
+                    "class":"form-control"
                 }
             ),
 
             "last_name": forms.TextInput(
                 attrs={
-                    "class": "form-control",
+                    "class":"form-control"
                 }
             ),
 
             "email": forms.EmailInput(
                 attrs={
-                    "class": "form-control",
+                    "class":"form-control"
                 }
             ),
 
             "phone": forms.TextInput(
                 attrs={
-                    "class": "form-control",
+                    "class":"form-control"
                 }
             ),
 
             "role": forms.Select(
                 attrs={
-                    "class": "form-select",
+                    "class":"form-select"
                 }
             ),
+
+
+            "is_active": forms.CheckboxInput(
+                attrs={
+                    "class":"form-check-input"
+                }
+            ),
+
+
+            "is_approved": forms.CheckboxInput(
+                attrs={
+                    "class":"form-check-input"
+                }
+            ),
+
 
             "profile_pic": forms.ClearableFileInput(
                 attrs={
-                    "class": "form-control",
+                    "class":"form-control"
                 }
             ),
-
         }
 
-    def __init__(self, *args, **kwargs):
 
-        super().__init__(*args, **kwargs)
+
+    def __init__(self,*args,**kwargs):
+
+        super().__init__(*args,**kwargs)
+
 
         self.fields["password1"].widget.attrs.update(
             {
-                "class": "form-control",
-                "placeholder": "Enter Password",
+                "class":"form-control",
+                "placeholder":"Enter Password"
             }
         )
+
 
         self.fields["password2"].widget.attrs.update(
             {
-                "class": "form-control",
-                "placeholder": "Confirm Password",
-            }
-        )
-
-        self.fields["is_active"].widget.attrs.update(
-            {
-                "class": "form-check-input",
+                "class":"form-control",
+                "placeholder":"Confirm Password"
             }
         )
 
 
-# ==========================================
-# ADMIN - UPDATE USER FORM
-# ==========================================
+
+# ==================================================
+# ADMIN UPDATE USER FORM
+# ==================================================
 
 class UserUpdateForm(forms.ModelForm):
+
 
     class Meta:
 
         model = CustomUser
+
 
         fields = (
             "username",
@@ -189,61 +208,73 @@ class UserUpdateForm(forms.ModelForm):
             "phone",
             "role",
             "is_active",
+            "is_approved",
             "profile_pic",
         )
 
+
         widgets = {
+
 
             "username": forms.TextInput(
                 attrs={
-                    "class": "form-control",
+                    "class":"form-control"
                 }
             ),
+
 
             "first_name": forms.TextInput(
                 attrs={
-                    "class": "form-control",
+                    "class":"form-control"
                 }
             ),
+
 
             "last_name": forms.TextInput(
                 attrs={
-                    "class": "form-control",
+                    "class":"form-control"
                 }
             ),
+
 
             "email": forms.EmailInput(
                 attrs={
-                    "class": "form-control",
+                    "class":"form-control"
                 }
             ),
+
 
             "phone": forms.TextInput(
                 attrs={
-                    "class": "form-control",
+                    "class":"form-control"
                 }
             ),
+
 
             "role": forms.Select(
                 attrs={
-                    "class": "form-select",
+                    "class":"form-select"
                 }
             ),
+
+
+            "is_active": forms.CheckboxInput(
+                attrs={
+                    "class":"form-check-input"
+                }
+            ),
+
+
+            "is_approved": forms.CheckboxInput(
+                attrs={
+                    "class":"form-check-input"
+                }
+            ),
+
 
             "profile_pic": forms.ClearableFileInput(
                 attrs={
-                    "class": "form-control",
+                    "class":"form-control"
                 }
             ),
-
         }
-
-    def __init__(self, *args, **kwargs):
-
-        super().__init__(*args, **kwargs)
-
-        self.fields["is_active"].widget.attrs.update(
-            {
-                "class": "form-check-input",
-            }
-        )

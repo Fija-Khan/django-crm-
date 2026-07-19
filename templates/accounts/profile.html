@@ -1,8 +1,10 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}
 My Profile
 {% endblock %}
+
 
 {% block content %}
 
@@ -10,50 +12,137 @@ My Profile
 
     <div class="row justify-content-center">
 
-        <div class="col-xl-7 col-lg-8 col-md-10">
+        <div class="col-xl-8 col-lg-9 col-md-10">
+
 
             <div class="crm-card profile-card">
+
 
                 <!-- Header -->
 
                 <div class="profile-header">
 
                     <h3 class="crm-title">
+
                         <i class="bi bi-person-circle me-2"></i>
+
                         My Profile
+
                     </h3>
 
+
                     <p class="profile-subtitle">
+
                         Update your personal information and profile picture.
+
                     </p>
 
                 </div>
 
-                <form method="POST" enctype="multipart/form-data">
+
+
+
+                <form 
+                    method="POST"
+                    enctype="multipart/form-data">
+
 
                     {% csrf_token %}
+
+
 
                     <!-- Profile Image -->
 
                     <div class="profile-image-wrapper">
 
+
                         {% if user.profile_pic %}
-                        <img src="{{ user.profile_pic.url }}" alt="Profile Image" class="profile-img">
+
+
+                            <img
+                                src="{{ user.profile_pic.url }}"
+                                alt="Profile Image"
+                                class="profile-img">
+
+
                         {% else %}
-                        <img src="https://via.placeholder.com/150" alt="Profile Image" class="profile-img">
+
+
+                            <img
+                                src="{% static 'images/default-avatar.png' %}"
+                                alt="Default Avatar"
+                                class="profile-img">
+
+
                         {% endif %}
+
 
                     </div>
 
+
+
+
                     <div class="row">
 
-                        <!-- Username -->
+
+
+                        <!-- First Name -->
 
                         <div class="col-md-6 mb-4">
 
                             <label class="crm-label">
+                                First Name
+                            </label>
+
+
+                            <input
+                                type="text"
+                                name="first_name"
+                                value="{{ user.first_name }}"
+                                class="form-control crm-input"
+                                placeholder="Enter first name">
+
+                        </div>
+
+
+
+
+
+                        <!-- Last Name -->
+
+
+                        <div class="col-md-6 mb-4">
+
+
+                            <label class="crm-label">
+                                Last Name
+                            </label>
+
+
+                            <input
+                                type="text"
+                                name="last_name"
+                                value="{{ user.last_name }}"
+                                class="form-control crm-input"
+                                placeholder="Enter last name">
+
+
+                        </div>
+
+
+
+
+
+                        <!-- Username -->
+
+
+                        <div class="col-md-6 mb-4">
+
+
+                            <label class="crm-label">
                                 Username
                             </label>
+
 
                             <input
                                 type="text"
@@ -62,15 +151,23 @@ My Profile
                                 class="form-control crm-input"
                                 placeholder="Enter username">
 
+
                         </div>
+
+
+
+
 
                         <!-- Email -->
 
+
                         <div class="col-md-6 mb-4">
+
 
                             <label class="crm-label">
                                 Email Address
                             </label>
+
 
                             <input
                                 type="email"
@@ -79,15 +176,23 @@ My Profile
                                 class="form-control crm-input"
                                 placeholder="Enter email">
 
+
                         </div>
+
+
+
+
 
                         <!-- Phone -->
 
+
                         <div class="col-md-6 mb-4">
+
 
                             <label class="crm-label">
                                 Phone Number
                             </label>
+
 
                             <input
                                 type="text"
@@ -96,45 +201,122 @@ My Profile
                                 class="form-control crm-input"
                                 placeholder="Enter phone number">
 
+
                         </div>
 
-                        <!-- Profile Picture -->
+
+
+
+
+
+                        <!-- Profile Upload -->
+
 
                         <div class="col-md-6 mb-4">
 
+
                             <label class="crm-label">
+
                                 Upload Profile Picture
+
                             </label>
+
 
                             <input
                                 type="file"
                                 name="profile_pic"
                                 class="form-control crm-input">
 
+
+                            <small class="text-muted">
+
+                                Maximum file size: 2MB
+
+                            </small>
+
+
                         </div>
+
+
 
                     </div>
 
+
+
+
+
+                    <!-- Remove Profile Image -->
+
+
+                    {% if user.profile_pic %}
+
+
+                    <div class="form-check mb-4">
+
+
+                        <input
+                            class="form-check-input"
+                            type="checkbox"
+                            name="remove_profile_pic"
+                            id="removeProfile">
+
+
+                        <label
+                            class="form-check-label"
+                            for="removeProfile">
+
+                            Remove current profile picture
+
+                        </label>
+
+
+                    </div>
+
+
+                    {% endif %}
+
+
+
+
+
+
+                    <!-- Save Button -->
+
+
                     <div class="text-end">
 
-                        <button type="submit" class="crm-btn-primary">
+
+                        <button
+                            type="submit"
+                            class="crm-btn-primary">
+
 
                             <i class="bi bi-check-circle me-2"></i>
 
                             Save Changes
 
+
                         </button>
+
 
                     </div>
 
+
+
+
                 </form>
+
 
             </div>
 
+
         </div>
+
 
     </div>
 
+
 </div>
+
 
 {% endblock %}

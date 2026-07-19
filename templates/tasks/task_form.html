@@ -1,209 +1,212 @@
 {% extends "base.html" %}
 
 {% block title %}
-{% if object %}Edit Task{% else %}Create Task{% endif %}
+    {% if object %}
+        Edit Task
+    {% else %}
+        Create Task
+    {% endif %}
 {% endblock %}
 
 {% block content %}
 
 <div class="container-fluid mt-4">
 
-    <div class="task-form-card">
+    <div class="card shadow border-0">
 
-        <!-- Header -->
+        <div class="card-header bg-primary text-white">
 
-        <div class="form-header">
+            <h3 class="mb-0">
 
-            <div>
-
-                <h2>
-
-                    {% if object %}
+                {% if object %}
                     <i class="bi bi-pencil-square me-2"></i>
                     Edit Task
-                    {% else %}
+                {% else %}
                     <i class="bi bi-plus-circle me-2"></i>
                     Create Task
-                    {% endif %}
+                {% endif %}
 
-                </h2>
-
-                <p>
-                    Fill in the details below.
-                </p>
-
-            </div>
+            </h3>
 
         </div>
 
+        <div class="card-body">
 
-        <form method="POST">
+            <form method="post">
 
-            {% csrf_token %}
-
-            <!-- Task Information -->
-
-            <div class="form-section">
-
-                <h5>
-                    <i class="bi bi-card-checklist me-2"></i>
-                    Task Information
-                </h5>
-
-                <div class="mb-3">
-
-                    <label>Task Title</label>
-
-                    {{ form.title }}
-
-                </div>
-
-                <div class="mb-0">
-
-                    <label>Description</label>
-
-                    {{ form.description }}
-
-                </div>
-
-            </div>
-
-
-
-            <!-- Assignment -->
-
-            <div class="form-section">
-
-                <h5>
-
-                    <i class="bi bi-person-workspace me-2"></i>
-
-                    Assignment
-
-                </h5>
+                {% csrf_token %}
 
                 <div class="row">
 
-                    <div class="col-md-6">
+                    <div class="col-md-12 mb-3">
 
-                        <label>Assigned To</label>
+                        <label class="form-label fw-bold">
+                            Task Title
+                        </label>
+
+                        {{ form.title }}
+
+                        {% if form.title.errors %}
+                            <div class="text-danger mt-1">
+                                {{ form.title.errors }}
+                            </div>
+                        {% endif %}
+
+                    </div>
+
+                    <div class="col-md-12 mb-3">
+
+                        <label class="form-label fw-bold">
+                            Description
+                        </label>
+
+                        {{ form.description }}
+
+                        {% if form.description.errors %}
+                            <div class="text-danger mt-1">
+                                {{ form.description.errors }}
+                            </div>
+                        {% endif %}
+
+                    </div>
+                    <!-- ================= Assignment ================= -->
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label fw-bold">
+                            Assigned To
+                        </label>
 
                         {{ form.assigned_to }}
 
+                        {% if form.assigned_to.errors %}
+                            <div class="text-danger mt-1">
+                                {{ form.assigned_to.errors }}
+                            </div>
+                        {% endif %}
+
                     </div>
 
-                    <div class="col-md-6">
+                    <div class="col-md-6 mb-3">
 
-                        <label>Due Date</label>
+                        <label class="form-label fw-bold">
+                            Due Date
+                        </label>
 
                         {{ form.due_date }}
 
+                        {% if form.due_date.errors %}
+                            <div class="text-danger mt-1">
+                                {{ form.due_date.errors }}
+                            </div>
+                        {% endif %}
+
                     </div>
 
-                </div>
+                    <!-- ================= Related Records ================= -->
 
-            </div>
+                    <div class="col-md-6 mb-3">
 
-
-
-            <!-- Related -->
-
-            <div class="form-section">
-
-                <h5>
-
-                    <i class="bi bi-diagram-3 me-2"></i>
-
-                    Related Records
-
-                </h5>
-
-                <div class="row">
-
-                    <div class="col-md-6">
-
-                        <label>Contact</label>
+                        <label class="form-label fw-bold">
+                            Related Contact
+                        </label>
 
                         {{ form.related_contact }}
 
+                        {% if form.related_contact.errors %}
+                            <div class="text-danger mt-1">
+                                {{ form.related_contact.errors }}
+                            </div>
+                        {% endif %}
+
                     </div>
 
-                    <div class="col-md-6">
+                    <div class="col-md-6 mb-3">
 
-                        <label>Lead</label>
+                        <label class="form-label fw-bold">
+                            Related Lead
+                        </label>
 
                         {{ form.related_lead }}
 
+                        {% if form.related_lead.errors %}
+                            <div class="text-danger mt-1">
+                                {{ form.related_lead.errors }}
+                            </div>
+                        {% endif %}
+
                     </div>
+                    <!-- ================= Task Settings ================= -->
 
-                </div>
+                    <div class="col-md-6 mb-3">
 
-            </div>
-
-
-
-            <!-- Status -->
-
-            <div class="form-section">
-
-                <h5>
-
-                    <i class="bi bi-flag me-2"></i>
-
-                    Status
-
-                </h5>
-
-                <div class="row">
-
-                    <div class="col-md-6">
-
-                        <label>Priority</label>
+                        <label class="form-label fw-bold">
+                            Priority
+                        </label>
 
                         {{ form.priority }}
 
+                        {% if form.priority.errors %}
+                            <div class="text-danger mt-1">
+                                {{ form.priority.errors }}
+                            </div>
+                        {% endif %}
+
                     </div>
 
-                    <div class="col-md-6">
+                    <div class="col-md-6 mb-3">
 
-                        <label>Status</label>
+                        <label class="form-label fw-bold">
+                            Status
+                        </label>
 
                         {{ form.status }}
+
+                        {% if form.status.errors %}
+                            <div class="text-danger mt-1">
+                                {{ form.status.errors }}
+                            </div>
+                        {% endif %}
 
                     </div>
 
                 </div>
 
-            </div>
+                <hr class="my-4">
 
+                <div class="d-flex justify-content-end">
 
-            <div class="text-end mt-4">
+                    <a href="{% url 'tasks:task_list' %}"
+                       class="btn btn-outline-secondary me-2">
 
-                <a href="{% url 'task_list' %}"
+                        <i class="bi bi-arrow-left me-1"></i>
 
-                   class="btn btn-outline-light me-2">
+                        Cancel
 
-                    Cancel
+                    </a>
 
-                </a>
+                    <button type="submit"
+                            class="btn btn-primary">
 
-                <button class="btn btn-primary px-5">
+                        {% if object %}
 
-                    {% if object %}
+                            <i class="bi bi-check-circle me-1"></i>
+                            Update Task
 
-                        Update Task
+                        {% else %}
 
-                    {% else %}
+                            <i class="bi bi-save me-1"></i>
+                            Save Task
 
-                        Save Task
+                        {% endif %}
 
-                    {% endif %}
+                    </button>
 
-                </button>
+                </div>
 
-            </div>
+            </form>
 
-        </form>
+        </div>
 
     </div>
 
