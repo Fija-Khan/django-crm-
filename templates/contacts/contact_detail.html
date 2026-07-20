@@ -22,7 +22,8 @@
                 </p>
             </div>
 
-            <a href="{% url 'contact_list' %}" class="crm-btn-secondary">
+            <!-- FIXED -->
+            <a href="{% url 'contacts:contact_list' %}" class="crm-btn-secondary">
                 <i class="bi bi-arrow-left"></i>
                 Back
             </a>
@@ -30,7 +31,6 @@
         </div>
 
         <!-- Card -->
-
         <div class="crm-card">
 
             <div class="card-body">
@@ -87,12 +87,14 @@
 
                 <div class="d-flex gap-2 mt-4">
 
-                    <a href="{% url 'contact_edit' contact.id %}" class="crm-btn-warning">
+                    <!-- FIXED -->
+                    <a href="{% url 'contacts:contact_edit' contact.id %}" class="crm-btn-warning">
                         <i class="bi bi-pencil-square"></i>
                         Edit
                     </a>
 
-                    <a href="{% url 'contact_delete' contact.id %}" class="crm-btn-danger">
+                    <!-- FIXED -->
+                    <a href="{% url 'contacts:contact_delete' contact.id %}" class="crm-btn-danger">
                         <i class="bi bi-trash"></i>
                         Delete
                     </a>

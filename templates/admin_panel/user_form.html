@@ -1,91 +1,165 @@
-{% extends "base.html" %} {% block title %} {% if object %} Edit User {% else %}
-Add User {% endif %} {% endblock %} {% block content %}
+{% extends "base.html" %}
+
+{% block title %}
+{% if object %}
+Edit User
+{% else %}
+Add User
+{% endif %}
+{% endblock %}
+
+
+{% block content %}
 
 <div class="container-fluid py-4">
+
   <div class="row justify-content-center">
-    <div class="col-lg-8">
+    <div class="col-xl-9">
+
       <div class="card shadow border-0">
-        <div
-          class="card-header bg-primary text-white d-flex justify-content-between align-items-center"
-        >
+
+        <!-- Header -->
+        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+
           <div>
             {% if object %}
-            <h4 class="mb-0">
-              <i class="bi bi-pencil-square"></i>
+            <h4 class="mb-1">
+              <i class="bi bi-person-fill-gear me-2"></i>
               Edit User
             </h4>
-            <small>Update user information</small>
+
+            <small>
+              Update existing user information.
+            </small>
+
             {% else %}
-            <h4 class="mb-0">
-              <i class="bi bi-person-plus-fill"></i>
+
+            <h4 class="mb-1">
+              <i class="bi bi-person-plus-fill me-2"></i>
               Add New User
             </h4>
-            <small>Create a new CRM user</small>
+
+            <small>
+              Create a new CRM user.
+            </small>
+
             {% endif %}
           </div>
 
+
           <a href="{% url 'user_list' %}" class="btn btn-light btn-sm">
-            <i class="bi bi-arrow-left"></i>
+            <i class="bi bi-arrow-left me-1"></i>
             Back
           </a>
+
         </div>
 
+
+        <!-- Body -->
         <div class="card-body">
+
+
           <form method="POST" enctype="multipart/form-data">
+
             {% csrf_token %}
 
-            <div class="row">
-              {% extends "base.html" %} {% block title %} {% if object %} Edit
-              User {% else %} Add User {% endif %} {% endblock %} {% block
-              content %}
 
-              <div class="container-fluid py-4">
-                <div class="row justify-content-center">
-                  <div class="col-lg-8">
-                    <div class="card shadow border-0">
-                      <div
-                        class="card-header bg-primary text-white d-flex justify-content-between align-items-center"
-                      >
-                        <div>
-                          {% if object %}
-                          <h4 class="mb-0">
-                            <i class="bi bi-pencil-square"></i>
-                            Edit User
-                          </h4>
-                          <small>Update user information</small>
-                          {% else %}
-                          <h4 class="mb-0">
-                            <i class="bi bi-person-plus-fill"></i>
-                            Add New User
-                          </h4>
-                          <small>Create a new CRM user</small>
-                          {% endif %}
-                        </div>
+            {% if form.non_field_errors %}
 
-                        <a
-                          href="{% url 'user_list' %}"
-                          class="btn btn-light btn-sm"
-                        >
-                          <i class="bi bi-arrow-left"></i>
-                          Back
-                        </a>
-                      </div>
-
-                      <div class="card-body">
-                        <form method="POST" enctype="multipart/form-data">
-                          {% csrf_token %}
-
-                          <div class="row"></div>
-                        </form>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <div class="alert alert-danger">
+              {{ form.non_field_errors }}
             </div>
+
+            {% endif %}
+
+
+
+            {% for field in form %}
+
+            <div class="mb-3">
+
+              <label class="form-label fw-semibold">
+                {{ field.label }}
+              </label>
+
+
+              {{ field }}
+
+
+              {% if field.errors %}
+
+              <div class="text-danger small">
+
+                {% for error in field.errors %}
+                {{ error }}
+                {% endfor %}
+
+              </div>
+
+              {% endif %}
+
+
+              {% if field.help_text %}
+
+              <small class="text-muted">
+                {{ field.help_text }}
+              </small>
+
+              {% endif %}
+
+
+            </div>
+
+
+            {% endfor %}
+
+
+
+            <div class="d-flex justify-content-end gap-2">
+
+
+              <a href="{% url 'user_list' %}" 
+                 class="btn btn-secondary">
+
+                Cancel
+
+              </a>
+
+
+              <button type="submit" 
+                      class="btn btn-primary">
+
+                {% if object %}
+
+                <i class="bi bi-check-circle me-1"></i>
+                Update User
+
+                {% else %}
+
+                <i class="bi bi-person-plus me-1"></i>
+                Create User
+
+                {% endif %}
+
+              </button>
+
+
+            </div>
+
+
+
           </form>
+
+
         </div>
+
+
       </div>
+
     </div>
   </div>
+
 </div>
+
+
+{% endblock %}

@@ -45,7 +45,8 @@
                         Delete
                     </button>
 
-                    <a href="{% url 'contact_detail' object.id %}" class="crm-btn-secondary">
+                    <!-- Fixed -->
+                    <a href="{% url 'contacts:contact_detail' object.id %}" class="crm-btn-secondary">
                         <i class="bi bi-arrow-left"></i>
                         Cancel
                     </a>
