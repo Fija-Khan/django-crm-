@@ -1,7 +1,9 @@
 import csv
 
 from django.contrib import messages
+from .forms import ContactForm, CompanyForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import Paginator
 from django.db.models import Q
 from django.http import HttpResponse
@@ -25,42 +27,67 @@ from .models import Contact, Company
 @login_required
 def contact_list(request):
 
-    contacts = (
-        Contact.objects
-        .select_related("company")
-        .all()
-        .order_by("-created_at")
-    )
+    user = request.user
 
+    # Admin sees all contacts
+    if user.role == "admin":
+        contacts = Contact.objects.select_related(
+            "company",
+            "assigned_to"
+        ).all()
+
+    # Agent sees only assigned contacts
+    else:
+        contacts = Contact.objects.select_related(
+            "company",
+            "assigned_to"
+        ).filter(
+            assigned_to=user
+        )
+
+    contacts = contacts.order_by("-created_at")
+
+    # ==========================
     # Search
+    # ==========================
+
     search = request.GET.get("search")
 
     if search:
         contacts = contacts.filter(
-            Q(first_name__icontains=search)
-            | Q(last_name__icontains=search)
-            | Q(email__icontains=search)
-            | Q(phone__icontains=search)
+            Q(first_name__icontains=search) |
+            Q(last_name__icontains=search) |
+            Q(email__icontains=search) |
+            Q(phone__icontains=search)
         )
 
+    # ==========================
     # Source Filter
+    # ==========================
+
     source = request.GET.get("source")
 
     if source:
         contacts = contacts.filter(source=source)
 
+    # ==========================
     # Company Filter
+    # ==========================
+
     company = request.GET.get("company")
 
     if company:
         contacts = contacts.filter(company_id=company)
 
+    # ==========================
     # Pagination
+    # ==========================
+
     paginator = Paginator(contacts, 10)
 
-    page_number = request.GET.get("page")
-
-    page_obj = paginator.get_page(page_number)
+    page_obj = paginator.get_page(
+        request.GET.get("page")
+    )
 
     context = {
         "page_obj": page_obj,
@@ -81,14 +108,31 @@ def contact_list(request):
 # CREATE CONTACT
 # ==========================================
 
-class ContactCreateView(CreateView):
+class ContactCreateView(
+    LoginRequiredMixin,
+    CreateView,
+):
 
     model = Contact
     form_class = ContactForm
     template_name = "contacts/contact_form.html"
     success_url = reverse_lazy("contact_list")
 
+    def get_form(self, form_class=None):
+
+        form = super().get_form(form_class)
+
+        # Agent cannot assign contacts to others
+        if self.request.user.role == "agent":
+            form.fields["assigned_to"].disabled = True
+
+        return form
+
     def form_valid(self, form):
+
+        # Automatically assign contact to logged-in agent
+        if self.request.user.role == "agent":
+            form.instance.assigned_to = self.request.user
 
         messages.success(
             self.request,
@@ -97,36 +141,89 @@ class ContactCreateView(CreateView):
 
         return super().form_valid(form)
 
-    def form_invalid(self, form):
 
-        messages.error(
-            self.request,
-            "Please correct the errors below."
-        )
-
-        return super().form_invalid(form)
-    
 # ==========================================
 # CONTACT DETAIL
 # ==========================================
 
-class ContactDetailView(DetailView):
+class ContactDetailView(
+    LoginRequiredMixin,
+    DetailView,
+):
 
     model = Contact
     template_name = "contacts/contact_detail.html"
     context_object_name = "contact"
 
+    def get_queryset(self):
 
+        user = self.request.user
+
+        if user.role == "admin":
+            return Contact.objects.select_related(
+                "company",
+                "assigned_to"
+            )
+
+        return Contact.objects.select_related(
+            "company",
+            "assigned_to"
+        ).filter(
+            assigned_to=user
+        )
+
+    def get_context_data(self, **kwargs):
+
+        context = super().get_context_data(**kwargs)
+
+        contact = self.object
+
+        # Related data (Project Requirement)
+        context["leads"] = contact.lead_set.all()
+        context["notes"] = contact.note_set.all()
+        context["interactions"] = contact.interaction_set.all()
+
+        return context
 # ==========================================
 # UPDATE CONTACT
 # ==========================================
 
-class ContactUpdateView(UpdateView):
+class ContactUpdateView(
+    LoginRequiredMixin,
+    UpdateView,
+):
 
     model = Contact
     form_class = ContactForm
     template_name = "contacts/contact_form.html"
     success_url = reverse_lazy("contact_list")
+
+    def get_queryset(self):
+
+        user = self.request.user
+
+        if user.role == "admin":
+            return Contact.objects.select_related(
+                "company",
+                "assigned_to"
+            )
+
+        return Contact.objects.select_related(
+            "company",
+            "assigned_to"
+        ).filter(
+            assigned_to=user
+        )
+
+    def get_form(self, form_class=None):
+
+        form = super().get_form(form_class)
+
+        # Agent cannot change assigned agent
+        if self.request.user.role == "agent":
+            form.fields["assigned_to"].disabled = True
+
+        return form
 
     def form_valid(self, form):
 
@@ -137,39 +234,39 @@ class ContactUpdateView(UpdateView):
 
         return super().form_valid(form)
 
-    def form_invalid(self, form):
-
-        messages.error(
-            self.request,
-            "Please correct the errors below."
-        )
-
-        return super().form_invalid(form)
-
 
 # ==========================================
 # DELETE CONTACT
 # ==========================================
 
-# ==========================================
-# DELETE CONTACT
-# ==========================================
-
-class ContactDeleteView(DeleteView):
+class ContactDeleteView(
+    LoginRequiredMixin,
+    DeleteView,
+):
 
     model = Contact
     template_name = "contacts/contact_confirm_delete.html"
     success_url = reverse_lazy("contact_list")
 
-    def delete(self, request, *args, **kwargs):
+    def get_queryset(self):
+
+        user = self.request.user
+
+        if user.role == "admin":
+            return Contact.objects.all()
+
+        return Contact.objects.filter(
+            assigned_to=user
+        )
+
+    def form_valid(self, form):
 
         messages.success(
-            request,
+            self.request,
             "Contact deleted successfully."
         )
 
-        return super().delete(request, *args, **kwargs)
-    
+        return super().form_valid(form)
 # ==========================================
 # IMPORT CONTACTS
 # ==========================================
@@ -182,65 +279,53 @@ def contact_import(request):
         csv_file = request.FILES.get("file")
 
         if not csv_file:
-
-            messages.error(
-                request,
-                "No file uploaded."
-            )
-
-            return redirect("contact_list")
+            messages.error(request, "Please upload a CSV file.")
+            return redirect("contact_import")
 
         if not csv_file.name.endswith(".csv"):
+            messages.error(request, "Only CSV files are allowed.")
+            return redirect("contact_import")
 
-            messages.error(
-                request,
-                "Only CSV files are allowed."
+        try:
+            reader = csv.DictReader(
+                csv_file.read().decode("utf-8").splitlines()
             )
 
-            return redirect("contact_list")
+            created = 0
+            skipped = 0
 
-        file_data = csv_file.read().decode("utf-8").splitlines()
+            for row in reader:
 
-        reader = csv.DictReader(file_data)
+                email = row.get("Email", "").strip().lower()
 
-        created_count = 0
-        skipped_count = 0
+                if not email:
+                    skipped += 1
+                    continue
 
-        seen_emails = set()
-
-        for row in reader:
-
-            email = (
-                row.get("Email") or ""
-            ).strip().lower()
-
-            if not email:
-                skipped_count += 1
-                continue
-
-            if email in seen_emails:
-                skipped_count += 1
-                continue
-
-            seen_emails.add(email)
-
-            if Contact.objects.filter(email=email).exists():
-                skipped_count += 1
-                continue
-
-            try:
+                if Contact.objects.filter(email=email).exists():
+                    skipped += 1
+                    continue
 
                 company = None
 
-                company_name = (
-                    row.get("Company") or ""
-                ).strip()
+                company_name = row.get("Company", "").strip()
 
                 if company_name:
-
                     company, _ = Company.objects.get_or_create(
                         name=company_name
                     )
+
+                source = row.get("Source", "website").strip().lower()
+
+                valid_sources = [
+                    "website",
+                    "referral",
+                    "social",
+                    "cold_call",
+                ]
+
+                if source not in valid_sources:
+                    source = "website"
 
                 Contact.objects.create(
                     first_name=row.get("First Name", "").strip(),
@@ -248,19 +333,24 @@ def contact_import(request):
                     email=email,
                     phone=row.get("Phone", "").strip(),
                     company=company,
+                    source=source,
+                    assigned_to=request.user
+                    if request.user.role == "agent"
+                    else row.get("Assigned To") or None,
                 )
 
-                created_count += 1
+                created += 1
 
-            except Exception:
-                skipped_count += 1
+            messages.success(
+                request,
+                f"{created} contacts imported successfully. {skipped} skipped."
+            )
 
-        messages.success(
-            request,
-            f"Import completed successfully! "
-            f"Created: {created_count}, "
-            f"Skipped: {skipped_count}"
-        )
+        except Exception as e:
+            messages.error(
+                request,
+                f"Import failed: {e}"
+            )
 
         return redirect("contact_list")
 
@@ -287,30 +377,174 @@ def contact_export(request):
 
     writer = csv.writer(response)
 
-    writer.writerow(
-        [
-            "First Name",
-            "Last Name",
-            "Email",
-            "Phone",
-            "Company",
-        ]
-    )
+    writer.writerow([
+        "First Name",
+        "Last Name",
+        "Email",
+        "Phone",
+        "Company",
+        "Assigned To",
+        "Source",
+        "Created At",
+    ])
 
-    contacts = Contact.objects.select_related(
-        "company"
-    ).all()
+    if request.user.role == "admin":
+
+        contacts = Contact.objects.select_related(
+            "company",
+            "assigned_to",
+        ).all()
+
+    else:
+
+        contacts = Contact.objects.select_related(
+            "company",
+            "assigned_to",
+        ).filter(
+            assigned_to=request.user
+        )
 
     for contact in contacts:
 
-        writer.writerow(
-            [
-                contact.first_name,
-                contact.last_name,
-                contact.email,
-                contact.phone,
-                contact.company.name if contact.company else "",
-            ]
-        )
+        writer.writerow([
+            contact.first_name,
+            contact.last_name,
+            contact.email,
+            contact.phone,
+            contact.company.name if contact.company else "",
+            contact.assigned_to.username if contact.assigned_to else "",
+            contact.source,
+            contact.created_at.strftime("%d-%m-%Y %H:%M"),
+        ])
 
     return response
+# ==========================================
+# COMPANY LIST
+# ==========================================
+
+@login_required
+def company_list(request):
+
+    companies = Company.objects.all().order_by("name")
+
+    search = request.GET.get("search")
+
+    if search:
+        companies = companies.filter(
+            Q(name__icontains=search) |
+            Q(industry__icontains=search)
+        )
+
+    paginator = Paginator(companies, 10)
+
+    page_obj = paginator.get_page(
+        request.GET.get("page")
+    )
+
+    context = {
+        "page_obj": page_obj,
+        "search": search,
+    }
+
+    return render(
+        request,
+        "contacts/company_list.html",
+        context,
+    )
+
+
+# ==========================================
+# CREATE COMPANY
+# ==========================================
+
+class CompanyCreateView(
+    LoginRequiredMixin,
+    CreateView,
+):
+
+    model = Company
+    form_class = CompanyForm
+    template_name = "contacts/company_form.html"
+    success_url = reverse_lazy("company_list")
+
+    def form_valid(self, form):
+
+        messages.success(
+            self.request,
+            "Company created successfully."
+        )
+
+        return super().form_valid(form)
+
+
+# ==========================================
+# COMPANY DETAIL
+# ==========================================
+
+class CompanyDetailView(
+    LoginRequiredMixin,
+    DetailView,
+):
+
+    model = Company
+    template_name = "contacts/company_detail.html"
+    context_object_name = "company"
+
+    def get_context_data(self, **kwargs):
+
+        context = super().get_context_data(**kwargs)
+
+        context["contacts"] = Contact.objects.filter(
+            company=self.object
+        ).select_related(
+            "assigned_to"
+        )
+
+        return context
+
+
+# ==========================================
+# UPDATE COMPANY
+# ==========================================
+
+class CompanyUpdateView(
+    LoginRequiredMixin,
+    UpdateView,
+):
+
+    model = Company
+    form_class = CompanyForm
+    template_name = "contacts/company_form.html"
+    success_url = reverse_lazy("company_list")
+
+    def form_valid(self, form):
+
+        messages.success(
+            self.request,
+            "Company updated successfully."
+        )
+
+        return super().form_valid(form)
+
+
+# ==========================================
+# DELETE COMPANY
+# ==========================================
+
+class CompanyDeleteView(
+    LoginRequiredMixin,
+    DeleteView,
+):
+
+    model = Company
+    template_name = "contacts/company_confirm_delete.html"
+    success_url = reverse_lazy("company_list")
+
+    def form_valid(self, form):
+
+        messages.success(
+            self.request,
+            "Company deleted successfully."
+        )
+
+        return super().form_valid(form)

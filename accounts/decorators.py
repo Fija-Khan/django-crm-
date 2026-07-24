@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib import messages
 from django.shortcuts import redirect
+from functools import wraps
 
 
 
@@ -10,23 +11,22 @@ from django.shortcuts import redirect
 
 def admin_required(view_func):
 
-    def check_admin(user):
 
-        return (
-            user.is_authenticated
-            and user.role == "admin"
-        )
-
-
+    @wraps(view_func)
     def wrapped_view(request, *args, **kwargs):
 
-        if check_admin(request.user):
+
+        if (
+            request.user.is_authenticated
+            and request.user.role == "admin"
+        ):
 
             return view_func(
                 request,
                 *args,
                 **kwargs
             )
+
 
 
         messages.error(
@@ -53,28 +53,21 @@ def admin_required(view_func):
 def agent_required(view_func):
 
 
-    def check_agent(user):
-
-        return (
-            user.is_authenticated
-            and user.role in [
-                "admin",
-                "agent"
-            ]
-        )
-
-
-
+    @wraps(view_func)
     def wrapped_view(request, *args, **kwargs):
 
 
-        if check_agent(request.user):
+        if (
+            request.user.is_authenticated
+            and request.user.role == "agent"
+        ):
 
             return view_func(
                 request,
                 *args,
                 **kwargs
             )
+
 
 
         messages.error(
