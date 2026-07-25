@@ -4,9 +4,13 @@
 Delete Deal
 {% endblock %}
 
+
 {% block content %}
 
 <div class="container-fluid">
+
+
+    <!-- PAGE HEADER -->
 
     <div class="crm-page-header">
 
@@ -17,6 +21,7 @@ Delete Deal
                 Delete Deal
             </h2>
 
+
             <p class="crm-page-subtitle">
                 This action cannot be undone.
             </p>
@@ -25,70 +30,188 @@ Delete Deal
 
     </div>
 
+
+
+
+    <!-- DELETE CARD -->
+
     <div class="crm-card crm-delete-card">
+
 
         <div class="crm-card-body text-center">
 
+
             <div class="crm-delete-icon">
+
                 <i class="bi bi-exclamation-triangle-fill"></i>
+
             </div>
 
+
+
             <h4 class="mt-4 mb-3">
+
                 Are you sure?
+
             </h4>
 
+
+
             <p class="text-white mb-4">
+
                 You are about to permanently delete this deal.
+
             </p>
+
+
+
+
+
+            <!-- DEAL INFORMATION -->
 
             <div class="crm-delete-details">
 
+
                 <div class="crm-detail-item">
+
                     <label class="crm-label">
                         Lead
                     </label>
 
+
                     <div class="crm-detail-box">
-                        {{ deal.lead }}
+
+                        {{ deal.lead.title }}
+
                     </div>
+
                 </div>
 
+
+
+
+
                 <div class="crm-detail-item">
+
+                    <label class="crm-label">
+                        Stage
+                    </label>
+
+
+                    <div class="crm-detail-box">
+
+                        {{ deal.get_stage_display }}
+
+                    </div>
+
+                </div>
+
+
+
+
+
+                <div class="crm-detail-item">
+
                     <label class="crm-label">
                         Amount
                     </label>
 
+
                     <div class="crm-detail-box">
-                        ₹ {{ deal.amount }}
+
+                        ₹ {{ deal.amount|floatformat:2 }}
+
                     </div>
+
                 </div>
 
+
+
+
+
+                <div class="crm-detail-item">
+
+                    <label class="crm-label">
+                        Close Date
+                    </label>
+
+
+                    <div class="crm-detail-box">
+
+
+                        {% if deal.close_date %}
+
+                            {{ deal.close_date|date:"d M Y" }}
+
+                        {% else %}
+
+                            -
+
+                        {% endif %}
+
+
+                    </div>
+
+                </div>
+
+
+
             </div>
+
+
+
+
+
+
+
+            <!-- ACTION BUTTONS -->
 
             <form method="POST" class="mt-4">
 
                 {% csrf_token %}
 
+
                 <div class="crm-form-actions justify-content-center">
 
+
                     <button type="submit" class="crm-btn-danger">
-                        <i class="bi bi-trash"></i>
+
+                        <i class="bi bi-trash me-1"></i>
+
                         Yes, Delete
+
                     </button>
 
-                    <a href="{% url 'deals:deal_list' %}" class="crm-btn-secondary">
-                        <i class="bi bi-arrow-left"></i>
+
+
+
+
+                    <a href="{% url 'deals:deal_detail' deal.id %}"
+                       class="crm-btn-secondary">
+
+                        <i class="bi bi-arrow-left me-1"></i>
+
                         Cancel
+
                     </a>
+
+
 
                 </div>
 
+
             </form>
+
+
 
         </div>
 
+
     </div>
 
+
+
 </div>
+
 
 {% endblock %}

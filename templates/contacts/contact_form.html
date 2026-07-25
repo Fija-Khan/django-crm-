@@ -1,60 +1,230 @@
 {% extends 'base.html' %}
 
-{% block title %}Add Contact{% endblock %}
+{% block title %}
+
+{% if form.instance.pk %}
+Edit Contact
+{% else %}
+Add Contact
+{% endif %}
+
+{% endblock %}
+
+
 
 {% block content %}
 
-<div class="container mt-4">
+
+<div class="container-fluid mt-4">
+
 
     <div class="crm-contact-page">
 
+
         <div class="crm-card">
 
+
+
             <!-- Header -->
+
             <div class="mb-4">
 
+
                 <h2 class="crm-title">
+
+
+                    {% if form.instance.pk %}
+
+                    <i class="bi bi-pencil-square me-2"></i>
+                    Edit Contact
+
+
+                    {% else %}
+
+
                     <i class="bi bi-person-plus-fill me-2"></i>
                     Add New Contact
+
+
+                    {% endif %}
+
+
                 </h2>
 
+
+
                 <p class="crm-page-subtitle">
-                    Enter the contact details below to create a new contact.
+
+
+                    {% if form.instance.pk %}
+
+                    Update contact information below.
+
+
+                    {% else %}
+
+                    Enter contact details to create a new contact.
+
+                    {% endif %}
+
+
                 </p>
+
+
 
             </div>
 
+
+
+
+            <!-- Error Messages -->
+
+
+            {% if form.errors %}
+
+
+            <div class="alert alert-danger">
+
+
+                <i class="bi bi-exclamation-triangle me-2"></i>
+
+
+                Please correct the errors below.
+
+
+            </div>
+
+
+            {% endif %}
+
+
+
+
+
+
             <!-- Form -->
+
+
             <form method="POST">
+
 
                 {% csrf_token %}
 
-                <div class="crm-form-wrapper">
-                    {{ form.as_p }}
+
+
+                <div class="row g-3">
+
+
+
+                    {% for field in form %}
+
+
+                    <div class="col-md-6">
+
+
+                        <label class="crm-label">
+
+                            {{ field.label }}
+
+                        </label>
+
+
+
+                        {{ field }}
+
+
+
+                        {% if field.errors %}
+
+
+                        <div class="text-danger small mt-1">
+
+
+                            {{ field.errors|striptags }}
+
+
+                        </div>
+
+
+                        {% endif %}
+
+
+
+                    </div>
+
+
+                    {% endfor %}
+
+
+
                 </div>
+
+
+
+
 
                 <!-- Buttons -->
+
+
                 <div class="d-flex gap-2 mt-4">
 
-                    <button type="submit" class="crm-btn-primary">
+
+
+                    <button type="submit"
+                            class="crm-btn-primary">
+
+
                         <i class="bi bi-check-circle me-2"></i>
+
+
+                        {% if form.instance.pk %}
+
+                        Update Contact
+
+                        {% else %}
+
                         Save Contact
+
+                        {% endif %}
+
+
                     </button>
 
-                    <!-- Fixed -->
-                    <a href="{% url 'contacts:contact_list' %}" class="crm-btn-secondary">
+
+
+
+
+                    <a href="{% url 'contacts:contact_list' %}"
+                       class="crm-btn-secondary">
+
+
                         <i class="bi bi-arrow-left me-2"></i>
+
+
                         Cancel
+
+
                     </a>
 
+
+
                 </div>
+
+
 
             </form>
 
+
+
         </div>
+
 
     </div>
 
+
 </div>
 
+
+
 {% endblock %}
+

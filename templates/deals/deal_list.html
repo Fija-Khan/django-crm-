@@ -4,164 +4,489 @@
 Deal Management
 {% endblock %}
 
+
 {% block content %}
 
 <div class="container-fluid">
 
-    <!-- =========================
-         PAGE HEADER
-    ========================= -->
 
-    <div class="crm-page-header">
+    <!-- HEADER -->
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
 
         <div>
-            <h2 class="crm-page-title">
+
+            <h2 class="crm-title mb-1">
                 <i class="bi bi-briefcase-fill me-2"></i>
                 Deal Management
             </h2>
 
-            <p class="crm-page-subtitle">
-                Manage all deals from one place.
+
+            <p class="text-muted mb-0">
+                Manage and track your sales pipeline.
             </p>
+
         </div>
 
-        <a href="{% url 'deals:deal_create' %}" class="crm-btn-add">
-            <i class="bi bi-plus-lg me-1"></i>
+
+
+        <a href="{% url 'deals:deal_create' %}"
+           class="crm-btn-primary">
+
+            <i class="bi bi-plus-circle me-1"></i>
             Add Deal
+
         </a>
+
 
     </div>
 
-    <!-- =========================
-         DEAL TABLE
-    ========================= -->
 
-    <div class="crm-card">
 
-        <div class="crm-card-body">
 
-            <div class="table-responsive">
 
-                <table class="crm-table">
+    <!-- FILTER -->
 
-                    <thead>
 
-                        <tr>
-                            <th>ID</th>
-                            <th>Lead</th>
-                            <th>Stage</th>
-                            <th>Amount</th>
-                            <th>Close Date</th>
-                            <th>Notes</th>
-                            <th class="text-center">Actions</th>
-                        </tr>
+    <div class="crm-card shadow-sm mb-4">
 
-                    </thead>
 
-                    <tbody>
+        <form method="GET">
 
-                        {% for deal in deals %}
 
-                        <tr>
+            <div class="row g-3">
 
-                            <td>#{{ deal.id }}</td>
 
-                            <td>
-                                {{ deal.lead }}
-                            </td>
+                <div class="col-md-5">
 
-                            <td>
-                                <span class="crm-stage">
-                                    {{ deal.get_stage_display }}
-                                </span>
-                            </td>
+                    <input
+                    type="text"
+                    name="search"
+                    class="form-control"
+                    placeholder="Search by lead title..."
+                    value="{{ request.GET.search }}">
 
-                            <td>
-                                ₹ {{ deal.amount|default:"0.00" }}
-                            </td>
 
-                            <td>
-                                {% if deal.close_date %}
-                                    {{ deal.close_date|date:"d M Y" }}
-                                {% else %}
-                                    -
-                                {% endif %}
-                            </td>
+                </div>
 
-                            <td>
-                                {% if deal.notes %}
-                                    {{ deal.notes|truncatechars:40 }}
-                                {% else %}
-                                    <span class="text-muted">No Notes</span>
-                                {% endif %}
-                            </td>
 
-                            <td>
 
-                                <div class="crm-action-buttons">
 
-                                    <a href="{% url 'deals:deal_detail' deal.id %}"
-                                       class="crm-btn-primary"
-                                       title="View">
-                                        <i class="bi bi-eye"></i>
-                                    </a>
+                <div class="col-md-4">
 
-                                    <a href="{% url 'deals:deal_edit' deal.id %}"
-                                       class="crm-btn-warning"
-                                       title="Edit">
-                                        <i class="bi bi-pencil"></i>
-                                    </a>
 
-                                    <a href="{% url 'deals:deal_delete' deal.id %}"
-                                       class="crm-btn-danger"
-                                       title="Delete">
-                                        <i class="bi bi-trash"></i>
-                                    </a>
+                    <select name="stage"
+                            class="form-select">
 
-                                </div>
 
-                            </td>
+                        <option value="">
+                            All Stages
+                        </option>
 
-                        </tr>
 
-                        {% empty %}
+                        {% for value,label in stage_choices %}
 
-                        <tr>
 
-                            <td colspan="7" class="text-center py-5">
+                        <option value="{{ value }}"
+                        {% if request.GET.stage == value %}
+                        selected
+                        {% endif %}>
 
-                                <i class="bi bi-inbox display-5 text-muted"></i>
+                            {{ label }}
 
-                                <h5 class="mt-3">
-                                    No Deals Found
-                                </h5>
+                        </option>
 
-                                <p class="text-muted">
-                                    Create your first deal to get started.
-                                </p>
-
-                                <a href="{% url 'deals:deal_create' %}"
-                                   class="crm-btn-add">
-                                    <i class="bi bi-plus-circle me-1"></i>
-                                    Add Deal
-                                </a>
-
-                            </td>
-
-                        </tr>
 
                         {% endfor %}
 
-                    </tbody>
 
-                </table>
+                    </select>
+
+
+                </div>
+
+
+
+
+                <div class="col-md-3">
+
+
+                    <button class="crm-btn-primary w-100">
+
+                        <i class="bi bi-search me-1"></i>
+                        Filter
+
+                    </button>
+
+
+                </div>
+
 
             </div>
 
-        </div>
+
+        </form>
+
 
     </div>
 
+
+
+
+
+
+    <!-- TABLE -->
+
+
+    <div class="crm-card shadow-sm">
+
+
+        <div class="table-responsive">
+
+
+            <table class="table crm-table align-middle mb-0">
+
+
+                <thead>
+
+                    <tr>
+
+                        <th>ID</th>
+
+                        <th>Lead</th>
+
+                        <th>Stage</th>
+
+                        <th>Amount</th>
+
+                        <th>Close Date</th>
+
+                        <th>Created</th>
+
+                        <th class="text-center">
+                            Actions
+                        </th>
+
+
+                    </tr>
+
+
+                </thead>
+
+
+
+                <tbody>
+
+
+
+                {% for deal in deals %}
+
+
+                <tr>
+
+
+                    <td>
+                        #{{ deal.id }}
+                    </td>
+
+
+
+                    <td>
+
+                        <strong>
+                            {{ deal.lead.title }}
+                        </strong>
+
+
+                        <br>
+
+
+                        <small class="text-muted">
+
+                            {{ deal.lead.contact|default:"No Contact" }}
+
+                        </small>
+
+
+                    </td>
+
+
+
+
+
+                    <td>
+
+
+                        {% if deal.stage == "negotiation" %}
+
+                            <span class="crm-badge-warning">
+                                Negotiation
+                            </span>
+
+
+                        {% elif deal.stage == "contract" %}
+
+                            <span class="crm-badge-info">
+                                Contract
+                            </span>
+
+
+                        {% elif deal.stage == "closed_won" %}
+
+                            <span class="crm-badge-success">
+                                Closed Won
+                            </span>
+
+
+                        {% elif deal.stage == "closed_lost" %}
+
+                            <span class="crm-badge-danger">
+                                Closed Lost
+                            </span>
+
+
+                        {% endif %}
+
+
+                    </td>
+
+
+
+
+
+                    <td>
+
+                        ₹ {{ deal.amount|floatformat:2 }}
+
+                    </td>
+
+
+
+
+
+                    <td>
+
+
+                        {% if deal.close_date %}
+
+                            {{ deal.close_date|date:"d M Y" }}
+
+                        {% else %}
+
+                            <span class="text-muted">
+                                Not Set
+                            </span>
+
+                        {% endif %}
+
+
+                    </td>
+
+
+
+
+
+                    <td>
+
+                        {{ deal.created_at|date:"d M Y" }}
+
+                    </td>
+
+
+
+
+
+                    <td class="text-center">
+
+
+                        <div class="action-buttons">
+
+
+                            <a href="{% url 'deals:deal_detail' deal.id %}"
+                               class="action-btn view-btn"
+                               title="View">
+
+                                <i class="bi bi-eye"></i>
+
+                            </a>
+
+
+
+
+                            <a href="{% url 'deals:deal_edit' deal.id %}"
+                               class="action-btn edit-btn"
+                               title="Edit">
+
+                                <i class="bi bi-pencil"></i>
+
+                            </a>
+
+
+
+
+                            <a href="{% url 'deals:deal_delete' deal.id %}"
+                               class="action-btn delete-btn"
+                               title="Delete">
+
+                                <i class="bi bi-trash"></i>
+
+                            </a>
+
+
+                        </div>
+
+
+                    </td>
+
+
+                </tr>
+
+
+
+                {% empty %}
+
+
+                <tr>
+
+
+                    <td colspan="7"
+                        class="text-center py-5">
+
+
+                        <i class="bi bi-inbox fs-1 text-muted"></i>
+
+
+                        <h5 class="mt-3">
+                            No Deals Found
+                        </h5>
+
+
+                        <p class="text-muted">
+                            Start by creating your first deal.
+                        </p>
+
+
+
+                        <a href="{% url 'deals:deal_create' %}"
+                           class="crm-btn-primary">
+
+                            Add Deal
+
+                        </a>
+
+
+
+                    </td>
+
+
+                </tr>
+
+
+                {% endfor %}
+
+
+
+                </tbody>
+
+
+            </table>
+
+
+        </div>
+
+
+
+
+
+        <!-- PAGINATION -->
+
+
+        {% if page_obj.has_other_pages %}
+
+
+        <nav class="mt-4">
+
+
+            <ul class="pagination justify-content-center">
+
+
+
+                {% if page_obj.has_previous %}
+
+
+                <li class="page-item">
+
+
+                    <a class="page-link"
+                    href="?page={{ page_obj.previous_page_number }}&search={{ request.GET.search }}&stage={{ request.GET.stage }}">
+
+                        Previous
+
+                    </a>
+
+
+                </li>
+
+
+                {% endif %}
+
+
+
+
+
+                <li class="page-item active">
+
+
+                    <span class="page-link">
+
+                        {{ page_obj.number }}
+
+                    </span>
+
+
+                </li>
+
+
+
+
+
+                {% if page_obj.has_next %}
+
+
+                <li class="page-item">
+
+
+                    <a class="page-link"
+                    href="?page={{ page_obj.next_page_number }}&search={{ request.GET.search }}&stage={{ request.GET.stage }}">
+
+                        Next
+
+                    </a>
+
+
+                </li>
+
+
+                {% endif %}
+
+
+            </ul>
+
+
+        </nav>
+
+
+        {% endif %}
+
+
+
+    </div>
+
+
+
 </div>
+
+
 
 {% endblock %}

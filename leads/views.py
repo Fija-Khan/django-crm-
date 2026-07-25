@@ -1,300 +1,554 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
+from django.db import transaction
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.decorators.http import require_POST
 
+from django.contrib.auth import get_user_model
+
 from .forms import LeadForm
 from .models import Lead
+
 from deals.models import Deal
 
 
-# ==========================================
+User = get_user_model()
+
+
+
+# ==================================================
+# HELPER
+# ==================================================
+
+def get_user_leads(user):
+
+    if user.role == "admin":
+        return Lead.objects.all()
+
+    return Lead.objects.filter(
+        assigned_to=user
+    )
+
+
+
+# ==================================================
 # LEAD LIST
-# ==========================================
+# ==================================================
 
 @login_required
 def lead_list(request):
 
     leads = (
-        Lead.objects
-        .select_related("contact", "assigned_to")
-        .all()
+        get_user_leads(request.user)
+        .select_related(
+            "contact",
+            "assigned_to"
+        )
         .order_by("-created_at")
     )
+
+
+    search = request.GET.get("search")
+
+    if search:
+        leads = leads.filter(
+            title__icontains=search
+        )
+
+
+    status = request.GET.get("status")
+
+    if status:
+        leads = leads.filter(
+            status=status
+        )
+
+
+    agent = request.GET.get("agent")
+
+    if agent and request.user.role == "admin":
+
+        leads = leads.filter(
+            assigned_to_id=agent
+        )
+
+
+    paginator = Paginator(
+        leads,
+        10
+    )
+
+    page_obj = paginator.get_page(
+        request.GET.get("page")
+    )
+
+
+    context = {
+
+        "leads":page_obj,
+        "page_obj":page_obj,
+
+        "status_choices":
+            Lead.STATUS_CHOICES,
+
+        "agents":
+            User.objects.filter(
+                role="agent"
+            )
+    }
+
 
     return render(
         request,
         "leads/lead_list.html",
-        {"leads": leads},
+        context
     )
 
 
-# ==========================================
-# ADD LEAD
-# ==========================================
+
+# ==================================================
+# CREATE LEAD
+# ==================================================
 
 @login_required
 def lead_add(request):
 
     if request.method == "POST":
 
-        form = LeadForm(request.POST)
+        form = LeadForm(
+            request.POST
+        )
+
 
         if form.is_valid():
 
-            form.save()
+            lead = form.save(
+                commit=False
+            )
+
+
+            if request.user.role != "admin":
+
+                lead.assigned_to = request.user
+
+
+            lead.save()
+
 
             messages.success(
                 request,
                 "Lead created successfully."
             )
 
-            return redirect("leads:lead_list")
 
-        messages.error(
-            request,
-            "Please correct the errors below."
-        )
+            return redirect(
+                "leads:lead_detail",
+                pk=lead.pk
+            )
+
 
     else:
 
         form = LeadForm()
 
+
+
     return render(
         request,
         "leads/lead_form.html",
-        {"form": form},
+        {
+            "form":form
+        }
     )
 
 
-# ==========================================
-# LEAD DETAIL
-# ==========================================
+
+# ==================================================
+# DETAIL
+# ==================================================
 
 @login_required
-def lead_detail(request, pk):
+def lead_detail(request,pk):
 
     lead = get_object_or_404(
-        Lead.objects.select_related(
+
+        Lead.objects
+        .select_related(
             "contact",
-            "assigned_to",
+            "assigned_to"
+        )
+        .prefetch_related(
+            "activities",
+            "interactions",
+            "notes"
         ),
-        pk=pk,
+
+        pk=pk
     )
+
+
+    if request.user.role != "admin":
+
+        if lead.assigned_to != request.user:
+
+            messages.error(
+                request,
+                "Permission denied."
+            )
+
+            return redirect(
+                "leads:lead_list"
+            )
+
+
 
     return render(
         request,
         "leads/lead_detail.html",
-        {"lead": lead},
+        {
+            "lead":lead
+        }
     )
 
 
-# ==========================================
-# EDIT LEAD
-# ==========================================
+
+# ==================================================
+# EDIT
+# ==================================================
 
 @login_required
-def lead_edit(request, pk):
+def lead_edit(request,pk):
 
-    lead = get_object_or_404(Lead, pk=pk)
+    lead=get_object_or_404(
+        Lead,
+        pk=pk
+    )
 
-    if request.method == "POST":
 
-        form = LeadForm(request.POST, instance=lead)
+    if request.user.role!="admin":
+
+        if lead.assigned_to != request.user:
+
+            messages.error(
+                request,
+                "Permission denied."
+            )
+
+            return redirect(
+                "leads:lead_list"
+            )
+
+
+
+    if request.method=="POST":
+
+        form=LeadForm(
+            request.POST,
+            instance=lead
+        )
+
 
         if form.is_valid():
 
-            form.save()
+            updated=form.save(
+                commit=False
+            )
+
+
+            if request.user.role!="admin":
+
+                updated.assigned_to=request.user
+
+
+            updated.save()
+
 
             messages.success(
                 request,
                 "Lead updated successfully."
             )
 
+
             return redirect(
                 "leads:lead_detail",
-                pk=lead.pk,
+                pk=lead.pk
             )
 
-        messages.error(
-            request,
-            "Please correct the errors below."
-        )
 
     else:
 
-        form = LeadForm(instance=lead)
+        form=LeadForm(
+            instance=lead
+        )
+
+
 
     return render(
         request,
         "leads/lead_form.html",
         {
-            "form": form,
-            "lead": lead,
-        },
+            "form":form,
+            "lead":lead
+        }
     )
 
 
-# ==========================================
-# DELETE LEAD
-# ==========================================
+
+# ==================================================
+# DELETE
+# ==================================================
 
 @login_required
-def lead_delete(request, pk):
+def lead_delete(request,pk):
 
-    lead = get_object_or_404(
+    lead=get_object_or_404(
         Lead,
-        pk=pk,
+        pk=pk
     )
 
-    if request.method == "POST":
+
+    if request.user.role!="admin":
+
+        if lead.assigned_to != request.user:
+
+            messages.error(
+                request,
+                "Permission denied."
+            )
+
+            return redirect(
+                "leads:lead_list"
+            )
+
+
+
+    if request.method=="POST":
 
         lead.delete()
+
 
         messages.success(
             request,
             "Lead deleted successfully."
         )
 
-        return redirect("leads:lead_list")
+
+        return redirect(
+            "leads:lead_list"
+        )
+
+
 
     return render(
         request,
         "leads/lead_confirm_delete.html",
         {
-            "lead": lead,
-        },
+            "lead":lead
+        }
     )
 
 
-# ==========================================
-# LEAD KANBAN BOARD
-# ==========================================
+
+# ==================================================
+# KANBAN
+# ==================================================
 
 @login_required
 def lead_kanban(request):
 
-    context = {
+    leads=get_user_leads(
+        request.user
+    )
 
-        "new_leads": Lead.objects.filter(status="new"),
 
-        "contacted_leads": Lead.objects.filter(status="contacted"),
+    context={
 
-        "qualified_leads": Lead.objects.filter(status="qualified"),
+        "new_leads":
+            leads.filter(status="new"),
 
-        "proposal_leads": Lead.objects.filter(status="proposal"),
+        "contacted_leads":
+            leads.filter(status="contacted"),
 
-        "won_leads": Lead.objects.filter(status="won"),
+        "qualified_leads":
+            leads.filter(status="qualified"),
 
-        "lost_leads": Lead.objects.filter(status="lost"),
+        "proposal_leads":
+            leads.filter(status="proposal"),
+
+        "won_leads":
+            leads.filter(status="won"),
+
+        "lost_leads":
+            leads.filter(status="lost"),
+
     }
+
 
     return render(
         request,
         "leads/lead_kanban.html",
-        context,
+        context
     )
 
 
-# ==========================================
-# UPDATE LEAD STATUS (AJAX)
-# ==========================================
 
-@require_POST
+# ==================================================
+# AJAX STAGE UPDATE
+# ==================================================
+
 @login_required
+@require_POST
 def update_stage(request):
 
-    lead_id = request.POST.get("lead_id")
-    status = request.POST.get("status")
+    lead_id=request.POST.get(
+        "lead_id"
+    )
 
-    valid_status = [
+    status=request.POST.get(
+        "status"
+    )
+
+
+    allowed=[
         "new",
         "contacted",
         "qualified",
         "proposal",
         "won",
-        "lost",
+        "lost"
     ]
 
-    if not lead_id or not status:
 
-        return JsonResponse({
-            "success": False,
-            "message": "Missing required data.",
-        })
+    if status not in allowed:
 
-    if status not in valid_status:
-
-        return JsonResponse({
-            "success": False,
-            "message": "Invalid status.",
-        })
-
-    try:
-
-        lead = Lead.objects.get(id=lead_id)
-
-        lead.status = status
-        lead.save()
-
-        return JsonResponse({
-            "success": True,
-            "message": "Lead status updated successfully.",
-        })
-
-    except Lead.DoesNotExist:
-
-        return JsonResponse({
-            "success": False,
-            "message": "Lead not found.",
-        })
+        return JsonResponse(
+            {
+                "success":False
+            }
+        )
 
 
-# ==========================================
-# CONVERT LEAD TO DEAL
-# ==========================================
+    if request.user.role=="admin":
+
+        lead=get_object_or_404(
+            Lead,
+            id=lead_id
+        )
+
+    else:
+
+        lead=get_object_or_404(
+            Lead,
+            id=lead_id,
+            assigned_to=request.user
+        )
+
+
+
+    old_status=lead.status
+
+
+    lead.status=status
+
+    lead.save()
+
+
+
+    return JsonResponse(
+        {
+            "success":True,
+            "old_status":old_status,
+            "new_status":status
+        }
+    )
+
+
+
+# ==================================================
+# CONVERT TO DEAL
+# ==================================================
 
 @login_required
-def lead_convert(request, pk):
+def lead_convert(request,pk):
 
-    lead = get_object_or_404(Lead, pk=pk)
+    lead=get_object_or_404(
+        Lead,
+        pk=pk
+    )
 
-    # Prevent duplicate conversion
-    if hasattr(lead, "deal"):
+
+    if request.user.role!="admin":
+
+        if lead.assigned_to != request.user:
+
+            messages.error(
+                request,
+                "Permission denied."
+            )
+
+            return redirect(
+                "leads:lead_detail",
+                pk=pk
+            )
+
+
+    if lead.status!="won":
 
         messages.warning(
             request,
-            "This lead has already been converted."
+            "Only won leads can become deals."
         )
 
         return redirect(
+            "leads:lead_detail",
+            pk=pk
+        )
+
+
+    if hasattr(lead,"deal"):
+
+        return redirect(
             "deals:deal_detail",
-            pk=lead.deal.pk,
+            pk=lead.deal.pk
         )
 
-    if request.method == "POST":
 
-        deal = Deal.objects.create(
-            lead=lead,
-            amount=0,
-            stage="negotiation",
-        )
+
+    if request.method=="POST":
+
+        with transaction.atomic():
+
+            deal=Deal.objects.create(
+
+                lead=lead,
+
+                amount=
+                lead.estimated_value,
+
+                stage="negotiation"
+
+            )
+
 
         messages.success(
             request,
-            "Lead converted into Deal successfully."
+            "Lead converted into Deal."
         )
+
 
         return redirect(
             "deals:deal_detail",
-            pk=deal.pk,
+            pk=deal.pk
         )
+
+
 
     return render(
         request,
         "leads/lead_convert.html",
         {
-            "lead": lead,
-        },
+            "lead":lead
+        }
     )

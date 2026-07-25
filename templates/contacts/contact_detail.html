@@ -4,10 +4,11 @@
 
 {% block content %}
 
-<div class="container mt-4">
+<div class="container-fluid mt-4">
 
     <!-- Header -->
-    <div class="d-flex justify-content-between align-items-center mb-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap">
 
         <div>
 
@@ -22,42 +23,64 @@
 
         </div>
 
-        <a href="{% url 'contacts:contact_list' %}"
-           class="btn btn-secondary">
 
-            <i class="bi bi-arrow-left"></i>
+        <a href="{% url 'contacts:contact_list' %}"
+           class="crm-btn-secondary mt-3 mt-md-0">
+
+            <i class="bi bi-arrow-left me-2"></i>
             Back
 
         </a>
 
+
     </div>
+
+
 
     <!-- Contact Information -->
 
-    <div class="card shadow-sm border-0 mb-4">
+    <div class="crm-card mb-4">
 
-        <div class="card-header bg-primary text-white">
-
-            <h4 class="mb-0">
-
-                {{ contact.first_name }}
-                {{ contact.last_name }}
-
-            </h4>
-
-        </div>
 
         <div class="card-body">
 
+
+            <div class="d-flex justify-content-between align-items-center mb-4">
+
+
+                <h4 class="crm-title mb-0">
+
+                    <i class="bi bi-person-circle me-2"></i>
+
+                    {{ contact.first_name }}
+                    {{ contact.last_name }}
+
+                </h4>
+
+
+                <span class="badge bg-info">
+
+                    {{ contact.get_source_display }}
+
+                </span>
+
+
+            </div>
+
+
+
             <div class="row g-4">
+
 
                 <div class="col-md-6">
 
-                    <label class="fw-bold">
+                    <label class="crm-label">
                         Email
                     </label>
 
-                    <div class="form-control">
+                    <div class="crm-detail-box">
+
+                        <i class="bi bi-envelope me-2"></i>
 
                         {{ contact.email }}
 
@@ -65,13 +88,17 @@
 
                 </div>
 
+
+
                 <div class="col-md-6">
 
-                    <label class="fw-bold">
+                    <label class="crm-label">
                         Phone
                     </label>
 
-                    <div class="form-control">
+                    <div class="crm-detail-box">
+
+                        <i class="bi bi-telephone me-2"></i>
 
                         {{ contact.phone|default:"-" }}
 
@@ -79,59 +106,53 @@
 
                 </div>
 
+
+
                 <div class="col-md-6">
 
-                    <label class="fw-bold">
+                    <label class="crm-label">
                         Company
                     </label>
 
-                    <div class="form-control">
+                    <div class="crm-detail-box">
 
-                        {{ contact.company|default:"-" }}
+                        <i class="bi bi-building me-2"></i>
+
+                        {{ contact.company|default:"No Company" }}
 
                     </div>
 
                 </div>
 
+
+
                 <div class="col-md-6">
 
-                    <label class="fw-bold">
+                    <label class="crm-label">
                         Assigned To
                     </label>
 
-                    <div class="form-control">
+                    <div class="crm-detail-box">
 
-                        {{ contact.assigned_to|default:"-" }}
+                        <i class="bi bi-person-check me-2"></i>
 
-                    </div>
-
-                </div>
-
-                <div class="col-md-6">
-
-                    <label class="fw-bold">
-                        Source
-                    </label>
-
-                    <div>
-
-                        <span class="badge bg-info">
-
-                            {{ contact.get_source_display }}
-
-                        </span>
+                        {{ contact.assigned_to|default:"Not Assigned" }}
 
                     </div>
 
                 </div>
 
+
+
                 <div class="col-md-6">
 
-                    <label class="fw-bold">
+                    <label class="crm-label">
                         Created At
                     </label>
 
-                    <div class="form-control">
+                    <div class="crm-detail-box">
+
+                        <i class="bi bi-calendar me-2"></i>
 
                         {{ contact.created_at|date:"d M Y, h:i A" }}
 
@@ -139,65 +160,80 @@
 
                 </div>
 
+
             </div>
+
+
 
             <div class="mt-4">
 
-                <a href="{% url 'contacts:contact_edit' contact.pk %}"
-                   class="btn btn-warning">
 
-                    <i class="bi bi-pencil-square"></i>
+                <a href="{% url 'contacts:contact_edit' contact.pk %}"
+                   class="crm-btn-primary me-2">
+
+                    <i class="bi bi-pencil-square me-2"></i>
+
                     Edit
 
                 </a>
 
-                <a href="{% url 'contacts:contact_delete' contact.pk %}"
-                   class="btn btn-danger">
 
-                    <i class="bi bi-trash"></i>
+
+                <a href="{% url 'contacts:contact_delete' contact.pk %}"
+                   class="crm-btn-danger">
+
+                    <i class="bi bi-trash me-2"></i>
+
                     Delete
 
                 </a>
 
+
             </div>
+
 
         </div>
 
+
     </div>
+
+
+
 
     <!-- Related Leads -->
 
-    <div class="card shadow-sm border-0 mb-4">
+    <div class="crm-card mb-4">
+
 
         <div class="card-header">
 
-            <h5 class="mb-0">
-
+            <h5>
+                <i class="bi bi-funnel me-2"></i>
                 Related Leads
-
             </h5>
 
         </div>
 
+
         <div class="card-body">
+
 
             {% if leads %}
 
-                <ul class="list-group">
 
-                    {% for lead in leads %}
+                {% for lead in leads %}
 
-                        <li class="list-group-item">
+                <div class="crm-detail-box mb-2">
 
-                            {{ lead }}
+                    {{ lead }}
 
-                        </li>
+                </div>
 
-                    {% endfor %}
+                {% endfor %}
 
-                </ul>
 
             {% else %}
+
 
                 <p class="text-muted mb-0">
 
@@ -205,19 +241,29 @@
 
                 </p>
 
+
             {% endif %}
+
 
         </div>
 
+
     </div>
+
+
+
 
     <!-- Notes -->
 
-    <div class="card shadow-sm border-0 mb-4">
+
+    <div class="crm-card mb-4">
+
 
         <div class="card-header">
 
-            <h5 class="mb-0">
+            <h5>
+
+                <i class="bi bi-stickies me-2"></i>
 
                 Notes
 
@@ -225,84 +271,111 @@
 
         </div>
 
+
         <div class="card-body">
+
 
             {% if notes %}
 
-                <ul class="list-group">
 
-                    {% for note in notes %}
+                {% for note in notes %}
 
-                        <li class="list-group-item">
 
-                            {{ note }}
+                <div class="crm-detail-box mb-2">
 
-                        </li>
+                    {{ note }}
 
-                    {% endfor %}
+                </div>
 
-                </ul>
+
+                {% endfor %}
+
 
             {% else %}
 
-                <p class="text-muted mb-0">
+
+                <p class="text-muted">
 
                     No notes available.
 
                 </p>
 
+
             {% endif %}
+
+
 
         </div>
 
+
     </div>
 
-    <!-- Interactions -->
 
-    <div class="card shadow-sm border-0">
+
+
+    <!-- Interaction History -->
+
+
+    <div class="crm-card">
+
 
         <div class="card-header">
 
-            <h5 class="mb-0">
+
+            <h5>
+
+                <i class="bi bi-clock-history me-2"></i>
 
                 Interaction History
 
             </h5>
 
+
         </div>
+
 
         <div class="card-body">
 
+
             {% if interactions %}
 
-                <ul class="list-group">
 
-                    {% for interaction in interactions %}
+                {% for interaction in interactions %}
 
-                        <li class="list-group-item">
 
-                            {{ interaction }}
+                <div class="crm-detail-box mb-2">
 
-                        </li>
+                    {{ interaction }}
 
-                    {% endfor %}
+                </div>
 
-                </ul>
+
+                {% endfor %}
+
 
             {% else %}
 
-                <p class="text-muted mb-0">
+
+                <p class="text-muted">
 
                     No interactions available.
 
                 </p>
 
+
             {% endif %}
+
+
 
         </div>
 
+
     </div>
+
+
 
 </div>
 
+
 {% endblock %}
+

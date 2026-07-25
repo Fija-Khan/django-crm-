@@ -1,20 +1,22 @@
 {% extends "base.html" %}
 
+
 {% block title %}
 Lead Management
 {% endblock %}
 
 
+
 {% block content %}
+
 
 <div class="container-fluid">
 
 
-    <!-- =========================
-            PAGE HEADER
-    ========================== -->
+    <!-- PAGE HEADER -->
 
     <div class="d-flex justify-content-between align-items-center mb-4">
+
 
         <div>
 
@@ -28,10 +30,12 @@ Lead Management
 
 
             <p class="text-muted mb-0">
-                Manage your sales leads and track progress.
+                Manage sales leads and track your pipeline.
             </p>
 
+
         </div>
+
 
 
 
@@ -46,6 +50,7 @@ Lead Management
                 Kanban Board
 
             </a>
+
 
 
 
@@ -68,9 +73,162 @@ Lead Management
 
 
 
-    <!-- =========================
-            LEADS TABLE
-    ========================== -->
+
+    <!-- FILTER SECTION -->
+
+
+    <div class="crm-card shadow-sm mb-4">
+
+
+        <form method="GET">
+
+
+            <div class="row g-3 align-items-center">
+
+
+                <div class="col-md-4">
+
+
+                    <input 
+                    type="text"
+                    name="search"
+                    class="form-control"
+                    placeholder="Search lead title..."
+                    value="{{ request.GET.search }}">
+
+
+                </div>
+
+
+
+
+
+                <div class="col-md-3">
+
+
+                    <select name="status"
+                            class="form-select">
+
+
+                        <option value="">
+                            All Status
+                        </option>
+
+
+
+                        <option value="new"
+                        {% if request.GET.status == "new" %}
+                        selected
+                        {% endif %}>
+                            New
+                        </option>
+
+
+
+                        <option value="contacted"
+                        {% if request.GET.status == "contacted" %}
+                        selected
+                        {% endif %}>
+                            Contacted
+                        </option>
+
+
+
+                        <option value="qualified"
+                        {% if request.GET.status == "qualified" %}
+                        selected
+                        {% endif %}>
+                            Qualified
+                        </option>
+
+
+
+                        <option value="proposal"
+                        {% if request.GET.status == "proposal" %}
+                        selected
+                        {% endif %}>
+                            Proposal
+                        </option>
+
+
+
+                        <option value="won"
+                        {% if request.GET.status == "won" %}
+                        selected
+                        {% endif %}>
+                            Won
+                        </option>
+
+
+
+                        <option value="lost"
+                        {% if request.GET.status == "lost" %}
+                        selected
+                        {% endif %}>
+                            Lost
+                        </option>
+
+
+
+                    </select>
+
+
+                </div>
+
+
+
+
+
+                <div class="col-md-3">
+
+
+                    <input
+                    type="date"
+                    name="date"
+                    class="form-control"
+                    value="{{ request.GET.date }}">
+
+
+                </div>
+
+
+
+
+
+                <div class="col-md-2">
+
+
+                    <button class="crm-btn-primary w-100"
+                            type="submit">
+
+
+                        <i class="bi bi-search me-1"></i>
+
+                        Filter
+
+
+                    </button>
+
+
+                </div>
+
+
+            </div>
+
+
+        </form>
+
+
+    </div>
+
+
+
+
+
+
+
+
+    <!-- LEADS TABLE -->
 
 
     <div class="crm-card shadow-sm">
@@ -82,7 +240,9 @@ Lead Management
             <table class="table crm-table align-middle mb-0">
 
 
+
                 <thead>
+
 
                     <tr>
 
@@ -104,7 +264,6 @@ Lead Management
                             Actions
                         </th>
 
-
                     </tr>
 
 
@@ -113,18 +272,24 @@ Lead Management
 
 
 
+
                 <tbody>
+
 
 
                 {% for lead in leads %}
 
 
+
                     <tr>
+
 
 
                         <td>
                             #{{ lead.id }}
                         </td>
+
+
 
 
 
@@ -138,6 +303,8 @@ Lead Management
 
 
 
+
+
                         <td>
 
 
@@ -145,16 +312,20 @@ Lead Management
 
                                 {{ lead.contact }}
 
+
                             {% else %}
 
                                 <span class="text-muted">
                                     No Contact
                                 </span>
 
+
                             {% endif %}
 
 
                         </td>
+
+
 
 
 
@@ -213,6 +384,8 @@ Lead Management
 
 
 
+
+
                         <td>
 
 
@@ -237,6 +410,8 @@ Lead Management
 
 
 
+
+
                         <td>
 
                             ₹ {{ lead.estimated_value|default:0|floatformat:2 }}
@@ -247,15 +422,18 @@ Lead Management
 
 
 
+
                         <td>
 
 
                             {% if lead.expected_close %}
 
+
                                 {{ lead.expected_close|date:"d M Y" }}
 
 
                             {% else %}
+
 
                                 <span class="text-muted">
                                     -
@@ -272,15 +450,16 @@ Lead Management
 
 
 
+
                         <td class="text-center">
 
 
                             <div class="action-buttons">
 
 
+
                                 <a href="{% url 'leads:lead_detail' lead.id %}"
-                                   class="action-btn view-btn"
-                                   title="View">
+                                   class="action-btn view-btn">
 
                                     <i class="bi bi-eye"></i>
 
@@ -289,9 +468,9 @@ Lead Management
 
 
 
+
                                 <a href="{% url 'leads:lead_edit' lead.id %}"
-                                   class="action-btn edit-btn"
-                                   title="Edit">
+                                   class="action-btn edit-btn">
 
                                     <i class="bi bi-pencil-square"></i>
 
@@ -302,8 +481,7 @@ Lead Management
 
 
                                 <a href="{% url 'leads:lead_delete' lead.id %}"
-                                   class="action-btn delete-btn"
-                                   title="Delete">
+                                   class="action-btn delete-btn">
 
                                     <i class="bi bi-trash"></i>
 
@@ -313,15 +491,16 @@ Lead Management
 
 
 
-                                {% if lead.status != "won" and lead.status != "lost" %}
+                                {% if lead.status == "won" %}
+
 
                                 <a href="{% url 'leads:lead_convert' lead.id %}"
-                                   class="action-btn convert-btn"
-                                   title="Convert To Deal">
+                                   class="action-btn convert-btn">
 
                                     <i class="bi bi-arrow-repeat"></i>
 
                                 </a>
+
 
                                 {% endif %}
 
@@ -330,11 +509,14 @@ Lead Management
                             </div>
 
 
+
                         </td>
 
 
 
                     </tr>
+
+
 
 
 
@@ -357,22 +539,19 @@ Lead Management
                             </h5>
 
 
-
                             <p class="text-muted">
-                                Create your first lead to get started.
+                                Create your first lead.
                             </p>
-
 
 
 
                             <a href="{% url 'leads:lead_add' %}"
                                class="crm-btn-primary">
 
-
                                 Add Lead
 
-
                             </a>
+
 
 
                         </td>
@@ -395,10 +574,109 @@ Lead Management
         </div>
 
 
+
+
+
+
+
+
+        <!-- PAGINATION -->
+
+
+        {% if page_obj.has_other_pages %}
+
+
+
+        <nav class="mt-4">
+
+
+            <ul class="pagination justify-content-center">
+
+
+                {% if page_obj.has_previous %}
+
+
+                <li class="page-item">
+
+
+                    <a class="page-link"
+                    href="?page={{ page_obj.previous_page_number }}&search={{ request.GET.search }}&status={{ request.GET.status }}">
+
+
+                        Previous
+
+
+                    </a>
+
+
+                </li>
+
+
+                {% endif %}
+
+
+
+
+
+
+                <li class="page-item active">
+
+
+                    <span class="page-link">
+
+                        {{ page_obj.number }}
+
+                    </span>
+
+
+                </li>
+
+
+
+
+
+
+                {% if page_obj.has_next %}
+
+
+
+                <li class="page-item">
+
+
+                    <a class="page-link"
+                    href="?page={{ page_obj.next_page_number }}&search={{ request.GET.search }}&status={{ request.GET.status }}">
+
+
+                        Next
+
+
+                    </a>
+
+
+                </li>
+
+
+                {% endif %}
+
+
+
+            </ul>
+
+
+        </nav>
+
+
+
+        {% endif %}
+
+
+
     </div>
 
 
+
 </div>
+
 
 
 {% endblock %}
