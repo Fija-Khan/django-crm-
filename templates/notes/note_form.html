@@ -1,67 +1,148 @@
 {% extends "base.html" %}
 
+
 {% block title %}
+
 {% if object %}
 Edit Note
 {% else %}
 Add Note
 {% endif %}
+
 {% endblock %}
+
+
 
 
 {% block content %}
 
+
 <div class="container-fluid mt-4">
 
 
-    <!-- Header -->
+
+    <!-- ================= HEADER ================= -->
+
+
     <div class="mb-4">
+
 
         <h2 class="fw-bold text-white">
 
+
             <i class="bi bi-journal-text text-purple me-2"></i>
 
+
             {% if object %}
+
                 Edit Note
+
             {% else %}
+
                 Add Note
+
             {% endif %}
+
 
         </h2>
 
+
+
         <p class="text-muted">
+
             Add important information related to contact or lead.
+
         </p>
+
 
     </div>
 
 
 
 
-    <!-- Form Card -->
+
+
+
+    <!-- ================= FORM CARD ================= -->
+
 
     <div class="crm-card p-4">
 
 
+
         <form method="post">
+
 
             {% csrf_token %}
 
 
 
+
+
+            <!-- FORM ERRORS -->
+
+
             {% if form.errors %}
+
 
             <div class="alert alert-danger">
 
+
                 <strong>
-                    Please fix the following errors:
+                    Please correct the following errors:
                 </strong>
 
-                {{ form.errors }}
+
+
+                <ul class="mb-0">
+
+
+                    {% for field in form %}
+
+
+                        {% for error in field.errors %}
+
+
+                        <li>
+
+                            {{ field.label }}: {{ error }}
+
+                        </li>
+
+
+                        {% endfor %}
+
+
+                    {% endfor %}
+
+
+
+
+                    {% for error in form.non_field_errors %}
+
+
+                    <li>
+
+                        {{ error }}
+
+                    </li>
+
+
+                    {% endfor %}
+
+
+                </ul>
+
+
 
             </div>
 
+
             {% endif %}
+
+
+
+
 
 
 
@@ -70,45 +151,86 @@ Add Note
             <div class="row">
 
 
+
+
+
+                <!-- CONTACT -->
+
+
                 <div class="col-md-6 mb-3">
 
+
                     <label class="form-label text-white">
+
                         Contact
+
                     </label>
+
+
 
                     {{ form.contact }}
 
+
+
                 </div>
 
 
+
+
+
+
+
+                <!-- LEAD -->
 
 
                 <div class="col-md-6 mb-3">
 
+
                     <label class="form-label text-white">
+
                         Lead
+
                     </label>
+
+
 
                     {{ form.lead }}
 
+
+
                 </div>
+
+
+
 
 
             </div>
 
 
 
+
+
+
+
+
+
+            <!-- NOTE CONTENT -->
 
 
             <div class="mb-3">
 
 
                 <label class="form-label text-white">
+
                     Note
+
                 </label>
 
 
+
                 {{ form.content }}
+
+
 
 
             </div>
@@ -118,31 +240,74 @@ Add Note
 
 
 
+
+
+
+            <!-- BUTTONS -->
+
+
             <div class="mt-4">
+
+
+
 
 
                 <button type="submit"
                         class="btn btn-purple px-4">
 
+
                     <i class="bi bi-save me-1"></i>
 
-                    Save Note
+
+
+                    {% if object %}
+
+
+                        Update Note
+
+
+                    {% else %}
+
+
+                        Save Note
+
+
+                    {% endif %}
+
+
 
                 </button>
 
 
 
 
-                <a href="{% url 'note_list' %}"
+
+
+
+                <a href="{% url 'notes:note_list' %}"
                    class="btn btn-outline-light ms-2 px-4">
 
+
+
+                    <i class="bi bi-x-lg me-1"></i>
+
+
+
                     Cancel
+
+
 
                 </a>
 
 
 
+
+
+
             </div>
+
+
+
 
 
 
@@ -150,11 +315,19 @@ Add Note
 
 
 
+
+
+
     </div>
 
 
 
+
+
+
 </div>
+
+
 
 
 {% endblock %}

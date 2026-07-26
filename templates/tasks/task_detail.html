@@ -1,0 +1,290 @@
+{% extends "base.html" %}
+{% block title %}
+Task Detail
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-4">
+
+    <!-- Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <div>
+
+            <h2 class="fw-bold">
+                <i class="bi bi-card-checklist text-primary"></i>
+                Task Details
+            </h2>
+
+            <p class="text-muted mb-0">
+                View complete task information.
+            </p>
+
+        </div>
+
+        <div>
+
+            <a href="{% url 'tasks:task_edit' task.pk %}"
+               class="btn btn-warning">
+
+                <i class="bi bi-pencil-square"></i>
+                Edit
+
+            </a>
+
+            <a href="{% url 'tasks:task_list' %}"
+               class="btn btn-secondary">
+
+                <i class="bi bi-arrow-left"></i>
+                Back
+
+            </a>
+
+        </div>
+
+    </div>
+
+    {% if messages %}
+
+        {% for message in messages %}
+
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show">
+
+                {{ message }}
+
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="alert">
+                </button>
+
+            </div>
+
+        {% endfor %}
+
+    {% endif %}
+
+    <div class="card shadow-sm border-0">
+
+        <div class="card-header bg-primary text-white">
+
+            <h4 class="mb-0">
+                {{ task.title }}
+            </h4>
+
+        </div>
+
+        <div class="card-body">
+
+            <div class="row">
+
+                <div class="col-md-6 mb-3">
+
+                    <strong>Assigned To</strong>
+
+                    <p class="mb-0">
+                        {{ task.assigned_to }}
+                    </p>
+
+                </div>
+
+                <div class="col-md-6 mb-3">
+
+                    <strong>Due Date</strong>
+
+                    <p class="mb-0">
+
+                        {% if task.due_date %}
+
+                            {{ task.due_date }}
+
+                        {% else %}
+
+                            <span class="text-muted">
+                                Not Assigned
+                            </span>
+
+                        {% endif %}
+
+                    </p>
+
+                </div>
+
+                <div class="col-12 mb-3">
+
+                    <strong>Description</strong>
+
+                    <p class="mb-0">
+
+                        {% if task.description %}
+
+                            {{ task.description }}
+
+                        {% else %}
+
+                            <span class="text-muted">
+                                No description available.
+                            </span>
+
+                        {% endif %}
+
+                    </p>
+
+                </div>
+
+                <div class="col-md-6 mb-3">
+
+                    <strong>Related Contact</strong>
+
+                    <p class="mb-0">
+
+                        {% if task.related_contact %}
+
+                            {{ task.related_contact }}
+
+                        {% else %}
+
+                            <span class="text-muted">
+                                Not Linked
+                            </span>
+
+                        {% endif %}
+
+                    </p>
+
+                </div>
+
+                <div class="col-md-6 mb-3">
+
+                    <strong>Related Lead</strong>
+
+                    <p class="mb-0">
+
+                        {% if task.related_lead %}
+
+                            {{ task.related_lead }}
+
+                        {% else %}
+
+                            <span class="text-muted">
+                                Not Linked
+                            </span>
+
+                        {% endif %}
+
+                    </p>
+
+                </div>
+
+                <div class="col-md-6 mb-3">
+
+                    <strong>Priority</strong>
+
+                    <p>
+
+                        {% if task.priority == "urgent" %}
+
+                            <span class="badge bg-danger">
+                                Urgent
+                            </span>
+
+                        {% elif task.priority == "high" %}
+
+                            <span class="badge bg-warning text-dark">
+                                High
+                            </span>
+
+                        {% elif task.priority == "medium" %}
+
+                            <span class="badge bg-info text-dark">
+                                Medium
+                            </span>
+
+                        {% else %}
+
+                            <span class="badge bg-secondary">
+                                Low
+                            </span>
+
+                        {% endif %}
+
+                    </p>
+
+                </div>
+
+                <div class="col-md-6 mb-3">
+
+                    <strong>Status</strong>
+
+                    <p>
+
+                        {% if task.status == "done" %}
+
+                            <span class="badge bg-success">
+                                Completed
+                            </span>
+
+                        {% elif task.status == "in_progress" %}
+
+                            <span class="badge bg-primary">
+                                In Progress
+                            </span>
+
+                        {% else %}
+
+                            <span class="badge bg-warning text-dark">
+                                Pending
+                            </span>
+
+                        {% endif %}
+
+                    </p>
+
+                </div>
+
+                <div class="col-md-6 mb-3">
+
+                    <strong>Created On</strong>
+
+                    <p class="mb-0">
+                        {{ task.created_at|date:"d M Y, h:i A" }}
+                    </p>
+
+                </div>
+
+            </div>
+
+            <hr>
+
+            <div class="d-flex justify-content-end gap-2">
+
+                {% if task.status != "done" %}
+
+                    <a href="{% url 'tasks:task_complete' task.pk %}"
+                       class="btn btn-success">
+
+                        <i class="bi bi-check-circle"></i>
+                        Mark Complete
+
+                    </a>
+
+                {% endif %}
+
+                <a href="{% url 'tasks:task_delete' task.pk %}"
+                   class="btn btn-danger">
+
+                    <i class="bi bi-trash"></i>
+                    Delete
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,598 +1,1285 @@
 {% extends "base.html" %}
 
+
 {% block title %}
 Reports Dashboard
 {% endblock %}
 
+
+
 {% block content %}
 
-<div class="container-fluid py-4 reports-dashboard">
 
-    <!-- ========================= -->
-    <!-- Page Header -->
-    <!-- ========================= -->
+<div class="container-fluid mt-4">
 
-    <div class="d-flex justify-content-between align-items-center flex-wrap mb-4">
+
+
+    <!-- ================= HEADER ================= -->
+
+
+    <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
+
+
         <div>
-            <h2 class="fw-bold mb-1">
-                <i class="bi bi-bar-chart-fill me-2"></i>
+
+            <h2 class="fw-bold text-white mb-1">
+
+                <i class="bi bi-bar-chart-fill text-info me-2"></i>
+
                 Reports Dashboard
+
             </h2>
 
-            <p class="text-muted mb-0">
-                Monitor CRM performance with key statistics.
+
+            <p class="text-secondary mb-0">
+
+                Analyze CRM performance and business growth.
+
             </p>
+
+
         </div>
+
+
     </div>
 
-    <!-- ========================= -->
-    <!-- Filters -->
-    <!-- ========================= -->
 
-    <div class="card shadow-sm border-0 mb-4">
-        <div class="card-body">
 
-            <form method="GET">
 
-                <div class="row g-3 align-items-end">
 
-                    <div class="col-md-4">
-                        <label class="form-label">From Date</label>
 
-                        <input
-                            type="date"
-                            name="start_date"
-                            class="form-control"
-                            value="{{ start_date|default:'' }}"
-                        >
-                    </div>
+    <!-- ================= DATE FILTER ================= -->
 
-                    <div class="col-md-4">
-                        <label class="form-label">To Date</label>
 
-                        <input
-                            type="date"
-                            name="end_date"
-                            class="form-control"
-                            value="{{ end_date|default:'' }}"
-                        >
-                    </div>
+    <div class="crm-card p-4 mb-4">
 
-                    <div class="col-md-4 d-flex gap-2">
 
-                        <button type="submit" class="btn btn-primary">
-                            <i class="bi bi-funnel-fill me-1"></i>
-                            Filter
-                        </button>
+        <form method="GET">
 
-                        <a
-                            href="{% url 'reports:dashboard' %}"
-                            class="btn btn-outline-secondary"
-                        >
-                            Reset
-                        </a>
 
-                    </div>
+            <div class="row g-3 align-items-end">
+
+
+
+                <div class="col-md-4">
+
+
+                    <label class="form-label text-white">
+
+                        From Date
+
+                    </label>
+
+
+                    <input type="date"
+                           name="start_date"
+                           class="form-control"
+                           value="{{ start_date|default:'' }}">
+
 
                 </div>
 
-            </form>
 
-        </div>
+
+
+
+                <div class="col-md-4">
+
+
+                    <label class="form-label text-white">
+
+                        To Date
+
+                    </label>
+
+
+                    <input type="date"
+                           name="end_date"
+                           class="form-control"
+                           value="{{ end_date|default:'' }}">
+
+
+                </div>
+
+
+
+
+
+                <div class="col-md-4">
+
+
+                    <button type="submit"
+                            class="btn btn-info px-4">
+
+
+                        <i class="bi bi-funnel me-2"></i>
+
+                        Filter
+
+
+                    </button>
+
+
+
+                    <a href="{% url 'reports:dashboard' %}"
+                       class="btn btn-outline-light ms-2 px-4">
+
+
+                        Reset
+
+
+                    </a>
+
+
+
+                </div>
+
+
+
+
+            </div>
+
+
+        </form>
+
+
     </div>
 
-    <!-- ========================= -->
-    <!-- Summary Cards -->
-    <!-- ========================= -->
+
+
+
+
+
+
+
+    <!-- ================= SUMMARY CARDS ================= -->
+
+
 
     <div class="row g-4">
 
-        <!-- Contacts -->
+
+
+        <!-- CONTACTS -->
+
 
         <div class="col-md-3">
-            <div class="card shadow-sm border-0">
 
-                <div class="card-body text-center">
-                    <i class="bi bi-people-fill display-6 text-primary"></i>
 
-                    <h6 class="mt-3">Contacts</h6>
+            <div class="crm-card p-4 text-center">
 
-                    <h2>{{ total_contacts }}</h2>
-                </div>
+
+                <i class="bi bi-people-fill display-5 text-info"></i>
+
+
+                <h6 class="text-secondary mt-3">
+
+                    Contacts
+
+                </h6>
+
+
+                <h2 class="text-white fw-bold">
+
+                    {{ total_contacts }}
+
+                </h2>
+
 
             </div>
+
+
         </div>
 
-        <!-- Companies -->
+
+
+
+
+
+
+        <!-- COMPANIES -->
+
 
         <div class="col-md-3">
-            <div class="card shadow-sm border-0">
 
-                <div class="card-body text-center">
-                    <i class="bi bi-buildings display-6 text-success"></i>
 
-                    <h6 class="mt-3">Companies</h6>
+            <div class="crm-card p-4 text-center">
 
-                    <h2>{{ total_companies }}</h2>
-                </div>
+
+                <i class="bi bi-building display-5 text-success"></i>
+
+
+                <h6 class="text-secondary mt-3">
+
+                    Companies
+
+                </h6>
+
+
+                <h2 class="text-white fw-bold">
+
+                    {{ total_companies }}
+
+                </h2>
+
 
             </div>
+
+
         </div>
 
-        <!-- Leads -->
+
+
+
+
+
+
+        <!-- LEADS -->
+
 
         <div class="col-md-3">
-            <div class="card shadow-sm border-0">
 
-                <div class="card-body text-center">
-                    <i class="bi bi-person-plus-fill display-6 text-warning"></i>
 
-                    <h6 class="mt-3">Leads</h6>
+            <div class="crm-card p-4 text-center">
 
-                    <h2>{{ total_leads }}</h2>
-                </div>
+
+                <i class="bi bi-person-plus-fill display-5 text-warning"></i>
+
+
+                <h6 class="text-secondary mt-3">
+
+                    Leads
+
+                </h6>
+
+
+                <h2 class="text-white fw-bold">
+
+                    {{ total_leads }}
+
+                </h2>
+
 
             </div>
+
+
         </div>
 
-        <!-- Deals -->
+
+
+
+
+
+
+
+        <!-- DEALS -->
+
 
         <div class="col-md-3">
-            <div class="card shadow-sm border-0">
 
-                <div class="card-body text-center">
-                    <i class="bi bi-briefcase-fill display-6 text-info"></i>
 
-                    <h6 class="mt-3">Deals</h6>
+            <div class="crm-card p-4 text-center">
 
-                    <h2>{{ total_deals }}</h2>
-                </div>
+
+                <i class="bi bi-briefcase-fill display-5 text-primary"></i>
+
+
+                <h6 class="text-secondary mt-3">
+
+                    Deals
+
+                </h6>
+
+
+                <h2 class="text-white fw-bold">
+
+                    {{ total_deals }}
+
+                </h2>
+
 
             </div>
+
+
         </div>
+
+
+
 
     </div>
 
-    <!-- ========================= -->
-    <!-- Summary Cards Row 2 -->
-    <!-- ========================= -->
+
+
+
+
+
+
+
+    <!-- ================= SECOND SUMMARY ROW ================= -->
+
+
 
     <div class="row g-4 mt-1">
 
-        <!-- Tasks -->
+
+
+
+
+        <!-- TASKS -->
+
 
         <div class="col-md-3">
-            <div class="card shadow-sm border-0">
 
-                <div class="card-body text-center">
-                    <i class="bi bi-list-check display-6 text-secondary"></i>
 
-                    <h6 class="mt-3">Tasks</h6>
+            <div class="crm-card p-4 text-center">
 
-                    <h2>{{ total_tasks }}</h2>
-                </div>
+
+                <i class="bi bi-list-check display-5 text-warning"></i>
+
+
+                <h6 class="text-secondary mt-3">
+
+                    Tasks
+
+                </h6>
+
+
+                <h2 class="text-white fw-bold">
+
+                    {{ total_tasks }}
+
+                </h2>
+
 
             </div>
+
+
         </div>
 
-        <!-- Revenue -->
+
+
+
+
+
+
+        <!-- REVENUE -->
+
 
         <div class="col-md-3">
-            <div class="card shadow-sm border-0">
 
-                <div class="card-body text-center">
-                    <i class="bi bi-currency-rupee display-6 text-dark"></i>
 
-                    <h6 class="mt-3">Revenue</h6>
+            <div class="crm-card p-4 text-center">
 
-                    <h2>₹ {{ total_revenue|floatformat:0 }}</h2>
-                </div>
+
+                <i class="bi bi-currency-dollar display-5 text-success"></i>
+
+
+                <h6 class="text-secondary mt-3">
+
+                    Revenue
+
+                </h6>
+
+
+                <h2 class="text-white fw-bold">
+
+                    $ {{ total_revenue|floatformat:0 }}
+
+                </h2>
+
 
             </div>
+
+
         </div>
 
-        <!-- Won Deals -->
+
+
+
+
+
+
+
+        <!-- AVG DEAL -->
+
 
         <div class="col-md-3">
-            <div class="card shadow-sm border-0">
 
-                <div class="card-body text-center">
-                    <i class="bi bi-trophy-fill display-6 text-success"></i>
 
-                    <h6 class="mt-3">Won Deals</h6>
+            <div class="crm-card p-4 text-center">
 
-                    <h2>{{ won_deals }}</h2>
-                </div>
+
+                <i class="bi bi-graph-up display-5 text-info"></i>
+
+
+                <h6 class="text-secondary mt-3">
+
+                    Avg Deal Value
+
+                </h6>
+
+
+                <h2 class="text-white fw-bold">
+
+                    $ {{ average_deal_value|floatformat:0 }}
+
+                </h2>
+
 
             </div>
+
+
         </div>
 
-        <!-- Lost Deals -->
+
+
+
+
+
+
+
+        <!-- WON DEALS -->
+
 
         <div class="col-md-3">
-            <div class="card shadow-sm border-0">
 
-                <div class="card-body text-center">
-                    <i class="bi bi-x-circle-fill display-6 text-danger"></i>
 
-                    <h6 class="mt-3">Lost Deals</h6>
+            <div class="crm-card p-4 text-center">
 
-                    <h2>{{ lost_deals }}</h2>
-                </div>
+
+                <i class="bi bi-trophy-fill display-5 text-warning"></i>
+
+
+                <h6 class="text-secondary mt-3">
+
+                    Won Deals
+
+                </h6>
+
+
+                <h2 class="text-white fw-bold">
+
+                    {{ won_deals }}
+
+                </h2>
+
 
             </div>
+
+
         </div>
+
+
+
 
     </div>
 
-    <!-- ========================= -->
-    <!-- Charts -->
-    <!-- ========================= -->
 
-    <div class="row mt-4">
 
-        <div class="col-lg-12">
 
-            <div class="card shadow-sm border-0">
 
-                <div class="card-header bg-white">
 
-                    <h5 class="mb-0">
-                        <i class="bi bi-graph-up-arrow text-success me-2"></i>
-                        Monthly Revenue Trend
-                    </h5>
 
-                </div>
+    <!-- ================= REVENUE CHART ================= -->
 
-                <div class="card-body">
 
-                    <canvas id="revenueChart" height="100"></canvas>
 
-                </div>
+    <div class="crm-card p-4 mt-4">
 
-            </div>
 
-        </div>
 
-    </div>
+        <h5 class="text-white mb-4">
 
-    <!-- ========================= -->
-    <!-- Deal Statistics -->
-    <!-- ========================= -->
 
-    <div class="row mt-4">
+            <i class="bi bi-graph-up-arrow text-success me-2"></i>
 
-        <!-- Negotiation -->
 
-        <div class="col-md-4">
+            Monthly Revenue Trend
 
-            <div class="card border-0 shadow-sm">
 
-                <div class="card-body text-center">
+        </h5>
 
-                    <h6 class="text-muted">
-                        Negotiation
-                    </h6>
 
-                    <h2 class="text-warning">
-                        {{ negotiation_deals }}
-                    </h2>
 
-                </div>
 
-            </div>
 
-        </div>
+        <canvas id="revenueChart"
+                height="100">
+        </canvas>
 
-        <!-- Contract -->
 
-        <div class="col-md-4">
-
-            <div class="card border-0 shadow-sm">
-
-                <div class="card-body text-center">
-
-                    <h6 class="text-muted">
-                        Contract
-                    </h6>
-
-                    <h2 class="text-primary">
-                        {{ contract_deals }}
-                    </h2>
-
-                </div>
-
-            </div>
-
-        </div>
-
-        <!-- Open Deals -->
-
-        <div class="col-md-4">
-
-            <div class="card border-0 shadow-sm">
-
-                <div class="card-body text-center">
-
-                    <h6 class="text-muted">
-                        Open Deals
-                    </h6>
-
-                    <h2 class="text-info">
-                        {{ open_deals }}
-                    </h2>
-
-                </div>
-
-            </div>
-
-        </div>
 
     </div>
 
-    <!-- ========================= -->
-    <!-- Recent Deals -->
-    <!-- ========================= -->
 
-    <div class="card shadow-sm border-0 mt-4">
+    <!-- ================= DEAL STATISTICS ================= -->
 
-        <div class="card-header bg-white">
 
-            <div class="d-flex justify-content-between align-items-center">
+    <div class="row g-4 mt-4">
 
-                <h5 class="mb-0">
-                    <i class="bi bi-briefcase-fill me-2 text-primary"></i>
-                    Recent Deals
-                </h5>
 
-                <a href="{% url 'deals:deal_list' %}" class="btn btn-primary btn-sm">
-                    <i class="bi bi-eye me-1"></i>
-                    View All
-                </a>
+        <!-- NEGOTIATION -->
+
+        <div class="col-md-4">
+
+
+            <div class="crm-card p-4 text-center">
+
+
+                <h6 class="text-secondary">
+
+                    Negotiation
+
+                </h6>
+
+
+                <h2 class="text-warning fw-bold">
+
+                    {{ negotiation_deals }}
+
+                </h2>
+
 
             </div>
 
+
         </div>
+
+
+
+
+
+
+        <!-- CONTRACT -->
+
+
+        <div class="col-md-4">
+
+
+            <div class="crm-card p-4 text-center">
+
+
+                <h6 class="text-secondary">
+
+                    Contract
+
+                </h6>
+
+
+                <h2 class="text-info fw-bold">
+
+                    {{ contract_deals }}
+
+                </h2>
+
+
+            </div>
+
+
+        </div>
+
+
+
+
+
+
+        <!-- OPEN DEALS -->
+
+
+        <div class="col-md-4">
+
+
+            <div class="crm-card p-4 text-center">
+
+
+                <h6 class="text-secondary">
+
+                    Open Deals
+
+                </h6>
+
+
+                <h2 class="text-primary fw-bold">
+
+                    {{ open_deals }}
+
+                </h2>
+
+
+            </div>
+
+
+        </div>
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+    <!-- ================= RECENT LEADS ================= -->
+
+
+
+    <div class="crm-card p-4 mt-4">
+
+
+
+        <div class="d-flex justify-content-between align-items-center mb-3">
+
+
+            <h5 class="text-white mb-0">
+
+                <i class="bi bi-person-plus-fill text-warning me-2"></i>
+
+                Recent Leads
+
+            </h5>
+
+
+
+            <a href="{% url 'leads:lead_list' %}"
+               class="btn btn-sm btn-outline-info">
+
+                View All
+
+            </a>
+
+
+
+        </div>
+
+
+
+
+
 
         <div class="table-responsive">
 
-            <table class="table table-hover align-middle mb-0">
 
-                <thead class="table-light">
+            <table class="table align-middle interaction-table">
+
+
+
+                <thead>
+
 
                     <tr>
-                        <th>Lead</th>
-                        <th>Amount</th>
-                        <th>Stage</th>
-                        <th>Close Date</th>
+
+
+                        <th>
+                            Name
+                        </th>
+
+
+                        <th>
+                            Contact
+                        </th>
+
+
+                        <th>
+                            Status
+                        </th>
+
+
+                        <th>
+                            Assigned To
+                        </th>
+
+
+                        <th>
+                            Date
+                        </th>
+
+
                     </tr>
+
 
                 </thead>
 
+
+
+
+
+
                 <tbody>
 
-                    {% for deal in recent_deals %}
+
+
+                {% for lead in recent_leads %}
+
+
 
                     <tr>
 
-                        <td>
-                            {{ deal.lead.title }}
-                        </td>
-
-                        <td>
-                            ₹ {{ deal.amount|floatformat:0 }}
-                        </td>
 
                         <td>
 
-                            {% if deal.stage == "closed_won" %}
-
-                                <span class="badge bg-success">
-                                    Won
-                                </span>
-
-                            {% elif deal.stage == "closed_lost" %}
-
-                                <span class="badge bg-danger">
-                                    Lost
-                                </span>
-
-                            {% elif deal.stage == "negotiation" %}
-
-                                <span class="badge bg-warning text-dark">
-                                    Negotiation
-                                </span>
-
-                            {% elif deal.stage == "contract" %}
-
-                                <span class="badge bg-primary">
-                                    Contract
-                                </span>
-
-                            {% else %}
-
-                                <span class="badge bg-secondary">
-                                    {{ deal.stage }}
-                                </span>
-
-                            {% endif %}
+                            {{ lead.title }}
 
                         </td>
+
+
+
 
                         <td>
-                            {{ deal.close_date|date:"d M Y" }}
+
+                            {{ lead.contact }}
+
                         </td>
+
+
+
+
+
+                        <td>
+
+
+                            <span class="badge bg-info">
+
+                                {{ lead.status }}
+
+                            </span>
+
+
+                        </td>
+
+
+
+
+
+                        <td>
+
+                            {{ lead.assigned_to|default:"-" }}
+
+                        </td>
+
+
+
+
+
+                        <td>
+
+                            {{ lead.created_at|date:"d M Y" }}
+
+                        </td>
+
+
 
                     </tr>
 
-                    {% empty %}
+
+
+                {% empty %}
+
+
 
                     <tr>
 
-                        <td colspan="4" class="text-center py-4 text-muted">
-                            No recent deals found.
+
+                        <td colspan="5"
+                            class="text-center text-secondary">
+
+
+                            No recent leads found.
+
+
                         </td>
+
 
                     </tr>
 
-                    {% endfor %}
+
+
+                {% endfor %}
+
+
 
                 </tbody>
 
+
             </table>
 
+
         </div>
+
 
     </div>
-    <!-- ========================= -->
-    <!-- Recent Tasks -->
-    <!-- ========================= -->
 
-    <div class="card shadow-sm border-0 mt-4">
 
-        <div class="card-header bg-white d-flex justify-content-between align-items-center">
 
-            <h5 class="mb-0">
-                <i class="bi bi-list-check me-2 text-success"></i>
-                Recent Tasks
+
+
+
+
+
+
+    <!-- ================= RECENT DEALS ================= -->
+
+
+
+    <div class="crm-card p-4 mt-4">
+
+
+
+        <div class="d-flex justify-content-between align-items-center mb-3">
+
+
+            <h5 class="text-white mb-0">
+
+                <i class="bi bi-briefcase-fill text-primary me-2"></i>
+
+                Recent Deals
+
             </h5>
+
+
+
+            <a href="{% url 'deals:deal_list' %}"
+               class="btn btn-sm btn-outline-info">
+
+                View All
+
+            </a>
+
+
 
         </div>
 
-        <div class="card-body">
 
-            {% if recent_tasks %}
 
-                <div class="list-group list-group-flush">
 
-                    {% for task in recent_tasks %}
 
-                        <div class="list-group-item">
 
-                            <div class="d-flex justify-content-between align-items-center">
 
-                                <div>
+        <div class="table-responsive">
 
-                                    <strong>{{ task.title }}</strong>
 
-                                    <br>
+            <table class="table align-middle interaction-table">
 
-                                    <small class="text-muted">
 
-                                        Assigned To :
-                                        {{ task.assigned_to }}
 
-                                    </small>
+                <thead>
 
-                                </div>
 
-                                {% if task.completed %}
+                    <tr>
 
-                                    <span class="badge bg-success">
-                                        Completed
-                                    </span>
 
-                                {% else %}
+                        <th>
+                            Lead
+                        </th>
 
-                                    <span class="badge bg-warning text-dark">
-                                        Pending
-                                    </span>
 
-                                {% endif %}
+                        <th>
+                            Amount
+                        </th>
 
-                            </div>
 
-                        </div>
+                        <th>
+                            Stage
+                        </th>
 
-                    {% endfor %}
+
+                        <th>
+                            Close Date
+                        </th>
+
+
+                    </tr>
+
+
+                </thead>
+
+
+
+
+
+                <tbody>
+
+
+
+                {% for deal in recent_deals %}
+
+
+
+                    <tr>
+
+
+
+                        <td>
+
+                            {{ deal.lead }}
+
+                        </td>
+
+
+
+
+
+                        <td>
+
+                            $ {{ deal.amount }}
+
+                        </td>
+
+
+
+
+
+                        <td>
+
+
+
+                            {% if deal.stage == "closed_won" %}
+
+
+                                <span class="badge bg-success">
+
+                                    Won
+
+                                </span>
+
+
+
+                            {% elif deal.stage == "closed_lost" %}
+
+
+
+                                <span class="badge bg-danger">
+
+                                    Lost
+
+                                </span>
+
+
+
+                            {% elif deal.stage == "negotiation" %}
+
+
+
+                                <span class="badge bg-warning text-dark">
+
+                                    Negotiation
+
+                                </span>
+
+
+
+                            {% else %}
+
+
+
+                                <span class="badge bg-info">
+
+                                    {{ deal.stage }}
+
+                                </span>
+
+
+
+                            {% endif %}
+
+
+
+                        </td>
+
+
+
+
+
+
+                        <td>
+
+                            {{ deal.close_date|date:"d M Y" }}
+
+                        </td>
+
+
+
+                    </tr>
+
+
+
+                {% empty %}
+
+
+
+                    <tr>
+
+                        <td colspan="4"
+                            class="text-center text-secondary">
+
+                            No recent deals found.
+
+                        </td>
+
+                    </tr>
+
+
+
+                {% endfor %}
+
+
+
+                </tbody>
+
+
+            </table>
+
+
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+    <!-- ================= RECENT TASKS ================= -->
+
+
+
+    <div class="crm-card p-4 mt-4">
+
+
+
+        <h5 class="text-white mb-3">
+
+
+            <i class="bi bi-list-check text-success me-2"></i>
+
+
+            Recent Tasks
+
+
+        </h5>
+
+
+
+
+
+        {% if recent_tasks %}
+
+
+
+            {% for task in recent_tasks %}
+
+
+
+            <div class="border-bottom py-3">
+
+
+
+                <div class="d-flex justify-content-between">
+
+
+
+                    <div>
+
+
+                        <h6 class="text-white mb-1">
+
+
+                            {{ task.title }}
+
+
+                        </h6>
+
+
+
+                        <small class="text-secondary">
+
+
+                            Assigned To:
+                            {{ task.assigned_to }}
+
+
+                        </small>
+
+
+                    </div>
+
+
+
+
+
+
+                    {% if task.completed %}
+
+
+                        <span class="badge bg-success">
+
+                            Completed
+
+                        </span>
+
+
+
+                    {% else %}
+
+
+
+                        <span class="badge bg-warning text-dark">
+
+                            Pending
+
+                        </span>
+
+
+
+                    {% endif %}
+
+
 
                 </div>
 
-            {% else %}
 
-                <p class="text-center text-muted my-3">
-                    No recent tasks found.
-                </p>
 
-            {% endif %}
+            </div>
 
-        </div>
+
+
+            {% endfor %}
+
+
+
+
+
+        {% else %}
+
+
+
+            <p class="text-secondary text-center">
+
+                No recent tasks found.
+
+            </p>
+
+
+
+        {% endif %}
+
+
+
 
     </div>
 
-</div>
+
+
+
+
+
+
+
 
 {% endblock %}
 
 
+
+
+
 {% block extra_js %}
+
+
 
 <script>
 
-document.addEventListener("DOMContentLoaded", function () {
 
-    const revenueCtx = document.getElementById("revenueChart");
+document.addEventListener("DOMContentLoaded", function(){
 
-    if (revenueCtx) {
 
-        new Chart(revenueCtx, {
+    const ctx = document.getElementById("revenueChart");
 
-            type: "line",
 
-            data: {
+
+    if(ctx){
+
+
+        new Chart(ctx, {
+
+
+            type:"line",
+
+
+            data:{
+
 
                 labels: {{ revenue_labels|safe }},
 
-                datasets: [{
 
-                    label: "Revenue",
+
+                datasets:[{
+
+
+                    label:"Revenue",
+
 
                     data: {{ revenue_values|safe }},
 
-                    borderWidth: 2,
 
-                    tension: 0.4,
+                    borderWidth:2,
 
-                    fill: false
+
+                    tension:0.4
+
 
                 }]
 
+
             },
 
-            options: {
 
-                responsive: true,
 
-                maintainAspectRatio: false,
+            options:{
 
-                plugins: {
 
-                    legend: {
+                responsive:true,
 
-                        display: true
 
-                    }
+                scales:{
 
-                },
 
-                scales: {
+                    y:{
 
-                    y: {
 
-                        beginAtZero: true
+                        beginAtZero:true
+
 
                     }
+
 
                 }
 
+
             }
+
+
 
         });
 
+
+
     }
+
+
 
 });
 
+
+
 </script>
+
+
 
 {% endblock %}

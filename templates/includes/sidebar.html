@@ -16,6 +16,7 @@
 
 
 
+
     <!-- MAIN MENU -->
 
     <div class="px-3 mt-4">
@@ -27,12 +28,16 @@
     </div>
 
 
+
     <ul class="nav flex-column p-3">
 
 
+        <!-- Dashboard -->
+
         <li class="nav-item">
 
-            <a href="/" class="nav-link">
+            <a href="/"
+               class="nav-link">
 
                 <i class="bi bi-speedometer2"></i>
 
@@ -44,48 +49,76 @@
 
 
 
+
+
+        <!-- Contacts -->
+
         <li class="nav-item">
 
-            <a href="/contacts/" class="nav-link">
+            <a href="{% url 'contacts:contact_list' %}"
+               class="nav-link">
+
 
                 <i class="bi bi-person-lines-fill"></i>
 
                 Contacts
 
+
             </a>
 
         </li>
 
 
 
+
+
+
+        <!-- Leads -->
+
         <li class="nav-item">
 
-            <a href="/leads/" class="nav-link">
+            <a href="{% url 'leads:lead_list' %}"
+               class="nav-link">
+
 
                 <i class="bi bi-bullseye"></i>
 
                 Leads
 
+
             </a>
 
         </li>
 
 
 
+
+
+
+
+        <!-- Deals -->
+
         <li class="nav-item">
 
-            <a href="/deals/" class="nav-link">
+            <a href="{% url 'deals:deal_list' %}"
+               class="nav-link">
+
 
                 <i class="bi bi-wallet2"></i>
 
                 Deals
 
+
             </a>
 
         </li>
 
 
+
     </ul>
+
+
+
 
 
 
@@ -93,13 +126,21 @@
 
     <!-- PRODUCTIVITY -->
 
+
     <div class="px-3">
 
+
         <small class="text-uppercase text-secondary fw-bold">
+
             Productivity
+
         </small>
 
+
     </div>
+
+
+
 
 
 
@@ -107,62 +148,117 @@
 
 
 
+
+
+        <!-- Tasks -->
+
+
         <li class="nav-item">
 
-            <a href="/tasks/" class="nav-link">
+
+            <a href="{% url 'tasks:task_list' %}"
+               class="nav-link">
+
 
                 <i class="bi bi-list-check"></i>
 
+
                 Tasks
 
+
             </a>
+
 
         </li>
 
 
 
+
+
+
+
+        <!-- Interactions -->
+
+
         <li class="nav-item">
 
-            <a href="/interactions/" class="nav-link">
+
+            <a href="{% url 'interactions:interaction_list' %}"
+               class="nav-link">
+
 
                 <i class="bi bi-chat-dots"></i>
 
+
                 Interactions
 
+
             </a>
+
 
         </li>
 
 
 
+
+
+
+
+        <!-- Notes -->
+
+
         <li class="nav-item">
 
-            <a href="/notes/" class="nav-link">
+
+            <a href="{% url 'notes:note_list' %}"
+               class="nav-link">
+
 
                 <i class="bi bi-journal-text"></i>
 
+
                 Notes
+
 
             </a>
 
+
         </li>
 
+
+
+
+
+
+
+        <!-- Reports -->
 
 
         <li class="nav-item">
 
-            <a href="/reports/" class="nav-link">
+
+            <a href="{% url 'reports:dashboard' %}"
+               class="nav-link">
+
 
                 <i class="bi bi-bar-chart-line-fill"></i>
 
+
                 Reports
 
+
             </a>
+
 
         </li>
 
 
+
+
     </ul>
+
+
+
 
 
 
@@ -175,13 +271,21 @@
     {% if request.user.is_authenticated and request.user.role == "admin" %}
 
 
+
     <div class="px-3">
 
+
         <small class="text-uppercase text-secondary fw-bold">
+
             Administration
+
         </small>
 
+
     </div>
+
+
+
 
 
 
@@ -191,13 +295,19 @@
 
         <li class="nav-item">
 
-            <a href="/accounts/admin-panel/users/" class="nav-link">
+
+            <a href="/accounts/admin-panel/users/"
+               class="nav-link">
+
 
                 <i class="bi bi-people-fill"></i>
 
+
                 User Management
 
+
             </a>
+
 
         </li>
 
@@ -214,50 +324,89 @@
 
 
 
+
+
+
     <!-- ACCOUNT -->
 
 
     <div class="px-3">
 
+
         <small class="text-uppercase text-secondary fw-bold">
+
             Account
+
         </small>
 
+
     </div>
+
+
+
 
 
 
     <ul class="nav flex-column p-3 pt-2">
 
 
+
+
+
+        <!-- Profile -->
+
+
         <li class="nav-item">
 
-            <a href="/accounts/profile/" class="nav-link">
+
+            <a href="/accounts/profile/"
+               class="nav-link">
+
 
                 <i class="bi bi-person-circle"></i>
 
+
                 My Profile
+
 
             </a>
 
+
         </li>
 
+
+
+
+
+
+
+        <!-- Logout -->
 
 
         <li class="nav-item">
 
-            <a href="/accounts/logout/" class="nav-link">
+
+            <a href="/accounts/logout/"
+               class="nav-link">
+
 
                 <i class="bi bi-box-arrow-right"></i>
 
+
                 Logout
 
+
             </a>
+
 
         </li>
 
 
+
+
     </ul>
+
+
 
 
 </div>

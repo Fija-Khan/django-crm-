@@ -1,215 +1,152 @@
-{% extends "base.html" %}
+{% extends "base.html" %} {% block title %} {% if object %} Edit Task {% else %}
+Create Task {% endif %} {% endblock %} {% block content %}
 
-{% block title %}
-    {% if object %}
-        Edit Task
-    {% else %}
-        Create Task
-    {% endif %}
-{% endblock %}
+<div class="container py-4">
+  <!-- Messages -->
 
-{% block content %}
+  {% if messages %} {% for message in messages %}
 
-<div class="container-fluid mt-4">
+  <div class="alert alert-{{ message.tags }} alert-dismissible fade show">
+    {{ message }}
 
-    <div class="card shadow border-0">
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+  </div>
 
+  {% endfor %} {% endif %}
+
+  <div class="row justify-content-center">
+    <div class="col-lg-9">
+      <div class="card shadow-sm border-0">
         <div class="card-header bg-primary text-white">
+          <h4 class="mb-0">
+            {% if object %}
 
-            <h3 class="mb-0">
+            <i class="bi bi-pencil-square me-2"></i>
+            Edit Task {% else %}
 
-                {% if object %}
-                    <i class="bi bi-pencil-square me-2"></i>
-                    Edit Task
-                {% else %}
-                    <i class="bi bi-plus-circle me-2"></i>
-                    Create Task
-                {% endif %}
-
-            </h3>
-
+            <i class="bi bi-plus-circle me-2"></i>
+            Create Task {% endif %}
+          </h4>
         </div>
 
         <div class="card-body">
+          <form method="post" novalidate>
+            {% csrf_token %} {% if form.non_field_errors %}
 
-            <form method="post">
+            <div class="alert alert-danger">{{ form.non_field_errors }}</div>
 
-                {% csrf_token %}
+            {% endif %}
 
-                <div class="row">
+            <div class="row">
+              <!-- Task Title -->
 
-                    <div class="col-md-12 mb-3">
+              <div class="col-md-12 mb-3">
+                <label class="form-label fw-semibold"> Task Title </label>
 
-                        <label class="form-label fw-bold">
-                            Task Title
-                        </label>
+                {{ form.title }}
 
-                        {{ form.title }}
+                <div class="text-danger">{{ form.title.errors }}</div>
+              </div>
 
-                        {% if form.title.errors %}
-                            <div class="text-danger mt-1">
-                                {{ form.title.errors }}
-                            </div>
-                        {% endif %}
+              <!-- Description -->
 
-                    </div>
+              <div class="col-md-12 mb-3">
+                <label class="form-label fw-semibold"> Description </label>
 
-                    <div class="col-md-12 mb-3">
+                {{ form.description }}
 
-                        <label class="form-label fw-bold">
-                            Description
-                        </label>
+                <div class="text-danger">{{ form.description.errors }}</div>
+              </div>
 
-                        {{ form.description }}
+              <!-- Assigned To -->
 
-                        {% if form.description.errors %}
-                            <div class="text-danger mt-1">
-                                {{ form.description.errors }}
-                            </div>
-                        {% endif %}
+              <div class="col-md-6 mb-3">
+                <label class="form-label fw-semibold"> Assigned To </label>
 
-                    </div>
-                    <!-- ================= Assignment ================= -->
+                {{ form.assigned_to }}
 
-                    <div class="col-md-6 mb-3">
+                <div class="text-danger">{{ form.assigned_to.errors }}</div>
+              </div>
 
-                        <label class="form-label fw-bold">
-                            Assigned To
-                        </label>
+              <!-- Due Date -->
 
-                        {{ form.assigned_to }}
+              <div class="col-md-6 mb-3">
+                <label class="form-label fw-semibold"> Due Date </label>
 
-                        {% if form.assigned_to.errors %}
-                            <div class="text-danger mt-1">
-                                {{ form.assigned_to.errors }}
-                            </div>
-                        {% endif %}
+                {{ form.due_date }}
 
-                    </div>
+                <div class="text-danger">{{ form.due_date.errors }}</div>
+              </div>
+              <!-- Related Contact -->
 
-                    <div class="col-md-6 mb-3">
+              <div class="col-md-6 mb-3">
+                <label class="form-label fw-semibold"> Related Contact </label>
 
-                        <label class="form-label fw-bold">
-                            Due Date
-                        </label>
+                {{ form.related_contact }}
 
-                        {{ form.due_date }}
+                <div class="text-danger">{{ form.related_contact.errors }}</div>
+              </div>
 
-                        {% if form.due_date.errors %}
-                            <div class="text-danger mt-1">
-                                {{ form.due_date.errors }}
-                            </div>
-                        {% endif %}
+              <!-- Related Lead -->
 
-                    </div>
+              <div class="col-md-6 mb-3">
+                <label class="form-label fw-semibold"> Related Lead </label>
 
-                    <!-- ================= Related Records ================= -->
+                {{ form.related_lead }}
 
-                    <div class="col-md-6 mb-3">
+                <div class="text-danger">{{ form.related_lead.errors }}</div>
+              </div>
 
-                        <label class="form-label fw-bold">
-                            Related Contact
-                        </label>
+              <!-- Priority -->
 
-                        {{ form.related_contact }}
+              <div class="col-md-6 mb-3">
+                <label class="form-label fw-semibold"> Priority </label>
 
-                        {% if form.related_contact.errors %}
-                            <div class="text-danger mt-1">
-                                {{ form.related_contact.errors }}
-                            </div>
-                        {% endif %}
+                {{ form.priority }}
 
-                    </div>
+                <div class="text-danger">{{ form.priority.errors }}</div>
+              </div>
 
-                    <div class="col-md-6 mb-3">
+              <!-- Status -->
 
-                        <label class="form-label fw-bold">
-                            Related Lead
-                        </label>
+              <div class="col-md-6 mb-3">
+                <label class="form-label fw-semibold"> Status </label>
 
-                        {{ form.related_lead }}
+                {{ form.status }}
 
-                        {% if form.related_lead.errors %}
-                            <div class="text-danger mt-1">
-                                {{ form.related_lead.errors }}
-                            </div>
-                        {% endif %}
+                <div class="text-danger">{{ form.status.errors }}</div>
+              </div>
+            </div>
 
-                    </div>
-                    <!-- ================= Task Settings ================= -->
+            <hr class="my-4" />
 
-                    <div class="col-md-6 mb-3">
+            <div class="d-flex justify-content-end gap-2">
+              <a
+                href="{% url 'tasks:task_list' %}"
+                class="btn btn-outline-secondary"
+              >
+                <i class="bi bi-arrow-left"></i>
 
-                        <label class="form-label fw-bold">
-                            Priority
-                        </label>
+                Back
+              </a>
 
-                        {{ form.priority }}
+              <button type="submit" class="btn btn-primary">
+                {% if object %}
 
-                        {% if form.priority.errors %}
-                            <div class="text-danger mt-1">
-                                {{ form.priority.errors }}
-                            </div>
-                        {% endif %}
+                <i class="bi bi-check-circle"></i>
 
-                    </div>
+                Update Task {% else %}
 
-                    <div class="col-md-6 mb-3">
+                <i class="bi bi-plus-circle"></i>
 
-                        <label class="form-label fw-bold">
-                            Status
-                        </label>
-
-                        {{ form.status }}
-
-                        {% if form.status.errors %}
-                            <div class="text-danger mt-1">
-                                {{ form.status.errors }}
-                            </div>
-                        {% endif %}
-
-                    </div>
-
-                </div>
-
-                <hr class="my-4">
-
-                <div class="d-flex justify-content-end">
-
-                    <a href="{% url 'tasks:task_list' %}"
-                       class="btn btn-outline-secondary me-2">
-
-                        <i class="bi bi-arrow-left me-1"></i>
-
-                        Cancel
-
-                    </a>
-
-                    <button type="submit"
-                            class="btn btn-primary">
-
-                        {% if object %}
-
-                            <i class="bi bi-check-circle me-1"></i>
-                            Update Task
-
-                        {% else %}
-
-                            <i class="bi bi-save me-1"></i>
-                            Save Task
-
-                        {% endif %}
-
-                    </button>
-
-                </div>
-
-            </form>
-
+                Create Task {% endif %}
+              </button>
+            </div>
+          </form>
         </div>
-
+      </div>
     </div>
-
+  </div>
 </div>
 
 {% endblock %}

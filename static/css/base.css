@@ -1,60 +1,110 @@
 /* =========================
    GLOBAL RESET
 ========================= */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
 }
 
+
 body {
+    font-family: "Poppins", sans-serif;
     background: #0f0b1a;
     color: #e5e7eb;
 }
 
+
 /* =========================
    SIDEBAR
 ========================= */
+
 .sidebar {
+
     width: 260px;
+
     height: 100vh;
+
     position: fixed;
+
     top: 0;
+
     left: 0;
+
     background: #1a1330;
+
     border-right: 1px solid rgba(255,255,255,0.05);
+
     overflow-y: auto;
+
     padding-bottom: 20px;
+
+    z-index: 1000;
+
 }
+
+
+/* =========================
+   SIDEBAR LOGO
+========================= */
 
 .sidebar-logo {
+
     text-align: center;
+
     padding: 20px 10px;
+
 }
+
 
 .sidebar-logo h3 {
+
     color: #7c3aed;
+
     font-weight: 600;
+
 }
+
 
 .sidebar-logo p {
+
     font-size: 12px;
+
     color: #a1a1aa;
+
 }
+
+
+
+/* =========================
+   SIDEBAR LINKS
+========================= */
+
 
 .sidebar .nav-link {
+
     color: #a1a1aa;
+
     padding: 10px 12px;
+
     border-radius: 8px;
+
     display: flex;
+
     gap: 10px;
+
     transition: 0.3s;
+
 }
 
+
 .sidebar .nav-link:hover {
+
     background: #6d28d9;
+
     color: #fff;
+
 }
 
 
@@ -62,17 +112,33 @@ body {
 /* =========================
    MAIN WRAPPER
 ========================= */
+
 .main-wrapper {
+
     margin-left: 260px;
+
     padding-top: 90px;
+
 }
 
-/* SCROLLBAR */
+
+
+/* =========================
+   SCROLLBAR
+========================= */
+
+
 .sidebar::-webkit-scrollbar {
+
     width: 5px;
+
 }
+
 
 .sidebar::-webkit-scrollbar-thumb {
+
     background: #7c3aed;
+
     border-radius: 10px;
+
 }

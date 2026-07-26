@@ -12,43 +12,53 @@ from .models import Note
 from .forms import NoteForm
 
 
-# -----------------------------
+# ==========================================
 # NOTE LIST
-# -----------------------------
+# ==========================================
+
 class NoteListView(LoginRequiredMixin, ListView):
 
     model = Note
     template_name = "notes/note_list.html"
     context_object_name = "notes"
 
+
     def get_queryset(self):
 
         user = self.request.user
 
-        if user.role == "admin":
-            return Note.objects.select_related(
-                "contact",
-                "lead",
-                "created_by",
-            )
-
-        return Note.objects.filter(
-            created_by=user
-        ).select_related(
+        queryset = Note.objects.select_related(
             "contact",
             "lead",
-        )
+            "created_by",
+        ).order_by("-created_at")
 
 
-# -----------------------------
-# ADD NOTE
-# -----------------------------
+        if user.role != "admin":
+
+            queryset = queryset.filter(
+                created_by=user
+            )
+
+
+        return queryset
+
+
+
+# ==========================================
+# CREATE NOTE
+# ==========================================
+
 class NoteCreateView(LoginRequiredMixin, CreateView):
 
     model = Note
     form_class = NoteForm
     template_name = "notes/note_form.html"
-    success_url = reverse_lazy("note_list")
+
+    success_url = reverse_lazy(
+        "notes:note_list"
+    )
+
 
     def form_valid(self, form):
 
@@ -62,26 +72,43 @@ class NoteCreateView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
-# -----------------------------
-# EDIT NOTE
-# -----------------------------
+
+# ==========================================
+# UPDATE NOTE
+# ==========================================
+
 class NoteUpdateView(LoginRequiredMixin, UpdateView):
 
     model = Note
     form_class = NoteForm
     template_name = "notes/note_form.html"
-    success_url = reverse_lazy("note_list")
+
+    success_url = reverse_lazy(
+        "notes:note_list"
+    )
+
 
     def get_queryset(self):
 
         user = self.request.user
 
-        if user.role == "admin":
-            return Note.objects.all()
 
-        return Note.objects.filter(
-            created_by=user
+        queryset = Note.objects.select_related(
+            "contact",
+            "lead",
+            "created_by",
         )
+
+
+        if user.role != "admin":
+
+            queryset = queryset.filter(
+                created_by=user
+            )
+
+
+        return queryset
+
 
 
     def form_valid(self, form):
@@ -94,25 +121,41 @@ class NoteUpdateView(LoginRequiredMixin, UpdateView):
         return super().form_valid(form)
 
 
-# -----------------------------
+
+# ==========================================
 # DELETE NOTE
-# -----------------------------
+# ==========================================
+
 class NoteDeleteView(LoginRequiredMixin, DeleteView):
 
     model = Note
-    template_name = "notes/note_confirm_delete.html"
-    success_url = reverse_lazy("note_list")
+
+    template_name = (
+        "notes/note_confirm_delete.html"
+    )
+
+    success_url = reverse_lazy(
+        "notes:note_list"
+    )
+
 
     def get_queryset(self):
 
         user = self.request.user
 
-        if user.role == "admin":
-            return Note.objects.all()
 
-        return Note.objects.filter(
-            created_by=user
-        )
+        queryset = Note.objects.all()
+
+
+        if user.role != "admin":
+
+            queryset = queryset.filter(
+                created_by=user
+            )
+
+
+        return queryset
+
 
 
     def delete(self, request, *args, **kwargs):
@@ -122,4 +165,8 @@ class NoteDeleteView(LoginRequiredMixin, DeleteView):
             "Note deleted successfully."
         )
 
-        return super().delete(request, *args, **kwargs)
+        return super().delete(
+            request,
+            *args,
+            **kwargs
+        )

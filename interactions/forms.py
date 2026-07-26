@@ -6,10 +6,11 @@ class InteractionForm(forms.ModelForm):
 
     class Meta:
         model = Interaction
+
         fields = [
             "contact",
             "lead",
-            "type",
+            "interaction_type",
             "summary",
             "interaction_date",
         ]
@@ -27,7 +28,7 @@ class InteractionForm(forms.ModelForm):
                 }
             ),
 
-            "type": forms.Select(
+            "interaction_type": forms.Select(
                 attrs={
                     "class": "form-select",
                 }
@@ -56,3 +57,7 @@ class InteractionForm(forms.ModelForm):
 
         self.fields["contact"].empty_label = "Select Contact"
         self.fields["lead"].empty_label = "Select Lead"
+
+        self.fields["interaction_type"].label = "Interaction Type"
+        self.fields["summary"].label = "Summary"
+        self.fields["interaction_date"].label = "Interaction Date"

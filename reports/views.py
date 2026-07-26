@@ -9,16 +9,15 @@ from deals.models import Deal
 from tasks.models import Task
 
 
-
 @login_required
 def dashboard_report(request):
 
     user = request.user
 
 
-    # ===========================
-    # Permission Based Data
-    # ===========================
+    # =====================================
+    # PERMISSION BASED DATA
+    # =====================================
 
     if user.role == "admin":
 
@@ -36,7 +35,7 @@ def dashboard_report(request):
     else:
 
         # Contact and Company
-        # do not have assigned user fields
+        # currently not assigned to users
 
         contacts = Contact.objects.all()
 
@@ -59,17 +58,13 @@ def dashboard_report(request):
 
 
 
-    # ===========================
-    # Date Filter
-    # ===========================
+    # =====================================
+    # DATE FILTER
+    # =====================================
 
-    start_date = request.GET.get(
-        "start_date"
-    )
+    start_date = request.GET.get("start_date")
 
-    end_date = request.GET.get(
-        "end_date"
-    )
+    end_date = request.GET.get("end_date")
 
 
     if start_date:
@@ -85,6 +80,7 @@ def dashboard_report(request):
         tasks = tasks.filter(
             created_at__date__gte=start_date
         )
+
 
 
     if end_date:
@@ -103,9 +99,9 @@ def dashboard_report(request):
 
 
 
-    # ===========================
-    # Summary Cards
-    # ===========================
+    # =====================================
+    # SUMMARY COUNTS
+    # =====================================
 
     total_contacts = contacts.count()
 
@@ -119,15 +115,13 @@ def dashboard_report(request):
 
 
 
-    # ===========================
-    # Deal Statistics
-    # ===========================
-
+    # =====================================
+    # DEAL STATISTICS
+    # =====================================
 
     won_deals = deals.filter(
         stage="closed_won"
     ).count()
-
 
 
     lost_deals = deals.filter(
@@ -135,11 +129,9 @@ def dashboard_report(request):
     ).count()
 
 
-
     negotiation_deals = deals.filter(
         stage="negotiation"
     ).count()
-
 
 
     contract_deals = deals.filter(
@@ -157,50 +149,44 @@ def dashboard_report(request):
 
 
 
-    # ===========================
-    # Revenue Analytics
-    # ===========================
+    # =====================================
+    # REVENUE ANALYTICS
+    # =====================================
+
+    closed_won_deals = deals.filter(
+        stage="closed_won"
+    )
 
 
     total_revenue = (
-
-        deals.filter(
-            stage="closed_won"
-        )
+        closed_won_deals
         .aggregate(
             total=Sum("amount")
         )
         ["total"] or 0
-
     )
 
 
 
     average_deal_value = (
-
-        deals.aggregate(
+        closed_won_deals
+        .aggregate(
             avg=Avg("amount")
         )
         ["avg"] or 0
-
     )
 
 
 
-    # ===========================
-    # Monthly Revenue Chart
-    # ===========================
-
+    # =====================================
+    # MONTHLY REVENUE CHART
+    # =====================================
 
     monthly_revenue = (
 
-        deals.filter(
-            stage="closed_won"
-        )
+        closed_won_deals
         .annotate(
-            month=TruncMonth(
-                "created_at"
-            )
+            month=TruncMonth("created_at")
         )
         .values(
             "month"
@@ -215,16 +201,16 @@ def dashboard_report(request):
     )
 
 
-
     revenue_labels = []
 
     revenue_values = []
 
 
-
     for item in monthly_revenue:
 
+
         if item["month"]:
+
 
             revenue_labels.append(
                 item["month"].strftime(
@@ -241,10 +227,9 @@ def dashboard_report(request):
 
 
 
-    # ===========================
-    # Recent Records
-    # ===========================
-
+    # =====================================
+    # RECENT RECORDS
+    # =====================================
 
     recent_leads = (
 
@@ -260,7 +245,6 @@ def dashboard_report(request):
     )
 
 
-
     recent_deals = (
 
         deals
@@ -272,7 +256,6 @@ def dashboard_report(request):
         )[:5]
 
     )
-
 
 
     recent_tasks = (
@@ -289,14 +272,14 @@ def dashboard_report(request):
 
 
 
-    # ===========================
-    # Context
-    # ===========================
+    # =====================================
+    # CONTEXT
+    # =====================================
 
     context = {
 
 
-        # Summary Cards
+        # Summary
 
         "total_contacts": total_contacts,
 
@@ -310,7 +293,7 @@ def dashboard_report(request):
 
 
 
-        # Deal Statistics
+        # Deal Stats
 
         "won_deals": won_deals,
 
@@ -332,7 +315,7 @@ def dashboard_report(request):
 
 
 
-        # Chart Data
+        # Chart
 
         "revenue_labels": revenue_labels,
 
@@ -355,7 +338,6 @@ def dashboard_report(request):
         "start_date": start_date,
 
         "end_date": end_date,
-
 
     }
 

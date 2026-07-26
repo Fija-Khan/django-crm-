@@ -7,7 +7,12 @@ from .views import (
     InteractionDeleteView,
 )
 
+
+app_name = "interactions"
+
+
 urlpatterns = [
+
     # ---------------------------
     # Interaction List
     # ---------------------------
@@ -16,6 +21,7 @@ urlpatterns = [
         InteractionListView.as_view(),
         name="interaction_list",
     ),
+
 
     # ---------------------------
     # Add Interaction
@@ -26,6 +32,7 @@ urlpatterns = [
         name="interaction_add",
     ),
 
+
     # ---------------------------
     # Edit Interaction
     # ---------------------------
@@ -35,6 +42,7 @@ urlpatterns = [
         name="interaction_edit",
     ),
 
+
     # ---------------------------
     # Delete Interaction
     # ---------------------------
@@ -43,4 +51,5 @@ urlpatterns = [
         InteractionDeleteView.as_view(),
         name="interaction_delete",
     ),
+
 ]

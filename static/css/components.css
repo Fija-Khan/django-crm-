@@ -4,9 +4,9 @@
 ===================================================== */
 
 
-/*======================================================
-                CRM NAVBAR
-======================================================*/
+/* =====================================================
+   CRM NAVBAR
+===================================================== */
 
 .crm-navbar{
 
@@ -26,6 +26,7 @@
 
 }
 
+
 .crm-navbar .container-fluid{
 
     height:100%;
@@ -40,9 +41,10 @@
 
 
 
-/*======================================================
-                    BRAND
-======================================================*/
+/* =====================================================
+   BRAND
+===================================================== */
+
 
 .crm-brand{
 
@@ -58,13 +60,14 @@
 
 }
 
+
 .crm-brand:hover{
 
     transform:translateY(-2px);
 
-    text-decoration:none;
-
 }
+
+
 
 .crm-brand-icon{
 
@@ -86,6 +89,8 @@
 
 }
 
+
+
 .crm-brand-icon i{
 
     color:#fff;
@@ -93,6 +98,8 @@
     font-size:20px;
 
 }
+
+
 
 .crm-brand-text{
 
@@ -103,6 +110,8 @@
     line-height:1.2;
 
 }
+
+
 
 .crm-brand-title{
 
@@ -116,6 +125,8 @@
 
 }
 
+
+
 .crm-brand-text small{
 
     color:#94a3b8;
@@ -126,9 +137,10 @@
 
 
 
-/*======================================================
-                NAVBAR CONTENT
-======================================================*/
+/* =====================================================
+   NAVBAR CONTENT
+===================================================== */
+
 
 .crm-navbar .navbar-collapse{
 
@@ -142,9 +154,10 @@
 
 
 
-/*======================================================
-                    SEARCH
-======================================================*/
+/* =====================================================
+   SEARCH
+===================================================== */
+
 
 .crm-search{
 
@@ -155,6 +168,8 @@
     max-width:100%;
 
 }
+
+
 
 .crm-search .input-group{
 
@@ -172,11 +187,15 @@
 
 }
 
+
+
 .crm-search .input-group:hover{
 
     border-color:#7c3aed;
 
 }
+
+
 
 .crm-search .input-group:focus-within{
 
@@ -185,6 +204,8 @@
     box-shadow:0 0 0 4px rgba(124,58,237,.10);
 
 }
+
+
 
 .crm-search .input-group-text{
 
@@ -200,6 +221,8 @@
 
 }
 
+
+
 .crm-search .form-control{
 
     background:#0f0b1a;
@@ -214,11 +237,15 @@
 
 }
 
+
+
 .crm-search .form-control::placeholder{
 
     color:#7f8499;
 
 }
+
+
 
 .crm-search .form-control:focus{
 
@@ -232,9 +259,10 @@
 
 
 
-/*======================================================
-                RIGHT SECTION
-======================================================*/
+/* =====================================================
+   NAVBAR ACTIONS
+===================================================== */
+
 
 .crm-navbar-actions{
 
@@ -250,9 +278,10 @@
 
 
 
-/*======================================================
-                NAV ICONS
-======================================================*/
+/* =====================================================
+   NAV ICONS
+===================================================== */
+
 
 .crm-nav-icon{
 
@@ -280,11 +309,15 @@
 
 }
 
+
+
 .crm-nav-icon i{
 
     font-size:18px;
 
 }
+
+
 
 .crm-nav-icon:hover{
 
@@ -298,9 +331,10 @@
 
 
 
-/*======================================================
-                    BADGE
-======================================================*/
+/* =====================================================
+   NAV BADGE
+===================================================== */
+
 
 .crm-nav-badge{
 
@@ -336,9 +370,10 @@
 
 
 
-/*======================================================
-                TOGGLER
-======================================================*/
+/* =====================================================
+   NAVBAR TOGGLER
+===================================================== */
+
 
 .crm-navbar-toggler{
 
@@ -348,26 +383,34 @@
 
 }
 
+
 .crm-navbar-toggler:focus{
 
     box-shadow:none;
 
 }
 
+
 .crm-navbar-toggler .navbar-toggler-icon{
 
     filter:invert(1);
 
 }
-/*======================================================
-                USER PROFILE
-======================================================*/
+
+
+
+/* =====================================================
+   USER PROFILE
+===================================================== */
+
 
 .crm-user-dropdown{
 
     margin-left:6px;
 
 }
+
+
 
 .crm-user{
 
@@ -391,9 +434,11 @@
 
     text-decoration:none;
 
-    transition:all .30s ease;
+    transition:.30s ease;
 
 }
+
+
 
 .crm-user:hover{
 
@@ -405,9 +450,9 @@
 
     transform:translateY(-2px);
 
-    text-decoration:none;
-
 }
+
+
 
 .crm-user:focus{
 
@@ -418,9 +463,11 @@
 }
 
 
-/*======================================================
-                    AVATAR
-======================================================*/
+
+/* =====================================================
+   AVATAR
+===================================================== */
+
 
 .crm-avatar{
 
@@ -444,6 +491,8 @@
 
 }
 
+
+
 .crm-avatar i{
 
     font-size:19px;
@@ -453,9 +502,11 @@
 }
 
 
-/*======================================================
-                    USER INFO
-======================================================*/
+
+/* =====================================================
+   USER INFO
+===================================================== */
+
 
 .crm-user-info{
 
@@ -468,6 +519,8 @@
     flex:1;
 
 }
+
+
 
 .crm-user-name{
 
@@ -485,6 +538,8 @@
 
 }
 
+
+
 .crm-user-info small{
 
     font-size:11px;
@@ -494,6 +549,8 @@
     margin-top:2px;
 
 }
+
+
 
 .crm-arrow{
 
@@ -505,6 +562,8 @@
 
 }
 
+
+
 .crm-user:hover .crm-arrow{
 
     transform:rotate(180deg);
@@ -512,11 +571,10 @@
     color:#fff;
 
 }
+/* =====================================================
+   DROPDOWN
+===================================================== */
 
-
-/*======================================================
-                    DROPDOWN
-======================================================*/
 
 .crm-dropdown{
 
@@ -540,6 +598,8 @@
 
 }
 
+
+
 .crm-dropdown .dropdown-header{
 
     color:#fff;
@@ -552,6 +612,8 @@
 
 }
 
+
+
 .crm-dropdown .dropdown-divider{
 
     border-color:rgba(255,255,255,.08);
@@ -559,6 +621,8 @@
     margin:8px 0;
 
 }
+
+
 
 .crm-dropdown .dropdown-item{
 
@@ -580,6 +644,8 @@
 
 }
 
+
+
 .crm-dropdown .dropdown-item i{
 
     width:20px;
@@ -590,6 +656,8 @@
 
 }
 
+
+
 .crm-dropdown .dropdown-item:hover{
 
     background:#7c3aed;
@@ -598,11 +666,15 @@
 
 }
 
+
+
 .crm-dropdown .dropdown-item:hover i{
 
     color:#fff;
 
 }
+
+
 
 .crm-dropdown .text-danger{
 
@@ -610,11 +682,7 @@
 
 }
 
-.crm-dropdown .text-danger i{
 
-    color:#ef4444;
-
-}
 
 .crm-dropdown .text-danger:hover{
 
@@ -624,16 +692,10 @@
 
 }
 
-.crm-dropdown .text-danger:hover i{
-
-    color:#fff;
-
-}
 
 
-/*======================================================
-                DROPDOWN ANIMATION
-======================================================*/
+/* Dropdown Animation */
+
 
 @keyframes crmDropdown{
 
@@ -655,123 +717,202 @@
 
 }
 
+
+
+
 /* =====================================================
    CARD
 ===================================================== */
 
+
 .crm-card{
+
     background:#1a1330;
+
     color:#e5e7eb;
+
     border:1px solid rgba(255,255,255,.06);
+
     border-radius:12px;
+
     box-shadow:0 6px 20px rgba(0,0,0,.25);
+
     transition:.3s ease;
+
     overflow:hidden;
+
 }
 
+
+
 .crm-card:hover{
+
     transform:translateY(-3px);
+
     box-shadow:0 12px 28px rgba(0,0,0,.35);
+
 }
+
+
+
 
 
 /* =====================================================
    BUTTON SYSTEM
 ===================================================== */
 
+
 .crm-btn-primary,
 .crm-btn-success,
 .crm-btn-danger,
 .crm-btn-warning,
 .crm-btn-secondary{
+
+
     display:inline-flex;
+
     align-items:center;
+
     justify-content:center;
+
     gap:8px;
 
     padding:10px 18px;
 
     border:none;
+
     border-radius:10px;
 
     text-decoration:none;
 
     font-weight:500;
+
     font-size:14px;
 
     cursor:pointer;
 
-    transition:all .3s ease;
+    transition:.3s ease;
+
 }
 
-/* Primary */
+
+
 
 .crm-btn-primary{
+
     background:#7c3aed;
+
     color:#fff;
+
 }
+
+
 
 .crm-btn-primary:hover{
+
     background:#6d28d9;
+
     color:#fff;
+
 }
 
-/* Success */
+
+
 
 .crm-btn-success{
+
     background:#10b981;
+
     color:#fff;
+
 }
+
+
 
 .crm-btn-success:hover{
+
     background:#059669;
+
     color:#fff;
+
 }
 
-/* Danger */
+
+
+
 
 .crm-btn-danger{
+
     background:#ef4444;
+
     color:#fff;
+
 }
+
+
 
 .crm-btn-danger:hover{
+
     background:#dc2626;
+
     color:#fff;
+
 }
 
-/* Secondary */
+
+
+
+
+.crm-btn-warning{
+
+    background:#f59e0b;
+
+    color:#fff;
+
+}
+
+
+
+.crm-btn-warning:hover{
+
+    background:#d97706;
+
+    color:#fff;
+
+}
+
+
+
+
 
 .crm-btn-secondary{
+
     background:#38bdf8;
+
     color:#0f0b1a;
+
 }
+
+
 
 .crm-btn-secondary:hover{
+
     background:#0ea5e9;
+
     color:#fff;
-}
-
-/* Bootstrap Button Fix */
-
-.btn.crm-btn-primary,
-.btn.crm-btn-success,
-.btn.crm-btn-danger,
-.btn.crm-btn-warning,
-.btn.crm-btn-secondary{
-    border:none;
-    box-shadow:none;
 
 }
 
 
-/* =====================================================
-   ADD BUTTON
-===================================================== */
+
+
 
 .crm-btn-add{
+
     display:inline-flex;
+
     align-items:center;
+
     gap:8px;
 
     padding:10px 18px;
@@ -787,20 +928,31 @@
     font-weight:500;
 
     transition:.3s ease;
+
 }
 
+
+
 .crm-btn-add:hover{
+
     background:linear-gradient(135deg,#6d28d9,#5b21b6);
+
     color:#fff;
+
     transform:translateY(-2px);
+
 }
+
+
 
 
 /* =====================================================
    INPUTS
 ===================================================== */
 
+
 .crm-input{
+
     width:100%;
 
     background:#0f0b1a;
@@ -814,37 +966,75 @@
     padding:10px 14px;
 
     transition:.3s ease;
+
 }
 
+
+
 .crm-input:focus{
+
     outline:none;
+
     border-color:#7c3aed;
+
     box-shadow:0 0 0 3px rgba(124,58,237,.15);
+
 }
+
+
+
+
+
+.crm-label{
+
+    display:block;
+
+    margin-bottom:8px;
+
+    color:#38bdf8;
+
+    font-weight:500;
+
+}
+
+
+
 
 
 /* =====================================================
    TABLE
 ===================================================== */
 
+
 .crm-table{
+
     width:100%;
+
     border-collapse:collapse;
+
     color:#e5e7eb;
+
+    margin-bottom:0;
+
 }
+
+
 
 .crm-table th{
 
     background:#0f0b1a;
 
-    color:#7c3aed;
+    color:#a78bfa;
 
     padding:14px;
 
     font-weight:600;
 
     border-bottom:1px solid rgba(255,255,255,.06);
+
 }
+
+
 
 .crm-table td{
 
@@ -855,31 +1045,28 @@
     border-bottom:1px solid rgba(255,255,255,.06);
 
     vertical-align:middle;
+
 }
+
+
 
 .crm-table tbody tr:hover{
 
-    background:rgba(124,58,237,.05);
+    background:rgba(124,58,237,.08);
+
 }
 
 
-/* =====================================================
-   LABEL
-===================================================== */
 
-.crm-label{
-    display:block;
-    margin-bottom:8px;
-    color:#38bdf8;
-    font-weight:500;
-}
 
 
 /* =====================================================
    DETAIL BOX
 ===================================================== */
 
+
 .crm-detail-box{
+
     background:#0f0b1a;
 
     border:1px solid rgba(255,255,255,.08);
@@ -889,12 +1076,17 @@
     padding:12px 16px;
 
     color:#fff;
+
 }
+
+
+
 
 
 /* =====================================================
    CARD HEADERS
 ===================================================== */
+
 
 .crm-header{
 
@@ -906,8 +1098,9 @@
 
     font-weight:600;
 
-    border:none;
 }
+
+
 
 .crm-header-alt{
 
@@ -919,15 +1112,19 @@
 
     font-weight:600;
 
-    border:none;
 }
+
+
+
 
 
 /* =====================================================
    LIST GROUP
 ===================================================== */
 
+
 .crm-list .list-group-item{
+
 
     background:#1a1330;
 
@@ -936,7 +1133,11 @@
     border-color:rgba(255,255,255,.06);
 
     padding:16px 20px;
+
 }
+
+
+
 
 
 /* =====================================================
@@ -944,27 +1145,92 @@
 ===================================================== */
 
 
+.crm-badge{
 
-/* =====================================================
-   TEXT COLORS
-===================================================== */
+    display:inline-block;
 
-.text-crm-primary{
+    padding:6px 12px;
+
+    border-radius:30px;
+
+    font-size:12px;
+
+    font-weight:600;
+
+    background:#7c3aed;
+
+    color:#fff;
+
+}
+
+
+
+.crm-badge-primary{
+
+    background:rgba(59,130,246,.15);
+
+    color:#3b82f6;
+
+}
+
+
+
+.crm-badge-info{
+
+    background:rgba(6,182,212,.15);
+
+    color:#06b6d4;
+
+}
+
+
+
+.crm-badge-warning{
+
+    background:rgba(245,158,11,.15);
+
+    color:#f59e0b;
+
+}
+
+
+
+.crm-badge-secondary{
+
+    background:rgba(124,58,237,.15);
+
     color:#7c3aed;
+
 }
 
-.text-crm-success{
-    color:#10b981;
+
+
+.crm-badge-success{
+
+    background:rgba(34,197,94,.15);
+
+    color:#22c55e;
+
 }
 
-.text-crm-danger{
+
+
+.crm-badge-danger{
+
+    background:rgba(239,68,68,.15);
+
     color:#ef4444;
+
 }
+
+
+
 
 
 /* =====================================================
    ALERTS
 ===================================================== */
+
 
 .crm-alert-success{
 
@@ -977,7 +1243,10 @@
     border-radius:10px;
 
     padding:12px 16px;
+
 }
+
+
 
 .crm-alert-info{
 
@@ -990,1095 +1259,36 @@
     border-radius:10px;
 
     padding:12px 16px;
-}
-
-.crm-btn-warning{
-
-    background:#f59e0b;
-    color:#fff;
 
 }
 
-.crm-btn-warning:hover{
-
-    background:#d97706;
-    color:#fff;
-
-}
-/* Badges */
-.crm-badge,
-.crm-badge-primary,
-.crm-badge-info,
-.crm-badge-warning,
-.crm-badge-secondary,
-.crm-badge-success,
-.crm-badge-danger {
-    display: inline-block;
-    padding: 6px 12px;
-    border-radius: 30px;
-    font-size: 12px;
-    font-weight: 600;
-     background:#7c3aed;
-    color:#fff;
-}
-
-.crm-badge-primary {
-    background: rgba(59,130,246,.15);
-    color: #3b82f6;
-}
-
-.crm-badge-info {
-    background: rgba(6,182,212,.15);
-    color: #06b6d4;
-}
-
-.crm-badge-warning {
-    background: rgba(245,158,11,.15);
-    color: #f59e0b;
-}
-
-.crm-badge-secondary {
-    background: rgba(124,58,237,.15);
-    color: #7c3aed;
-}
-
-.crm-badge-success {
-    background: rgba(34,197,94,.15);
-    color: #22c55e;
-}
-
-.crm-badge-danger {
-    background: rgba(239,68,68,.15);
-    color: #ef4444;
-}
-
-.delete-box {
-    background:#22193a;
-    padding:15px;
-    border-radius:12px;
-    border:1px solid rgba(255,255,255,0.05);
-}
-
-/* =========================
-   NOTES TABLE
-========================= */
-
-.crm-table {
-    color: #e5e7eb;
-    margin-bottom: 0;
-}
 
 
-.crm-table thead {
-    background: #22193a;
-}
 
 
-.crm-table th {
-    color: #a78bfa;
-    font-weight: 600;
-    border: none;
-    padding: 14px;
-}
-
-
-.crm-table td {
-    border-color: rgba(255,255,255,0.05);
-    padding: 14px;
-    vertical-align: middle;
-}
-
-
-.crm-table tbody tr:hover {
-    background: rgba(124,58,237,0.08);
-}
-
-
-/* =========================
+/* =====================================================
    EMPTY STATE
-========================= */
-
-.empty-state {
-
-    text-align: center;
-    padding: 50px;
-    color: #a1a1aa;
-
-}
-
-
-.empty-state i {
-
-    font-size: 45px;
-    margin-bottom: 15px;
-    display: block;
-
-}
-
-
-/* =========================
-   DELETE / WARNING BOX
-========================= */
-
-.delete-box {
-
-    background: #22193a;
-    padding: 15px;
-    border-radius: 12px;
-    border: 1px solid rgba(255,255,255,0.05);
-
-}
-/* =====================================================
-   USER MANAGEMENT PAGE
-   CRM Dark Purple Modern Theme
 ===================================================== */
 
 
-/* Page Background */
+.empty-state{
 
-.container-fluid {
-    animation: fadeIn 0.4s ease-in-out;
-}
-
-
-/* ==========================
-   PAGE HEADER
-========================== */
-
-h2.fw-bold {
-    color: var(--text-primary, #e5e7eb);
-    letter-spacing: .3px;
-}
-
-
-.text-muted {
-    color: #a1a1aa !important;
-}
-
-
-/* Add User Button */
-
-.btn-primary {
-
-    background: #7c3aed;
-    border-color: #7c3aed;
-    border-radius: 10px;
-    padding: 10px 20px;
-    font-weight: 500;
-    transition: .3s;
-
-}
-
-
-.btn-primary:hover {
-
-    background:#6d28d9;
-    border-color:#6d28d9;
-    transform: translateY(-2px);
-
-}
-
-
-
-/* ==========================
-   SUMMARY CARDS
-========================== */
-
-
-.card {
-
-    background:#1a1330;
-    color:#e5e7eb;
-    border-radius:18px;
-    transition:.3s;
-}
-
-
-
-.card:hover {
-
-    transform:translateY(-5px);
-    box-shadow:0 15px 35px rgba(0,0,0,.35)!important;
-
-}
-
-
-
-.card-body i {
-
-    opacity:.9;
-
-}
-
-
-
-.card h2 {
-
-    color:#ffffff;
-
-}
-
-
-
-/* Card Icons */
-
-.text-primary {
-
-    color:#8b5cf6 !important;
-
-}
-
-
-.text-danger {
-
-    color:#ef4444 !important;
-
-}
-
-
-.text-success {
-
-    color:#22c55e !important;
-
-}
-
-
-.text-info {
-
-    color:#06b6d4 !important;
-
-}
-
-
-
-/* ==========================
-   SEARCH FILTER CARD
-========================== */
-
-
-.form-control,
-.form-select {
-
-
-    background:#0f0b1a;
-    border:1px solid #312e81;
-    color:#e5e7eb;
-    border-radius:10px;
-    padding:12px;
-
-
-}
-
-
-.form-control::placeholder {
-
-    color:#71717a;
-
-}
-
-
-
-.form-control:focus,
-.form-select:focus {
-
-    background:#0f0b1a;
-    color:white;
-    border-color:#7c3aed;
-    box-shadow:0 0 0 .2rem rgba(124,58,237,.25);
-
-}
-
-
-/* Select option */
-
-.form-select option {
-
-    background:#1a1330;
-    color:white;
-
-}
-
-
-
-/* ==========================
-   TABLE DESIGN
-========================== */
-
-
-.table-responsive {
-
-    border-radius:15px;
-    overflow:hidden;
-
-}
-
-
-.table {
-
-    color:#e5e7eb;
-    margin-bottom:0;
-
-}
-
-
-
-.table thead {
-
-
-    background:#312e81;
-    color:white;
-
-}
-
-
-
-.table-light {
-
-    background:#312e81 !important;
-    color:white !important;
-
-}
-
-
-
-.table tbody tr {
-
-
-    border-color:#312e81;
-    transition:.25s;
-
-}
-
-
-
-.table tbody tr:hover {
-
-
-    background:#251b45;
-
-}
-
-
-
-/* Profile Image */
-
-.rounded-circle {
-
-    border:2px solid #7c3aed !important;
-
-}
-
-
-
-/* ==========================
-   BADGES
-========================== */
-
-
-.badge {
-
-    padding:7px 12px;
-    border-radius:20px;
-    font-size:12px;
-
-}
-
-
-
-.bg-danger {
-
-    background:#dc2626!important;
-
-}
-
-
-.bg-primary {
-
-    background:#7c3aed!important;
-
-}
-
-
-.bg-success {
-
-    background:#16a34a!important;
-
-}
-
-
-.bg-warning {
-
-    background:#facc15!important;
-
-}
-
-
-
-/* ==========================
-   ACTION BUTTONS
-========================== */
-
-
-.btn-warning {
-
-
-    background:#f59e0b;
-    border:none;
-    color:white;
-
-}
-
-
-
-.btn-warning:hover {
-
-    background:#d97706;
-
-}
-
-
-
-.btn-danger {
-
-
-    background:#dc2626;
-    border:none;
-
-}
-
-
-
-.btn-danger:hover {
-
-    background:#b91c1c;
-
-}
-
-
-
-.btn-group .btn {
-
-    border-radius:8px;
-    margin:0 3px;
-
-}
-
-
-
-/* ==========================
-   PAGINATION
-========================== */
-
-
-.pagination .page-link {
-
-
-    background:#1a1330;
-    color:#e5e7eb;
-    border:1px solid #312e81;
-
-}
-
-
-
-.pagination .page-item.active .page-link {
-
-
-    background:#7c3aed;
-    border-color:#7c3aed;
-
-}
-
-
-
-.pagination .page-link:hover {
-
-
-    background:#6d28d9;
-    color:white;
-
-}
-
-
-
-/* ==========================
-   EMPTY STATE
-========================== */
-
-
-.display-3,
-.display-4 {
-
-    color:#71717a;
-
-}
-
-
-/* ==========================
-   ANIMATION
-========================== */
-
-
-@keyframes fadeIn {
-
-
-    from {
-
-        opacity:0;
-        transform:translateY(10px);
-
-    }
-
-
-    to {
-
-        opacity:1;
-        transform:translateY(0);
-
-    }
-
-
-}
-/* =====================================================
-   USER FORM PAGE
-   CRM Dark Purple Theme
-===================================================== */
-
-
-/* Main Card */
-
-.user-form-card,
-.card {
-
-    background:#1a1330;
-    border-radius:18px;
-    color:#e5e7eb;
-
-}
-
-
-/* Card Header */
-
-.card-header.bg-primary {
-
-
-    background:linear-gradient(
-        135deg,
-        #7c3aed,
-        #4f46e5
-    ) !important;
-
-
-    border:none;
-    padding:22px 25px;
-    border-radius:18px 18px 0 0 !important;
-
-}
-
-
-
-.card-header h4 {
-
-    font-weight:700;
-    color:white;
-
-}
-
-
-
-.card-header small {
-
-    color:#ddd6fe;
-
-}
-
-
-/* Back Button */
-
-.card-header .btn-light {
-
-
-    background:white;
-    color:#4f46e5;
-    border:none;
-    border-radius:10px;
-    font-weight:600;
-    padding:8px 15px;
-    transition:.3s;
-
-}
-
-
-
-.card-header .btn-light:hover {
-
-
-    background:#ede9fe;
-    transform:translateY(-2px);
-
-}
-
-
-
-/* ==========================
-   FORM BODY
-========================== */
-
-
-.card-body {
-
-
-    padding:35px;
-
-}
-
-
-
-.form-label {
-
-
-    color:#e5e7eb;
-    font-size:14px;
-    margin-bottom:8px;
-
-}
-
-
-
-/* Inputs */
-
-
-.form-control,
-.form-select,
-textarea {
-
-
-    background:#0f0b1a !important;
-    border:1px solid #312e81;
-    color:#f8fafc !important;
-    border-radius:12px;
-    padding:12px 15px;
-    transition:.3s;
+    text-align:center;
 
-}
-
-
-
-.form-control::placeholder {
-
-
-    color:#71717a;
-
-}
-
-
-
-.form-control:focus,
-.form-select:focus,
-textarea:focus {
-
-
-    border-color:#7c3aed;
-    box-shadow:
-    0 0 0 .25rem rgba(124,58,237,.25);
-
-}
-
-
-
-/* Select dropdown */
-
-
-.form-select option {
-
-
-    background:#1a1330;
-    color:white;
-
-}
-
-
-
-/* File Input */
-
-
-input[type="file"] {
-
-
-    background:#0f0b1a;
-    color:#e5e7eb;
-
-}
-
-
-
-/* Checkbox */
-
-
-.form-check-input {
-
-
-    background:#0f0b1a;
-    border-color:#7c3aed;
-
-}
-
-
-
-.form-check-input:checked {
-
-
-    background-color:#7c3aed;
-    border-color:#7c3aed;
-
-}
-
-
-
-/* ==========================
-   ERROR MESSAGE
-========================== */
-
-
-.alert-danger {
-
-
-    background:#450a0a;
-    border:1px solid #dc2626;
-    color:#fecaca;
-    border-radius:12px;
-
-}
-
-
-
-.text-danger {
-
-
-    color:#f87171 !important;
-
-}
-
-
-
-/* Help Text */
-
-.text-muted {
-
-
-    color:#a1a1aa !important;
-
-}
-
-
-
-/* ==========================
-   BUTTONS
-========================== */
-
-
-.btn-primary {
-
-
-    background:#7c3aed;
-    border-color:#7c3aed;
-    border-radius:10px;
-    padding:11px 22px;
-    font-weight:600;
-    transition:.3s;
-
-}
-
-
-
-.btn-primary:hover {
-
-
-    background:#6d28d9;
-    border-color:#6d28d9;
-    transform:translateY(-2px);
-
-}
-
-
-
-.btn-secondary {
-
-
-    background:#374151;
-    border:none;
-    border-radius:10px;
-    padding:11px 22px;
-    color:white;
-
-}
-
-
-
-.btn-secondary:hover {
-
-
-    background:#4b5563;
-    color:white;
-
-}
-
-
-
-/* Button Animation */
-
-button,
-a.btn {
-
-
-    transition:.3s;
-
-}
-
-
-
-/* ==========================
-   RESPONSIVE
-========================== */
-
-
-@media(max-width:768px){
-
-
-.card-body{
-
-    padding:20px;
-
-}
-
-
-.card-header{
-
-    padding:18px;
-
-}
-
-
-}
-/* =====================================================
-   DELETE USER PAGE
-   CRM Dark Purple Theme
-===================================================== */
-
-
-/* Delete Card */
-
-.border-danger {
-
-    border:1px solid #dc2626 !important;
-    border-radius:18px;
-    overflow:hidden;
-
-}
-
-
-
-.border-danger.card {
-
-    background:#1a1330;
-    color:#e5e7eb;
-    box-shadow:0 15px 35px rgba(0,0,0,.35)!important;
-
-}
-
-
-
-/* Header */
-
-.card-header.bg-danger {
-
-
-    background:linear-gradient(
-        135deg,
-        #dc2626,
-        #991b1b
-    ) !important;
-
-
-    padding:20px 25px;
-    border:none;
-
-}
-
-
-
-.card-header h4 {
-
-
-    font-weight:700;
-
-}
-
-
-
-/* Body */
-
-
-.card-body {
-
-
-    padding:35px;
-
-}
-
-
-
-.card-body h5 {
-
-
-    color:#e5e7eb;
-    font-weight:600;
-
-}
-
-
-
-/* Warning Box */
-
-
-.alert-warning {
-
-
-    background:#422006;
-    border:1px solid #f59e0b;
-    color:#fef3c7;
-    border-radius:12px;
-    padding:20px;
-
-}
-
-
-
-.alert-warning strong {
-
-
-    color:#fbbf24;
-
-}
-
-
+    padding:50px;
 
-/* Delete Button */
+    color:#a1a1aa;
 
-
-.btn-danger {
-
-
-    background:#dc2626;
-    border-color:#dc2626;
-    border-radius:10px;
-    padding:11px 22px;
-    font-weight:600;
-    transition:.3s;
-
-}
-
-
-
-.btn-danger:hover {
-
-
-    background:#b91c1c;
-    border-color:#b91c1c;
-    transform:translateY(-2px);
-
-}
-
-
-
-/* Cancel Button */
-
-
-.btn-secondary {
-
-
-    background:#374151;
-    border:none;
-    border-radius:10px;
-    padding:11px 22px;
-    font-weight:600;
-
-}
-
-
-
-.btn-secondary:hover {
-
-
-    background:#4b5563;
-    color:white;
-
-}
-
-
-
-/* Icon */
-
-.bi-trash-fill {
-
-
-    margin-right:5px;
-
-}
-
-
-
-/* Animation */
-
-.card {
-
-
-    animation:deleteFade .4s ease;
-
-}
-
-
-
-@keyframes deleteFade {
-
-
-    from {
-
-        opacity:0;
-        transform:translateY(15px);
-
-    }
-
-
-    to {
-
-        opacity:1;
-        transform:translateY(0);
-
-    }
-
 }
 
 
 
-/* Mobile */
+.empty-state i{
 
-@media(max-width:576px){
+    font-size:45px;
 
-
-.card-body{
-
-    padding:20px;
-
-}
-
-
-.btn{
-
-    width:100%;
-    margin-bottom:10px;
-
-}
+    margin-bottom:15px;
 
+    display:block;
 
 }

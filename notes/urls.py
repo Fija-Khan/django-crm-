@@ -7,6 +7,11 @@ from .views import (
     NoteDeleteView,
 )
 
+
+app_name = "notes"
+
+
+
 urlpatterns = [
 
     path(
@@ -15,17 +20,20 @@ urlpatterns = [
         name="note_list"
     ),
 
+
     path(
         "add/",
         NoteCreateView.as_view(),
         name="note_add"
     ),
 
+
     path(
         "<int:pk>/edit/",
         NoteUpdateView.as_view(),
         name="note_edit"
     ),
+
 
     path(
         "<int:pk>/delete/",

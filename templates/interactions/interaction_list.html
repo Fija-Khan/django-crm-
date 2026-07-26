@@ -1,18 +1,21 @@
-
-
 {% extends "base.html" %}
+
 
 {% block title %}
 Interactions
 {% endblock %}
 
+
+
 {% block content %}
 
 <div class="container-fluid mt-4">
 
-    <!-- ================= Header ================= -->
+
+    <!-- ================= HEADER ================= -->
 
     <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
+
 
         <div>
 
@@ -24,40 +27,160 @@ Interactions
 
             </h2>
 
+
             <p class="text-secondary mb-0">
 
-                View and manage all customer interactions.
+                Track customer calls, emails, meetings and notes.
 
             </p>
 
+
         </div>
 
-        <a href="{% url 'interaction_add' %}"
+
+
+        <a href="{% url 'interactions:interaction_add' %}"
            class="btn btn-primary px-4">
+
 
             <i class="bi bi-plus-lg me-2"></i>
 
             Log Interaction
 
+
         </a>
+
 
     </div>
 
 
 
-    <!-- ================= Table ================= -->
+
+
+    <!-- ================= FILTER ================= -->
+
+
+    <div class="crm-card p-3 mb-4">
+
+
+        <form method="GET"
+              class="d-flex flex-wrap gap-3 align-items-center">
+
+
+            <select name="type"
+                    class="form-select bg-dark text-white border-secondary"
+                    style="width:220px;">
+
+
+                <option value="">
+                    All Interaction Types
+                </option>
+
+
+                <option value="call"
+                {% if request.GET.type == "call" %}
+                    selected
+                {% endif %}>
+
+                    Call
+
+                </option>
+
+
+
+                <option value="email"
+                {% if request.GET.type == "email" %}
+                    selected
+                {% endif %}>
+
+                    Email
+
+                </option>
+
+
+
+                <option value="meeting"
+                {% if request.GET.type == "meeting" %}
+                    selected
+                {% endif %}>
+
+                    Meeting
+
+                </option>
+
+
+
+                <option value="note"
+                {% if request.GET.type == "note" %}
+                    selected
+                {% endif %}>
+
+                    Note
+
+                </option>
+
+
+            </select>
+
+
+
+            <button type="submit"
+                    class="btn btn-info px-4">
+
+
+                <i class="bi bi-funnel me-2"></i>
+
+                Filter
+
+
+            </button>
+
+
+
+            <a href="{% url 'interactions:interaction_list' %}"
+               class="btn btn-outline-secondary">
+
+
+                Reset
+
+
+            </a>
+
+
+
+        </form>
+
+
+    </div>
+
+
+
+
+
+
+    <!-- ================= TABLE ================= -->
+
 
     <div class="crm-card p-4">
 
+
+
         {% if interactions %}
+
+
 
         <div class="table-responsive">
 
+
+
             <table class="table align-middle interaction-table">
+
 
                 <thead>
 
+
                     <tr>
+
 
                         <th>Contact</th>
 
@@ -75,15 +198,24 @@ Interactions
                             Actions
                         </th>
 
+
                     </tr>
+
 
                 </thead>
 
+
+
+
+
                 <tbody>
 
-                    {% for interaction in interactions %}
+
+                {% for interaction in interactions %}
+
 
                     <tr>
+
 
                         <td>
 
@@ -95,91 +227,200 @@ Interactions
 
                         </td>
 
+
+
                         <td>
+
 
                             {% if interaction.lead %}
 
                                 {{ interaction.lead }}
 
+
                             {% else %}
 
                                 <span class="text-secondary">
-
                                     -
-
                                 </span>
+
 
                             {% endif %}
 
+
                         </td>
+
+
+
+
 
                         <td>
 
-                            <span class="badge bg-info text-dark">
 
-                                {{ interaction.get_type_display }}
+                            {% if interaction.interaction_type == "call" %}
 
-                            </span>
+
+                                <span class="badge bg-success">
+
+                                    <i class="bi bi-telephone me-1"></i>
+
+                                    {{ interaction.get_interaction_type_display }}
+
+                                </span>
+
+
+
+                            {% elif interaction.interaction_type == "email" %}
+
+
+                                <span class="badge bg-primary">
+
+                                    <i class="bi bi-envelope me-1"></i>
+
+                                    {{ interaction.get_interaction_type_display }}
+
+                                </span>
+
+
+
+                            {% elif interaction.interaction_type == "meeting" %}
+
+
+                                <span class="badge bg-warning text-dark">
+
+                                    <i class="bi bi-calendar-event me-1"></i>
+
+                                    {{ interaction.get_interaction_type_display }}
+
+                                </span>
+
+
+
+                            {% else %}
+
+
+                                <span class="badge bg-secondary">
+
+                                    <i class="bi bi-sticky me-1"></i>
+
+                                    {{ interaction.get_interaction_type_display }}
+
+                                </span>
+
+
+
+                            {% endif %}
+
 
                         </td>
+
+
+
+
+
+                        <td title="{{ interaction.summary }}">
+
+
+                            {{ interaction.summary|truncatechars:50 }}
+
+
+                        </td>
+
+
+
+
 
                         <td>
 
-                            {{ interaction.summary|truncatechars:45 }}
+
+                            {{ interaction.interaction_date|date:"d M Y, h:i A" }}
+
 
                         </td>
+
+
+
+
 
                         <td>
 
-                            {{ interaction.interaction_date|date:"d M Y" }}
+
+                            {{ interaction.logged_by|default:"-" }}
+
 
                         </td>
 
-                        <td>
 
-                            {{ interaction.logged_by }}
 
-                        </td>
+
 
                         <td class="text-center">
 
-                            <a href="{% url 'interaction_edit' interaction.pk %}"
 
-                               class="btn btn-sm btn-outline-warning">
+
+                            <a href="{% url 'interactions:interaction_edit' interaction.pk %}"
+
+                               class="btn btn-sm btn-outline-warning me-1">
+
 
                                 <i class="bi bi-pencil"></i>
 
+
                             </a>
 
-                            <a href="{% url 'interaction_delete' interaction.pk %}"
+
+
+
+
+                            <a href="{% url 'interactions:interaction_delete' interaction.pk %}"
 
                                class="btn btn-sm btn-outline-danger">
 
+
                                 <i class="bi bi-trash"></i>
+
 
                             </a>
 
+
+
                         </td>
+
+
 
                     </tr>
 
-                    {% endfor %}
+
+
+                {% endfor %}
+
+
 
                 </tbody>
 
+
+
             </table>
+
+
 
         </div>
 
 
 
+
+
         {% else %}
 
-        <!-- Empty State -->
+
+
+
 
         <div class="text-center py-5">
 
+
             <i class="bi bi-chat-left-dots display-4 text-secondary"></i>
+
+
 
             <h4 class="text-white mt-3">
 
@@ -187,28 +428,49 @@ Interactions
 
             </h4>
 
+
+
+
             <p class="text-secondary">
 
-                Start logging customer interactions.
+                Start logging customer communication history.
 
             </p>
 
-            <a href="{% url 'interaction_add' %}"
+
+
+
+            <a href="{% url 'interactions:interaction_add' %}"
 
                class="btn btn-primary mt-2">
 
+
                 <i class="bi bi-plus-lg me-2"></i>
 
-                Log First Interaction
+                Add First Interaction
+
 
             </a>
 
+
+
         </div>
+
+
+
+
 
         {% endif %}
 
+
+
+
     </div>
 
+
+
 </div>
+
+
 
 {% endblock %}
