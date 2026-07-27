@@ -1,154 +1,518 @@
-/* =====================================================
-   DASHBOARD
-===================================================== */
+/* =====================================
+        DASHBOARD PAGE
+===================================== */
 
-.dashboard-title{
-    font-size:42px;
+
+/* Page Title */
+
+.dashboard-title {
+    font-size:28px;
     font-weight:700;
-    color:#ffffff;
-    margin-bottom:6px;
+    color:var(--text-color);
 }
 
-.text-muted{
-    color:#9ca3af !important;
-}
 
-/* KPI Cards */
+/* KPI CARDS */
 
-.crm-card{
+.crm-card {
+
     background:#1a1330;
-    border:1px solid rgba(255,255,255,.08);
-    border-radius:16px;
-    box-shadow:0 10px 25px rgba(0,0,0,.25);
-    transition:.3s;
+
+    border:1px solid rgba(255,255,255,0.08);
+
+    border-radius:18px;
+
+    color:#e5e7eb;
+
+    transition:0.3s ease;
+
+    overflow:hidden;
 }
 
-.crm-card:hover{
-    transform:translateY(-4px);
-    box-shadow:0 15px 35px rgba(124,58,237,.25);
+
+.crm-card:hover {
+
+    transform:translateY(-5px);
+
+    box-shadow:0 15px 35px rgba(124,58,237,0.25);
+
 }
 
-.crm-card .card-body{
-    padding:28px;
-}
 
-.crm-card h3{
-    font-size:40px;
-    font-weight:700;
-    margin-bottom:6px;
-}
 
-.crm-card p{
-    margin:0;
-    color:#cbd5e1;
-    font-size:15px;
-}
+/* Card Header */
 
-/* KPI Icons */
+.crm-header,
+.crm-header-alt {
 
-.crm-card i.display-5{
-    font-size:46px;
-}
+    background:#241842;
 
-/* Custom Text Colors */
+    color:white;
 
-.text-crm-primary{
-    color:#7c3aed !important;
-}
-
-.text-crm-success{
-    color:#22c55e !important;
-}
-
-.text-warning{
-    color:#f59e0b !important;
-}
-
-.text-danger{
-    color:#ef4444 !important;
-}
-
-/* Card Headers */
-
-.crm-header{
-    background:linear-gradient(90deg,#6d28d9,#8b5cf6);
-    color:#fff;
-    border:none;
-    font-size:18px;
     font-weight:600;
-    padding:18px 22px;
+
+    padding:16px 20px;
+
+    border-bottom:1px solid rgba(255,255,255,0.08);
+
 }
 
-.crm-header-alt{
-    background:linear-gradient(90deg,#0ea5e9,#38bdf8);
-    color:#0f172a;
-    border:none;
-    font-size:18px;
-    font-weight:600;
-    padding:18px 22px;
+
+.crm-header-alt {
+
+    background:#21163b;
+
 }
 
-/* Today's Task */
 
-.crm-card .border{
-    border:1px solid rgba(255,255,255,.08)!important;
-    background:#0f0b1a;
-    border-radius:12px!important;
-    padding:16px!important;
+
+/* KPI Numbers */
+
+.text-crm-primary {
+
+    color:#8b5cf6!important;
+
 }
 
-/* Recent Activity */
 
-.border-start{
-    border-left:4px solid #7c3aed!important;
+.text-crm-success {
+
+    color:#22c55e!important;
+
 }
+
+
+
+/* Dashboard Icons */
+
+.card-body i {
+
+    opacity:.9;
+
+}
+
+
+
+/* Task Boxes */
+
+.crm-card .border {
+
+    border-color:rgba(255,255,255,.08)!important;
+
+    background:#151025;
+
+}
+
+
+.crm-card .border:hover {
+
+    border-color:#7c3aed!important;
+
+}
+
+
 
 /* Badge */
 
-.badge{
-    font-size:12px;
-    padding:6px 12px;
-    border-radius:30px;
+.badge {
+
+    padding:7px 12px;
+
+    border-radius:20px;
+
 }
 
-/* Empty State */
 
-.text-success{
-    color:#22c55e!important;
+.badge.bg-primary {
+
+    background:#7c3aed!important;
+
 }
 
-.text-secondary{
-    color:#94a3b8!important;
+
+
+/* Timeline */
+
+.border-start.border-primary {
+
+    border-color:#7c3aed!important;
+
 }
 
-/* Chart */
 
-canvas{
-    width:100%!important;
+
+/* Charts */
+
+canvas {
+
+    max-height:350px;
+
 }
 
-/* Date */
 
-small.text-muted{
-    color:#94a3b8!important;
+
+/* Dashboard Responsive */
+
+@media(max-width:768px){
+
+.dashboard-title {
+
+    font-size:22px;
+
 }
 
-/* Dashboard spacing */
 
-.container-fluid{
-    padding:30px;
+.d-flex.justify-content-between.align-items-center {
+
+    flex-direction:column;
+
+    align-items:flex-start!important;
+
+    gap:15px;
+
 }
 
-/* Responsive */
+}
 
-@media(max-width:992px){
 
-    .dashboard-title{
-        font-size:32px;
-    }
 
-    .crm-card h3{
-        font-size:30px;
-    }
+/* =====================================
+      CONTACT MODULE PAGE
+===================================== */
+
+
+/* Contact Import */
+
+.crm-import-page {
+
+    max-width:900px;
+
+}
+
+
+
+/* Add/Edit */
+
+.crm-contact-page {
+
+    max-width:1100px;
+
+}
+
+
+
+/* Detail Header */
+
+.card-header {
+
+    background:transparent;
+
+    color:#e5e7eb;
+
+    border-bottom:1px solid rgba(255,255,255,.08);
+
+}
+
+
+.card-header h5 {
+
+    font-weight:600;
+
+}
+
+
+
+/* Delete Page */
+
+.crm-delete-page {
+
+    max-width:600px;
+
+    margin:auto;
+
+}
+
+
+
+.crm-delete-icon {
+
+    width:90px;
+
+    height:90px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    margin:auto;
+
+    border-radius:50%;
+
+    background:#450a0a;
+
+    color:#f87171;
+
+    font-size:40px;
+
+}
+
+
+
+/* =====================================
+      CONTACT LIST PAGE
+===================================== */
+
+
+
+.crm-contact-list-page {
+
+    padding:25px;
+
+}
+
+
+
+/* Table Card */
+
+.crm-contact-list-page .crm-card {
+
+    background:#1a1330;
+
+    border-radius:18px;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    overflow:hidden;
+
+}
+
+
+
+/* Contact Table */
+
+.crm-contact-table {
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+
+
+/* Table Header */
+
+.crm-contact-table thead {
+
+    background:#241b45;
+
+}
+
+
+.crm-contact-table thead th {
+
+    color:#ffffff;
+
+    padding:18px 15px;
+
+    font-size:15px;
+
+    font-weight:700;
+
+    border:none;
+
+}
+
+
+
+/* Table Body */
+
+.crm-contact-table tbody tr {
+
+    border-bottom:1px solid rgba(255,255,255,.08);
+
+    transition:.3s;
+
+}
+
+
+
+.crm-contact-table tbody tr:hover {
+
+    background:rgba(124,58,237,.12);
+
+}
+
+
+
+.crm-contact-table td {
+
+    padding:18px 15px;
+
+    color:#e5e7eb;
+
+    vertical-align:middle;
+
+}
+
+
+
+/* Contact Name */
+
+.crm-contact-table td strong {
+
+    font-size:17px;
+
+    color:#ffffff;
+
+}
+
+
+
+/* Email Phone */
+
+.crm-contact-table small {
+
+    color:#a1a1aa;
+
+}
+
+
+
+/* Source Badge */
+
+.crm-badge {
+
+    padding:7px 15px;
+
+    border-radius:20px;
+
+    font-size:13px;
+
+    font-weight:600;
+
+}
+
+
+
+/* Action Buttons */
+
+.crm-contact-table .btn {
+
+    width:34px;
+
+    height:34px;
+
+    padding:0;
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:transparent;
+
+}
+
+
+
+/* Button Colors */
+
+.crm-contact-table .btn-outline-info {
+
+    color:#06b6d4;
+
+    border-color:#06b6d4;
+
+}
+
+
+.crm-contact-table .btn-outline-warning {
+
+    color:#f59e0b;
+
+    border-color:#f59e0b;
+
+}
+
+
+.crm-contact-table .btn-outline-danger {
+
+    color:#fb7185;
+
+    border-color:#fb7185;
+
+}
+
+
+
+/* Pagination */
+
+.pagination {
+
+    gap:6px;
+
+}
+
+
+
+.pagination .page-link {
+
+    background:#1a1330;
+
+    color:#e5e7eb;
+
+    border:1px solid rgba(255,255,255,.1);
+
+    border-radius:8px;
+
+}
+
+
+
+.pagination .page-link:hover {
+
+    background:#7c3aed;
+
+    color:white;
+
+}
+
+
+
+.pagination .active .page-link {
+
+    background:#7c3aed;
+
+    border-color:#7c3aed;
+
+}
+
+
+
+/* =====================================
+      CONTACT DELETE RESPONSIVE
+===================================== */
+
+
+@media(max-width:768px){
+
+
+.crm-contact-list-page {
+
+    padding:15px;
+
+}
+
+
+.crm-contact-table {
+
+    font-size:13px;
+
+}
+
 
 }
