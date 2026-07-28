@@ -6,7 +6,7 @@ Register
 
 {% block content %}
 
-<div class="container-fluid py-5">
+<div class="container-fluid register-page py-5">
 
     <div class="row justify-content-center">
 
@@ -17,20 +17,19 @@ Register
                 <div class="row g-0">
 
                     <!-- Left Side -->
-
                     <div class="col-lg-5 register-left">
 
                         <div class="register-left-content">
 
                             <div class="brand-icon">
-
                                 <i class="bi bi-kanban-fill"></i>
-
                             </div>
 
-                            <h2>CRM System</h2>
+                            <h2 class="register-brand-title">
+                                CRM System
+                            </h2>
 
-                            <p>
+                            <p class="register-brand-text">
                                 Manage customers, leads, deals and daily tasks
                                 from one beautiful dashboard.
                             </p>
@@ -39,27 +38,27 @@ Register
 
                                 <div class="feature-item">
                                     <i class="bi bi-check-circle-fill"></i>
-                                    Contact Management
+                                    <span>Contact Management</span>
                                 </div>
 
                                 <div class="feature-item">
                                     <i class="bi bi-check-circle-fill"></i>
-                                    Lead Tracking
+                                    <span>Lead Tracking</span>
                                 </div>
 
                                 <div class="feature-item">
                                     <i class="bi bi-check-circle-fill"></i>
-                                    Deal Pipeline
+                                    <span>Deal Pipeline</span>
                                 </div>
 
                                 <div class="feature-item">
                                     <i class="bi bi-check-circle-fill"></i>
-                                    Task Management
+                                    <span>Task Management</span>
                                 </div>
 
                                 <div class="feature-item">
                                     <i class="bi bi-check-circle-fill"></i>
-                                    Dashboard & Reports
+                                    <span>Dashboard & Reports</span>
                                 </div>
 
                             </div>
@@ -69,102 +68,109 @@ Register
                     </div>
 
                     <!-- Right Side -->
-
                     <div class="col-lg-7">
 
-                        <div class="register-form">
+                        <div class="register-content">
 
-                            <h2 class="crm-title">
+                            <div class="register-header">
 
-                                Create Your Account
+                                <h2 class="crm-title">
+                                    Create Your Account
+                                </h2>
 
-                            </h2>
+                                <p class="crm-small">
+                                    Complete the form below to get started.
+                                </p>
 
-                            <p class="crm-small mb-4">
-
-                                Complete the form below to get started.
-
-                            </p>
+                            </div>
 
                             {% if messages %}
                                 {% for message in messages %}
-                                    <div class="alert alert-success">
+                                    <div class="alert alert-success crm-message-alert">
                                         {{ message }}
                                     </div>
                                 {% endfor %}
                             {% endif %}
 
-                            <form method="POST">
+                            <div class="register-form-wrapper">
 
-                                {% csrf_token %}
+                                <form method="POST" class="crm-form">
 
-                                <div class="row">
+                                    {% csrf_token %}
 
-                                    <div class="col-md-6 mb-3">
-                                        <label class="crm-label">First Name</label>
-                                        {{ form.first_name }}
+                                    <div class="row">
+
+                                        <div class="col-md-6 mb-3">
+                                            <label class="crm-label">First Name</label>
+                                            {{ form.first_name }}
+                                        </div>
+
+                                        <div class="col-md-6 mb-3">
+                                            <label class="crm-label">Last Name</label>
+                                            {{ form.last_name }}
+                                        </div>
+
+                                        <div class="col-12 mb-3">
+                                            <label class="crm-label">Username</label>
+                                            {{ form.username }}
+                                        </div>
+
+                                        <div class="col-12 mb-3">
+                                            <label class="crm-label">Email Address</label>
+                                            {{ form.email }}
+                                        </div>
+
+                                        <div class="col-12 mb-3">
+                                            <label class="crm-label">Phone Number</label>
+                                            {{ form.phone }}
+                                        </div>
+
+                                        <div class="col-md-6 mb-3">
+                                            <label class="crm-label">Password</label>
+                                            {{ form.password1 }}
+                                        </div>
+
+                                        <div class="col-md-6 mb-3">
+                                            <label class="crm-label">Confirm Password</label>
+                                            {{ form.password2 }}
+                                        </div>
+
                                     </div>
 
-                                    <div class="col-md-6 mb-3">
-                                        <label class="crm-label">Last Name</label>
-                                        {{ form.last_name }}
+                                    <div class="register-note">
+
+                                        <i class="bi bi-shield-lock-fill me-2"></i>
+
+                                        Your account will remain
+                                        <strong>Pending Approval</strong>
+                                        until activated by the administrator.
+
                                     </div>
 
-                                    <div class="col-12 mb-3">
-                                        <label class="crm-label">Username</label>
-                                        {{ form.username }}
+                                    <div class="register-actions">
+
+                                        <button type="submit" class="crm-btn-primary w-100">
+
+                                            <i class="bi bi-person-plus-fill me-2"></i>
+
+                                            Create Account
+
+                                        </button>
+
                                     </div>
 
-                                    <div class="col-12 mb-3">
-                                        <label class="crm-label">Email Address</label>
-                                        {{ form.email }}
-                                    </div>
+                                </form>
 
-                                    <div class="col-12 mb-3">
-                                        <label class="crm-label">Phone Number</label>
-                                        {{ form.phone }}
-                                    </div>
-
-                                    <div class="col-md-6 mb-3">
-                                        <label class="crm-label">Password</label>
-                                        {{ form.password1 }}
-                                    </div>
-
-                                    <div class="col-md-6 mb-3">
-                                        <label class="crm-label">Confirm Password</label>
-                                        {{ form.password2 }}
-                                    </div>
-
-                                </div>
-
-                                <div class="register-note">
-
-                                    <i class="bi bi-shield-lock-fill me-2"></i>
-
-                                    Your account will remain
-                                    <strong>Pending Approval</strong>
-                                    until activated by the administrator.
-
-                                </div>
-
-                                <button class="crm-btn-primary w-100 mt-4">
-
-                                    <i class="bi bi-person-plus-fill me-2"></i>
-
-                                    Create Account
-
-                                </button>
-
-                            </form>
+                            </div>
 
                             <div class="register-footer">
 
-                                Already have an account?
+                                <span>
+                                    Already have an account?
+                                </span>
 
                                 <a href="{% url 'login' %}" class="register-link">
-
                                     Login
-
                                 </a>
 
                             </div>
