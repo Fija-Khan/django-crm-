@@ -4,91 +4,77 @@
 
 {% block content %}
 
-<div class="container-fluid mt-4">
+<div class="container-fluid mt-4 crm-contact-list-page">
 
+    <!-- ========================= -->
+    <!-- PAGE HEADER -->
+    <!-- ========================= -->
 
-<!-- ========================= -->
-<!-- HEADER -->
-<!-- ========================= -->
+    <div class="d-flex justify-content-between align-items-center flex-wrap mb-4">
 
-<div class="d-flex justify-content-between align-items-center flex-wrap mb-4">
-
-    <div>
-<h2 class="crm-title mb-1">
+        <div>
+            <h2 class="crm-title mb-1">
                 <i class="bi bi-people-fill me-2"></i>
-            Contact Management
-        </h2>
+                Contact Management
+            </h2>
 
-<p class="crm-page-subtitle mb-0">
+            <p class="crm-page-subtitle mb-0">
                 Manage all contacts from one place.
-        </p>
-    </div>
+            </p>
+        </div>
 
+        <div class="mt-3 mt-md-0">
 
-    <div class="mt-3 mt-md-0">
+            <a href="{% url 'contacts:company_list' %}"
+               class="btn btn-outline-secondary me-2">
+                <i class="bi bi-building"></i>
+                Companies
+            </a>
 
-        <a href="{% url 'contacts:company_list' %}"
-           class="btn btn-outline-dark me-2">
+            <a href="{% url 'contacts:contact_import' %}"
+               class="btn btn-outline-secondary me-2">
+                <i class="bi bi-upload"></i>
+                Import
+            </a>
 
-            <i class="bi bi-building"></i>
-            Companies
+            <a href="{% url 'contacts:contact_export' %}"
+               class="btn btn-outline-success me-2">
+                <i class="bi bi-download"></i>
+                Export
+            </a>
 
-        </a>
+            <a href="{% url 'contacts:contact_add' %}"
+               class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i>
+                Add Contact
+            </a>
 
-
-        <a href="{% url 'contacts:contact_import' %}"
-           class="btn btn-outline-secondary me-2">
-
-            <i class="bi bi-upload"></i>
-            Import
-
-        </a>
-
-
-        <a href="{% url 'contacts:contact_export' %}"
-           class="btn btn-outline-success me-2">
-
-            <i class="bi bi-download"></i>
-            Export
-
-        </a>
-
-
-        <a href="{% url 'contacts:contact_add' %}"
-           class="btn btn-primary">
-
-            <i class="bi bi-plus-circle"></i>
-            Add Contact
-
-        </a>
+        </div>
 
     </div>
 
-</div>
 
+    <!-- ========================= -->
+    <!-- SUMMARY -->
+    <!-- ========================= -->
 
+    <div class="row mb-4">
 
-<!-- ========================= -->
-<!-- SUMMARY -->
-<!-- ========================= -->
+        <div class="col-md-4">
 
-<div class="row mb-4">
+            <div class="crm-card shadow-sm border-0">
 
-    <div class="col-md-4">
+                <div class="card-body">
 
-        <div class="crm-card shadow-sm border-0">
+                    <h6>
+                        Total Contacts
+                    </h6>
 
-            <div class="card-body">
+                    <h2 class="fw-bold text-primary mb-0">
+                        {{ page_obj.paginator.count }}
+                    </h2>
 
-                <h6>
-                    Total Contacts
-                </h6>
-
-                <h2 class="fw-bold text-primary mb-0">
-
-                    {{ page_obj.paginator.count }}
-
-                </h2>
+                </div>
 
             </div>
 
@@ -96,515 +82,424 @@
 
     </div>
 
-</div>
 
+    <!-- ========================= -->
+    <!-- FILTER -->
+    <!-- ========================= -->
 
+    <div class="crm-card shadow-sm border-0 mb-4">
 
+        <div class="card-body">
 
-<!-- ========================= -->
-<!-- FILTER -->
-<!-- ========================= -->
+            <form method="GET">
 
-<div class="crm-card shadow-sm border-0 mb-4">
+                <div class="row g-3 align-items-end">
 
-<div class="card-body">
+                    <!-- Search -->
+                    <div class="col-lg-4">
 
+                        <label class="form-label">
+                            Search
+                        </label>
 
-<form method="GET">
+                        <input
+                            type="text"
+                            name="search"
+                            class="form-control"
+                            placeholder="Search name, email or phone..."
+                            value="{{ search|default:'' }}"
+                        >
 
-<div class="row g-3">
+                    </div>
 
 
-<div class="col-lg-4">
+                    <!-- Source -->
+                    <div class="col-lg-2">
 
-<input
-type="text"
-name="search"
-class="form-control"
-placeholder="Search name, email or phone..."
-value="{{ search|default:'' }}"
->
+                        <label class="form-label">
+                            Source
+                        </label>
 
-</div>
+                        <select name="source" class="form-select">
 
+                            <option value="">
+                                All Sources
+                            </option>
 
+                            <option value="website"
+                                {% if source == "website" %}selected{% endif %}>
+                                Website
+                            </option>
 
-<div class="col-lg-3">
+                            <option value="referral"
+                                {% if source == "referral" %}selected{% endif %}>
+                                Referral
+                            </option>
 
-<select name="source" class="form-select">
+                            <option value="social"
+                                {% if source == "social" %}selected{% endif %}>
+                                Social Media
+                            </option>
 
-<option value="">
-All Sources
-</option>
+                            <option value="cold_call"
+                                {% if source == "cold_call" %}selected{% endif %}>
+                                Cold Call
+                            </option>
 
+                        </select>
 
-<option value="website"
-{% if source == "website" %}selected{% endif %}>
-Website
-</option>
+                    </div>
 
 
-<option value="referral"
-{% if source == "referral" %}selected{% endif %}>
-Referral
-</option>
+                    <!-- Company -->
+                    <div class="col-lg-2">
 
+                        <label class="form-label">
+                            Company
+                        </label>
 
-<option value="social"
-{% if source == "social" %}selected{% endif %}>
-Social Media
-</option>
+                        <select name="company" class="form-select">
 
+                            <option value="">
+                                All Companies
+                            </option>
 
-<option value="cold_call"
-{% if source == "cold_call" %}selected{% endif %}>
-Cold Call
-</option>
+                            {% for c in companies %}
 
+                            <option value="{{ c.id }}"
+                                {% if company == c.id|stringformat:"s" %}selected{% endif %}>
+                                {{ c.name }}
+                            </option>
 
-</select>
+                            {% endfor %}
 
-</div>
+                        </select>
 
+                    </div>
 
 
+                    <!-- Search Button -->
+                    <div class="col-lg-2 d-grid">
 
-<div class="col-lg-3">
+                        <button type="submit" class="btn btn-primary">
 
-<select name="company" class="form-select">
+                            <i class="bi bi-search me-1"></i>
+                            Search
 
+                        </button>
 
-<option value="">
-All Companies
-</option>
+                    </div>
 
 
-{% for c in companies %}
+                    <!-- Reset Button -->
+                    <div class="col-lg-2 d-grid">
 
-<option value="{{ c.id }}"
-{% if company == c.id|stringformat:"s" %}
-selected
-{% endif %}
->
+                        <a href="{% url 'contacts:contact_list' %}"
+                           class="btn btn-outline-secondary">
 
-{{ c.name }}
+                            <i class="bi bi-arrow-clockwise me-1"></i>
+                            Reset
 
-</option>
+                        </a>
 
-{% endfor %}
+                    </div>
 
+                </div>
 
-</select>
+            </form>
 
-</div>
+        </div>
 
+    </div>
 
 
+    <!-- ========================= -->
+    <!-- CONTACT TABLE -->
+    <!-- ========================= -->
 
-<div class="col-lg-2 d-grid">
+    <div class="crm-card shadow-sm border-0">
 
-<button class="btn btn-primary">
+        <div class="card-body">
 
-<i class="bi bi-search"></i>
-Search
+            <div class="table-responsive">
 
-</button>
+                <table class="crm-contact-table table-hover align-middle">
 
-</div>
+                    <thead>
 
+                        <tr>
 
+                            <th>#</th>
+                            <th>Contact</th>
+                            <th>Company</th>
+                            <th>Assigned To</th>
+                            <th>Source</th>
+                            <th>Created</th>
+                            <th class="text-center">Actions</th>
 
-<div class="col-lg-2 d-grid">
+                        </tr>
 
-<a href="{% url 'contacts:contact_list' %}"
-class="btn btn-outline-secondary">
+                    </thead>
 
-<i class="bi bi-arrow-clockwise"></i>
-Reset
 
-</a>
+                    <tbody>
 
-</div>
+                        {% for contact in page_obj %}
 
+                        <tr>
 
+                            <td>
+                                {{ page_obj.start_index|add:forloop.counter0 }}
+                            </td>
 
-</div>
 
-</form>
+                            <!-- Contact -->
+                            <td>
 
+                                <strong>
+                                    {{ contact.first_name }}
+                                    {{ contact.last_name }}
+                                </strong>
 
-</div>
+                                <br>
 
-</div>
+                                <small>
+                                    <i class="bi bi-envelope me-1"></i>
+                                    {{ contact.email }}
+                                </small>
 
+                                <br>
 
+                                <small>
+                                    <i class="bi bi-telephone me-1"></i>
+                                    {{ contact.phone|default:"-" }}
+                                </small>
 
+                            </td>
 
 
+                            <!-- Company -->
+                            <td>
 
-<!-- ========================= -->
-<!-- CONTACT TABLE -->
-<!-- ========================= -->
+                                {% if contact.company %}
 
+                                    {{ contact.company.name }}
 
-<div class="crm-card shadow-sm border-0">
+                                {% else %}
 
+                                    <span class="text-secondary">
+                                        No Company
+                                    </span>
 
-<div class="card-body">
+                                {% endif %}
 
+                            </td>
 
-<div class="table-responsive">
 
+                            <!-- Assigned To -->
+                            <td>
 
-<table class="crm-contact-table table-hover align-middle">
+                                {% if contact.assigned_to %}
 
+                                    {{ contact.assigned_to.username }}
 
-<thead>
+                                {% else %}
 
-<tr>
+                                    <span class="text-secondary">
+                                        Unassigned
+                                    </span>
 
-<th>#</th>
-<th>Contact</th>
-<th>Company</th>
-<th>Assigned To</th>
-<th>Source</th>
-<th>Created</th>
-<th class="text-center">Actions</th>
+                                {% endif %}
 
-</tr>
+                            </td>
 
-</thead>
 
+                            <!-- Source -->
+                            <td>
 
+                                {% if contact.source == "website" %}
 
-<tbody>
+                                    <span class="badge bg-primary">
+                                        Website
+                                    </span>
 
+                                {% elif contact.source == "referral" %}
 
-{% for contact in page_obj %}
+                                    <span class="badge bg-success">
+                                        Referral
+                                    </span>
 
+                                {% elif contact.source == "social" %}
 
-<tr>
+                                    <span class="badge bg-info">
+                                        Social
+                                    </span>
 
+                                {% elif contact.source == "cold_call" %}
 
-<td>
-{{ page_obj.start_index|add:forloop.counter0 }}
-</td>
+                                    <span class="badge bg-warning text-dark">
+                                        Cold Call
+                                    </span>
 
+                                {% else %}
 
+                                    <span class="badge bg-secondary">
+                                        Unknown
+                                    </span>
 
-<td>
+                                {% endif %}
 
-<strong>
-{{ contact.first_name }}
-{{ contact.last_name }}
-</strong>
+                            </td>
 
 
-<br>
+                            <!-- Created -->
+                            <td>
+                                {{ contact.created_at|date:"d M Y" }}
+                            </td>
 
 
-<small>
+                            <!-- Actions -->
+                            <td class="text-center">
 
-<i class="bi bi-envelope"></i>
+                                <div class="btn-group">
 
-{{ contact.email }}
+                                    <a
+                                        href="{% url 'contacts:contact_detail' contact.pk %}"
+                                        class="btn btn-sm btn-outline-info"
+                                        title="View Contact"
+                                    >
+                                        <i class="bi bi-eye"></i>
+                                    </a>
 
-</small>
 
+                                    <a
+                                        href="{% url 'contacts:contact_edit' contact.pk %}"
+                                        class="btn btn-sm btn-outline-warning"
+                                        title="Edit Contact"
+                                    >
+                                        <i class="bi bi-pencil-square"></i>
+                                    </a>
 
-<br>
 
+                                    <a
+                                        href="{% url 'contacts:contact_delete' contact.pk %}"
+                                        class="btn btn-sm btn-outline-danger"
+                                        title="Delete Contact"
+                                    >
+                                        <i class="bi bi-trash"></i>
+                                    </a>
 
-<small>
+                                </div>
 
-<i class="bi bi-telephone"></i>
+                            </td>
 
-{{ contact.phone|default:"-" }}
+                        </tr>
 
-</small>
 
+                        {% empty %}
 
-</td>
+                        <tr>
 
+                            <td colspan="7" class="text-center py-5">
 
+                                <i class="bi bi-people display-4 text-secondary"></i>
 
+                                <h5 class="mt-3">
+                                    No Contacts Found
+                                </h5>
 
-<td>
+                                <p>
+                                    Create your first contact.
+                                </p>
 
-{% if contact.company %}
+                                <a
+                                    href="{% url 'contacts:contact_add' %}"
+                                    class="btn btn-primary"
+                                >
+                                    <i class="bi bi-plus-circle me-1"></i>
+                                    Add Contact
+                                </a>
 
-{{ contact.company.name }}
+                            </td>
 
-{% else %}
+                        </tr>
 
-<span>
-No Company
-</span>
+                        {% endfor %}
 
-{% endif %}
+                    </tbody>
 
-</td>
+                </table>
 
+            </div>
 
+        </div>
 
+    </div>
 
-<td>
 
-{% if contact.assigned_to %}
+    <!-- ========================= -->
+    <!-- PAGINATION -->
+    <!-- ========================= -->
 
-{{ contact.assigned_to.username }}
+    {% if page_obj.has_other_pages %}
 
-{% else %}
+    <nav class="mt-4">
 
-<span>
-Unassigned
-</span>
+        <ul class="pagination justify-content-center">
 
-{% endif %}
+            {% if page_obj.has_previous %}
 
-</td>
+            <li class="page-item">
 
+                <a
+                    class="page-link"
+                    href="?page={{ page_obj.previous_page_number }}&search={{ search }}&source={{ source }}&company={{ company }}"
+                >
+                    Previous
+                </a>
 
+            </li>
 
+            {% endif %}
 
-<td>
 
+            {% for page in page_obj.paginator.page_range %}
 
-{% if contact.source == "website" %}
+            <li class="page-item {% if page == page_obj.number %}active{% endif %}">
 
-<span class="badge bg-primary">
-Website
-</span>
+                <a
+                    class="page-link"
+                    href="?page={{ page }}&search={{ search }}&source={{ source }}&company={{ company }}"
+                >
+                    {{ page }}
+                </a>
 
+            </li>
 
-{% elif contact.source == "referral" %}
+            {% endfor %}
 
-<span class="badge bg-success">
-Referral
-</span>
 
+            {% if page_obj.has_next %}
 
-{% elif contact.source == "social" %}
+            <li class="page-item">
 
-<span class="badge bg-info">
-Social
-</span>
+                <a
+                    class="page-link"
+                    href="?page={{ page_obj.next_page_number }}&search={{ search }}&source={{ source }}&company={{ company }}"
+                >
+                    Next
+                </a>
 
+            </li>
 
-{% elif contact.source == "cold_call" %}
+            {% endif %}
 
-<span class="badge bg-warning text-dark">
-Cold Call
-</span>
+        </ul>
 
+    </nav>
 
-{% endif %}
-
-
-</td>
-
-
-
-
-<td>
-
-{{ contact.created_at|date:"d M Y" }}
-
-</td>
-
-
-
-
-<td class="text-center">
-
-
-<div class="btn-group">
-
-
-<a href="{% url 'contacts:contact_detail' contact.pk %}"
-class="btn btn-sm btn-outline-info">
-
-<i class="bi bi-eye"></i>
-
-</a>
-
-
-<a href="{% url 'contacts:contact_edit' contact.pk %}"
-class="btn btn-sm btn-outline-warning">
-
-<i class="bi bi-pencil-square"></i>
-
-</a>
-
-
-<a href="{% url 'contacts:contact_delete' contact.pk %}"
-class="btn btn-sm btn-outline-danger">
-
-<i class="bi bi-trash"></i>
-
-</a>
-
-
-</div>
-
-
-</td>
-
-
-</tr>
-
-
-
-{% empty %}
-
-
-
-<tr>
-
-<td colspan="7" class="text-center py-5">
-
-
-<i class="bi bi-people display-4 text-secondary"></i>
-
-
-<h5 class="mt-3">
-
-No Contacts Found
-
-</h5>
-
-
-<p>
-
-Create your first contact.
-
-</p>
-
-
-
-<a href="{% url 'contacts:contact_add' %}"
-class="btn btn-primary">
-
-<i class="bi bi-plus-circle"></i>
-
-Add Contact
-
-</a>
-
-
-</td>
-
-</tr>
-
-
-{% endfor %}
-
-
-
-</tbody>
-
-
-</table>
-
-
-</div>
-
-
-</div>
-
-
-</div>
-
-
-
-
-
-<!-- ========================= -->
-<!-- PAGINATION -->
-<!-- ========================= -->
-
-
-{% if page_obj.has_other_pages %}
-
-
-<nav class="mt-4">
-
-
-<ul class="pagination justify-content-center">
-
-
-{% if page_obj.has_previous %}
-
-<li class="page-item">
-
-<a class="page-link"
-href="?page={{ page_obj.previous_page_number }}&search={{search}}&source={{source}}&company={{company}}">
-
-Previous
-
-</a>
-
-</li>
-
-{% endif %}
-
-
-
-{% for page in page_obj.paginator.page_range %}
-
-
-<li class="page-item 
-{% if page == page_obj.number %}active{% endif %}">
-
-
-<a class="page-link"
-href="?page={{page}}&search={{search}}&source={{source}}&company={{company}}">
-
-{{page}}
-
-</a>
-
-
-</li>
-
-
-{% endfor %}
-
-
-
-
-{% if page_obj.has_next %}
-
-
-<li class="page-item">
-
-
-<a class="page-link"
-href="?page={{ page_obj.next_page_number }}&search={{search}}&source={{source}}&company={{company}}">
-
-Next
-
-</a>
-
-
-</li>
-
-
-{% endif %}
-
-
-
-</ul>
-
-
-</nav>
-
-
-{% endif %}
-
-
+    {% endif %}
 
 </div>
-
 
 {% endblock %}

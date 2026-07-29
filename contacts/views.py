@@ -187,7 +187,7 @@ class ContactDetailView(
 
         # Related Data
         context["leads"] = contact.lead_set.all()
-        context["notes"] = contact.note_set.all()
+        context["notes"] = contact.notes.all()
         context["interactions"] = contact.interaction_set.all()
 
         return context

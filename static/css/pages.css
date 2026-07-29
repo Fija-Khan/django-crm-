@@ -7,25 +7,22 @@
         PAGE HEADER
 ========================== */
 
-
 .dashboard-title {
 
-    font-size:28px;
-
-    font-weight:700;
-
-    color:#ffffff;
-
-    letter-spacing:.3px;
+    font-size: 28px;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: .3px;
+    margin-bottom: 6px;
 
 }
 
 
 .dashboard-title + p {
 
-    color:#a1a1aa !important;
-
-    font-size:14px;
+    color: #a1a1aa !important;
+    font-size: 14px;
+    margin-bottom: 0;
 
 }
 
@@ -34,408 +31,301 @@
 
 .text-end small {
 
-    background:#1a1330;
+    display: inline-block;
 
-    padding:10px 16px;
+    background: #1a1330;
 
-    border-radius:12px;
+    padding: 10px 16px;
 
-    border:1px solid rgba(255,255,255,.08);
+    border-radius: 12px;
 
-    color:#c4b5fd !important;
+    border: 1px solid rgba(255,255,255,.08);
+
+    color: #c4b5fd !important;
 
 }
-
 
 
 /* ==========================
         KPI CARDS
 ========================== */
 
-
 .dashboard-kpi .crm-card {
 
+    background: #1a1330;
 
-    background:#1a1330;
+    border: 1px solid rgba(255,255,255,.08);
 
-    border:1px solid rgba(255,255,255,.08);
+    border-radius: 18px;
 
-    border-radius:18px;
+    transition: .3s ease;
 
-    transition:.3s ease;
-
-    overflow:hidden;
+    overflow: hidden;
 
 }
-
 
 
 .dashboard-kpi .crm-card:hover {
 
+    transform: translateY(-5px);
 
-    transform:translateY(-6px);
-
-    border-color:#7c3aed;
+    border-color: rgba(124,58,237,.7);
 
     box-shadow:
-
-    0 18px 40px rgba(124,58,237,.25);
-
+        0 18px 40px rgba(124,58,237,.20);
 
 }
-
 
 
 .dashboard-kpi .card-body {
 
-
-    padding:25px;
-
+    padding: 25px;
 
 }
-
 
 
 .dashboard-kpi h3 {
 
+    font-size: 34px;
 
-    font-size:34px;
+    font-weight: 700;
 
-    font-weight:700;
+    margin-bottom: 6px;
 
-    margin-bottom:6px;
-
-    color:#ffffff;
-
+    color: #ffffff;
 
 }
-
 
 
 .dashboard-kpi p {
 
+    color: #a1a1aa !important;
 
-    color:#a1a1aa !important;
+    font-size: 14px;
 
-    font-size:14px;
-
-    margin:0;
-
+    margin: 0;
 
 }
 
 
-
-/* KPI Icons */
-
+/* ==========================
+        KPI ICONS
+========================== */
 
 .dashboard-kpi .card-body i {
 
+    width: 65px;
 
-    width:65px;
+    height: 65px;
 
-    height:65px;
+    display: flex;
 
+    align-items: center;
 
-    display:flex;
+    justify-content: center;
 
-    align-items:center;
+    border-radius: 50%;
 
-    justify-content:center;
+    font-size: 28px;
 
+    background: rgba(124,58,237,.15);
 
-    border-radius:50%;
-
-
-    font-size:28px;
-
-
-    background:rgba(124,58,237,.15);
-
-
-    transition:.3s ease;
-
+    transition: .3s ease;
 
 }
-
 
 
 .dashboard-kpi .crm-card:hover i {
 
+    background: #7c3aed;
 
-    background:#7c3aed;
+    color: #ffffff !important;
 
-    color:white !important;
-
-    transform:scale(1.1);
-
+    transform: scale(1.08);
 
 }
 
 
-
-/* Number Colors */
-
+/* ==========================
+        NUMBER COLORS
+========================== */
 
 .text-crm-primary {
 
-    color:#a78bfa !important;
+    color: #a78bfa !important;
 
 }
-
 
 
 .text-crm-success {
 
-    color:#4ade80 !important;
+    color: #4ade80 !important;
 
 }
-
-
 
 
 /* ==========================
         COMMON CRM CARD
 ========================== */
 
-
 .crm-card {
 
+    background: #1a1330;
 
-    background:#1a1330;
+    border-radius: 18px;
 
-    border-radius:18px;
+    border: 1px solid rgba(255,255,255,.08);
 
-    border:1px solid rgba(255,255,255,.08);
-
-    color:#e5e7eb;
+    color: #e5e7eb;
 
     box-shadow:
-
-    0 15px 35px rgba(0,0,0,.25);
-
+        0 15px 35px rgba(0,0,0,.25);
 
 }
-
 
 
 /* ==========================
         CARD HEADER
 ========================== */
 
-
 .crm-header,
 .crm-header-alt {
 
+    background: #241842;
 
-    background:#241842;
+    color: #ffffff;
 
+    font-weight: 600;
 
-    color:white;
-
-
-    font-weight:600;
-
-
-    padding:16px 20px;
-
+    padding: 16px 20px;
 
     border-bottom:
-
-    1px solid rgba(255,255,255,.08);
-
+        1px solid rgba(255,255,255,.08);
 
 }
-
 
 
 .crm-header-alt {
 
-
-    background:#21163b;
-
+    background: #21163b;
 
 }
-
 
 
 /* ==========================
         TODAY TASKS
 ========================== */
 
-
 .crm-card .border {
 
-
     border-color:
+        rgba(255,255,255,.08) !important;
 
-    rgba(255,255,255,.08) !important;
+    background: #151025;
 
+    border-radius: 14px !important;
 
-    background:#151025;
-
-
-    border-radius:14px !important;
-
-
-    transition:.3s ease;
-
+    transition: .3s ease;
 
 }
-
 
 
 .crm-card .border:hover {
 
+    border-color: #7c3aed !important;
 
-    border-color:#7c3aed !important;
-
-
-    transform:translateY(-3px);
-
+    transform: translateY(-3px);
 
 }
 
 
-
-
-/* Empty State */
-
+/* ==========================
+        EMPTY STATE
+========================== */
 
 .crm-card .text-center i {
 
+    width: 70px;
 
-    background:rgba(34,197,94,.15);
+    height: 70px;
 
+    display: flex;
 
-    width:70px;
+    align-items: center;
 
-    height:70px;
+    justify-content: center;
 
+    margin: auto;
 
-    display:flex;
+    border-radius: 50%;
 
-    align-items:center;
-
-    justify-content:center;
-
-
-    margin:auto;
-
-
-    border-radius:50%;
-
+    background: rgba(34,197,94,.15);
 
 }
-
 
 
 /* ==========================
         BADGES
 ========================== */
 
-
 .badge {
 
+    padding: 7px 13px;
 
-    padding:7px 13px;
+    border-radius: 20px;
 
-    border-radius:20px;
-
-    font-weight:600;
+    font-weight: 600;
 
 }
-
 
 
 .badge.bg-primary {
 
-
-    background:#7c3aed !important;
-
+    background: #7c3aed !important;
 
 }
-
-
 
 
 /* ==========================
         RECENT ACTIVITY
 ========================== */
 
-
 .border-start.border-primary {
 
+    border-color: #7c3aed !important;
 
-    border-color:#7c3aed !important;
+    background: rgba(124,58,237,.08);
 
+    padding: 15px !important;
 
-    background:rgba(124,58,237,.08);
-
-
-    padding:15px !important;
-
-
-    border-radius:12px;
-
+    border-radius: 12px;
 
 }
-
 
 
 .border-start.border-primary strong {
 
-
-    color:#ffffff;
-
+    color: #ffffff;
 
 }
-
 
 
 .border-start.border-primary p {
 
-
-    color:#cbd5e1;
-
+    color: #cbd5e1;
 
 }
-
 
 
 /* ==========================
         CHARTS
 ========================== */
 
-
 canvas {
 
-
-    max-height:350px;
-
+    max-height: 350px;
 
 }
-
-
-
-/* ==========================
-        DASHBOARD RESPONSIVE
-        (Temporary remove later)
-========================== */
-
-
-/*
-@media(max-width:768px){
-
-.dashboard-title{
-
-    font-size:22px;
-
-}
-
-}
-*/
-
 
 
 /* =====================================
@@ -443,83 +333,97 @@ canvas {
 ===================================== */
 
 
-/* Contact Import */
+/* ==========================
+      CONTACT IMPORT PAGE
+========================== */
 
 .crm-import-page {
 
-    max-width:900px;
+    width: 100%;
+
+    max-width: 900px;
+
+    margin: 0 auto;
 
 }
 
 
-
-/* Add/Edit */
+/* ==========================
+      CONTACT ADD / EDIT PAGE
+========================== */
 
 .crm-contact-page {
 
-    max-width:1100px;
+    width: 100%;
+
+    max-width: 1100px;
+
+    margin: 0 auto;
 
 }
 
 
-
-/* Detail Header */
+/* ==========================
+      CONTACT DETAIL HEADER
+========================== */
 
 .card-header {
 
-    background:transparent;
+    background: transparent;
 
-    color:#e5e7eb;
+    color: #e5e7eb;
 
-    border-bottom:1px solid rgba(255,255,255,.08);
+    border-bottom:
+        1px solid rgba(255,255,255,.08);
 
 }
 
 
 .card-header h5 {
 
-    font-weight:600;
+    font-weight: 600;
 
 }
 
 
-
-/* Delete Page */
+/* ==========================
+      CONTACT DELETE PAGE
+========================== */
 
 .crm-delete-page {
 
-    max-width:600px;
+    width: 100%;
 
-    margin:auto;
+    max-width: 600px;
+
+    margin: 0 auto;
 
 }
-
 
 
 .crm-delete-icon {
 
-    width:90px;
+    width: 90px;
 
-    height:90px;
+    height: 90px;
 
-    display:flex;
+    display: flex;
 
-    align-items:center;
+    align-items: center;
 
-    justify-content:center;
+    justify-content: center;
 
-    margin:auto;
+    margin: 0 auto;
 
-    border-radius:50%;
+    border-radius: 50%;
 
-    background:#450a0a;
+    background: #450a0a;
 
-    color:#f87171;
+    color: #f87171;
 
-    font-size:40px;
+    font-size: 40px;
 
 }
-
 
 
 /* =====================================
@@ -527,768 +431,930 @@ canvas {
 ===================================== */
 
 
+/* ==========================
+      MAIN PAGE SPACING
+========================== */
 
 .crm-contact-list-page {
 
-    padding:25px;
+    width: 100%;
+
+    padding: 20px 25px;
 
 }
 
 
-
-/* Table Card */
+/* ==========================
+      SEARCH / FILTER CARD
+========================== */
 
 .crm-contact-list-page .crm-card {
 
-    background:#1a1330;
+    background: #1a1330;
 
-    border-radius:18px;
+    border: 1px solid rgba(255,255,255,.08);
 
-    border:1px solid rgba(255,255,255,.08);
-
-    overflow:hidden;
+    border-radius: 18px;
 
 }
 
 
+/* ==========================
+      SEARCH INPUTS
+========================== */
 
-/* Contact Table */
+.crm-contact-list-page .form-control,
+.crm-contact-list-page .form-select {
+
+    background: #0f0b1a !important;
+
+    color: #e5e7eb !important;
+
+    border: 1px solid #31234f !important;
+
+    border-radius: 10px;
+
+    min-height: 42px;
+
+    box-shadow: none !important;
+
+}
+
+
+/* Placeholder */
+
+.crm-contact-list-page .form-control::placeholder {
+
+    color: #71717a !important;
+
+}
+
+
+/* Select Options */
+
+.crm-contact-list-page .form-select option {
+
+    background: #1a1330;
+
+    color: #ffffff;
+
+}
+
+
+/* Focus */
+
+.crm-contact-list-page .form-control:focus,
+.crm-contact-list-page .form-select:focus {
+
+    border-color: #7c3aed !important;
+
+    box-shadow:
+        0 0 0 3px rgba(124,58,237,.15) !important;
+
+}
+
+
+/* ==========================
+      SEARCH BUTTON
+========================== */
+
+.crm-contact-list-page .btn-primary {
+
+    background: #7c3aed !important;
+
+    border-color: #7c3aed !important;
+
+    border-radius: 10px;
+
+    min-height: 42px;
+
+    font-weight: 600;
+
+    transition: .3s ease;
+
+}
+
+
+.crm-contact-list-page .btn-primary:hover {
+
+    background: #6d28d9 !important;
+
+    border-color: #6d28d9 !important;
+
+}
+
+
+/* ==========================
+      RESET BUTTON
+========================== */
+
+.crm-contact-list-page .btn-outline-secondary {
+
+    color: #a1a1aa !important;
+
+    border-color: #51446d !important;
+
+    border-radius: 10px;
+
+    min-height: 42px;
+
+    transition: .3s ease;
+
+}
+
+
+.crm-contact-list-page .btn-outline-secondary:hover {
+
+    background: #241842 !important;
+
+    color: #ffffff !important;
+
+    border-color: #7c3aed !important;
+
+}
+
+
+/* =====================================
+      CONTACT TABLE
+===================================== */
+
+
+/* ==========================
+      TABLE WRAPPER
+========================== */
+
+.crm-contact-list-page .crm-contact-table-wrapper {
+
+    overflow-x: auto;
+
+    border-radius: 18px;
+
+}
+
+
+/* ==========================
+      TABLE CARD
+========================== */
+
+.crm-contact-list-page .crm-card:has(.crm-contact-table) {
+
+    padding: 0;
+
+}
+
+
+/* ==========================
+      TABLE
+========================== */
 
 .crm-contact-table {
 
-    width:100%;
+    width: 100%;
 
-    border-collapse:collapse;
+    table-layout: fixed;
 
-}
-
-
-
-/* Table Header */
-
-.crm-contact-table thead {
-
-    background:#241b45;
+    border-collapse: collapse;
 
 }
 
+
+/* ==========================
+      TABLE HEADER
+========================== */
 
 .crm-contact-table thead th {
 
-    color:#ffffff;
+    height: 52px;
 
-    padding:18px 15px;
+    padding: 14px;
 
-    font-size:15px;
+    background: #241b45;
 
-    font-weight:700;
+    color: #ffffff;
 
-    border:none;
+    font-size: 14px;
+
+    font-weight: 600;
+
+    vertical-align: middle;
 
 }
 
 
-
-/* Table Body */
+/* ==========================
+      TABLE ROWS
+========================== */
 
 .crm-contact-table tbody tr {
 
-    border-bottom:1px solid rgba(255,255,255,.08);
+    height: 100px;
 
-    transition:.3s;
-
-}
-
-
-
-.crm-contact-table tbody tr:hover {
-
-    background:rgba(124,58,237,.12);
+    background: #1a1330;
 
 }
 
 
+/* ==========================
+      TABLE CELLS
+========================== */
 
-.crm-contact-table td {
+.crm-contact-table tbody td {
 
-    padding:18px 15px;
+    height: 100px;
 
-    color:#e5e7eb;
+    padding: 12px 14px;
 
-    vertical-align:middle;
+    color: #e5e7eb;
+
+    vertical-align: middle;
 
 }
 
 
-
-/* Contact Name */
+/* ==========================
+      CONTACT NAME
+========================== */
 
 .crm-contact-table td strong {
 
-    font-size:17px;
+    display: block;
 
-    color:#ffffff;
+    font-size: 15px;
 
-}
+    line-height: 1.3;
 
-
-
-/* Email Phone */
-
-.crm-contact-table small {
-
-    color:#a1a1aa;
+    margin-bottom: 5px;
 
 }
 
 
+/* ==========================
+      EMAIL + PHONE
+========================== */
 
-/* Source Badge */
+.crm-contact-table td small {
 
-.crm-badge {
+    display: block;
 
-    padding:7px 15px;
+    font-size: 12px;
 
-    border-radius:20px;
+    line-height: 1.5;
 
-    font-size:13px;
-
-    font-weight:600;
-
-}
-
-
-
-/* Action Buttons */
-
-.crm-contact-table .btn {
-
-    width:34px;
-
-    height:34px;
-
-    padding:0;
-
-    display:inline-flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    background:transparent;
+    margin: 0;
 
 }
 
 
+/* Contact Icons */
 
-/* Button Colors */
+.crm-contact-table td small i {
 
-.crm-contact-table .btn-outline-info {
+    width: 18px;
 
-    color:#06b6d4;
+    display: inline-block;
 
-    border-color:#06b6d4;
-
-}
-
-
-.crm-contact-table .btn-outline-warning {
-
-    color:#f59e0b;
-
-    border-color:#f59e0b;
+    font-size: 12px;
 
 }
 
 
-.crm-contact-table .btn-outline-danger {
+/* ==========================
+      COMPANY + ASSIGNED
+========================== */
 
-    color:#fb7185;
+.crm-contact-table td:nth-child(3),
+.crm-contact-table td:nth-child(4) {
 
-    border-color:#fb7185;
+    font-size: 14px;
 
-}
-
-
-
-/* Pagination */
-
-.pagination {
-
-    gap:6px;
+    white-space: nowrap;
 
 }
 
 
+/* ==========================
+      SOURCE
+========================== */
 
-.pagination .page-link {
+.crm-contact-table td:nth-child(5) {
 
-    background:#1a1330;
-
-    color:#e5e7eb;
-
-    border:1px solid rgba(255,255,255,.1);
-
-    border-radius:8px;
+    text-align: center;
 
 }
 
 
+/* ==========================
+      CREATED DATE
+========================== */
 
-.pagination .page-link:hover {
+.crm-contact-table td:nth-child(6) {
 
-    background:#7c3aed;
-
-    color:white;
+    white-space: nowrap;
 
 }
 
 
+/* =====================================
+      ACTION COLUMN
+===================================== */
 
-.pagination .active .page-link {
+.crm-contact-table td:last-child {
 
-    background:#7c3aed;
+    text-align: center;
 
-    border-color:#7c3aed;
+    white-space: nowrap;
+
+}
+
+
+/* ==========================
+      ACTION BUTTON GROUP
+========================== */
+
+.crm-contact-table .btn-group {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 7px;
+
+}
+
+
+/* ==========================
+      ACTION BUTTONS
+========================== */
+
+.crm-contact-table .btn-group .btn {
+
+    width: 34px;
+
+    height: 34px;
+
+    min-width: 34px;
+
+    padding: 0;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 9px !important;
+
+    line-height: 1;
+
+    margin: 0;
+
+}
+
+
+/* ==========================
+      ACTION BUTTON ICONS
+========================== */
+
+.crm-contact-table .btn-group .btn i {
+
+    font-size: 14px;
+
+    line-height: 1;
+
+}
+
+
+/* ==========================
+      ACTION BUTTON HOVER
+========================== */
+
+.crm-contact-table .btn-group .btn {
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease,
+        background-color .2s ease;
+
+}
+
+
+.crm-contact-table .btn-group .btn:hover {
+
+    transform: translateY(-2px);
+
+}
+
+
+/* ==========================
+      REMOVE DEFAULT BUTTON
+      EXTRA SPACING
+========================== */
+
+.crm-contact-table .btn-group > .btn {
+
+    margin-left: 0 !important;
+
+    margin-right: 0 !important;
+
+}
+
+
+/* ==========================
+      TABLE TEXT ALIGNMENT
+========================== */
+
+.crm-contact-table tbody td {
+
+    vertical-align: middle;
+
+}
+
+
+/* ==========================
+      TABLE ROW BORDER
+========================== */
+
+.crm-contact-table tbody tr + tr td {
+
+    border-top:
+        1px solid rgba(255,255,255,.06);
 
 }
 
 
 
 /* =====================================
-      CONTACT DELETE RESPONSIVE
+        REGISTER PAGE
 ===================================== */
 
 
-@media(max-width:768px){
-
-
-.crm-contact-list-page {
-
-    padding:15px;
-
-}
-
-
-.crm-contact-table {
-
-    font-size:13px;
-
-}
-
-
-}
-/* ================================
-   REGISTER PAGE
-================================ */
+/* ==========================
+        MAIN PAGE
+========================== */
 
 .register-page {
+
     min-height: 100vh;
+
     background: #0f0b1a;
+
     display: flex;
+
     align-items: center;
+
     justify-content: center;
+
     padding: 50px 20px;
+
 }
 
 
-/* Main Card */
+/* ==========================
+        MAIN CARD
+========================== */
 
 .register-card {
 
     width: 100%;
+
     max-width: 900px;
 
-    background: rgba(26, 19, 48, 0.95);
+    background: rgba(26,19,48,.95);
 
     border-radius: 24px;
 
     padding: 45px;
 
-    border: 1px solid rgba(124, 58, 237, 0.25);
+    border:
+        1px solid rgba(124,58,237,.25);
 
     box-shadow:
-        0 25px 60px rgba(0,0,0,0.45),
-        inset 0 0 30px rgba(124,58,237,0.05);
+        0 25px 60px rgba(0,0,0,.45),
+        inset 0 0 30px rgba(124,58,237,.05);
 
     backdrop-filter: blur(10px);
 
 }
 
 
-/* Header */
+/* ==========================
+        HEADER
+========================== */
 
 .register-header {
 
-    text-align:center;
+    text-align: center;
 
-    margin-bottom:40px;
+    margin-bottom: 40px;
 
 }
 
 
 .register-title {
 
-    color:#ffffff;
+    color: #ffffff;
 
-    font-size:34px;
+    font-size: 34px;
 
-    font-weight:700;
+    font-weight: 700;
 
-    letter-spacing:.5px;
+    letter-spacing: .5px;
+
+    margin-bottom: 0;
 
 }
 
 
 .register-subtitle {
 
-    color:#a1a1aa;
+    color: #a1a1aa;
 
-    font-size:15px;
+    font-size: 15px;
 
-    margin-top:10px;
+    margin-top: 10px;
+
+    margin-bottom: 0;
 
 }
 
 
-/* Form */
+/* ==========================
+        FORM
+========================== */
 
 .register-form {
 
-    width:100%;
+    width: 100%;
 
 }
 
 
+/* Form Row */
 
 .register-row {
 
-    display:flex;
+    display: flex;
 
-    gap:25px;
+    gap: 25px;
 
-    margin-bottom:22px;
+    margin-bottom: 22px;
 
 }
 
 
+/* Form Column */
 
 .register-column {
 
-    flex:1;
+    flex: 1;
+
+    min-width: 0;
 
 }
 
 
-
-/* Labels */
+/* ==========================
+        LABELS
+========================== */
 
 .register-label {
 
-    display:block;
+    display: block;
 
-    color:#e5e7eb;
+    color: #e5e7eb;
 
-    font-size:14px;
+    font-size: 14px;
 
-    font-weight:600;
+    font-weight: 600;
 
-    margin-bottom:8px;
+    margin-bottom: 8px;
 
 }
 
 
-
-/* Input */
+/* ==========================
+        INPUTS
+========================== */
 
 .register-input,
 .register-select {
 
+    width: 100%;
 
-    width:100%;
+    padding: 14px 16px;
 
-    padding:14px 16px;
+    background: #0f0b1a;
 
-    background:#0f0b1a;
+    border: 1px solid #31234f;
 
-    border:1px solid #31234f;
+    border-radius: 12px;
 
-    border-radius:12px;
+    color: #ffffff;
 
-    color:white;
+    font-size: 15px;
 
-    font-size:15px;
+    outline: none;
 
-    outline:none;
+    transition: .3s ease;
 
-    transition:.3s ease;
+    box-sizing: border-box;
 
 }
 
 
+/* Input Hover */
 
 .register-input:hover,
 .register-select:hover {
 
-    border-color:#6d28d9;
+    border-color: #6d28d9;
 
 }
 
 
+/* Input Focus */
 
 .register-input:focus,
 .register-select:focus {
 
-    border-color:#7c3aed;
+    border-color: #7c3aed;
 
     box-shadow:
-    0 0 0 4px rgba(124,58,237,.18);
+        0 0 0 4px rgba(124,58,237,.18);
 
 }
 
 
+/* Placeholder */
 
 .register-input::placeholder {
 
-    color:#71717a;
+    color: #71717a;
 
 }
 
 
-/* Autofill Fix */
+/* ==========================
+        AUTOFILL
+========================== */
 
-.register-input:-webkit-autofill {
+.register-input:-webkit-autofill,
+.register-input:-webkit-autofill:hover,
+.register-input:-webkit-autofill:focus {
 
-    -webkit-text-fill-color:white;
+    -webkit-text-fill-color: #ffffff;
 
-    transition:background-color 9999s ease-in-out 0s;
+    -webkit-box-shadow:
+        0 0 0 1000px #0f0b1a inset;
+
+    transition:
+        background-color 9999s ease-in-out 0s;
 
 }
 
 
-/* Select */
+/* ==========================
+        SELECT
+========================== */
 
 .register-select {
 
-    cursor:pointer;
+    cursor: pointer;
 
 }
-
 
 
 .register-select option {
 
-    background:#1a1330;
+    background: #1a1330;
 
-    color:white;
+    color: #ffffff;
 
 }
 
 
-
-/* File Upload */
+/* ==========================
+        FILE UPLOAD
+========================== */
 
 .register-file {
 
-    width:100%;
+    width: 100%;
 
-    padding:13px;
+    padding: 13px;
 
-    background:#0f0b1a;
+    background: #0f0b1a;
 
-    border:1px dashed #7c3aed;
+    border: 1px dashed #7c3aed;
 
-    border-radius:12px;
+    border-radius: 12px;
 
-    color:#e5e7eb;
+    color: #e5e7eb;
 
-    cursor:pointer;
+    cursor: pointer;
+
+    box-sizing: border-box;
 
 }
 
 
+/* File Button */
 
 .register-file::file-selector-button {
 
+    background: #7c3aed;
 
-    background:#7c3aed;
+    color: #ffffff;
 
-    color:white;
+    border: none;
 
-    border:none;
+    padding: 9px 18px;
 
-    padding:9px 18px;
+    border-radius: 8px;
 
-    border-radius:8px;
+    cursor: pointer;
 
-    cursor:pointer;
+    margin-right: 12px;
 
-    margin-right:12px;
+    font-weight: 600;
 
-    font-weight:600;
-
-    transition:.3s;
-
+    transition: .3s ease;
 
 }
 
 
+/* File Button Hover */
 
 .register-file::file-selector-button:hover {
 
-    background:#6d28d9;
+    background: #6d28d9;
 
 }
 
 
-/* Checkbox */
+/* ==========================
+        CHECKBOX
+========================== */
 
 .register-checkbox {
 
-    display:flex;
+    display: flex;
 
-    align-items:center;
+    align-items: center;
 
-    gap:12px;
+    gap: 12px;
 
-    margin-top:22px;
+    margin-top: 22px;
 
 }
-
 
 
 .register-checkbox input {
 
+    width: 17px;
 
-    width:17px;
+    height: 17px;
 
-    height:17px;
-
-    accent-color:#7c3aed;
+    accent-color: #7c3aed;
 
 }
-
 
 
 .register-checkbox label {
 
-    color:#a1a1aa;
+    color: #a1a1aa;
 
-    font-size:14px;
+    font-size: 14px;
 
 }
 
 
-/* Button */
+/* ==========================
+        REGISTER BUTTON
+========================== */
 
 .register-btn-wrapper {
 
-    margin-top:35px;
+    margin-top: 35px;
 
 }
-
 
 
 .register-btn {
 
+    width: 100%;
 
-    width:100%;
+    padding: 15px;
 
-    padding:15px;
+    background:
+        linear-gradient(
+            135deg,
+            #7c3aed,
+            #9333ea
+        );
 
+    color: #ffffff;
 
-    background:linear-gradient(
-        135deg,
-        #7c3aed,
-        #9333ea
-    );
+    border: none;
 
+    border-radius: 14px;
 
-    color:white;
+    font-size: 16px;
 
+    font-weight: 700;
 
-    border:none;
+    cursor: pointer;
 
-    border-radius:14px;
-
-
-    font-size:16px;
-
-    font-weight:700;
-
-
-    cursor:pointer;
-
-
-    transition:.3s ease;
-
+    transition: .3s ease;
 
 }
 
 
+/* Button Hover */
 
 .register-btn:hover {
 
-
-    transform:translateY(-3px);
-
+    transform: translateY(-3px);
 
     box-shadow:
-    0 15px 30px rgba(124,58,237,.35);
-
+        0 15px 30px rgba(124,58,237,.35);
 
 }
 
 
-
-/* Messages */
+/* ==========================
+        FORM MESSAGES
+========================== */
 
 .register-error {
 
-    color:#f87171;
+    color: #f87171;
 
-    font-size:13px;
+    font-size: 13px;
 
-    margin-top:7px;
+    margin-top: 7px;
 
 }
-
 
 
 .register-success {
 
-    color:#4ade80;
+    color: #4ade80;
 
-    font-size:14px;
+    font-size: 14px;
 
-    margin-top:10px;
+    margin-top: 10px;
 
 }
 
 
-
-/* Login Section */
-
+/* ==========================
+        LOGIN SECTION
+========================== */
 
 .register-login {
 
+    text-align: center;
 
-    text-align:center;
+    margin-top: 28px;
 
-    margin-top:28px;
+    color: #a1a1aa;
 
-    color:#a1a1aa;
-
-    font-size:14px;
-
+    font-size: 14px;
 
 }
-
 
 
 .register-login a {
 
+    color: #a78bfa;
 
-    color:#a78bfa;
+    text-decoration: none;
 
-    text-decoration:none;
+    font-weight: 700;
 
-    font-weight:700;
-
-    transition:.3s;
-
+    transition: .3s ease;
 
 }
-
 
 
 .register-login a:hover {
 
-    color:white;
+    color: #ffffff;
 
 }
 
 
-/* ================================
-   RESPONSIVE
-================================ */
+/* =====================================
+        PROFILE PAGE
+===================================== */
 
 
-@media(max-width:768px){
-
-
-.register-card {
-
-    padding:30px 22px;
-
-}
-
-
-
-.register-row {
-
-    flex-direction:column;
-
-    gap:18px;
-
-}
-
-
-
-.register-title {
-
-    font-size:28px;
-
-}
-
-
-}
-
-
-
-@media(max-width:480px){
-
-
-.register-page {
-
-    padding:25px 15px;
-
-}
-
-
-
-.register-card {
-
-    border-radius:18px;
-
-    padding:25px 18px;
-
-}
-
-
-
-.register-title {
-
-    font-size:24px;
-
-}
-
-
-.register-btn {
-
-    padding:13px;
-
-}
-
-
-
-}
-/* ================================
-   PROFILE PAGE
-================================ */
-
-
-/* Main Card */
+/* ==========================
+        MAIN CARD
+========================== */
 
 .profile-card {
 
@@ -1297,10 +1363,579 @@ canvas {
 }
 
 
-
-/* Header */
+/* ==========================
+        PROFILE HEADER
+========================== */
 
 .profile-header {
+
+    text-align: center;
+    margin-bottom: 35px;
+
+}
+
+
+.profile-subtitle {
+
+    color: #a1a1aa;
+    font-size: 14px;
+    margin-top: 8px;
+    margin-bottom: 0;
+
+}
+
+
+/* ==========================
+        PROFILE IMAGE
+========================== */
+
+.profile-avatar-section {
+
+    display: flex;
+    justify-content: center;
+    margin-bottom: 35px;
+
+}
+
+
+.profile-avatar {
+
+    width: 130px;
+    height: 130px;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+    border: 4px solid #7c3aed;
+
+    padding: 4px;
+
+    background: #0f0b1a;
+
+    box-shadow:
+        0 15px 35px rgba(124,58,237,.35);
+
+    transition: .3s ease;
+
+}
+
+
+.profile-avatar:hover {
+
+    transform: scale(1.05);
+
+}
+
+
+/* ==========================
+        FORM LABEL
+========================== */
+
+.crm-label {
+
+    display: block;
+
+    color: #e5e7eb;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    margin-bottom: 8px;
+
+}
+
+
+/* ==========================
+        INPUTS
+========================== */
+
+.crm-input {
+
+    width: 100%;
+
+    background: #0f0b1a !important;
+
+    border: 1px solid #31234f !important;
+
+    color: #ffffff !important;
+
+    padding: 13px 15px;
+
+    border-radius: 12px;
+
+    font-size: 15px;
+
+    transition: .3s ease;
+
+    box-sizing: border-box;
+
+}
+
+
+.crm-input::placeholder {
+
+    color: #71717a;
+
+}
+
+
+.crm-input:hover {
+
+    border-color: #6d28d9 !important;
+
+}
+
+
+.crm-input:focus {
+
+    border-color: #7c3aed !important;
+
+    box-shadow:
+        0 0 0 4px rgba(124,58,237,.18) !important;
+
+}
+
+
+/* ==========================
+        FILE UPLOAD
+========================== */
+
+.profile-file {
+
+    width: 100%;
+
+    background: #0f0b1a;
+
+    border: 1px dashed #7c3aed;
+
+    color: #e5e7eb;
+
+    padding: 12px;
+
+    border-radius: 12px;
+
+    cursor: pointer;
+
+    box-sizing: border-box;
+
+}
+
+
+.profile-file::file-selector-button {
+
+    background: #7c3aed;
+
+    color: #ffffff;
+
+    border: none;
+
+    padding: 9px 16px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    margin-right: 12px;
+
+    font-weight: 600;
+
+    transition: .3s ease;
+
+}
+
+
+.profile-file::file-selector-button:hover {
+
+    background: #6d28d9;
+
+}
+
+
+/* ==========================
+        REMOVE IMAGE BOX
+========================== */
+
+.profile-remove-box {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    background: #0f0b1a;
+
+    border: 1px solid #31234f;
+
+    padding: 15px;
+
+    border-radius: 12px;
+
+    margin-bottom: 25px;
+
+}
+
+
+.profile-remove-box input {
+
+    width: 17px;
+    height: 17px;
+
+    accent-color: #7c3aed;
+
+}
+
+
+.profile-remove-box label {
+
+    color: #a1a1aa;
+
+    font-size: 14px;
+
+}
+
+
+/* ==========================
+        PROFILE BUTTON
+========================== */
+
+.profile-btn-wrapper {
+
+    display: flex;
+    justify-content: flex-end;
+
+}
+
+
+.profile-btn-wrapper .crm-btn-primary {
+
+    padding: 13px 30px;
+
+    border-radius: 12px;
+
+    font-weight: 600;
+
+    transition: .3s ease;
+
+}
+
+
+.profile-btn-wrapper .crm-btn-primary:hover {
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 12px 25px rgba(124,58,237,.35);
+
+}
+
+
+
+/* ================================
+   CRM LOGIN PAGE
+================================ */
+
+.crm-login-page {
+
+    min-height: 100vh;
+
+    background: #0f0b1a;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 40px 20px;
+
+    font-family: 'Poppins', sans-serif;
+
+}
+
+
+/* ================================
+   LOGIN CONTAINER
+================================ */
+
+.login-container {
+
+    width: 100%;
+    max-width: 1200px;
+
+    min-height: 620px;
+
+    display: flex;
+
+    background: #1a1330;
+
+    border-radius: 25px;
+
+    overflow: hidden;
+
+    border: 1px solid rgba(124,58,237,.25);
+
+    box-shadow:
+        0 25px 60px rgba(0,0,0,.45);
+
+}
+
+
+/* ================================
+   LOGIN LEFT SECTION
+================================ */
+
+.login-left {
+
+    position: relative;
+
+    width: 50%;
+
+    background:
+        linear-gradient(
+            145deg,
+            #1a1330,
+            #241447
+        );
+
+    display: flex;
+
+    align-items: center;
+
+    padding: 50px;
+
+    overflow: hidden;
+
+}
+
+
+/* Decorative Circle - Top Right */
+
+.login-left::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 300px;
+    height: 300px;
+
+    top: -100px;
+    right: -100px;
+
+    background: #7c3aed;
+
+    opacity: .08;
+
+    border-radius: 50%;
+
+}
+
+
+/* Decorative Circle - Bottom Left */
+
+.login-left::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 250px;
+    height: 250px;
+
+    bottom: -80px;
+    left: -80px;
+
+    background: #9333ea;
+
+    opacity: .08;
+
+    border-radius: 50%;
+
+}
+
+
+/* ================================
+   LOGIN BRAND
+================================ */
+
+.login-brand {
+
+    position: relative;
+
+    z-index: 2;
+
+    color: #ffffff;
+
+}
+
+
+.brand-icon {
+
+    width: 70px;
+    height: 70px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 25px;
+
+    border-radius: 20px;
+
+    background: #7c3aed;
+
+    font-size: 35px;
+
+    box-shadow:
+        0 15px 35px rgba(124,58,237,.4);
+
+    animation:
+        floatIcon 3s infinite ease-in-out;
+
+}
+
+
+@keyframes floatIcon {
+
+    0%,
+    100% {
+
+        transform: translateY(0);
+
+    }
+
+    50% {
+
+        transform: translateY(-8px);
+
+    }
+
+}
+
+
+.login-brand h1 {
+
+    font-size: 42px;
+
+    font-weight: 700;
+
+    margin-bottom: 15px;
+
+}
+
+
+.login-brand p {
+
+    max-width: 430px;
+
+    color: #a1a1aa;
+
+    font-size: 16px;
+
+    line-height: 1.7;
+
+}
+
+
+/* ================================
+   LOGIN FEATURES
+================================ */
+
+.login-features {
+
+    margin-top: 35px;
+
+}
+
+
+.feature-item {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin-bottom: 18px;
+
+    color: #e5e7eb;
+
+    font-size: 15px;
+
+}
+
+
+.feature-item i {
+
+    color: #a78bfa;
+
+    font-size: 18px;
+
+}
+
+
+/* ================================
+   LOGIN RIGHT SECTION
+================================ */
+
+.login-right {
+
+    width: 50%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 40px;
+
+}
+
+
+/* ================================
+   LOGIN CARD
+================================ */
+
+.login-card {
+
+    width: 100%;
+    max-width: 420px;
+
+    padding: 10px;
+
+    animation: loginFade .6s ease;
+
+}
+
+
+@keyframes loginFade {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(20px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+    }
+
+}
+
+
+/* ================================
+   LOGIN HEADER
+================================ */
+
+.login-header {
 
     text-align: center;
 
@@ -1309,1697 +1944,904 @@ canvas {
 }
 
 
+.login-header h2 {
 
-.profile-subtitle {
+    color: #ffffff;
+
+    font-size: 32px;
+
+    font-weight: 700;
+
+    letter-spacing: .3px;
+
+    margin-bottom: 0;
+
+}
+
+
+.login-header p {
 
     color: #a1a1aa;
 
     font-size: 14px;
 
-    margin-top: 8px;
+    margin-top: 10px;
 
 }
-
 
 
 /* ================================
-   PROFILE IMAGE
+   LOGIN FIELDS
 ================================ */
 
+.login-field {
 
-.profile-avatar-section {
-
-    display: flex;
-
-    justify-content: center;
-
-    margin-bottom: 35px;
+    margin-bottom: 22px;
 
 }
 
 
+.login-field label {
 
-.profile-avatar {
+    display: block;
 
+    color: #e5e7eb;
 
-    width: 130px;
+    font-size: 14px;
 
-    height: 130px;
+    font-weight: 600;
 
+    margin-bottom: 8px;
 
-    border-radius: 50%;
-
-
-    object-fit: cover;
-
-
-    border: 4px solid #7c3aed;
+}
 
 
-    padding: 4px;
+/* Input Wrapper */
 
+.login-input-box {
+
+    height: 55px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 0 15px;
 
     background: #0f0b1a;
 
+    border: 1px solid #31234f;
 
-    box-shadow:
-
-    0 15px 35px rgba(124,58,237,0.35);
-
+    border-radius: 12px;
 
     transition: .3s ease;
 
 }
 
 
-
-.profile-avatar:hover {
-
-
-    transform: scale(1.05);
-
-
-}
-
-
-
-
-
-
-/* ================================
-   FORM LABEL
-================================ */
-
-
-.crm-label {
-
-
-    display:block;
-
-
-    color:#e5e7eb;
-
-
-    font-size:14px;
-
-
-    font-weight:600;
-
-
-    margin-bottom:8px;
-
-
-}
-
-
-
-
-
-
-
-/* ================================
-   INPUTS
-================================ */
-
-
-.crm-input {
-
-
-    width:100%;
-
-
-    background:#0f0b1a !important;
-
-
-    border:1px solid #31234f !important;
-
-
-    color:#ffffff !important;
-
-
-    padding:13px 15px;
-
-
-    border-radius:12px;
-
-
-    font-size:15px;
-
-
-    transition:.3s ease;
-
-
-}
-
-
-
-.crm-input::placeholder {
-
-
-    color:#71717a;
-
-
-}
-
-
-
-
-.crm-input:hover {
-
-
-    border-color:#6d28d9 !important;
-
-
-}
-
-
-
-
-.crm-input:focus {
-
-
-    border-color:#7c3aed !important;
-
-
-    box-shadow:
-
-    0 0 0 4px rgba(124,58,237,.18) !important;
-
-
-}
-
-
-
-
-
-
-/* ================================
-   FILE UPLOAD
-================================ */
-
-
-.profile-file {
-
-
-    width:100%;
-
-
-    background:#0f0b1a;
-
-
-    border:1px dashed #7c3aed;
-
-
-    color:#e5e7eb;
-
-
-    padding:12px;
-
-
-    border-radius:12px;
-
-
-    cursor:pointer;
-
-
-}
-
-
-
-
-.profile-file::file-selector-button {
-
-
-    background:#7c3aed;
-
-
-    color:white;
-
-
-    border:none;
-
-
-    padding:9px 16px;
-
-
-    border-radius:8px;
-
-
-    cursor:pointer;
-
-
-    margin-right:12px;
-
-
-    font-weight:600;
-
-
-    transition:.3s ease;
-
-
-}
-
-
-
-
-.profile-file::file-selector-button:hover {
-
-
-    background:#6d28d9;
-
-
-}
-
-
-
-
-
-/* ================================
-   REMOVE IMAGE BOX
-================================ */
-
-
-.profile-remove-box {
-
-
-    display:flex;
-
-
-    align-items:center;
-
-
-    gap:12px;
-
-
-    background:#0f0b1a;
-
-
-    border:1px solid #31234f;
-
-
-    padding:15px;
-
-
-    border-radius:12px;
-
-
-    margin-bottom:25px;
-
-
-}
-
-
-
-.profile-remove-box input {
-
-
-    width:17px;
-
-
-    height:17px;
-
-
-    accent-color:#7c3aed;
-
-
-}
-
-
-
-.profile-remove-box label {
-
-
-    color:#a1a1aa;
-
-
-    font-size:14px;
-
-
-}
-
-
-
-
-
-
-/* ================================
-   BUTTON
-================================ */
-
-
-.profile-btn-wrapper {
-
-
-    display:flex;
-
-
-    justify-content:flex-end;
-
-
-}
-
-
-
-.profile-btn-wrapper .crm-btn-primary {
-
-
-    padding:13px 30px;
-
-
-    border-radius:12px;
-
-
-    font-weight:600;
-
-
-    transition:.3s ease;
-
-
-}
-
-
-
-
-.profile-btn-wrapper .crm-btn-primary:hover {
-
-
-    transform:translateY(-3px);
-
-
-    box-shadow:
-
-    0 12px 25px rgba(124,58,237,.35);
-
-
-}
-
-
-
-
-
-
-
-/* ================================
-   MOBILE RESPONSIVE
-================================ */
-
-
-@media(max-width:768px){
-
-
-
-    .profile-card {
-
-
-        padding:25px 18px;
-
-
-    }
-
-
-
-
-    .profile-avatar {
-
-
-        width:110px;
-
-
-        height:110px;
-
-
-    }
-
-
-
-
-    .profile-btn-wrapper {
-
-
-        justify-content:center;
-
-
-    }
-
-
-
-
-    .profile-btn-wrapper .crm-btn-primary {
-
-
-        width:100%;
-
-
-    }
-
-
-}
-
-
-
-@media(max-width:480px){
-
-
-
-    .profile-header h3 {
-
-
-        font-size:22px;
-
-
-    }
-
-
-
-    .profile-avatar {
-
-
-        width:95px;
-
-
-        height:95px;
-
-
-    }
-
-
-}
-/* ================================
-   CRM LOGIN PAGE
-================================ */
-
-
-.crm-login-page {
-
-    min-height:100vh;
-
-    background:#0f0b1a;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    padding:40px 20px;
-
-    font-family:'Poppins', sans-serif;
-
-}
-
-
-
-/* Main Container */
-
-
-.login-container {
-
-
-    width:100%;
-
-    max-width:1200px;
-
-    min-height:650px;
-
-
-    display:flex;
-
-
-    background:#1a1330;
-
-
-    border-radius:25px;
-
-
-    overflow:hidden;
-
-
-    box-shadow:
-
-    0 25px 60px rgba(0,0,0,.45);
-
-
-    border:1px solid rgba(124,58,237,.25);
-
-
-}
-
-
-
-
-
-
-/* ================================
-   LEFT SECTION
-================================ */
-
-
-.login-left {
-
-
-    width:50%;
-
-
-    background:
-
-
-    linear-gradient(
-
-        145deg,
-
-        #1a1330,
-
-        #241447
-
-    );
-
-
-    display:flex;
-
-
-    align-items:center;
-
-
-    padding:50px;
-
-
-}
-
-
-
-.login-brand {
-
-
-    color:white;
-
-
-}
-
-
-
-.brand-icon {
-
-
-    width:70px;
-
-    height:70px;
-
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-
-    border-radius:20px;
-
-
-    background:#7c3aed;
-
-
-    font-size:35px;
-
-
-    margin-bottom:25px;
-
-
-    box-shadow:
-
-    0 15px 35px rgba(124,58,237,.4);
-
-
-}
-
-
-
-.login-brand h1 {
-
-
-    font-size:42px;
-
-
-    font-weight:700;
-
-
-    margin-bottom:15px;
-
-
-}
-
-
-
-.login-brand p {
-
-
-    color:#a1a1aa;
-
-
-    font-size:16px;
-
-
-    line-height:1.7;
-
-
-    max-width:430px;
-
-
-}
-
-
-
-
-
-
-/* Features */
-
-
-.login-features {
-
-
-    margin-top:35px;
-
-
-}
-
-
-
-.feature-item {
-
-
-    display:flex;
-
-
-    align-items:center;
-
-
-    gap:12px;
-
-
-    margin-bottom:18px;
-
-
-    color:#e5e7eb;
-
-
-    font-size:15px;
-
-
-}
-
-
-
-.feature-item i {
-
-
-    color:#a78bfa;
-
-
-    font-size:18px;
-
-
-}
-
-
-
-
-
-
-
-/* ================================
-   RIGHT SECTION
-================================ */
-
-
-.login-right {
-
-
-    width:50%;
-
-
-    display:flex;
-
-
-    align-items:center;
-
-
-    justify-content:center;
-
-
-    padding:40px;
-
-
-}
-
-
-
-
-
-
-.login-card {
-
-
-    width:100%;
-
-
-    max-width:420px;
-
-
-}
-
-
-
-
-
-
-/* Header */
-
-
-.login-header {
-
-
-    text-align:center;
-
-
-    margin-bottom:35px;
-
-
-}
-
-
-
-.login-header h2 {
-
-
-    color:white;
-
-
-    font-size:32px;
-
-
-    font-weight:700;
-
-
-}
-
-
-
-.login-header p {
-
-
-    color:#a1a1aa;
-
-
-    font-size:14px;
-
-
-    margin-top:10px;
-
-
-}
-
-
-
-
-
-
-/* Fields */
-
-
-.login-field {
-
-
-    margin-bottom:22px;
-
-
-}
-
-
-
-.login-field label {
-
-
-    display:block;
-
-
-    color:#e5e7eb;
-
-
-    font-size:14px;
-
-
-    font-weight:600;
-
-
-    margin-bottom:8px;
-
-
-}
-
-
-
-
-
-
-.login-input-box {
-
-
-    display:flex;
-
-
-    align-items:center;
-
-
-    gap:12px;
-
-
-    background:#0f0b1a;
-
-
-    border:1px solid #31234f;
-
-
-    border-radius:12px;
-
-
-    padding:0 15px;
-
-
-    transition:.3s ease;
-
-
-}
-
-
-
 .login-input-box i {
 
+    flex-shrink: 0;
 
-    color:#a78bfa;
+    color: #a78bfa;
 
-
-    font-size:18px;
-
+    font-size: 18px;
 
 }
 
 
-
+/* Input */
 
 .login-input-box input {
 
+    width: 100%;
+    height: 100%;
 
-    width:100%;
+    padding: 14px 5px;
 
+    background: transparent;
 
-    padding:14px 5px;
+    border: none;
 
+    outline: none;
 
-    background:transparent;
+    color: #ffffff;
 
-
-    border:none;
-
-
-    outline:none;
-
-
-    color:white;
-
-
-    font-size:15px;
-
+    font-size: 15px;
 
 }
-
 
 
 .login-input-box input::placeholder {
 
-
-    color:#71717a;
-
+    color: #71717a;
 
 }
 
 
-
+/* Input Focus */
 
 .login-input-box:focus-within {
 
-
-    border-color:#7c3aed;
-
+    border-color: #7c3aed;
 
     box-shadow:
-
-    0 0 0 4px rgba(124,58,237,.18);
-
+        0 0 0 4px rgba(124,58,237,.18);
 
 }
-
-
-
-
-
-
-
-/* Options */
-
-
-.login-options {
-
-
-    display:flex;
-
-
-    justify-content:space-between;
-
-
-    align-items:center;
-
-
-    margin-bottom:25px;
-
-
-}
-
-
-
-.remember-box {
-
-
-    display:flex;
-
-
-    align-items:center;
-
-
-    gap:8px;
-
-
-}
-
-
-
-.remember-box input {
-
-
-    accent-color:#7c3aed;
-
-
-}
-
-
-
-.remember-box label {
-
-
-    color:#a1a1aa;
-
-
-    font-size:14px;
-
-
-}
-
-
-
-
-
-
-/* Button */
-
-
-.login-btn {
-
-
-    width:100%;
-
-
-    padding:15px;
-
-
-    border:none;
-
-
-    border-radius:14px;
-
-
-    background:
-
-    linear-gradient(
-
-    135deg,
-
-    #7c3aed,
-
-    #9333ea
-
-    );
-
-
-    color:white;
-
-
-    font-size:16px;
-
-
-    font-weight:700;
-
-
-    cursor:pointer;
-
-
-    transition:.3s ease;
-
-
-}
-
-
-
-.login-btn:hover {
-
-
-    transform:translateY(-3px);
-
-
-    box-shadow:
-
-    0 15px 30px rgba(124,58,237,.35);
-
-
-}
-
-
-
-
-
-
-
-/* Register Link */
-
-
-.register-link {
-
-
-    color:#a78bfa;
-
-
-    text-decoration:none;
-
-
-    transition:.3s;
-
-
-}
-
-
-
-.register-link:hover {
-
-
-    color:white;
-
-
-}
-
-
-
-
-
-
-/* Register Note */
-
-
-.register-note {
-
-
-    display:flex;
-
-
-    gap:10px;
-
-
-    align-items:flex-start;
-
-
-    background:#0f0b1a;
-
-
-    color:#a1a1aa;
-
-
-    padding:15px;
-
-
-    border-radius:12px;
-
-
-    border:1px solid #31234f;
-
-
-    font-size:13px;
-
-
-}
-
-
-
-.register-note i {
-
-
-    color:#7c3aed;
-
-
-    margin-top:3px;
-
-
-}
-
-
-
-
-
-
-
-/* Footer */
-
-
-.footer-text {
-
-
-    text-align:center;
-
-
-    color:#71717a;
-
-
-    font-size:13px;
-
-
-}
-
-
-
-
-
 
 
 /* ================================
-   RESPONSIVE
+   LOGIN AUTOFILL
 ================================ */
-
-
-@media(max-width:900px){
-
-
-.login-container {
-
-
-    flex-direction:column;
-
-
-}
-
-
-
-.login-left,
-
-.login-right {
-
-
-    width:100%;
-
-
-}
-
-
-
-.login-left {
-
-
-    padding:35px;
-
-
-}
-
-
-
-.login-brand h1 {
-
-
-    font-size:32px;
-
-
-}
-
-
-
-.login-right {
-
-
-    padding:35px 25px;
-
-
-}
-
-
-}
-
-
-
-
-
-@media(max-width:480px){
-
-
-.crm-login-page {
-
-
-    padding:20px 12px;
-
-
-}
-
-
-
-.login-container {
-
-
-    border-radius:18px;
-
-
-}
-
-
-
-.login-left {
-
-
-    display:none;
-
-
-}
-
-
-
-.login-right {
-
-
-    padding:25px 18px;
-
-
-}
-
-
-
-.login-header h2 {
-
-
-    font-size:26px;
-
-
-}
-
-
-
-.login-options {
-
-
-    flex-direction:column;
-
-
-    gap:15px;
-
-
-    align-items:flex-start;
-
-
-}
-
-
-
-}
-
-/* ================================
-   LOGIN FINAL POLISH
-================================ */
-
-
-/* Main Container */
-
-.login-container {
-
-    min-height:620px;
-
-}
-
-
-/* Left Side Improvement */
-
-.login-left {
-
-
-    position:relative;
-
-    overflow:hidden;
-
-
-}
-
-
-
-.login-left::before {
-
-
-    content:"";
-
-
-    position:absolute;
-
-
-    width:300px;
-
-    height:300px;
-
-
-    background:#7c3aed;
-
-
-    opacity:.08;
-
-
-    border-radius:50%;
-
-
-    top:-100px;
-
-
-    right:-100px;
-
-
-}
-
-
-
-
-.login-left::after {
-
-
-    content:"";
-
-
-    position:absolute;
-
-
-    width:250px;
-
-    height:250px;
-
-
-    background:#9333ea;
-
-
-    opacity:.08;
-
-
-    border-radius:50%;
-
-
-    bottom:-80px;
-
-
-    left:-80px;
-
-
-}
-
-
-
-
-
-.login-brand {
-
-
-    position:relative;
-
-    z-index:2;
-
-
-}
-
-
-
-
-/* Brand Icon */
-
-.brand-icon {
-
-
-    animation:floatIcon 3s infinite ease-in-out;
-
-
-}
-
-
-
-@keyframes floatIcon {
-
-
-    0%,100%{
-
-        transform:translateY(0);
-
-    }
-
-
-    50%{
-
-        transform:translateY(-8px);
-
-    }
-
-
-}
-
-
-
-
-
-
-/* Right Card */
-
-
-.login-card {
-
-
-    padding:10px;
-
-
-}
-
-
-
-
-
-
-.login-header h2 {
-
-
-    letter-spacing:.3px;
-
-
-}
-
-
-
-
-
-
-
-/* Input Height */
-
-
-.login-input-box {
-
-
-    height:55px;
-
-
-}
-
-
-
-
-
-
-/* Login Button */
-
-
-.login-btn {
-
-
-    height:55px;
-
-
-    font-size:17px;
-
-
-}
-
-
-
-
-
-
-/* Register Notice */
-
-
-.register-note {
-
-
-    margin-top:22px;
-
-
-    line-height:1.5;
-
-
-}
-
-
-
-
-
-
-/* Register Section Fix */
-
-
-.register-section {
-
-
-    margin-top:25px;
-
-
-    color:#a1a1aa;
-
-
-}
-
-
-
-
-.register-section span {
-
-
-    color:#a1a1aa;
-
-
-}
-
-
-
-
-.register-section .register-link {
-
-
-    color:#c4b5fd !important;
-
-
-    font-weight:700;
-
-
-    margin-left:5px;
-
-
-}
-
-
-
-
-
-.register-section .register-link:hover {
-
-
-    color:white !important;
-
-
-}
-
-
-
-
-
-
-/* Footer */
-
-
-.footer-text {
-
-
-    margin-top:25px;
-
-
-}
-
-
-
-
-
-
-
-/* Smooth Card Animation */
-
-
-.login-card {
-
-
-    animation:loginFade .6s ease;
-
-
-}
-
-
-
-@keyframes loginFade {
-
-
-    from {
-
-
-        opacity:0;
-
-
-        transform:translateY(20px);
-
-
-    }
-
-
-    to {
-
-
-        opacity:1;
-
-
-        transform:translateY(0);
-
-
-    }
-
-
-}
 
 .login-input-box input:-webkit-autofill,
 .login-input-box input:-webkit-autofill:hover,
 .login-input-box input:-webkit-autofill:focus {
 
+    -webkit-text-fill-color: #ffffff;
 
-    -webkit-text-fill-color:#ffffff;
+    -webkit-box-shadow:
+        0 0 0 1000px #0f0b1a inset;
 
-    -webkit-box-shadow:0 0 0px 1000px #0f0b1a inset;
+    transition:
+        background-color 5000s ease-in-out 0s;
 
-    transition:background-color 5000s ease-in-out 0s;
+}
 
+
+/* ================================
+   LOGIN OPTIONS
+================================ */
+
+.login-options {
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 25px;
+
+}
+
+
+.remember-box {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+}
+
+
+.remember-box input {
+
+    accent-color: #7c3aed;
+
+}
+
+
+.remember-box label {
+
+    color: #a1a1aa;
+
+    font-size: 14px;
+
+}
+
+
+/* ================================
+   LOGIN BUTTON
+================================ */
+
+.login-btn {
+
+    width: 100%;
+    height: 55px;
+
+    padding: 15px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #7c3aed,
+            #9333ea
+        );
+
+    color: #ffffff;
+
+    border: none;
+
+    border-radius: 14px;
+
+    font-size: 17px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: .3s ease;
+
+}
+
+
+.login-btn:hover {
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 15px 30px rgba(124,58,237,.35);
+
+}
+
+
+/* ================================
+   REGISTER LINK
+================================ */
+
+.register-link {
+
+    color: #a78bfa;
+
+    text-decoration: none;
+
+    transition: .3s ease;
+
+}
+
+
+.register-link:hover {
+
+    color: #ffffff;
+
+}
+
+
+/* ================================
+   REGISTER NOTE
+================================ */
+
+.register-note {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 10px;
+
+    margin-top: 22px;
+
+    padding: 15px;
+
+    background: #0f0b1a;
+
+    border: 1px solid #31234f;
+
+    border-radius: 12px;
+
+    color: #a1a1aa;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+
+}
+
+
+.register-note i {
+
+    margin-top: 3px;
+
+    color: #7c3aed;
+
+}
+
+
+/* ================================
+   REGISTER SECTION
+================================ */
+
+.register-section {
+
+    margin-top: 25px;
+
+    color: #a1a1aa;
+
+}
+
+
+.register-section span {
+
+    color: #a1a1aa;
+
+}
+
+
+.register-section .register-link {
+
+    margin-left: 5px;
+
+    color: #c4b5fd !important;
+
+    font-weight: 700;
+
+}
+
+
+.register-section .register-link:hover {
+
+    color: #ffffff !important;
+
+}
+
+
+/* ================================
+   LOGIN FOOTER
+================================ */
+
+.footer-text {
+
+    margin-top: 25px;
+
+    text-align: center;
+
+    color: #71717a;
+
+    font-size: 13px;
+
+}
+
+/* =====================================
+        COMMON PAGE ELEMENTS
+===================================== */
+
+
+/* ==========================
+        PAGE TITLES
+========================== */
+
+.crm-title {
+
+    color: #ffffff;
+
+    font-size: 28px;
+
+    font-weight: 700;
+
+    letter-spacing: .3px;
+
+    margin-bottom: 6px;
+
+}
+
+
+.crm-page-subtitle {
+
+    color: #a1a1aa !important;
+
+    font-size: 14px;
+
+    margin-bottom: 0;
+
+}
+
+
+/* ==========================
+        CRM BUTTONS
+========================== */
+
+.crm-btn-primary {
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    padding: 11px 20px;
+
+    background: #7c3aed;
+
+    color: #ffffff !important;
+
+    border: 1px solid #7c3aed;
+
+    border-radius: 10px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    text-decoration: none;
+
+    cursor: pointer;
+
+    transition: .3s ease;
+
+}
+
+
+.crm-btn-primary:hover {
+
+    background: #6d28d9;
+
+    border-color: #6d28d9;
+
+    color: #ffffff !important;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 20px rgba(124,58,237,.25);
+
+}
+
+
+.crm-btn-secondary {
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    padding: 11px 20px;
+
+    background: transparent;
+
+    color: #c4b5fd !important;
+
+    border: 1px solid #51446d;
+
+    border-radius: 10px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    text-decoration: none;
+
+    cursor: pointer;
+
+    transition: .3s ease;
+
+}
+
+
+.crm-btn-secondary:hover {
+
+    background: #241842;
+
+    border-color: #7c3aed;
+
+    color: #ffffff !important;
+
+}
+
+
+/* Danger Button */
+
+.crm-btn-danger {
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    padding: 11px 20px;
+
+    background: #991b1b;
+
+    color: #ffffff !important;
+
+    border: 1px solid #991b1b;
+
+    border-radius: 10px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    text-decoration: none;
+
+    cursor: pointer;
+
+    transition: .3s ease;
+
+}
+
+
+.crm-btn-danger:hover {
+
+    background: #7f1d1d;
+
+    border-color: #7f1d1d;
+
+    color: #ffffff !important;
+
+    transform: translateY(-2px);
+
+}
+
+
+/* ==========================
+        FORM ELEMENTS
+========================== */
+
+.crm-label {
+
+    display: block;
+
+    color: #e5e7eb;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    margin-bottom: 8px;
+
+}
+
+
+.crm-input {
+
+    width: 100%;
+
+    padding: 13px 15px;
+
+    background: #0f0b1a !important;
+
+    color: #ffffff !important;
+
+    border: 1px solid #31234f !important;
+
+    border-radius: 12px;
+
+    font-size: 15px;
+
+    outline: none;
+
+    box-sizing: border-box;
+
+    transition: .3s ease;
+
+}
+
+
+.crm-input::placeholder {
+
+    color: #71717a;
+
+}
+
+
+.crm-input:hover {
+
+    border-color: #6d28d9 !important;
+
+}
+
+
+.crm-input:focus {
+
+    border-color: #7c3aed !important;
+
+    box-shadow:
+        0 0 0 4px rgba(124,58,237,.18) !important;
+
+}
+
+
+/* ==========================
+        DETAIL BOX
+========================== */
+
+.crm-detail-box {
+
+    background: #151025;
+
+    border: 1px solid rgba(255,255,255,.08);
+
+    border-radius: 14px;
+
+    padding: 18px;
+
+    color: #e5e7eb;
+
+}
+
+
+.crm-detail-box strong {
+
+    color: #ffffff;
+
+}
+
+
+.crm-detail-box small {
+
+    color: #a1a1aa;
+
+}
+
+
+/* ==========================
+        DELETE PAGE
+========================== */
+
+.crm-delete-page {
+
+    width: 100%;
+
+    max-width: 600px;
+
+    margin: 0 auto;
+
+}
+
+
+.crm-delete-icon {
+
+    width: 90px;
+    height: 90px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin: 0 auto 20px;
+
+    background: #450a0a;
+
+    color: #f87171;
+
+    border-radius: 50%;
+
+    font-size: 40px;
+
+}
+
+
+/* ==========================
+        IMPORT PAGE
+========================== */
+
+.crm-import-page {
+
+    width: 100%;
+
+    max-width: 900px;
+
+    margin: 0 auto;
+
+}
+
+
+/* ==========================
+        CONTACT FORM PAGE
+========================== */
+
+.crm-contact-page {
+
+    width: 100%;
+
+    max-width: 1100px;
+
+    margin: 0 auto;
+
+}
+
+
+/* ==========================
+        CARD HEADER
+========================== */
+
+.card-header {
+
+    background: transparent;
+
+    color: #e5e7eb;
+
+    border-bottom:
+        1px solid rgba(255,255,255,.08);
+
+}
+
+
+.card-header h5 {
+
+    color: #ffffff;
+
+    font-weight: 600;
+
+}
+
+
+/* ==========================
+        COMMON TABLE
+========================== */
+
+.crm-table {
+
+    width: 100%;
+
+    margin: 0;
+
+    color: #e5e7eb;
+
+}
+
+
+.crm-table thead th {
+
+    padding: 14px;
+
+    background: #241b45;
+
+    color: #ffffff;
+
+    border-bottom:
+        1px solid rgba(255,255,255,.08);
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+}
+
+
+.crm-table tbody tr {
+
+    background: #1a1330;
+
+    border-bottom:
+        1px solid rgba(255,255,255,.05);
+
+    transition: .2s ease;
+
+}
+
+
+.crm-table tbody tr:hover {
+
+    background: #21183a;
+
+}
+
+
+.crm-table tbody td {
+
+    padding: 13px 14px;
+
+    vertical-align: middle;
+
+    color: #e5e7eb;
+
+}
+
+
+/* ==========================
+        STATUS BADGES
+========================== */
+
+.crm-badge {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 6px 11px;
+
+    border-radius: 20px;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+}
+
+
+.crm-badge-primary {
+
+    background: rgba(124,58,237,.15);
+
+    color: #c4b5fd;
+
+}
+
+
+.crm-badge-success {
+
+    background: rgba(34,197,94,.15);
+
+    color: #4ade80;
+
+}
+
+
+.crm-badge-warning {
+
+    background: rgba(234,179,8,.15);
+
+    color: #facc15;
+
+}
+
+
+.crm-badge-danger {
+
+    background: rgba(239,68,68,.15);
+
+    color: #f87171;
+
+}
+
+
+/* ==========================
+        EMPTY STATE
+========================== */
+
+.crm-empty-state {
+
+    padding: 50px 20px;
+
+    text-align: center;
+
+    color: #a1a1aa;
+
+}
+
+
+.crm-empty-state i {
+
+    width: 70px;
+    height: 70px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin: 0 auto 15px;
+
+    background: rgba(124,58,237,.12);
+
+    color: #a78bfa;
+
+    border-radius: 50%;
+
+    font-size: 28px;
+
+}
+
+
+.crm-empty-state h5 {
+
+    color: #ffffff;
+
+    font-weight: 600;
+
+    margin-bottom: 6px;
+
+}
+
+
+.crm-empty-state p {
+
+    color: #a1a1aa;
+
+    margin-bottom: 0;
 
 }
