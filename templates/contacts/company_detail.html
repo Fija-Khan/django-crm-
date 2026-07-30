@@ -1,0 +1,390 @@
+{% extends "base.html" %}
+
+{% block title %}{{ company.name }} | CRM{% endblock %}
+
+{% block content %}
+
+<!-- =========================
+     PAGE HEADER
+========================= -->
+
+<div class="crm-page-header">
+
+    <div>
+
+        <h1 class="crm-title">
+            {{ company.name }}
+        </h1>
+
+        <p class="crm-page-subtitle">
+            Company details and associated contacts
+        </p>
+
+    </div>
+
+    <div class="crm-page-actions">
+
+        <a
+            href="{% url 'contacts:company_edit' company.pk %}"
+            class="crm-btn-primary">
+            Edit Company
+        </a>
+
+        <a
+            href="{% url 'contacts:company_delete' company.pk %}"
+            class="crm-btn-danger">
+            Delete
+        </a>
+
+        <a
+            href="{% url 'contacts:company_list' %}"
+            class="crm-btn-secondary">
+            ← Back
+        </a>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     COMPANY INFORMATION
+========================= -->
+
+<div class="crm-card">
+
+    <h2 class="crm-section-title">
+        Company Information
+    </h2>
+
+    <div class="row">
+
+        <!-- COMPANY NAME -->
+
+        <div class="col-md-6 mb-3">
+
+            <div class="crm-detail-box">
+
+                <span class="crm-detail-label">
+                    Company Name
+                </span>
+
+                <strong class="crm-detail-value">
+                    {{ company.name }}
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <!-- INDUSTRY -->
+
+        <div class="col-md-6 mb-3">
+
+            <div class="crm-detail-box">
+
+                <span class="crm-detail-label">
+                    Industry
+                </span>
+
+                <strong class="crm-detail-value">
+
+                    {% if company.industry %}
+                        {{ company.industry }}
+                    {% else %}
+                        —
+                    {% endif %}
+
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <!-- WEBSITE -->
+
+        <div class="col-md-6 mb-3">
+
+            <div class="crm-detail-box">
+
+                <span class="crm-detail-label">
+                    Website
+                </span>
+
+                <div class="crm-detail-value">
+
+                    {% if company.website %}
+
+                        <a
+                            href="{{ company.website }}"
+                            target="_blank"
+                            rel="noopener noreferrer">
+                            {{ company.website }}
+                        </a>
+
+                    {% else %}
+
+                        —
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- CREATED DATE -->
+
+        <div class="col-md-6 mb-3">
+
+            <div class="crm-detail-box">
+
+                <span class="crm-detail-label">
+                    Created
+                </span>
+
+                <strong class="crm-detail-value">
+                    {{ company.created_at|date:"d M Y, h:i A" }}
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <!-- ADDRESS -->
+
+        <div class="col-12 mb-3">
+
+            <div class="crm-detail-box">
+
+                <span class="crm-detail-label">
+                    Address
+                </span>
+
+                <div class="crm-detail-value">
+
+                    {% if company.address %}
+                        {{ company.address|linebreaksbr }}
+                    {% else %}
+                        —
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     CONTACTS
+========================= -->
+
+<div class="crm-card">
+
+    <div class="crm-section-header">
+
+        <div>
+
+            <h2 class="crm-section-title">
+                Company Contacts
+            </h2>
+
+            <p class="crm-page-subtitle">
+                Contacts associated with {{ company.name }}
+            </p>
+
+        </div>
+
+        <div>
+
+            <span class="badge bg-secondary">
+                {{ contacts|length }} Contacts
+            </span>
+
+        </div>
+
+    </div>
+
+
+    {% if contacts %}
+
+        <div class="table-responsive">
+
+            <table class="table crm-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Assigned To</th>
+                        <th>Source</th>
+                        <th>Actions</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for contact in contacts %}
+
+                        <tr>
+
+                            <td>
+                                {{ forloop.counter }}
+                            </td>
+
+
+                            <!-- NAME -->
+
+                            <td>
+
+                                <strong>
+                                    {{ contact.first_name }}
+                                    {{ contact.last_name }}
+                                </strong>
+
+                            </td>
+
+
+                            <!-- EMAIL -->
+
+                            <td>
+
+                                <a href="mailto:{{ contact.email }}">
+                                    {{ contact.email }}
+                                </a>
+
+                            </td>
+
+
+                            <!-- PHONE -->
+
+                            <td>
+
+                                {% if contact.phone %}
+
+                                    <a href="tel:{{ contact.phone }}">
+                                        {{ contact.phone }}
+                                    </a>
+
+                                {% else %}
+
+                                    —
+
+                                {% endif %}
+
+                            </td>
+
+
+                            <!-- ASSIGNED TO -->
+
+                            <td>
+
+                                {% if contact.assigned_to %}
+
+                                    {% if contact.assigned_to.get_full_name %}
+
+                                        {{ contact.assigned_to.get_full_name }}
+
+                                    {% else %}
+
+                                        {{ contact.assigned_to.username }}
+
+                                    {% endif %}
+
+                                {% else %}
+
+                                    <span class="text-muted">
+                                        Unassigned
+                                    </span>
+
+                                {% endif %}
+
+                            </td>
+
+
+                            <!-- SOURCE -->
+
+                            <td>
+
+                                <span class="badge bg-secondary">
+                                    {{ contact.get_source_display }}
+                                </span>
+
+                            </td>
+
+
+                            <!-- ACTIONS -->
+
+                            <td>
+
+                                <div class="crm-action-buttons">
+
+                                    <a
+                                        href="{% url 'contacts:contact_detail' contact.pk %}"
+                                        class="crm-btn-secondary">
+                                        View
+                                    </a>
+
+                                    <a
+                                        href="{% url 'contacts:contact_edit' contact.pk %}"
+                                        class="crm-btn-secondary">
+                                        Edit
+                                    </a>
+
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    {% else %}
+
+        <!-- EMPTY STATE -->
+
+        <div class="crm-empty-state">
+
+            <h3>
+                No Contacts Found
+            </h3>
+
+            <p>
+                No contacts are currently associated with this company.
+            </p>
+
+            <a
+                href="{% url 'contacts:contact_add' %}"
+                class="crm-btn-primary">
+                + Add Contact
+            </a>
+
+        </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

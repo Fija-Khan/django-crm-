@@ -1,0 +1,286 @@
+{% extends "base.html" %}
+
+{% block title %}Companies | CRM{% endblock %}
+
+{% block content %}
+
+<div class="crm-page-header">
+
+<div>
+    <h1 class="crm-title">Companies</h1>
+
+    <p class="crm-page-subtitle">
+        Manage and view all companies
+    </p>
+</div>
+
+<div class="crm-page-actions">
+
+    <a href="{% url 'contacts:company_add' %}"
+       class="crm-btn-primary">
+        + Add Company
+    </a>
+
+</div>
+
+
+</div>
+
+<!-- =========================
+     SEARCH
+========================= -->
+
+<div class="crm-card">
+
+<form method="GET">
+
+    <div class="crm-search-row">
+
+        <input
+            type="text"
+            name="search"
+            value="{{ search }}"
+            placeholder="Search company or industry..."
+            class="form-control"
+        >
+
+        <button
+            type="submit"
+            class="crm-btn-primary">
+            Search
+        </button>
+
+        {% if search %}
+
+            <a
+                href="{% url 'contacts:company_list' %}"
+                class="crm-btn-secondary">
+                Clear
+            </a>
+
+        {% endif %}
+
+    </div>
+
+</form>
+
+
+</div>
+
+<!-- =========================
+     COMPANY TABLE
+========================= -->
+
+<div class="crm-card">
+
+
+{% if page_obj.object_list %}
+
+    <div class="table-responsive">
+
+        <table class="table crm-table crm-contact-table">
+
+            <thead>
+
+                <tr>
+                    <th>#</th>
+                    <th>Company</th>
+                    <th>Industry</th>
+                    <th>Website</th>
+                    <th>Created</th>
+                    <th class="text-center">Actions</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for company in page_obj %}
+
+                    <tr>
+
+                        <td>
+                            {{ page_obj.start_index|add:forloop.counter0 }}
+                        </td>
+
+
+                        <td>
+
+                            <strong>
+                                {{ company.name }}
+                            </strong>
+
+                        </td>
+
+
+                        <td>
+
+                            {% if company.industry %}
+
+                                {{ company.industry }}
+
+                            {% else %}
+
+                                —
+
+                            {% endif %}
+
+                        </td>
+
+
+                        <td>
+
+                            {% if company.website %}
+
+                                <a
+                                    href="{{ company.website }}"
+                                    target="_blank"
+                                    rel="noopener noreferrer">
+                                    Visit Website
+                                </a>
+
+                            {% else %}
+
+                                —
+
+                            {% endif %}
+
+                        </td>
+
+
+                        <td>
+
+                            {{ company.created_at|date:"d M Y" }}
+
+                        </td>
+
+
+                        <!-- =========================
+                             ACTIONS
+                        ========================= -->
+
+                        <td class="text-center">
+
+                            <div class="btn-group">
+
+                                <a
+                                    href="{% url 'contacts:company_detail' company.pk %}"
+                                    class="btn btn-sm btn-outline-info"
+                                    title="View Company"
+                                >
+                                    <i class="bi bi-eye"></i>
+                                </a>
+
+
+                                <a
+                                    href="{% url 'contacts:company_edit' company.pk %}"
+                                    class="btn btn-sm btn-outline-warning"
+                                    title="Edit Company"
+                                >
+                                    <i class="bi bi-pencil-square"></i>
+                                </a>
+
+
+                                <a
+                                    href="{% url 'contacts:company_delete' company.pk %}"
+                                    class="btn btn-sm btn-outline-danger"
+                                    title="Delete Company"
+                                >
+                                    <i class="bi bi-trash"></i>
+                                </a>
+
+                            </div>
+
+                        </td>
+
+                    </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+    <!-- =========================
+         PAGINATION
+    ========================= -->
+
+    {% if page_obj.paginator.num_pages > 1 %}
+
+        <div class="crm-pagination">
+
+            {% if page_obj.has_previous %}
+
+                <a
+                    href="?page={{ page_obj.previous_page_number }}{% if search %}&search={{ search }}{% endif %}"
+                    class="crm-btn-secondary">
+                    Previous
+                </a>
+
+            {% endif %}
+
+
+            <span class="crm-pagination-info">
+
+                Page {{ page_obj.number }}
+                of {{ page_obj.paginator.num_pages }}
+
+            </span>
+
+
+            {% if page_obj.has_next %}
+
+                <a
+                    href="?page={{ page_obj.next_page_number }}{% if search %}&search={{ search }}{% endif %}"
+                    class="crm-btn-secondary">
+                    Next
+                </a>
+
+            {% endif %}
+
+        </div>
+
+    {% endif %}
+
+
+{% else %}
+
+    <!-- =========================
+         EMPTY STATE
+    ========================= -->
+
+    <div class="crm-empty-state">
+
+        <h3>No Companies Found</h3>
+
+        <p>
+
+            {% if search %}
+
+                No companies match your search.
+
+            {% else %}
+
+                No companies have been added yet.
+
+            {% endif %}
+
+        </p>
+
+        <a
+            href="{% url 'contacts:company_add' %}"
+            class="crm-btn-primary">
+            + Add Company
+        </a>
+
+    </div>
+
+{% endif %}
+
+
+</div>
+
+{% endblock %}

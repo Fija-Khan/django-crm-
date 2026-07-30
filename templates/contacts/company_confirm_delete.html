@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+
+{% block title %}Delete Company | CRM{% endblock %}
+
+{% block content %}
+
+<!-- =========================
+     PAGE HEADER
+========================= -->
+
+<div class="crm-page-header">
+
+    <div>
+
+        <h1 class="crm-title">
+            Delete Company
+        </h1>
+
+        <p class="crm-page-subtitle">
+            Confirm company deletion
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     DELETE CONFIRMATION
+========================= -->
+
+<div class="crm-card">
+
+    <div class="crm-delete-box">
+
+        <h2>
+            Are you sure?
+        </h2>
+
+        <p>
+            You are about to delete
+            <strong>{{ object.name }}</strong>.
+        </p>
+
+        <p class="text-muted">
+            This action cannot be undone.
+        </p>
+
+
+        {% if object.contact_set.exists %}
+
+            <div class="alert alert-warning">
+
+                <strong>Warning:</strong>
+
+                This company has
+                {{ object.contact_set.count }}
+                contact{{ object.contact_set.count|pluralize }}
+                associated with it.
+
+                Deleting the company will not delete these contacts.
+                Their company field will simply become empty.
+
+            </div>
+
+        {% endif %}
+
+
+        <!-- ACTIONS -->
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            <div class="crm-form-actions">
+
+                <a
+                    href="{% url 'contacts:company_detail' object.pk %}"
+                    class="crm-btn-secondary">
+                    Cancel
+                </a>
+
+                <button
+                    type="submit"
+                    class="crm-btn-danger">
+                    Delete Company
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

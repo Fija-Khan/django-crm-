@@ -745,3 +745,159 @@
 
 }
 
+/* ==========================
+        EMPTY STATE
+========================== */
+
+.crm-empty-state {
+
+    padding: 50px 20px;
+
+    text-align: center;
+
+    color: #a1a1aa;
+
+}
+
+
+.crm-empty-state i {
+
+    width: 70px;
+    height: 70px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin: 0 auto 15px;
+
+    background: rgba(124,58,237,.12);
+
+    color: #a78bfa;
+
+    border-radius: 50%;
+
+    font-size: 28px;
+
+}
+
+
+.crm-empty-state h5 {
+
+    color: #ffffff;
+
+    font-weight: 600;
+
+    margin-bottom: 6px;
+
+}
+
+
+.crm-empty-state p {
+
+    color: #a1a1aa;
+
+    margin-bottom: 0;
+
+}
+
+
+
+
+
+
+
+
+
+
+/* ==========================
+      ACTION BUTTON GROUP
+========================== */
+
+.crm-contact-table .btn-group {
+
+    display: flex !important;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+}
+
+
+/* ==========================
+      ACTION BUTTONS
+========================== */
+
+.crm-contact-table .btn-group .btn {
+
+    width: 36px;
+
+    height: 36px;
+
+    min-width: 36px;
+
+    flex: 0 0 36px;
+
+    padding: 0 !important;
+
+    display: inline-flex !important;
+
+    align-items: center;
+
+    justify-content: center;
+
+    margin: 0 !important;
+
+    border-radius: 9px !important;
+
+    line-height: 1;
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease,
+        background-color .2s ease,
+        border-color .2s ease;
+
+}
+
+
+/* ==========================
+      ACTION BUTTON ICONS
+========================== */
+
+.crm-contact-table .btn-group .btn i {
+
+    font-size: 14px;
+
+    line-height: 1;
+
+}
+
+
+/* ==========================
+      ACTION BUTTON HOVER
+========================== */
+
+.crm-contact-table .btn-group .btn:hover {
+
+    transform: translateY(-2px);
+
+}
+
+
+/* ==========================
+      REMOVE BOOTSTRAP SPACING
+========================== */
+
+.crm-contact-table .btn-group > .btn {
+
+    margin-left: 0 !important;
+
+    margin-right: 0 !important;
+
+}
+

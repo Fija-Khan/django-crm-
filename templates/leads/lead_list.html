@@ -1,682 +1,563 @@
 {% extends "base.html" %}
 
-
 {% block title %}
 Lead Management
 {% endblock %}
 
-
-
 {% block content %}
-
 
 <div class="container-fluid">
 
+<!-- =========================
+     PAGE HEADER
+========================= -->
 
-    <!-- PAGE HEADER -->
+<div class="d-flex justify-content-between align-items-center flex-wrap mb-4">
 
-    <div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
 
+        <h2 class="crm-title mb-1">
 
-        <div>
+            <i class="bi bi-person-lines-fill me-2"></i>
 
-            <h2 class="crm-title mb-1">
+            Lead Management
 
-                <i class="bi bi-person-lines-fill me-2"></i>
+        </h2>
 
-                Lead Management
-
-            </h2>
-
-
-            <p class="text-muted mb-0">
-                Manage sales leads and track your pipeline.
-            </p>
-
-
-        </div>
-
-
-
-
-        <div class="d-flex gap-2">
-
-
-            <a href="{% url 'leads:lead_kanban' %}"
-               class="crm-btn-secondary">
-
-                <i class="bi bi-kanban me-1"></i>
-
-                Kanban Board
-
-            </a>
-
-
-
-
-            <a href="{% url 'leads:lead_add' %}"
-               class="crm-btn-primary">
-
-                <i class="bi bi-plus-circle me-1"></i>
-
-                Add Lead
-
-            </a>
-
-
-        </div>
-
+        <p class="crm-page-subtitle mb-0">
+            Manage sales leads and track your pipeline.
+        </p>
 
     </div>
 
 
+    <div class="d-flex gap-2 mt-3 mt-md-0">
+
+        <a
+            href="{% url 'leads:lead_kanban' %}"
+            class="crm-btn-secondary"
+        >
+            <i class="bi bi-kanban me-1"></i>
+            Kanban Board
+        </a>
 
 
+        <a
+            href="{% url 'leads:lead_add' %}"
+            class="crm-btn-primary"
+        >
+            <i class="bi bi-plus-circle me-1"></i>
+            Add Lead
+        </a>
+
+    </div>
+
+</div>
 
 
-    <!-- FILTER SECTION -->
+<!-- =========================
+     FILTER SECTION
+========================= -->
+
+<div class="crm-card shadow-sm mb-4">
+
+    <form method="GET">
+
+        <div class="row g-3 align-items-end">
 
 
-    <div class="crm-card shadow-sm mb-4">
+            <!-- Search -->
 
+            <div class="col-md-4">
 
-        <form method="GET">
+                <label class="form-label">
+                    Search
+                </label>
 
-
-            <div class="row g-3 align-items-center">
-
-
-                <div class="col-md-4">
-
-
-                    <input 
+                <input
                     type="text"
                     name="search"
                     class="form-control"
                     placeholder="Search lead title..."
-                    value="{{ request.GET.search }}">
-
-
-                </div>
-
-
-
-
-
-                <div class="col-md-3">
-
-
-                    <select name="status"
-                            class="form-select">
-
-
-                        <option value="">
-                            All Status
-                        </option>
-
-
-
-                        <option value="new"
-                        {% if request.GET.status == "new" %}
-                        selected
-                        {% endif %}>
-                            New
-                        </option>
-
-
-
-                        <option value="contacted"
-                        {% if request.GET.status == "contacted" %}
-                        selected
-                        {% endif %}>
-                            Contacted
-                        </option>
-
-
-
-                        <option value="qualified"
-                        {% if request.GET.status == "qualified" %}
-                        selected
-                        {% endif %}>
-                            Qualified
-                        </option>
-
-
-
-                        <option value="proposal"
-                        {% if request.GET.status == "proposal" %}
-                        selected
-                        {% endif %}>
-                            Proposal
-                        </option>
-
-
-
-                        <option value="won"
-                        {% if request.GET.status == "won" %}
-                        selected
-                        {% endif %}>
-                            Won
-                        </option>
-
-
-
-                        <option value="lost"
-                        {% if request.GET.status == "lost" %}
-                        selected
-                        {% endif %}>
-                            Lost
-                        </option>
-
-
-
-                    </select>
-
-
-                </div>
-
-
-
-
-
-                <div class="col-md-3">
-
-
-                    <input
-                    type="date"
-                    name="date"
-                    class="form-control"
-                    value="{{ request.GET.date }}">
-
-
-                </div>
-
-
-
-
-
-                <div class="col-md-2">
-
-
-                    <button class="crm-btn-primary w-100"
-                            type="submit">
-
-
-                        <i class="bi bi-search me-1"></i>
-
-                        Filter
-
-
-                    </button>
-
-
-                </div>
-
+                    value="{{ request.GET.search }}"
+                >
 
             </div>
 
 
-        </form>
+            <!-- Status -->
 
+            <div class="col-md-3">
 
-    </div>
+                <label class="form-label">
+                    Status
+                </label>
 
+                <select
+                    name="status"
+                    class="form-select"
+                >
 
+                    <option value="">
+                        All Status
+                    </option>
 
 
+                    <option
+                        value="new"
+                        {% if request.GET.status == "new" %}selected{% endif %}
+                    >
+                        New
+                    </option>
 
 
+                    <option
+                        value="contacted"
+                        {% if request.GET.status == "contacted" %}selected{% endif %}
+                    >
+                        Contacted
+                    </option>
 
 
-    <!-- LEADS TABLE -->
+                    <option
+                        value="qualified"
+                        {% if request.GET.status == "qualified" %}selected{% endif %}
+                    >
+                        Qualified
+                    </option>
 
 
-    <div class="crm-card shadow-sm">
+                    <option
+                        value="proposal"
+                        {% if request.GET.status == "proposal" %}selected{% endif %}
+                    >
+                        Proposal
+                    </option>
 
 
-        <div class="table-responsive">
+                    <option
+                        value="won"
+                        {% if request.GET.status == "won" %}selected{% endif %}
+                    >
+                        Won
+                    </option>
 
 
-            <table class="table crm-table align-middle mb-0">
+                    <option
+                        value="lost"
+                        {% if request.GET.status == "lost" %}selected{% endif %}
+                    >
+                        Lost
+                    </option>
 
+                </select>
 
+            </div>
 
-                <thead>
 
+            <!-- Date -->
 
-                    <tr>
+            <div class="col-md-3">
 
-                        <th>ID</th>
+                <label class="form-label">
+                    Expected Close
+                </label>
 
-                        <th>Title</th>
+                <input
+                    type="date"
+                    name="date"
+                    class="form-control"
+                    value="{{ request.GET.date }}"
+                >
 
-                        <th>Contact</th>
+            </div>
 
-                        <th>Status</th>
 
-                        <th>Assigned To</th>
+            <!-- Filter Button -->
 
-                        <th>Value</th>
+            <div class="col-md-2 d-grid">
 
-                        <th>Expected Close</th>
+                <button
+                    class="crm-btn-primary"
+                    type="submit"
+                >
 
-                        <th class="text-center">
-                            Actions
-                        </th>
+                    <i class="bi bi-search me-1"></i>
+                    Filter
 
-                    </tr>
+                </button>
 
+            </div>
 
-                </thead>
+        </div>
 
+    </form>
 
+</div>
 
 
+<!-- =========================
+     LEADS TABLE
+========================= -->
 
-                <tbody>
+<div class="crm-card shadow-sm">
 
+    <div class="table-responsive">
 
+        <table class="table crm-table crm-contact-table align-middle mb-0">
 
-                {% for lead in leads %}
+            <thead>
 
+                <tr>
 
+                    <th>ID</th>
 
-                    <tr>
+                    <th>Title</th>
 
+                    <th>Contact</th>
 
+                    <th>Status</th>
 
-                        <td>
-                            #{{ lead.id }}
-                        </td>
+                    <th>Assigned To</th>
 
+                    <th>Value</th>
 
+                    <th>Expected Close</th>
 
+                    <th class="text-center">
+                        Actions
+                    </th>
 
+                </tr>
 
-                        <td>
+            </thead>
 
-                            <strong>
-                                {{ lead.title }}
-                            </strong>
 
-                        </td>
+            <tbody>
 
+            {% for lead in leads %}
 
+                <tr>
 
 
+                    <!-- ID -->
 
-                        <td>
+                    <td>
+                        #{{ lead.id }}
+                    </td>
 
 
-                            {% if lead.contact %}
+                    <!-- TITLE -->
 
-                                {{ lead.contact }}
+                    <td>
 
+                        <strong>
+                            {{ lead.title }}
+                        </strong>
 
-                            {% else %}
+                    </td>
 
-                                <span class="text-muted">
-                                    No Contact
-                                </span>
 
+                    <!-- CONTACT -->
 
-                            {% endif %}
+                    <td>
 
+                        {% if lead.contact %}
 
-                        </td>
+                            {{ lead.contact }}
 
+                        {% else %}
 
+                            <span class="text-secondary">
+                                No Contact
+                            </span>
 
+                        {% endif %}
 
+                    </td>
 
 
-                        <td>
+                    <!-- STATUS -->
 
+                    <td>
 
-                            {% if lead.status == "new" %}
+                        {% if lead.status == "new" %}
 
-                                <span class="crm-badge-primary">
-                                    New
-                                </span>
+                            <span class="crm-badge-primary">
+                                New
+                            </span>
 
 
-                            {% elif lead.status == "contacted" %}
+                        {% elif lead.status == "contacted" %}
 
-                                <span class="crm-badge-info">
-                                    Contacted
-                                </span>
+                            <span class="crm-badge-info">
+                                Contacted
+                            </span>
 
 
-                            {% elif lead.status == "qualified" %}
+                        {% elif lead.status == "qualified" %}
 
-                                <span class="crm-badge-warning">
-                                    Qualified
-                                </span>
+                            <span class="crm-badge-warning">
+                                Qualified
+                            </span>
 
 
-                            {% elif lead.status == "proposal" %}
+                        {% elif lead.status == "proposal" %}
 
-                                <span class="crm-badge-secondary">
-                                    Proposal
-                                </span>
+                            <span class="crm-badge-secondary">
+                                Proposal
+                            </span>
 
 
-                            {% elif lead.status == "won" %}
+                        {% elif lead.status == "won" %}
 
-                                <span class="crm-badge-success">
-                                    Won
-                                </span>
+                            <span class="crm-badge-success">
+                                Won
+                            </span>
 
 
-                            {% elif lead.status == "lost" %}
+                        {% elif lead.status == "lost" %}
 
-                                <span class="crm-badge-danger">
-                                    Lost
-                                </span>
+                            <span class="crm-badge-danger">
+                                Lost
+                            </span>
 
+                        {% endif %}
 
-                            {% endif %}
+                    </td>
 
 
-                        </td>
+                    <!-- ASSIGNED TO -->
 
+                    <td>
 
+                        {% if lead.assigned_to %}
 
+                            {{ lead.assigned_to }}
 
+                        {% else %}
 
+                            <span class="text-secondary">
+                                Unassigned
+                            </span>
 
+                        {% endif %}
 
-                        <td>
+                    </td>
 
 
-                            {% if lead.assigned_to %}
+                    <!-- VALUE -->
 
-                                {{ lead.assigned_to }}
+                    <td>
 
+                        ${{ lead.estimated_value|default:0|floatformat:2 }}
 
-                            {% else %}
+                    </td>
 
-                                <span class="text-muted">
-                                    Unassigned
-                                </span>
 
+                    <!-- EXPECTED CLOSE -->
 
-                            {% endif %}
+                    <td>
 
+                        {% if lead.expected_close %}
 
-                        </td>
+                            {{ lead.expected_close|date:"d M Y" }}
 
+                        {% else %}
 
+                            <span class="text-secondary">
+                                -
+                            </span>
 
+                        {% endif %}
 
+                    </td>
 
 
+                    <!-- =========================
+                         ACTIONS
+                    ========================= -->
 
-                        <td>
+                    <td class="text-center">
 
-                            ₹ {{ lead.estimated_value|default:0|floatformat:2 }}
+                        <div class="btn-group">
 
-                        </td>
 
+                            <!-- VIEW -->
 
+                            <a
+                                href="{% url 'leads:lead_detail' lead.id %}"
+                                class="btn btn-sm btn-outline-info"
+                                title="View Lead"
+                            >
 
+                                <i class="bi bi-eye"></i>
 
+                            </a>
 
 
-                        <td>
+                            <!-- EDIT -->
 
+                            <a
+                                href="{% url 'leads:lead_edit' lead.id %}"
+                                class="btn btn-sm btn-outline-warning"
+                                title="Edit Lead"
+                            >
 
-                            {% if lead.expected_close %}
+                                <i class="bi bi-pencil-square"></i>
 
+                            </a>
 
-                                {{ lead.expected_close|date:"d M Y" }}
 
+                            <!-- DELETE -->
 
-                            {% else %}
+                            <a
+                                href="{% url 'leads:lead_delete' lead.id %}"
+                                class="btn btn-sm btn-outline-danger"
+                                title="Delete Lead"
+                            >
 
+                                <i class="bi bi-trash"></i>
 
-                                <span class="text-muted">
-                                    -
-                                </span>
+                            </a>
 
 
-                            {% endif %}
+                            <!-- CONVERT -->
 
+                            {% if lead.status == "won" %}
 
-                        </td>
-
-
-
-
-
-
-
-                        <td class="text-center">
-
-
-                            <div class="action-buttons">
-
-
-
-                                <a href="{% url 'leads:lead_detail' lead.id %}"
-                                   class="action-btn view-btn">
-
-                                    <i class="bi bi-eye"></i>
-
-                                </a>
-
-
-
-
-
-                                <a href="{% url 'leads:lead_edit' lead.id %}"
-                                   class="action-btn edit-btn">
-
-                                    <i class="bi bi-pencil-square"></i>
-
-                                </a>
-
-
-
-
-
-                                <a href="{% url 'leads:lead_delete' lead.id %}"
-                                   class="action-btn delete-btn">
-
-                                    <i class="bi bi-trash"></i>
-
-                                </a>
-
-
-
-
-
-                                {% if lead.status == "won" %}
-
-
-                                <a href="{% url 'leads:lead_convert' lead.id %}"
-                                   class="action-btn convert-btn">
+                                <a
+                                    href="{% url 'leads:lead_convert' lead.id %}"
+                                    class="btn btn-sm btn-outline-success"
+                                    title="Convert Lead"
+                                >
 
                                     <i class="bi bi-arrow-repeat"></i>
 
                                 </a>
 
-
-                                {% endif %}
-
+                            {% endif %}
 
 
-                            </div>
+                        </div>
+
+                    </td>
+
+                </tr>
 
 
-
-                        </td>
-
+            {% empty %}
 
 
-                    </tr>
+                <!-- =========================
+                     EMPTY STATE
+                ========================= -->
+
+                <tr>
+
+                    <td
+                        colspan="8"
+                        class="text-center py-5"
+                    >
+
+                        <i class="bi bi-inbox display-4 text-secondary"></i>
 
 
+                        <h5 class="mt-3">
+                            No Leads Found
+                        </h5>
 
 
-
-                {% empty %}
-
-
-
-                    <tr>
+                        <p class="text-secondary">
+                            Create your first lead.
+                        </p>
 
 
-                        <td colspan="8"
-                            class="text-center py-5">
+                        <a
+                            href="{% url 'leads:lead_add' %}"
+                            class="crm-btn-primary"
+                        >
+
+                            <i class="bi bi-plus-circle me-1"></i>
+                            Add Lead
+
+                        </a>
+
+                    </td>
+
+                </tr>
 
 
-                            <i class="bi bi-inbox fs-1 text-muted"></i>
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
 
 
-                            <h5 class="mt-3">
-                                No Leads Found
-                            </h5>
+    <!-- =========================
+         PAGINATION
+    ========================= -->
 
-
-                            <p class="text-muted">
-                                Create your first lead.
-                            </p>
-
-
-
-                            <a href="{% url 'leads:lead_add' %}"
-                               class="crm-btn-primary">
-
-                                Add Lead
-
-                            </a>
-
-
-
-                        </td>
-
-
-                    </tr>
-
-
-
-                {% endfor %}
-
-
-
-                </tbody>
-
-
-            </table>
-
-
-        </div>
-
-
-
-
-
-
-
-
-        <!-- PAGINATION -->
-
-
-        {% if page_obj.has_other_pages %}
-
-
+    {% if page_obj.has_other_pages %}
 
         <nav class="mt-4">
-
 
             <ul class="pagination justify-content-center">
 
 
                 {% if page_obj.has_previous %}
 
+                    <li class="page-item">
 
-                <li class="page-item">
+                        <a
+                            class="page-link"
+                            href="?page={{ page_obj.previous_page_number }}&search={{ request.GET.search }}&status={{ request.GET.status }}&date={{ request.GET.date }}"
+                        >
+                            Previous
+                        </a>
 
-
-                    <a class="page-link"
-                    href="?page={{ page_obj.previous_page_number }}&search={{ request.GET.search }}&status={{ request.GET.status }}">
-
-
-                        Previous
-
-
-                    </a>
-
-
-                </li>
-
+                    </li>
 
                 {% endif %}
-
-
-
-
 
 
                 <li class="page-item active">
 
-
                     <span class="page-link">
-
                         {{ page_obj.number }}
-
                     </span>
 
-
                 </li>
-
-
-
-
 
 
                 {% if page_obj.has_next %}
 
+                    <li class="page-item">
 
+                        <a
+                            class="page-link"
+                            href="?page={{ page_obj.next_page_number }}&search={{ request.GET.search }}&status={{ request.GET.status }}&date={{ request.GET.date }}"
+                        >
+                            Next
+                        </a>
 
-                <li class="page-item">
-
-
-                    <a class="page-link"
-                    href="?page={{ page_obj.next_page_number }}&search={{ request.GET.search }}&status={{ request.GET.status }}">
-
-
-                        Next
-
-
-                    </a>
-
-
-                </li>
-
+                    </li>
 
                 {% endif %}
 
 
-
             </ul>
-
 
         </nav>
 
-
-
-        {% endif %}
-
-
-
-    </div>
-
-
+    {% endif %}
 
 </div>
 
 
+</div>
 
 {% endblock %}

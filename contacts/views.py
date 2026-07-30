@@ -188,8 +188,7 @@ class ContactDetailView(
         # Related Data
         context["leads"] = contact.lead_set.all()
         context["notes"] = contact.notes.all()
-        context["interactions"] = contact.interaction_set.all()
-
+        context["interactions"] = contact.interactions.all()   
         return context
 # ==========================================
 # UPDATE CONTACT
