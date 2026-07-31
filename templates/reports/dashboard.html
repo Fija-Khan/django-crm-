@@ -13,30 +13,30 @@ Reports Dashboard
 <div class="container-fluid mt-4">
 
 
-
-    <!-- ================= HEADER ================= -->
-
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
 
     <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
 
 
         <div>
 
-            <h2 class="fw-bold text-white mb-1">
+            <h2 class="crm-title mb-1">
 
-                <i class="bi bi-bar-chart-fill text-info me-2"></i>
+                <i class="bi bi-bar-chart-fill me-2"
+                   style="color:#7c3aed;"></i>
 
                 Reports Dashboard
 
             </h2>
 
 
-            <p class="text-secondary mb-0">
+            <p class="crm-page-subtitle mb-0">
 
                 Analyze CRM performance and business growth.
 
             </p>
-
 
         </div>
 
@@ -46,25 +46,26 @@ Reports Dashboard
 
 
 
+    <!-- =====================================================
+         DATE FILTER
+    ====================================================== -->
+
+    <div class="crm-card mb-4">
 
 
-    <!-- ================= DATE FILTER ================= -->
-
-
-    <div class="crm-card p-4 mb-4">
-
-
-        <form method="GET">
+        <form method="GET"
+              class="crm-form">
 
 
             <div class="row g-3 align-items-end">
 
 
+                <!-- FROM DATE -->
 
                 <div class="col-md-4">
 
 
-                    <label class="form-label text-white">
+                    <label class="crm-label">
 
                         From Date
 
@@ -82,11 +83,12 @@ Reports Dashboard
 
 
 
+                <!-- TO DATE -->
 
                 <div class="col-md-4">
 
 
-                    <label class="form-label text-white">
+                    <label class="crm-label">
 
                         To Date
 
@@ -104,15 +106,16 @@ Reports Dashboard
 
 
 
+                <!-- BUTTONS -->
 
                 <div class="col-md-4">
 
 
                     <button type="submit"
-                            class="btn btn-info px-4">
+                            class="crm-btn-primary">
 
 
-                        <i class="bi bi-funnel me-2"></i>
+                        <i class="bi bi-funnel"></i>
 
                         Filter
 
@@ -122,8 +125,10 @@ Reports Dashboard
 
 
                     <a href="{% url 'reports:dashboard' %}"
-                       class="btn btn-outline-light ms-2 px-4">
+                       class="crm-btn-secondary ms-2">
 
+
+                        <i class="bi bi-arrow-counterclockwise"></i>
 
                         Reset
 
@@ -131,10 +136,7 @@ Reports Dashboard
                     </a>
 
 
-
                 </div>
-
-
 
 
             </div>
@@ -149,30 +151,26 @@ Reports Dashboard
 
 
 
-
-
-
-    <!-- ================= SUMMARY CARDS ================= -->
-
-
+    <!-- =====================================================
+         SUMMARY CARDS - ROW 1
+    ====================================================== -->
 
     <div class="row g-4">
 
 
-
         <!-- CONTACTS -->
-
 
         <div class="col-md-3">
 
 
-            <div class="crm-card p-4 text-center">
+            <div class="crm-card text-center h-100">
 
 
-                <i class="bi bi-people-fill display-5 text-info"></i>
+                <i class="bi bi-people-fill display-5"
+                   style="color:#38bdf8;"></i>
 
 
-                <h6 class="text-secondary mt-3">
+                <h6 class="crm-page-subtitle mt-3 mb-2">
 
                     Contacts
 
@@ -194,22 +192,19 @@ Reports Dashboard
 
 
 
-
-
-
         <!-- COMPANIES -->
-
 
         <div class="col-md-3">
 
 
-            <div class="crm-card p-4 text-center">
+            <div class="crm-card text-center h-100">
 
 
-                <i class="bi bi-building display-5 text-success"></i>
+                <i class="bi bi-building display-5"
+                   style="color:#22c55e;"></i>
 
 
-                <h6 class="text-secondary mt-3">
+                <h6 class="crm-page-subtitle mt-3 mb-2">
 
                     Companies
 
@@ -231,22 +226,19 @@ Reports Dashboard
 
 
 
-
-
-
         <!-- LEADS -->
-
 
         <div class="col-md-3">
 
 
-            <div class="crm-card p-4 text-center">
+            <div class="crm-card text-center h-100">
 
 
-                <i class="bi bi-person-plus-fill display-5 text-warning"></i>
+                <i class="bi bi-person-plus-fill display-5"
+                   style="color:#f59e0b;"></i>
 
 
-                <h6 class="text-secondary mt-3">
+                <h6 class="crm-page-subtitle mt-3 mb-2">
 
                     Leads
 
@@ -268,23 +260,19 @@ Reports Dashboard
 
 
 
-
-
-
-
         <!-- DEALS -->
-
 
         <div class="col-md-3">
 
 
-            <div class="crm-card p-4 text-center">
+            <div class="crm-card text-center h-100">
 
 
-                <i class="bi bi-briefcase-fill display-5 text-primary"></i>
+                <i class="bi bi-briefcase-fill display-5"
+                   style="color:#7c3aed;"></i>
 
 
-                <h6 class="text-secondary mt-3">
+                <h6 class="crm-page-subtitle mt-3 mb-2">
 
                     Deals
 
@@ -304,40 +292,32 @@ Reports Dashboard
         </div>
 
 
-
-
     </div>
 
 
 
 
 
-
-
-
-    <!-- ================= SECOND SUMMARY ROW ================= -->
-
-
+    <!-- =====================================================
+         SUMMARY CARDS - ROW 2
+    ====================================================== -->
 
     <div class="row g-4 mt-1">
 
 
-
-
-
         <!-- TASKS -->
-
 
         <div class="col-md-3">
 
 
-            <div class="crm-card p-4 text-center">
+            <div class="crm-card text-center h-100">
 
 
-                <i class="bi bi-list-check display-5 text-warning"></i>
+                <i class="bi bi-list-check display-5"
+                   style="color:#f59e0b;"></i>
 
 
-                <h6 class="text-secondary mt-3">
+                <h6 class="crm-page-subtitle mt-3 mb-2">
 
                     Tasks
 
@@ -359,22 +339,19 @@ Reports Dashboard
 
 
 
-
-
-
         <!-- REVENUE -->
-
 
         <div class="col-md-3">
 
 
-            <div class="crm-card p-4 text-center">
+            <div class="crm-card text-center h-100">
 
 
-                <i class="bi bi-currency-dollar display-5 text-success"></i>
+                <i class="bi bi-currency-dollar display-5"
+                   style="color:#22c55e;"></i>
 
 
-                <h6 class="text-secondary mt-3">
+                <h6 class="crm-page-subtitle mt-3 mb-2">
 
                     Revenue
 
@@ -396,23 +373,19 @@ Reports Dashboard
 
 
 
-
-
-
-
         <!-- AVG DEAL -->
-
 
         <div class="col-md-3">
 
 
-            <div class="crm-card p-4 text-center">
+            <div class="crm-card text-center h-100">
 
 
-                <i class="bi bi-graph-up display-5 text-info"></i>
+                <i class="bi bi-graph-up display-5"
+                   style="color:#38bdf8;"></i>
 
 
-                <h6 class="text-secondary mt-3">
+                <h6 class="crm-page-subtitle mt-3 mb-2">
 
                     Avg Deal Value
 
@@ -434,23 +407,19 @@ Reports Dashboard
 
 
 
-
-
-
-
         <!-- WON DEALS -->
-
 
         <div class="col-md-3">
 
 
-            <div class="crm-card p-4 text-center">
+            <div class="crm-card text-center h-100">
 
 
-                <i class="bi bi-trophy-fill display-5 text-warning"></i>
+                <i class="bi bi-trophy-fill display-5"
+                   style="color:#f59e0b;"></i>
 
 
-                <h6 class="text-secondary mt-3">
+                <h6 class="crm-page-subtitle mt-3 mb-2">
 
                     Won Deals
 
@@ -470,28 +439,24 @@ Reports Dashboard
         </div>
 
 
-
-
     </div>
 
 
 
 
 
+    <!-- =====================================================
+         REVENUE CHART
+    ====================================================== -->
 
-
-    <!-- ================= REVENUE CHART ================= -->
-
-
-
-    <div class="crm-card p-4 mt-4">
-
+    <div class="crm-card mt-4">
 
 
         <h5 class="text-white mb-4">
 
 
-            <i class="bi bi-graph-up-arrow text-success me-2"></i>
+            <i class="bi bi-graph-up-arrow me-2"
+               style="color:#22c55e;"></i>
 
 
             Monthly Revenue Trend
@@ -500,22 +465,26 @@ Reports Dashboard
         </h5>
 
 
+        <div style="position:relative; height:320px;">
 
 
+            <canvas id="revenueChart"></canvas>
 
-        <canvas id="revenueChart"
-                height="100">
-        </canvas>
 
+        </div>
 
 
     </div>
 
 
-    <!-- ================= DEAL STATISTICS ================= -->
 
 
-    <div class="row g-4 mt-4">
+
+    <!-- =====================================================
+         DEAL STATISTICS
+    ====================================================== -->
+
+    <div class="row g-4 mt-1">
 
 
         <!-- NEGOTIATION -->
@@ -523,17 +492,18 @@ Reports Dashboard
         <div class="col-md-4">
 
 
-            <div class="crm-card p-4 text-center">
+            <div class="crm-card text-center h-100">
 
 
-                <h6 class="text-secondary">
+                <h6 class="crm-page-subtitle">
 
                     Negotiation
 
                 </h6>
 
 
-                <h2 class="text-warning fw-bold">
+                <h2 class="fw-bold mt-2"
+                    style="color:#f59e0b;">
 
                     {{ negotiation_deals }}
 
@@ -548,25 +518,23 @@ Reports Dashboard
 
 
 
-
-
         <!-- CONTRACT -->
-
 
         <div class="col-md-4">
 
 
-            <div class="crm-card p-4 text-center">
+            <div class="crm-card text-center h-100">
 
 
-                <h6 class="text-secondary">
+                <h6 class="crm-page-subtitle">
 
                     Contract
 
                 </h6>
 
 
-                <h2 class="text-info fw-bold">
+                <h2 class="fw-bold mt-2"
+                    style="color:#38bdf8;">
 
                     {{ contract_deals }}
 
@@ -581,25 +549,23 @@ Reports Dashboard
 
 
 
-
-
         <!-- OPEN DEALS -->
-
 
         <div class="col-md-4">
 
 
-            <div class="crm-card p-4 text-center">
+            <div class="crm-card text-center h-100">
 
 
-                <h6 class="text-secondary">
+                <h6 class="crm-page-subtitle">
 
                     Open Deals
 
                 </h6>
 
 
-                <h2 class="text-primary fw-bold">
+                <h2 class="fw-bold mt-2"
+                    style="color:#7c3aed;">
 
                     {{ open_deals }}
 
@@ -612,23 +578,17 @@ Reports Dashboard
         </div>
 
 
-
     </div>
 
 
 
 
 
+    <!-- =====================================================
+         RECENT LEADS
+    ====================================================== -->
 
-
-
-
-    <!-- ================= RECENT LEADS ================= -->
-
-
-
-    <div class="crm-card p-4 mt-4">
-
+    <div class="crm-card mt-4">
 
 
         <div class="d-flex justify-content-between align-items-center mb-3">
@@ -636,26 +596,28 @@ Reports Dashboard
 
             <h5 class="text-white mb-0">
 
-                <i class="bi bi-person-plus-fill text-warning me-2"></i>
+
+                <i class="bi bi-person-plus-fill me-2"
+                   style="color:#f59e0b;"></i>
+
 
                 Recent Leads
+
 
             </h5>
 
 
 
             <a href="{% url 'leads:lead_list' %}"
-               class="btn btn-sm btn-outline-info">
+               class="crm-btn-secondary">
+
 
                 View All
 
             </a>
 
 
-
         </div>
-
-
 
 
 
@@ -666,54 +628,30 @@ Reports Dashboard
             <table class="table align-middle interaction-table">
 
 
-
                 <thead>
-
 
                     <tr>
 
+                        <th>Name</th>
 
-                        <th>
-                            Name
-                        </th>
+                        <th>Contact</th>
 
+                        <th>Status</th>
 
-                        <th>
-                            Contact
-                        </th>
+                        <th>Assigned To</th>
 
-
-                        <th>
-                            Status
-                        </th>
-
-
-                        <th>
-                            Assigned To
-                        </th>
-
-
-                        <th>
-                            Date
-                        </th>
-
+                        <th>Date</th>
 
                     </tr>
 
-
                 </thead>
-
-
-
 
 
 
                 <tbody>
 
 
-
                 {% for lead in recent_leads %}
-
 
 
                     <tr>
@@ -721,11 +659,13 @@ Reports Dashboard
 
                         <td>
 
-                            {{ lead.title }}
+                            <strong class="text-white">
+
+                                {{ lead.title }}
+
+                            </strong>
 
                         </td>
-
-
 
 
                         <td>
@@ -735,13 +675,13 @@ Reports Dashboard
                         </td>
 
 
-
-
-
                         <td>
 
 
-                            <span class="badge bg-info">
+                            <span class="badge"
+                                  style="background:#27213f;
+                                         color:#38bdf8;
+                                         border:1px solid rgba(56,189,248,.25);">
 
                                 {{ lead.status }}
 
@@ -751,17 +691,11 @@ Reports Dashboard
                         </td>
 
 
-
-
-
                         <td>
 
                             {{ lead.assigned_to|default:"-" }}
 
                         </td>
-
-
-
 
 
                         <td>
@@ -771,34 +705,25 @@ Reports Dashboard
                         </td>
 
 
-
                     </tr>
-
 
 
                 {% empty %}
 
 
-
                     <tr>
 
-
                         <td colspan="5"
-                            class="text-center text-secondary">
-
+                            class="text-center text-secondary py-4">
 
                             No recent leads found.
 
-
                         </td>
-
 
                     </tr>
 
 
-
                 {% endfor %}
-
 
 
                 </tbody>
@@ -816,16 +741,11 @@ Reports Dashboard
 
 
 
+    <!-- =====================================================
+         RECENT DEALS
+    ====================================================== -->
 
-
-
-
-    <!-- ================= RECENT DEALS ================= -->
-
-
-
-    <div class="crm-card p-4 mt-4">
-
+    <div class="crm-card mt-4">
 
 
         <div class="d-flex justify-content-between align-items-center mb-3">
@@ -833,27 +753,28 @@ Reports Dashboard
 
             <h5 class="text-white mb-0">
 
-                <i class="bi bi-briefcase-fill text-primary me-2"></i>
+
+                <i class="bi bi-briefcase-fill me-2"
+                   style="color:#7c3aed;"></i>
+
 
                 Recent Deals
+
 
             </h5>
 
 
 
             <a href="{% url 'deals:deal_list' %}"
-               class="btn btn-sm btn-outline-info">
+               class="crm-btn-secondary">
+
 
                 View All
 
             </a>
 
 
-
         </div>
-
-
-
 
 
 
@@ -864,62 +785,42 @@ Reports Dashboard
             <table class="table align-middle interaction-table">
 
 
-
                 <thead>
-
 
                     <tr>
 
+                        <th>Lead</th>
 
-                        <th>
-                            Lead
-                        </th>
+                        <th>Amount</th>
 
+                        <th>Stage</th>
 
-                        <th>
-                            Amount
-                        </th>
-
-
-                        <th>
-                            Stage
-                        </th>
-
-
-                        <th>
-                            Close Date
-                        </th>
-
+                        <th>Close Date</th>
 
                     </tr>
 
-
                 </thead>
-
-
 
 
 
                 <tbody>
 
 
-
                 {% for deal in recent_deals %}
-
 
 
                     <tr>
 
 
-
                         <td>
 
-                            {{ deal.lead }}
+                            <strong class="text-white">
+
+                                {{ deal.lead }}
+
+                            </strong>
 
                         </td>
-
-
-
 
 
                         <td>
@@ -929,15 +830,10 @@ Reports Dashboard
                         </td>
 
 
-
-
-
                         <td>
 
 
-
                             {% if deal.stage == "closed_won" %}
-
 
                                 <span class="badge bg-success">
 
@@ -946,10 +842,7 @@ Reports Dashboard
                                 </span>
 
 
-
                             {% elif deal.stage == "closed_lost" %}
-
-
 
                                 <span class="badge bg-danger">
 
@@ -958,10 +851,7 @@ Reports Dashboard
                                 </span>
 
 
-
                             {% elif deal.stage == "negotiation" %}
-
-
 
                                 <span class="badge bg-warning text-dark">
 
@@ -970,28 +860,21 @@ Reports Dashboard
                                 </span>
 
 
-
                             {% else %}
 
-
-
-                                <span class="badge bg-info">
+                                <span class="badge"
+                                      style="background:#27213f;
+                                             color:#38bdf8;
+                                             border:1px solid rgba(56,189,248,.25);">
 
                                     {{ deal.stage }}
 
                                 </span>
 
-
-
                             {% endif %}
 
 
-
                         </td>
-
-
-
-
 
 
                         <td>
@@ -1001,19 +884,16 @@ Reports Dashboard
                         </td>
 
 
-
                     </tr>
-
 
 
                 {% empty %}
 
 
-
                     <tr>
 
                         <td colspan="4"
-                            class="text-center text-secondary">
+                            class="text-center text-secondary py-4">
 
                             No recent deals found.
 
@@ -1022,9 +902,7 @@ Reports Dashboard
                     </tr>
 
 
-
                 {% endfor %}
-
 
 
                 </tbody>
@@ -1042,22 +920,18 @@ Reports Dashboard
 
 
 
+    <!-- =====================================================
+         RECENT TASKS
+    ====================================================== -->
 
-
-
-
-    <!-- ================= RECENT TASKS ================= -->
-
-
-
-    <div class="crm-card p-4 mt-4">
-
+    <div class="crm-card mt-4">
 
 
         <h5 class="text-white mb-3">
 
 
-            <i class="bi bi-list-check text-success me-2"></i>
+            <i class="bi bi-list-check me-2"
+               style="color:#22c55e;"></i>
 
 
             Recent Tasks
@@ -1068,21 +942,16 @@ Reports Dashboard
 
 
 
-
         {% if recent_tasks %}
-
 
 
             {% for task in recent_tasks %}
 
 
-
-            <div class="border-bottom py-3">
-
+            <div class="crm-detail-box mb-2">
 
 
-                <div class="d-flex justify-content-between">
-
+                <div class="d-flex justify-content-between align-items-center">
 
 
                     <div>
@@ -1090,27 +959,20 @@ Reports Dashboard
 
                         <h6 class="text-white mb-1">
 
-
                             {{ task.title }}
-
 
                         </h6>
 
 
-
                         <small class="text-secondary">
-
 
                             Assigned To:
                             {{ task.assigned_to }}
-
 
                         </small>
 
 
                     </div>
-
-
 
 
 
@@ -1125,9 +987,7 @@ Reports Dashboard
                         </span>
 
 
-
                     {% else %}
-
 
 
                         <span class="badge bg-warning text-dark">
@@ -1137,50 +997,47 @@ Reports Dashboard
                         </span>
 
 
-
                     {% endif %}
-
 
 
                 </div>
 
 
-
             </div>
-
 
 
             {% endfor %}
 
 
-
-
-
         {% else %}
 
 
+            <div class="crm-empty-state">
 
-            <p class="text-secondary text-center">
+                <i class="bi bi-list-check"></i>
 
-                No recent tasks found.
+                <h5>
 
-            </p>
+                    No Recent Tasks
 
+                </h5>
+
+                <p>
+
+                    No recent tasks found.
+
+                </p>
+
+            </div>
 
 
         {% endif %}
 
 
-
-
     </div>
 
 
-
-
-
-
-
+</div>
 
 
 {% endblock %}
@@ -1192,46 +1049,45 @@ Reports Dashboard
 {% block extra_js %}
 
 
-
 <script>
 
-
-document.addEventListener("DOMContentLoaded", function(){
+document.addEventListener("DOMContentLoaded", function () {
 
 
     const ctx = document.getElementById("revenueChart");
 
 
-
-    if(ctx){
+    if (ctx) {
 
 
         new Chart(ctx, {
 
 
-            type:"line",
+            type: "line",
 
 
-            data:{
+            data: {
 
 
                 labels: {{ revenue_labels|safe }},
 
 
+                datasets: [{
 
-                datasets:[{
 
-
-                    label:"Revenue",
+                    label: "Revenue",
 
 
                     data: {{ revenue_values|safe }},
 
 
-                    borderWidth:2,
+                    borderWidth: 2,
 
 
-                    tension:0.4
+                    tension: 0.4,
+
+
+                    fill: false
 
 
                 }]
@@ -1240,21 +1096,72 @@ document.addEventListener("DOMContentLoaded", function(){
             },
 
 
-
-            options:{
-
-
-                responsive:true,
+            options: {
 
 
-                scales:{
+                responsive: true,
 
 
-                    y:{
+                maintainAspectRatio: false,
 
 
-                        beginAtZero:true
+                plugins: {
 
+
+                    legend: {
+
+
+                        labels: {
+
+                            color: "#e5e7eb"
+
+                        }
+
+                    }
+
+                },
+
+
+                scales: {
+
+
+                    x: {
+
+
+                        ticks: {
+
+                            color: "#a1a1aa"
+
+                        },
+
+
+                        grid: {
+
+                            color: "rgba(255,255,255,.05)"
+
+                        }
+
+                    },
+
+
+                    y: {
+
+
+                        beginAtZero: true,
+
+
+                        ticks: {
+
+                            color: "#a1a1aa"
+
+                        },
+
+
+                        grid: {
+
+                            color: "rgba(255,255,255,.05)"
+
+                        }
 
                     }
 
@@ -1265,21 +1172,15 @@ document.addEventListener("DOMContentLoaded", function(){
             }
 
 
-
         });
-
 
 
     }
 
 
-
 });
 
-
-
 </script>
-
 
 
 {% endblock %}

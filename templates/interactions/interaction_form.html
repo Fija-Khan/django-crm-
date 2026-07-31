@@ -2,13 +2,12 @@
 
 
 {% block title %}
-{% if object %}
-Edit Interaction
-{% else %}
-Add Interaction
-{% endif %}
+    {% if object %}
+        Edit Interaction
+    {% else %}
+        Add Interaction
+    {% endif %}
 {% endblock %}
-
 
 
 {% block content %}
@@ -16,14 +15,13 @@ Add Interaction
 <div class="container-fluid mt-4">
 
 
-    <!-- Header -->
+    <!-- ================= HEADER ================= -->
 
     <div class="mb-4">
 
-        <h2 class="fw-bold text-white">
+        <h2 class="crm-title mb-1">
 
-            <i class="bi bi-chat-left-dots text-info me-2"></i>
-
+            <i class="bi bi-chat-left-dots me-2"></i>
 
             {% if object %}
                 Edit Interaction
@@ -31,29 +29,25 @@ Add Interaction
                 Log New Interaction
             {% endif %}
 
-
         </h2>
 
 
-        <p class="text-secondary">
+        <p class="crm-page-subtitle mb-0">
 
             Add communication details with your customer or lead.
 
         </p>
 
-
     </div>
 
 
 
+    <!-- ================= FORM CARD ================= -->
+
+    <div class="crm-card">
 
 
-    <!-- Form Card -->
-
-    <div class="crm-card p-4">
-
-
-        <form method="post">
+        <form method="post" class="crm-form">
 
             {% csrf_token %}
 
@@ -64,11 +58,13 @@ Add Interaction
 
                 {% for field in form %}
 
+                <div class="col-md-6 mb-4">
 
-                <div class="col-md-6 mb-3">
 
+                    <!-- LABEL -->
 
-                    <label class="form-label text-white">
+                    <label for="{{ field.id_for_label }}"
+                           class="crm-label">
 
                         {{ field.label }}
 
@@ -76,68 +72,91 @@ Add Interaction
 
 
 
+                    <!-- FIELD -->
+
                     {{ field }}
 
 
 
+                    <!-- HELP TEXT -->
+
+                    {% if field.help_text %}
+
+                    <small class="text-secondary d-block mt-1">
+
+                        {{ field.help_text }}
+
+                    </small>
+
+                    {% endif %}
+
+
+
+                    <!-- ERRORS -->
 
                     {% if field.errors %}
 
-                    <div class="text-danger small mt-1">
+                    <div class="text-danger small mt-2">
 
-                        {{ field.errors }}
+                        {% for error in field.errors %}
+
+                            <div>
+                                {{ error }}
+                            </div>
+
+                        {% endfor %}
 
                     </div>
 
                     {% endif %}
 
 
-
                 </div>
 
-
                 {% endfor %}
-
 
 
             </div>
 
 
 
+            <!-- ================= FORM ACTIONS ================= -->
 
-            <div class="mt-4">
+            <div class="d-flex gap-2 mt-3">
 
 
+                <!-- SAVE / UPDATE -->
 
                 <button type="submit"
-                        class="btn btn-primary px-4">
+                        class="crm-btn-primary">
 
 
                     {% if object %}
 
-                        <i class="bi bi-save me-2"></i>
+                        <i class="bi bi-save"></i>
+
                         Update Interaction
 
                     {% else %}
 
-                        <i class="bi bi-plus-circle me-2"></i>
+                        <i class="bi bi-plus-circle"></i>
+
                         Save Interaction
 
                     {% endif %}
-
 
 
                 </button>
 
 
 
-
+                <!-- CANCEL -->
 
                 <a href="{% url 'interactions:interaction_list' %}"
-                   class="btn btn-outline-light ms-2 px-4">
+                   class="crm-btn-secondary">
 
 
-                    <i class="bi bi-x-lg me-2"></i>
+                    <i class="bi bi-x-lg"></i>
 
                     Cancel
 
@@ -145,20 +164,15 @@ Add Interaction
                 </a>
 
 
-
             </div>
-
 
 
         </form>
 
 
-
     </div>
 
 
-
 </div>
-
 
 {% endblock %}

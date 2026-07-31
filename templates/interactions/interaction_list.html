@@ -1,186 +1,175 @@
 {% extends "base.html" %}
 
-
 {% block title %}
 Interactions
 {% endblock %}
-
 
 
 {% block content %}
 
 <div class="container-fluid mt-4">
 
-
-    <!-- ================= HEADER ================= -->
+    <!-- =====================================================
+         PAGE HEADER
+    ===================================================== -->
 
     <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
 
-
         <div>
 
-            <h2 class="fw-bold text-white mb-1">
+            <h2 class="crm-title mb-1">
 
-                <i class="bi bi-chat-left-dots text-info me-2"></i>
+                <i class="bi bi-chat-left-dots me-2"
+                   style="color:#38bdf8;"></i>
 
                 Interactions
 
             </h2>
 
-
-            <p class="text-secondary mb-0">
+            <p class="crm-page-subtitle mb-0">
 
                 Track customer calls, emails, meetings and notes.
 
             </p>
 
-
         </div>
 
 
-
         <a href="{% url 'interactions:interaction_add' %}"
-           class="btn btn-primary px-4">
+           class="crm-btn-primary">
 
-
-            <i class="bi bi-plus-lg me-2"></i>
+            <i class="bi bi-plus-lg"></i>
 
             Log Interaction
 
-
         </a>
-
 
     </div>
 
 
+    <!-- =====================================================
+         FILTER CARD
+    ===================================================== -->
 
-
-
-    <!-- ================= FILTER ================= -->
-
-
-    <div class="crm-card p-3 mb-4">
-
+    <div class="crm-card mb-4">
 
         <form method="GET"
-              class="d-flex flex-wrap gap-3 align-items-center">
+              class="crm-form d-flex flex-wrap gap-3 align-items-center">
 
 
-            <select name="type"
-                    class="form-select bg-dark text-white border-secondary"
-                    style="width:220px;">
+            <!-- Interaction Type -->
+
+            <div>
+
+                <label class="crm-label mb-2">
+                    Interaction Type
+                </label>
+
+                <select name="type"
+                        class="form-select crm-input"
+                        style="width:220px;">
+
+                    <option value="">
+                        All Interaction Types
+                    </option>
 
 
-                <option value="">
-                    All Interaction Types
-                </option>
+                    <option value="call"
+                        {% if request.GET.type == "call" %}
+                            selected
+                        {% endif %}>
+
+                        Call
+
+                    </option>
 
 
-                <option value="call"
-                {% if request.GET.type == "call" %}
-                    selected
-                {% endif %}>
+                    <option value="email"
+                        {% if request.GET.type == "email" %}
+                            selected
+                        {% endif %}>
 
-                    Call
+                        Email
 
-                </option>
-
-
-
-                <option value="email"
-                {% if request.GET.type == "email" %}
-                    selected
-                {% endif %}>
-
-                    Email
-
-                </option>
+                    </option>
 
 
+                    <option value="meeting"
+                        {% if request.GET.type == "meeting" %}
+                            selected
+                        {% endif %}>
 
-                <option value="meeting"
-                {% if request.GET.type == "meeting" %}
-                    selected
-                {% endif %}>
+                        Meeting
 
-                    Meeting
-
-                </option>
-
+                    </option>
 
 
-                <option value="note"
-                {% if request.GET.type == "note" %}
-                    selected
-                {% endif %}>
+                    <option value="note"
+                        {% if request.GET.type == "note" %}
+                            selected
+                        {% endif %}>
 
-                    Note
+                        Note
 
-                </option>
+                    </option>
 
+                </select>
 
-            </select>
-
-
-
-            <button type="submit"
-                    class="btn btn-info px-4">
+            </div>
 
 
-                <i class="bi bi-funnel me-2"></i>
+            <!-- Filter Button -->
 
-                Filter
+            <div class="d-flex align-items-end gap-2"
+                 style="padding-top:28px;">
 
+                <button type="submit"
+                        class="crm-btn-primary">
 
-            </button>
+                    <i class="bi bi-funnel"></i>
 
+                    Filter
 
-
-            <a href="{% url 'interactions:interaction_list' %}"
-               class="btn btn-outline-secondary">
-
-
-                Reset
-
-
-            </a>
+                </button>
 
 
+                <a href="{% url 'interactions:interaction_list' %}"
+                   class="crm-btn-secondary">
+
+                    <i class="bi bi-arrow-counterclockwise"></i>
+
+                    Reset
+
+                </a>
+
+            </div>
 
         </form>
 
-
     </div>
 
 
+    <!-- =====================================================
+         INTERACTIONS TABLE
+    ===================================================== -->
 
-
-
-
-    <!-- ================= TABLE ================= -->
-
-
-    <div class="crm-card p-4">
-
-
+    <div class="crm-card">
 
         {% if interactions %}
 
-
-
         <div class="table-responsive">
 
+            <!-- IMPORTANT:
+                 crm-contact-table is intentionally used
+                 because your existing component CSS already
+                 contains action-button styling for this class.
+            -->
 
-
-            <table class="table align-middle interaction-table">
-
+            <table class="table align-middle crm-contact-table">
 
                 <thead>
 
-
                     <tr>
-
 
                         <th>Contact</th>
 
@@ -198,24 +187,18 @@ Interactions
                             Actions
                         </th>
 
-
                     </tr>
-
 
                 </thead>
 
 
-
-
-
                 <tbody>
-
 
                 {% for interaction in interactions %}
 
-
                     <tr>
 
+                        <!-- CONTACT -->
 
                         <td>
 
@@ -228,36 +211,34 @@ Interactions
                         </td>
 
 
+                        <!-- LEAD -->
 
                         <td>
 
-
                             {% if interaction.lead %}
 
-                                {{ interaction.lead }}
+                                <span class="text-light">
 
+                                    {{ interaction.lead }}
+
+                                </span>
 
                             {% else %}
 
                                 <span class="text-secondary">
-                                    -
+                                    —
                                 </span>
 
-
                             {% endif %}
-
 
                         </td>
 
 
-
-
+                        <!-- TYPE -->
 
                         <td>
 
-
                             {% if interaction.interaction_type == "call" %}
-
 
                                 <span class="badge bg-success">
 
@@ -268,9 +249,7 @@ Interactions
                                 </span>
 
 
-
                             {% elif interaction.interaction_type == "email" %}
-
 
                                 <span class="badge bg-primary">
 
@@ -281,9 +260,7 @@ Interactions
                                 </span>
 
 
-
                             {% elif interaction.interaction_type == "meeting" %}
-
 
                                 <span class="badge bg-warning text-dark">
 
@@ -294,9 +271,7 @@ Interactions
                                 </span>
 
 
-
                             {% else %}
-
 
                                 <span class="badge bg-secondary">
 
@@ -306,171 +281,141 @@ Interactions
 
                                 </span>
 
-
-
                             {% endif %}
-
 
                         </td>
 
 
-
-
+                        <!-- SUMMARY -->
 
                         <td title="{{ interaction.summary }}">
 
+                            <span class="text-light">
 
-                            {{ interaction.summary|truncatechars:50 }}
+                                {{ interaction.summary|truncatechars:50 }}
 
+                            </span>
 
                         </td>
 
 
-
-
+                        <!-- DATE -->
 
                         <td>
 
+                            <span class="text-light">
 
-                            {{ interaction.interaction_date|date:"d M Y, h:i A" }}
+                                {{ interaction.interaction_date|date:"d M Y, h:i A" }}
 
+                            </span>
 
                         </td>
 
 
-
-
+                        <!-- LOGGED BY -->
 
                         <td>
 
+                            {% if interaction.logged_by %}
 
-                            {{ interaction.logged_by|default:"-" }}
+                                <span class="text-light">
 
+                                    {{ interaction.logged_by }}
+
+                                </span>
+
+                            {% else %}
+
+                                <span class="text-secondary">
+                                    —
+                                </span>
+
+                            {% endif %}
 
                         </td>
 
 
-
-
+                        <!-- =================================================
+                             ACTION BUTTONS
+                             Using EXISTING component CSS
+                        ================================================== -->
 
                         <td class="text-center">
 
+                            <div class="btn-group">
+
+                                <!-- EDIT -->
+
+                                <a href="{% url 'interactions:interaction_edit' interaction.pk %}"
+                                   class="btn btn-sm btn-outline-warning"
+                                   title="Edit Interaction">
+
+                                    <i class="bi bi-pencil"></i>
+
+                                </a>
 
 
-                            <a href="{% url 'interactions:interaction_edit' interaction.pk %}"
+                                <!-- DELETE -->
 
-                               class="btn btn-sm btn-outline-warning me-1">
+                                <a href="{% url 'interactions:interaction_delete' interaction.pk %}"
+                                   class="btn btn-sm btn-outline-danger"
+                                   title="Delete Interaction">
 
+                                    <i class="bi bi-trash"></i>
 
-                                <i class="bi bi-pencil"></i>
+                                </a>
 
-
-                            </a>
-
-
-
-
-
-                            <a href="{% url 'interactions:interaction_delete' interaction.pk %}"
-
-                               class="btn btn-sm btn-outline-danger">
-
-
-                                <i class="bi bi-trash"></i>
-
-
-                            </a>
-
-
+                            </div>
 
                         </td>
 
-
-
                     </tr>
-
-
 
                 {% endfor %}
 
-
-
                 </tbody>
-
-
 
             </table>
 
-
-
         </div>
 
 
-
-
+        <!-- =====================================================
+             EMPTY STATE
+        ===================================================== -->
 
         {% else %}
 
+        <div class="crm-empty-state">
+
+            <i class="bi bi-chat-left-dots"></i>
 
 
-
-
-        <div class="text-center py-5">
-
-
-            <i class="bi bi-chat-left-dots display-4 text-secondary"></i>
-
-
-
-            <h4 class="text-white mt-3">
-
+            <h5>
                 No Interactions Found
-
-            </h4>
-
+            </h5>
 
 
-
-            <p class="text-secondary">
-
+            <p>
                 Start logging customer communication history.
-
             </p>
 
 
-
-
             <a href="{% url 'interactions:interaction_add' %}"
+               class="crm-btn-primary mt-3">
 
-               class="btn btn-primary mt-2">
-
-
-                <i class="bi bi-plus-lg me-2"></i>
+                <i class="bi bi-plus-lg"></i>
 
                 Add First Interaction
 
-
             </a>
-
-
 
         </div>
 
-
-
-
-
         {% endif %}
-
-
-
 
     </div>
 
-
-
 </div>
-
-
 
 {% endblock %}

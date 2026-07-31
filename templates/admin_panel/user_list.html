@@ -4,27 +4,29 @@
 User Management
 {% endblock %}
 
+
 {% block content %}
 
-<div class="container-fluid py-4">
+<div class="container-fluid mt-4">
 
-    <!-- ===================================== -->
-    <!-- PAGE HEADER -->
-    <!-- ===================================== -->
 
-    <div class="d-flex justify-content-between align-items-center flex-wrap mb-4">
+    <!-- =====================================================
+         PAGE HEADER
+    ====================================================== -->
+
+    <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
 
         <div>
 
-            <h2 class="fw-bold mb-1">
+            <h2 class="crm-title mb-1">
 
-                <i class="bi bi-people-fill me-2"></i>
+                <i class="bi bi-people-fill text-info me-2"></i>
 
                 User Management
 
             </h2>
 
-            <p class="text-muted mb-0">
+            <p class="crm-page-subtitle mb-0">
 
                 Manage administrators and sales agents.
 
@@ -32,9 +34,11 @@ User Management
 
         </div>
 
-        <a href="{% url 'user_add' %}" class="btn btn-primary">
 
-            <i class="bi bi-person-plus-fill me-2"></i>
+        <a href="{% url 'user_add' %}"
+           class="crm-btn-primary">
+
+            <i class="bi bi-person-plus-fill"></i>
 
             Add User
 
@@ -44,33 +48,32 @@ User Management
 
 
 
-    <!-- ===================================== -->
-    <!-- SUMMARY CARDS -->
-    <!-- ===================================== -->
+    <!-- =====================================================
+         SUMMARY CARDS
+    ====================================================== -->
 
     <div class="row g-4 mb-4">
 
+
+        <!-- TOTAL USERS -->
+
         <div class="col-lg-3 col-md-6">
 
-            <div class="card border-0 shadow-sm">
+            <div class="crm-card text-center h-100">
 
-                <div class="card-body text-center">
+                <i class="bi bi-people-fill display-5 text-info"></i>
 
-                    <i class="bi bi-people-fill display-5 text-primary"></i>
+                <h6 class="crm-page-subtitle mt-3 mb-1">
 
-                    <h6 class="mt-3 mb-1">
+                    Total Users
 
-                        Total Users
+                </h6>
 
-                    </h6>
+                <h2 class="crm-title mb-0">
 
-                    <h2 class="fw-bold">
+                    {{ total_users }}
 
-                        {{ total_users }}
-
-                    </h2>
-
-                </div>
+                </h2>
 
             </div>
 
@@ -78,27 +81,25 @@ User Management
 
 
 
+        <!-- ADMINS -->
+
         <div class="col-lg-3 col-md-6">
 
-            <div class="card border-0 shadow-sm">
+            <div class="crm-card text-center h-100">
 
-                <div class="card-body text-center">
+                <i class="bi bi-shield-lock-fill display-5 text-danger"></i>
 
-                    <i class="bi bi-shield-lock-fill display-5 text-danger"></i>
+                <h6 class="crm-page-subtitle mt-3 mb-1">
 
-                    <h6 class="mt-3 mb-1">
+                    Admins
 
-                        Admins
+                </h6>
 
-                    </h6>
+                <h2 class="crm-title mb-0">
 
-                    <h2 class="fw-bold">
+                    {{ total_admins }}
 
-                        {{ total_admins }}
-
-                    </h2>
-
-                </div>
+                </h2>
 
             </div>
 
@@ -106,27 +107,25 @@ User Management
 
 
 
+        <!-- AGENTS -->
+
         <div class="col-lg-3 col-md-6">
 
-            <div class="card border-0 shadow-sm">
+            <div class="crm-card text-center h-100">
 
-                <div class="card-body text-center">
+                <i class="bi bi-person-badge-fill display-5 text-success"></i>
 
-                    <i class="bi bi-person-badge-fill display-5 text-success"></i>
+                <h6 class="crm-page-subtitle mt-3 mb-1">
 
-                    <h6 class="mt-3 mb-1">
+                    Agents
 
-                        Agents
+                </h6>
 
-                    </h6>
+                <h2 class="crm-title mb-0">
 
-                    <h2 class="fw-bold">
+                    {{ total_agents }}
 
-                        {{ total_agents }}
-
-                    </h2>
-
-                </div>
+                </h2>
 
             </div>
 
@@ -134,27 +133,25 @@ User Management
 
 
 
+        <!-- ACTIVE USERS -->
+
         <div class="col-lg-3 col-md-6">
 
-            <div class="card border-0 shadow-sm">
+            <div class="crm-card text-center h-100">
 
-                <div class="card-body text-center">
+                <i class="bi bi-check-circle-fill display-5 text-info"></i>
 
-                    <i class="bi bi-check-circle-fill display-5 text-info"></i>
+                <h6 class="crm-page-subtitle mt-3 mb-1">
 
-                    <h6 class="mt-3 mb-1">
+                    Active Users
 
-                        Active Users
+                </h6>
 
-                    </h6>
+                <h2 class="crm-title mb-0">
 
-                    <h2 class="fw-bold">
+                    {{ active_users }}
 
-                        {{ active_users }}
-
-                    </h2>
-
-                </div>
+                </h2>
 
             </div>
 
@@ -164,413 +161,483 @@ User Management
 
 
 
-    <!-- ===================================== -->
-    <!-- SEARCH FILTER -->
-    <!-- ===================================== -->
+    <!-- =====================================================
+         SEARCH & FILTER
+    ====================================================== -->
 
-    <div class="card border-0 shadow-sm mb-4">
+    <div class="crm-card mb-4">
 
-        <div class="card-body">
+        <form method="GET">
 
-            <form method="GET">
-
-                <div class="row g-3">
-
-                    <div class="col-lg-4">
-
-                        <input
-                            type="text"
-                            name="search"
-                            class="form-control"
-                            placeholder="Search username or email..."
-                            value="{{ request.GET.search }}">
-
-                    </div>
+            <div class="row g-3 align-items-end">
 
 
+                <!-- SEARCH -->
 
-                    <div class="col-lg-3">
+                <div class="col-lg-4">
 
-                        <select
-                            name="role"
-                            class="form-select">
+                    <label class="crm-label">
 
-                            <option value="">
+                        Search Users
 
-                                All Roles
+                    </label>
 
-                            </option>
-
-                            <option
-                                value="admin"
-                                {% if request.GET.role == "admin" %}selected{% endif %}>
-
-                                Admin
-
-                            </option>
-
-                            <option
-                                value="agent"
-                                {% if request.GET.role == "agent" %}selected{% endif %}>
-
-                                Agent
-
-                            </option>
-
-                        </select>
-
-                    </div>
-
-
-
-                    <div class="col-lg-3">
-
-                        <select
-                            name="status"
-                            class="form-select">
-
-                            <option value="">
-
-                                All Status
-
-                            </option>
-
-                            <option
-                                value="active"
-                                {% if request.GET.status == "active" %}selected{% endif %}>
-
-                                Active
-
-                            </option>
-
-                            <option
-                                value="inactive"
-                                {% if request.GET.status == "inactive" %}selected{% endif %}>
-
-                                Inactive
-
-                            </option>
-
-                        </select>
-
-                    </div>
-
-
-
-                    <div class="col-lg-2 d-grid">
-
-                        <button
-                            type="submit"
-                            class="btn btn-primary">
-
-                            <i class="bi bi-search me-2"></i>
-
-                            Search
-
-                        </button>
-
-                    </div>
+                    <input
+                        type="text"
+                        name="search"
+                        class="form-control crm-input"
+                        placeholder="Search username or email..."
+                        value="{{ request.GET.search }}">
 
                 </div>
 
-            </form>
 
-        </div>
+
+                <!-- ROLE -->
+
+                <div class="col-lg-3">
+
+                    <label class="crm-label">
+
+                        Role
+
+                    </label>
+
+                    <select
+                        name="role"
+                        class="form-select crm-input">
+
+                        <option value="">
+
+                            All Roles
+
+                        </option>
+
+                        <option
+                            value="admin"
+                            {% if request.GET.role == "admin" %}selected{% endif %}>
+
+                            Admin
+
+                        </option>
+
+                        <option
+                            value="agent"
+                            {% if request.GET.role == "agent" %}selected{% endif %}>
+
+                            Agent
+
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- STATUS -->
+
+                <div class="col-lg-3">
+
+                    <label class="crm-label">
+
+                        Status
+
+                    </label>
+
+                    <select
+                        name="status"
+                        class="form-select crm-input">
+
+                        <option value="">
+
+                            All Status
+
+                        </option>
+
+                        <option
+                            value="active"
+                            {% if request.GET.status == "active" %}selected{% endif %}>
+
+                            Active
+
+                        </option>
+
+                        <option
+                            value="inactive"
+                            {% if request.GET.status == "inactive" %}selected{% endif %}>
+
+                            Inactive
+
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- SEARCH BUTTON -->
+
+                <div class="col-lg-2 d-grid">
+
+                    <button
+                        type="submit"
+                        class="crm-btn-primary">
+
+                        <i class="bi bi-search"></i>
+
+                        Search
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </form>
 
     </div>
 
 
 
-    <!-- ===================================== -->
-    <!-- USER TABLE -->
-    <!-- ===================================== -->
+    <!-- =====================================================
+         USER TABLE
+    ====================================================== -->
 
-    <div class="card border-0 shadow-sm">
+    <div class="crm-card">
 
-        <div class="card-body">
+        {% if users %}
 
-            {% if users %}
+        <div class="table-responsive">
 
-            <div class="table-responsive">
+            <table class="table align-middle interaction-table crm-contact-table">
 
-                <table class="table table-hover align-middle">
 
-                    <thead class="table-light">
+                <!-- TABLE HEADER -->
 
-                        <tr>
+                <thead>
 
-                            <th>#</th>
+                    <tr>
 
-                            <th>Profile</th>
+                        <th>#</th>
 
-                            <th>User</th>
+                        <th>Profile</th>
 
-                            <th>Email</th>
+                        <th>User</th>
 
-                            <th>Phone</th>
+                        <th>Email</th>
 
-                            <th>Role</th>
+                        <th>Phone</th>
 
-                            <th>Status</th>
+                        <th>Role</th>
 
-                            <th>Joined</th>
+                        <th>Status</th>
 
-                            <th class="text-center">
+                        <th>Joined</th>
 
-                                Actions
+                        <th class="text-center">
 
-                            </th>
+                            Actions
 
-                        </tr>
+                        </th>
 
-                    </thead>
+                    </tr>
 
-                    <tbody>
-{% for user in users %}
+                </thead>
 
-<tr>
 
-    <td>
 
-        {{ forloop.counter }}
+                <!-- TABLE BODY -->
 
-    </td>
+                <tbody>
 
-    <!-- Profile -->
+                {% for user in users %}
 
-    <td>
+                    <tr>
 
-        {% if user.profile_pic %}
 
-            <img
-                src="{{ user.profile_pic.url }}"
-                alt="{{ user.username }}"
-                class="rounded-circle border"
-                width="50"
-                height="50"
-                style="object-fit: cover;">
+                        <!-- NUMBER -->
 
-        {% else %}
+                        <td>
 
-            <div
-                class="rounded-circle bg-secondary text-white d-flex align-items-center justify-content-center"
-                style="width:50px;height:50px;">
+                            {{ forloop.counter }}
 
-                <i class="bi bi-person-fill fs-4"></i>
+                        </td>
 
-            </div>
 
-        {% endif %}
 
-    </td>
+                        <!-- PROFILE -->
 
+                        <td>
 
-    <!-- User Info -->
+                            {% if user.profile_pic %}
 
-    <td>
+                                <img
+                                    src="{{ user.profile_pic.url }}"
+                                    alt="{{ user.username }}"
+                                    class="rounded-circle"
+                                    width="45"
+                                    height="45"
+                                    style="object-fit: cover;">
 
-        <strong>
+                            {% else %}
 
-            {{ user.username }}
+                                <div
+                                    class="crm-avatar"
+                                    style="width:45px;height:45px;">
 
-        </strong>
+                                    <i class="bi bi-person-fill"></i>
 
-        <br>
+                                </div>
 
-        <small class="text-muted">
+                            {% endif %}
 
-            {% if user.first_name or user.last_name %}
+                        </td>
 
-                {{ user.first_name }} {{ user.last_name }}
 
-            {% else %}
 
-                No Name
+                        <!-- USER -->
 
-            {% endif %}
+                        <td>
 
-        </small>
+                            <strong class="text-white">
 
-    </td>
+                                {{ user.username }}
 
+                            </strong>
 
-    <!-- Email -->
+                            <br>
 
-    <td>
+                            <small class="text-secondary">
 
-        {{ user.email }}
+                                {% if user.first_name or user.last_name %}
 
-    </td>
+                                    {{ user.first_name }}
+                                    {{ user.last_name }}
 
+                                {% else %}
 
-    <!-- Phone -->
+                                    No Name
 
-    <td>
+                                {% endif %}
 
-        {% if user.phone %}
+                            </small>
 
-            {{ user.phone }}
+                        </td>
 
-        {% else %}
 
-            -
 
-        {% endif %}
+                        <!-- EMAIL -->
 
-    </td>
+                        <td>
 
+                            {{ user.email }}
 
-    <!-- Role -->
+                        </td>
 
-    <td>
 
-        {% if user.role == "admin" %}
 
-            <span class="badge bg-danger">
+                        <!-- PHONE -->
 
-                Admin
+                        <td>
 
-            </span>
+                            {% if user.phone %}
 
-        {% else %}
+                                {{ user.phone }}
 
-            <span class="badge bg-primary">
+                            {% else %}
 
-                Agent
+                                <span class="text-secondary">
 
-            </span>
+                                    -
 
-        {% endif %}
+                                </span>
 
-    </td>
+                            {% endif %}
 
+                        </td>
 
-    <!-- Status -->
 
-    <td>
 
-        {% if user.is_active %}
+                        <!-- ROLE -->
 
-            <span class="badge bg-success">
+                        <td>
 
-                Active
+                            {% if user.role == "admin" %}
 
-            </span>
+                                <span class="badge bg-danger">
 
-        {% else %}
+                                    Admin
 
-            <span class="badge bg-secondary">
+                                </span>
 
-                Inactive
+                            {% else %}
 
-            </span>
+                                <span class="badge bg-primary">
 
-        {% endif %}
+                                    Agent
 
-        <br>
+                                </span>
 
-        {% if user.is_approved %}
+                            {% endif %}
 
-            <span class="badge bg-success mt-1">
+                        </td>
 
-                Approved
 
-            </span>
 
-        {% else %}
+                        <!-- STATUS -->
 
-            <span class="badge bg-warning text-dark mt-1">
+                        <td>
 
-                Pending
+                            {% if user.is_active %}
 
-            </span>
+                                <span class="badge bg-success">
 
-        {% endif %}
+                                    Active
 
-    </td>
+                                </span>
 
+                            {% else %}
 
-    <!-- Date -->
+                                <span class="badge bg-secondary">
 
-    <td>
+                                    Inactive
 
-        {{ user.date_joined|date:"d M Y" }}
+                                </span>
 
-    </td>
+                            {% endif %}
 
+                            <br>
 
-    <!-- Actions -->
+                            {% if user.is_approved %}
 
-    <td class="text-center">
+                                <span class="badge bg-success mt-1">
 
-        <div class="btn-group btn-group-sm">
+                                    Approved
 
-            <a
-                href="{% url 'user_edit' user.pk %}"
-                class="btn btn-warning"
-                title="Edit">
+                                </span>
 
-                <i class="bi bi-pencil-square"></i>
+                            {% else %}
 
-            </a>
+                                <span class="badge bg-warning text-dark mt-1">
 
-            <a
-                href="{% url 'user_delete' user.pk %}"
-                class="btn btn-danger"
-                title="Delete">
+                                    Pending
 
-                <i class="bi bi-trash"></i>
+                                </span>
 
-            </a>
+                            {% endif %}
+
+                        </td>
+
+
+
+                        <!-- JOINED -->
+
+                        <td>
+
+                            {{ user.date_joined|date:"d M Y" }}
+
+                        </td>
+
+
+
+                        <!-- =================================================
+                             ACTION BUTTONS
+                        ================================================== -->
+
+                        <td class="text-center">
+
+                            <div class="btn-group">
+
+
+                                <!-- EDIT -->
+
+                                <a
+                                    href="{% url 'user_edit' user.pk %}"
+                                    class="btn btn-warning"
+                                    title="Edit User">
+
+                                    <i class="bi bi-pencil-square"></i>
+
+                                </a>
+
+
+
+                                <!-- DELETE -->
+
+                                <a
+                                    href="{% url 'user_delete' user.pk %}"
+                                    class="btn btn-danger"
+                                    title="Delete User">
+
+                                    <i class="bi bi-trash"></i>
+
+                                </a>
+
+
+                            </div>
+
+                        </td>
+
+
+                    </tr>
+
+
+                {% empty %}
+
+                    <!-- NO SEARCH RESULT -->
+
+                    <tr>
+
+                        <td colspan="9">
+
+                            <div class="crm-empty-state">
+
+                                <i class="bi bi-people"></i>
+
+                                <h5>
+
+                                    No Users Found
+
+                                </h5>
+
+                                <p>
+
+                                    No users match your search criteria.
+
+                                </p>
+
+                            </div>
+
+                        </td>
+
+                    </tr>
+
+                {% endfor %}
+
+                </tbody>
+
+            </table>
 
         </div>
 
-    </td>
 
-</tr>
 
-{% empty %}
+        <!-- =====================================================
+             PAGINATION
+        ====================================================== -->
 
-<tr>
+        {% if is_paginated %}
 
-    <td colspan="9" class="text-center py-5">
+        <nav class="mt-4">
 
-        <i class="bi bi-people display-4 text-muted"></i>
+            <ul class="pagination justify-content-center">
 
-        <h5 class="mt-3">
 
-            No Users Found
+                <!-- FIRST + PREVIOUS -->
 
-        </h5>
-
-        <p class="text-muted mb-0">
-
-            No users match your search criteria.
-
-        </p>
-
-    </td>
-
-</tr>
-
-{% endfor %}
-                    </tbody>
-
-                </table>
-
-            </div>
-
-            <!-- ===================================== -->
-            <!-- PAGINATION -->
-            <!-- ===================================== -->
-
-            {% if is_paginated %}
-
-            <nav class="mt-4">
-
-                <ul class="pagination justify-content-center">
-
-                    {% if page_obj.has_previous %}
+                {% if page_obj.has_previous %}
 
                     <li class="page-item">
 
@@ -584,6 +651,7 @@ User Management
 
                     </li>
 
+
                     <li class="page-item">
 
                         <a
@@ -596,23 +664,31 @@ User Management
 
                     </li>
 
-                    {% endif %}
+                {% endif %}
 
 
 
-                    <li class="page-item active">
+                <!-- CURRENT PAGE -->
 
-                        <span class="page-link">
+                <li class="page-item active">
 
-                            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+                    <span class="page-link">
 
-                        </span>
+                        Page {{ page_obj.number }}
 
-                    </li>
+                        of
+
+                        {{ page_obj.paginator.num_pages }}
+
+                    </span>
+
+                </li>
 
 
 
-                    {% if page_obj.has_next %}
+                <!-- NEXT + LAST -->
+
+                {% if page_obj.has_next %}
 
                     <li class="page-item">
 
@@ -626,6 +702,7 @@ User Management
 
                     </li>
 
+
                     <li class="page-item">
 
                         <a
@@ -638,47 +715,52 @@ User Management
 
                     </li>
 
-                    {% endif %}
+                {% endif %}
 
-                </ul>
+            </ul>
 
-            </nav>
+        </nav>
 
-            {% endif %}
+        {% endif %}
 
-            {% else %}
 
-            <div class="text-center py-5">
 
-                <i class="bi bi-people display-3 text-muted"></i>
+        {% else %}
 
-                <h4 class="mt-3">
 
-                    No Users Available
+        <!-- =====================================================
+             NO USERS AVAILABLE
+        ====================================================== -->
 
-                </h4>
+        <div class="crm-empty-state">
 
-                <p class="text-muted">
+            <i class="bi bi-people"></i>
 
-                    There are currently no users in the system.
+            <h5>
 
-                </p>
+                No Users Available
 
-                <a
-                    href="{% url 'user_add' %}"
-                    class="btn btn-primary">
+            </h5>
 
-                    <i class="bi bi-person-plus-fill me-2"></i>
+            <p>
 
-                    Add First User
+                There are currently no users in the system.
 
-                </a>
+            </p>
 
-            </div>
+            <a
+                href="{% url 'user_add' %}"
+                class="crm-btn-primary mt-2">
 
-            {% endif %}
+                <i class="bi bi-person-plus-fill"></i>
+
+                Add First User
+
+            </a>
 
         </div>
+
+        {% endif %}
 
     </div>
 

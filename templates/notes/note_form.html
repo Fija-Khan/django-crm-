@@ -12,26 +12,18 @@ Add Note
 {% endblock %}
 
 
-
-
 {% block content %}
-
 
 <div class="container-fluid mt-4">
 
 
-
     <!-- ================= HEADER ================= -->
-
 
     <div class="mb-4">
 
+        <h2 class="crm-title mb-1">
 
-        <h2 class="fw-bold text-white">
-
-
-            <i class="bi bi-journal-text text-purple me-2"></i>
-
+            <i class="bi bi-journal-text me-2"></i>
 
             {% if object %}
 
@@ -43,65 +35,47 @@ Add Note
 
             {% endif %}
 
-
         </h2>
 
 
-
-        <p class="text-muted">
+        <p class="crm-page-subtitle mb-0">
 
             Add important information related to contact or lead.
 
         </p>
 
-
     </div>
-
-
-
-
 
 
 
     <!-- ================= FORM CARD ================= -->
 
-
-    <div class="crm-card p-4">
-
+    <div class="crm-card">
 
 
-        <form method="post">
-
+        <form method="post" class="crm-form">
 
             {% csrf_token %}
 
 
 
-
-
-            <!-- FORM ERRORS -->
-
+            <!-- ================= FORM ERRORS ================= -->
 
             {% if form.errors %}
 
-
-            <div class="alert alert-danger">
-
+            <div class="crm-alert-info mb-4">
 
                 <strong>
                     Please correct the following errors:
                 </strong>
 
 
-
-                <ul class="mb-0">
+                <ul class="mb-0 mt-2">
 
 
                     {% for field in form %}
 
-
                         {% for error in field.errors %}
-
 
                         <li>
 
@@ -109,17 +83,13 @@ Add Note
 
                         </li>
 
-
                         {% endfor %}
-
 
                     {% endfor %}
 
 
 
-
                     {% for error in form.non_field_errors %}
-
 
                     <li>
 
@@ -127,207 +97,161 @@ Add Note
 
                     </li>
 
-
                     {% endfor %}
 
 
                 </ul>
 
-
-
             </div>
-
 
             {% endif %}
 
 
 
-
-
-
-
-
+            <!-- ================= CONTACT + LEAD ================= -->
 
             <div class="row">
 
 
-
-
-
                 <!-- CONTACT -->
 
+                <div class="col-md-6 mb-4">
 
-                <div class="col-md-6 mb-3">
-
-
-                    <label class="form-label text-white">
+                    <label for="{{ form.contact.id_for_label }}"
+                           class="crm-label">
 
                         Contact
 
                     </label>
 
 
-
                     {{ form.contact }}
 
 
+                    {% if form.contact.errors %}
+
+                    <div class="text-danger small mt-2">
+
+                        {{ form.contact.errors }}
+
+                    </div>
+
+                    {% endif %}
 
                 </div>
 
 
 
-
-
-
-
                 <!-- LEAD -->
 
+                <div class="col-md-6 mb-4">
 
-                <div class="col-md-6 mb-3">
-
-
-                    <label class="form-label text-white">
+                    <label for="{{ form.lead.id_for_label }}"
+                           class="crm-label">
 
                         Lead
 
                     </label>
 
 
-
                     {{ form.lead }}
 
 
+                    {% if form.lead.errors %}
+
+                    <div class="text-danger small mt-2">
+
+                        {{ form.lead.errors }}
+
+                    </div>
+
+                    {% endif %}
 
                 </div>
-
-
-
 
 
             </div>
 
 
 
+            <!-- ================= NOTE CONTENT ================= -->
 
+            <div class="mb-4">
 
-
-
-
-
-            <!-- NOTE CONTENT -->
-
-
-            <div class="mb-3">
-
-
-                <label class="form-label text-white">
+                <label for="{{ form.content.id_for_label }}"
+                       class="crm-label">
 
                     Note
 
                 </label>
 
 
-
                 {{ form.content }}
 
 
+                {% if form.content.errors %}
 
+                <div class="text-danger small mt-2">
+
+                    {{ form.content.errors }}
+
+                </div>
+
+                {% endif %}
 
             </div>
 
 
 
+            <!-- ================= BUTTONS ================= -->
+
+            <div class="d-flex gap-2 mt-4">
 
 
-
-
-
-
-            <!-- BUTTONS -->
-
-
-            <div class="mt-4">
-
-
-
-
+                <!-- SAVE / UPDATE -->
 
                 <button type="submit"
-                        class="btn btn-purple px-4">
-
-
-                    <i class="bi bi-save me-1"></i>
-
-
+                        class="crm-btn-primary">
 
                     {% if object %}
 
+                        <i class="bi bi-save"></i>
 
                         Update Note
 
-
                     {% else %}
 
+                        <i class="bi bi-plus-circle"></i>
 
                         Save Note
 
-
                     {% endif %}
-
-
 
                 </button>
 
 
 
-
-
-
+                <!-- CANCEL -->
 
                 <a href="{% url 'notes:note_list' %}"
-                   class="btn btn-outline-light ms-2 px-4">
+                   class="crm-btn-secondary">
 
-
-
-                    <i class="bi bi-x-lg me-1"></i>
-
-
+                    <i class="bi bi-x-lg"></i>
 
                     Cancel
 
-
-
                 </a>
-
-
-
-
 
 
             </div>
 
 
-
-
-
-
         </form>
-
-
-
-
 
 
     </div>
 
 
-
-
-
-
 </div>
-
-
-
 
 {% endblock %}

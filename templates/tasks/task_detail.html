@@ -1,63 +1,74 @@
 {% extends "base.html" %}
+
 {% block title %}
 Task Detail
 {% endblock %}
 
 {% block content %}
 
-<div class="container py-4">
+<div class="container-fluid crm-task-detail-page">
 
-    <!-- Header -->
-    <div class="d-flex justify-content-between align-items-center mb-4">
+    <!-- =========================
+         PAGE HEADER
+    ========================= -->
+
+    <div class="crm-detail-header">
 
         <div>
 
-            <h2 class="fw-bold">
-                <i class="bi bi-card-checklist text-primary"></i>
+            <h2 class="crm-title mb-1">
+                <i class="bi bi-card-checklist me-2"></i>
                 Task Details
             </h2>
 
-            <p class="text-muted mb-0">
+            <p class="crm-page-subtitle mb-0">
                 View complete task information.
             </p>
 
         </div>
 
-        <div>
 
-            <a href="{% url 'tasks:task_edit' task.pk %}"
-               class="btn btn-warning">
+        <div class="crm-detail-header-actions">
 
+            <a
+                href="{% url 'tasks:task_edit' task.pk %}"
+                class="crm-btn-secondary"
+            >
                 <i class="bi bi-pencil-square"></i>
                 Edit
-
             </a>
 
-            <a href="{% url 'tasks:task_list' %}"
-               class="btn btn-secondary">
-
+            <a
+                href="{% url 'tasks:task_list' %}"
+                class="crm-btn-secondary"
+            >
                 <i class="bi bi-arrow-left"></i>
                 Back
-
             </a>
 
         </div>
 
     </div>
 
+
+    <!-- =========================
+         MESSAGES
+    ========================= -->
+
     {% if messages %}
 
         {% for message in messages %}
 
-            <div class="alert alert-{{ message.tags }} alert-dismissible fade show">
+            <div class="alert alert-{{ message.tags }} crm-message-alert alert-dismissible fade show mt-4">
 
                 {{ message }}
 
                 <button
                     type="button"
                     class="btn-close"
-                    data-bs-dismiss="alert">
-                </button>
+                    data-bs-dismiss="alert"
+                    aria-label="Close"
+                ></button>
 
             </div>
 
@@ -65,221 +76,436 @@ Task Detail
 
     {% endif %}
 
-    <div class="card shadow-sm border-0">
 
-        <div class="card-header bg-primary text-white">
+    <!-- =========================
+         TASK DETAIL CARD
+    ========================= -->
 
-            <h4 class="mb-0">
-                {{ task.title }}
-            </h4>
+    <div class="crm-task-detail-card">
 
-        </div>
 
-        <div class="card-body">
+        <!-- =========================
+             CARD HEADER
+        ========================= -->
 
-            <div class="row">
+        <div class="crm-task-detail-top">
 
-                <div class="col-md-6 mb-3">
+            <div>
 
-                    <strong>Assigned To</strong>
+                <span class="crm-detail-label">
+                    TASK
+                </span>
 
-                    <p class="mb-0">
-                        {{ task.assigned_to }}
-                    </p>
-
-                </div>
-
-                <div class="col-md-6 mb-3">
-
-                    <strong>Due Date</strong>
-
-                    <p class="mb-0">
-
-                        {% if task.due_date %}
-
-                            {{ task.due_date }}
-
-                        {% else %}
-
-                            <span class="text-muted">
-                                Not Assigned
-                            </span>
-
-                        {% endif %}
-
-                    </p>
-
-                </div>
-
-                <div class="col-12 mb-3">
-
-                    <strong>Description</strong>
-
-                    <p class="mb-0">
-
-                        {% if task.description %}
-
-                            {{ task.description }}
-
-                        {% else %}
-
-                            <span class="text-muted">
-                                No description available.
-                            </span>
-
-                        {% endif %}
-
-                    </p>
-
-                </div>
-
-                <div class="col-md-6 mb-3">
-
-                    <strong>Related Contact</strong>
-
-                    <p class="mb-0">
-
-                        {% if task.related_contact %}
-
-                            {{ task.related_contact }}
-
-                        {% else %}
-
-                            <span class="text-muted">
-                                Not Linked
-                            </span>
-
-                        {% endif %}
-
-                    </p>
-
-                </div>
-
-                <div class="col-md-6 mb-3">
-
-                    <strong>Related Lead</strong>
-
-                    <p class="mb-0">
-
-                        {% if task.related_lead %}
-
-                            {{ task.related_lead }}
-
-                        {% else %}
-
-                            <span class="text-muted">
-                                Not Linked
-                            </span>
-
-                        {% endif %}
-
-                    </p>
-
-                </div>
-
-                <div class="col-md-6 mb-3">
-
-                    <strong>Priority</strong>
-
-                    <p>
-
-                        {% if task.priority == "urgent" %}
-
-                            <span class="badge bg-danger">
-                                Urgent
-                            </span>
-
-                        {% elif task.priority == "high" %}
-
-                            <span class="badge bg-warning text-dark">
-                                High
-                            </span>
-
-                        {% elif task.priority == "medium" %}
-
-                            <span class="badge bg-info text-dark">
-                                Medium
-                            </span>
-
-                        {% else %}
-
-                            <span class="badge bg-secondary">
-                                Low
-                            </span>
-
-                        {% endif %}
-
-                    </p>
-
-                </div>
-
-                <div class="col-md-6 mb-3">
-
-                    <strong>Status</strong>
-
-                    <p>
-
-                        {% if task.status == "done" %}
-
-                            <span class="badge bg-success">
-                                Completed
-                            </span>
-
-                        {% elif task.status == "in_progress" %}
-
-                            <span class="badge bg-primary">
-                                In Progress
-                            </span>
-
-                        {% else %}
-
-                            <span class="badge bg-warning text-dark">
-                                Pending
-                            </span>
-
-                        {% endif %}
-
-                    </p>
-
-                </div>
-
-                <div class="col-md-6 mb-3">
-
-                    <strong>Created On</strong>
-
-                    <p class="mb-0">
-                        {{ task.created_at|date:"d M Y, h:i A" }}
-                    </p>
-
-                </div>
+                <h1 class="crm-task-detail-title">
+                    {{ task.title }}
+                </h1>
 
             </div>
 
-            <hr>
 
-            <div class="d-flex justify-content-end gap-2">
+            <!-- STATUS -->
 
-                {% if task.status != "done" %}
+            <div>
 
-                    <a href="{% url 'tasks:task_complete' task.pk %}"
-                       class="btn btn-success">
+                {% if task.status == "done" %}
 
+                    <span class="crm-status-badge crm-status-completed">
                         <i class="bi bi-check-circle"></i>
-                        Mark Complete
+                        Completed
+                    </span>
 
-                    </a>
+                {% elif task.status == "in_progress" %}
+
+                    <span class="crm-status-badge crm-status-progress">
+                        <i class="bi bi-clock"></i>
+                        In Progress
+                    </span>
+
+                {% else %}
+
+                    <span class="crm-status-badge crm-status-pending">
+                        <i class="bi bi-hourglass-split"></i>
+                        Pending
+                    </span>
 
                 {% endif %}
 
-                <a href="{% url 'tasks:task_delete' task.pk %}"
-                   class="btn btn-danger">
+            </div>
 
-                    <i class="bi bi-trash"></i>
-                    Delete
+        </div>
 
-                </a>
+
+        <div class="crm-detail-divider"></div>
+
+
+        <!-- =========================
+             TASK INFORMATION
+        ========================= -->
+
+        <div class="row g-4">
+
+
+            <!-- ASSIGNED TO -->
+
+            <div class="col-md-6">
+
+                <div class="crm-detail-item">
+
+                    <div class="crm-detail-icon">
+                        <i class="bi bi-person"></i>
+                    </div>
+
+                    <div>
+
+                        <span class="crm-detail-label">
+                            Assigned To
+                        </span>
+
+                        <div class="crm-detail-value">
+
+                            {% if task.assigned_to %}
+
+                                {{ task.assigned_to.get_full_name|default:task.assigned_to.username }}
+
+                            {% else %}
+
+                                <span class="crm-muted">
+                                    Not Assigned
+                                </span>
+
+                            {% endif %}
+
+                        </div>
+
+                    </div>
+
+                </div>
 
             </div>
+
+
+            <!-- DUE DATE -->
+
+            <div class="col-md-6">
+
+                <div class="crm-detail-item">
+
+                    <div class="crm-detail-icon">
+                        <i class="bi bi-calendar3"></i>
+                    </div>
+
+                    <div>
+
+                        <span class="crm-detail-label">
+                            Due Date
+                        </span>
+
+                        <div class="crm-detail-value">
+
+                            {% if task.due_date %}
+
+                                {{ task.due_date|date:"d M Y" }}
+
+                            {% else %}
+
+                                <span class="crm-muted">
+                                    Not Assigned
+                                </span>
+
+                            {% endif %}
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- DESCRIPTION -->
+
+            <div class="col-12">
+
+                <div class="crm-detail-item crm-detail-item-wide">
+
+                    <div class="crm-detail-icon">
+                        <i class="bi bi-text-left"></i>
+                    </div>
+
+                    <div class="flex-grow-1">
+
+                        <span class="crm-detail-label">
+                            Description
+                        </span>
+
+                        <div class="crm-detail-value">
+
+                            {% if task.description %}
+
+                                {{ task.description }}
+
+                            {% else %}
+
+                                <span class="crm-muted">
+                                    No description available.
+                                </span>
+
+                            {% endif %}
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- RELATED CONTACT -->
+
+            <div class="col-md-6">
+
+                <div class="crm-detail-item">
+
+                    <div class="crm-detail-icon">
+                        <i class="bi bi-person-lines-fill"></i>
+                    </div>
+
+                    <div>
+
+                        <span class="crm-detail-label">
+                            Related Contact
+                        </span>
+
+                        <div class="crm-detail-value">
+
+                            {% if task.related_contact %}
+
+                                {{ task.related_contact }}
+
+                            {% else %}
+
+                                <span class="crm-muted">
+                                    Not Linked
+                                </span>
+
+                            {% endif %}
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- RELATED LEAD -->
+
+            <div class="col-md-6">
+
+                <div class="crm-detail-item">
+
+                    <div class="crm-detail-icon">
+                        <i class="bi bi-funnel"></i>
+                    </div>
+
+                    <div>
+
+                        <span class="crm-detail-label">
+                            Related Lead
+                        </span>
+
+                        <div class="crm-detail-value">
+
+                            {% if task.related_lead %}
+
+                                {{ task.related_lead }}
+
+                            {% else %}
+
+                                <span class="crm-muted">
+                                    Not Linked
+                                </span>
+
+                            {% endif %}
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PRIORITY -->
+
+            <div class="col-md-6">
+
+                <div class="crm-detail-item">
+
+                    <div class="crm-detail-icon">
+                        <i class="bi bi-flag"></i>
+                    </div>
+
+                    <div>
+
+                        <span class="crm-detail-label">
+                            Priority
+                        </span>
+
+                        <div class="crm-detail-value">
+
+                            {% if task.priority == "urgent" %}
+
+                                <span class="crm-priority-badge crm-priority-urgent">
+                                    <i class="bi bi-exclamation-triangle"></i>
+                                    Urgent
+                                </span>
+
+                            {% elif task.priority == "high" %}
+
+                                <span class="crm-priority-badge crm-priority-high">
+                                    <i class="bi bi-arrow-up"></i>
+                                    High
+                                </span>
+
+                            {% elif task.priority == "medium" %}
+
+                                <span class="crm-priority-badge crm-priority-medium">
+                                    <i class="bi bi-dash"></i>
+                                    Medium
+                                </span>
+
+                            {% else %}
+
+                                <span class="crm-priority-badge crm-priority-low">
+                                    <i class="bi bi-arrow-down"></i>
+                                    Low
+                                </span>
+
+                            {% endif %}
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- STATUS -->
+
+            <div class="col-md-6">
+
+                <div class="crm-detail-item">
+
+                    <div class="crm-detail-icon">
+                        <i class="bi bi-circle-half"></i>
+                    </div>
+
+                    <div>
+
+                        <span class="crm-detail-label">
+                            Status
+                        </span>
+
+                        <div class="crm-detail-value">
+
+                            {% if task.status == "done" %}
+
+                                <span class="crm-status-badge crm-status-completed">
+                                    <i class="bi bi-check-circle"></i>
+                                    Completed
+                                </span>
+
+                            {% elif task.status == "in_progress" %}
+
+                                <span class="crm-status-badge crm-status-progress">
+                                    <i class="bi bi-clock"></i>
+                                    In Progress
+                                </span>
+
+                            {% else %}
+
+                                <span class="crm-status-badge crm-status-pending">
+                                    <i class="bi bi-hourglass-split"></i>
+                                    Pending
+                                </span>
+
+                            {% endif %}
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- CREATED ON -->
+
+            <div class="col-md-6">
+
+                <div class="crm-detail-item">
+
+                    <div class="crm-detail-icon">
+                        <i class="bi bi-clock-history"></i>
+                    </div>
+
+                    <div>
+
+                        <span class="crm-detail-label">
+                            Created On
+                        </span>
+
+                        <div class="crm-detail-value">
+
+                            {{ task.created_at|date:"d M Y, h:i A" }}
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             ACTIONS
+        ========================= -->
+
+        <div class="crm-detail-divider"></div>
+
+        <div class="crm-detail-actions">
+
+            {% if task.status != "done" %}
+
+                <a
+                    href="{% url 'tasks:task_complete' task.pk %}"
+                    class="crm-btn-success"
+                >
+                    <i class="bi bi-check-circle"></i>
+                    Mark Complete
+                </a>
+
+            {% endif %}
+
+
+            <a
+                href="{% url 'tasks:task_delete' task.pk %}"
+                class="crm-btn-danger"
+            >
+                <i class="bi bi-trash"></i>
+                Delete
+            </a>
 
         </div>
 

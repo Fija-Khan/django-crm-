@@ -1,163 +1,333 @@
 {% extends "base.html" %}
 
+
 {% block title %}
+
 {% if object %}
 Edit User
 {% else %}
 Add User
 {% endif %}
+
 {% endblock %}
+
 
 
 {% block content %}
 
-<div class="container-fluid py-4">
 
-  <div class="row justify-content-center">
-    <div class="col-xl-9">
-
-      <div class="card shadow border-0">
-
-        <!-- Header -->
-        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
-
-          <div>
-            {% if object %}
-            <h4 class="mb-1">
-              <i class="bi bi-person-fill-gear me-2"></i>
-              Edit User
-            </h4>
-
-            <small>
-              Update existing user information.
-            </small>
-
-            {% else %}
-
-            <h4 class="mb-1">
-              <i class="bi bi-person-plus-fill me-2"></i>
-              Add New User
-            </h4>
-
-            <small>
-              Create a new CRM user.
-            </small>
-
-            {% endif %}
-          </div>
+<div class="container-fluid mt-4">
 
 
-          <a href="{% url 'user_list' %}" class="btn btn-light btn-sm">
-            <i class="bi bi-arrow-left me-1"></i>
-            Back
-          </a>
+    <!-- =====================================================
+         PAGE HEADER
+    ====================================================== -->
+
+    <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
+
+
+        <div>
+
+
+            <h2 class="crm-title mb-1">
+
+
+                {% if object %}
+
+                    <i class="bi bi-person-fill-gear text-info me-2"></i>
+
+                    Edit User
+
+                {% else %}
+
+                    <i class="bi bi-person-plus-fill text-info me-2"></i>
+
+                    Add New User
+
+                {% endif %}
+
+
+            </h2>
+
+
+            <p class="crm-page-subtitle mb-0">
+
+
+                {% if object %}
+
+                    Update existing user information.
+
+                {% else %}
+
+                    Create a new CRM user.
+
+                {% endif %}
+
+
+            </p>
+
 
         </div>
 
 
-        <!-- Body -->
-        <div class="card-body">
+
+        <!-- BACK BUTTON -->
+
+        <a href="{% url 'user_list' %}"
+           class="crm-btn-secondary">
 
 
-          <form method="POST" enctype="multipart/form-data">
+            <i class="bi bi-arrow-left"></i>
+
+            Back
+
+
+        </a>
+
+
+    </div>
+
+
+
+    <!-- =====================================================
+         FORM CARD
+    ====================================================== -->
+
+    <div class="crm-card">
+
+
+        <!-- FORM HEADER -->
+
+        <div class="mb-4">
+
+
+            <h5 class="crm-title mb-1"
+                style="font-size:20px;">
+
+
+                <i class="bi bi-person-lines-fill text-purple me-2"></i>
+
+
+                User Information
+
+
+            </h5>
+
+
+            <p class="crm-page-subtitle mb-0">
+
+
+                Fill in the details below to manage the CRM user.
+
+
+            </p>
+
+
+        </div>
+
+
+
+        <hr class="crm-divider">
+
+
+
+        <!-- =================================================
+             FORM
+        ================================================== -->
+
+
+        <form method="POST"
+              enctype="multipart/form-data"
+              class="crm-form">
+
 
             {% csrf_token %}
 
 
+
+            <!-- =============================================
+                 NON FIELD ERRORS
+            ============================================== -->
+
             {% if form.non_field_errors %}
 
-            <div class="alert alert-danger">
-              {{ form.non_field_errors }}
+
+            <div class="crm-alert-info mb-4">
+
+
+                <strong>
+
+                    Please correct the following errors:
+
+                </strong>
+
+
+                <div class="mt-2">
+
+                    {{ form.non_field_errors }}
+
+                </div>
+
+
             </div>
+
 
             {% endif %}
 
 
 
-            {% for field in form %}
+            <!-- =============================================
+                 FORM FIELDS
+            ============================================== -->
 
-            <div class="mb-3">
-
-              <label class="form-label fw-semibold">
-                {{ field.label }}
-              </label>
+            <div class="row">
 
 
-              {{ field }}
+                {% for field in form %}
 
 
-              {% if field.errors %}
+                <div class="col-md-6 mb-4">
 
-              <div class="text-danger small">
 
-                {% for error in field.errors %}
-                {{ error }}
+                    <!-- LABEL -->
+
+                    <label for="{{ field.id_for_label }}"
+                           class="crm-label">
+
+
+                        {{ field.label }}
+
+
+                        {% if field.field.required %}
+
+                            <span class="text-danger">*</span>
+
+                        {% endif %}
+
+
+                    </label>
+
+
+
+                    <!-- FIELD -->
+
+                    {{ field }}
+
+
+
+                    <!-- FIELD ERRORS -->
+
+                    {% if field.errors %}
+
+
+                    <div class="text-danger small mt-2">
+
+
+                        {% for error in field.errors %}
+
+                            <div>
+
+                                <i class="bi bi-exclamation-circle me-1"></i>
+
+                                {{ error }}
+
+                            </div>
+
+                        {% endfor %}
+
+
+                    </div>
+
+
+                    {% endif %}
+
+
+
+                    <!-- HELP TEXT -->
+
+                    {% if field.help_text %}
+
+
+                    <small class="text-secondary d-block mt-2">
+
+
+                        {{ field.help_text }}
+
+
+                    </small>
+
+
+                    {% endif %}
+
+
+                </div>
+
+
                 {% endfor %}
 
-              </div>
-
-              {% endif %}
-
-
-              {% if field.help_text %}
-
-              <small class="text-muted">
-                {{ field.help_text }}
-              </small>
-
-              {% endif %}
-
-
-            </div>
-
-
-            {% endfor %}
-
-
-
-            <div class="d-flex justify-content-end gap-2">
-
-
-              <a href="{% url 'user_list' %}" 
-                 class="btn btn-secondary">
-
-                Cancel
-
-              </a>
-
-
-              <button type="submit" 
-                      class="btn btn-primary">
-
-                {% if object %}
-
-                <i class="bi bi-check-circle me-1"></i>
-                Update User
-
-                {% else %}
-
-                <i class="bi bi-person-plus me-1"></i>
-                Create User
-
-                {% endif %}
-
-              </button>
-
 
             </div>
 
 
 
-          </form>
+            <!-- =============================================
+                 ACTION BUTTONS
+            ============================================== -->
+
+            <div class="d-flex justify-content-end align-items-center gap-2 mt-3 pt-4 border-top border-secondary">
 
 
-        </div>
+                <!-- CANCEL -->
+
+                <a href="{% url 'user_list' %}"
+                   class="crm-btn-secondary">
 
 
-      </div>
+                    <i class="bi bi-x-lg"></i>
+
+                    Cancel
+
+
+                </a>
+
+
+
+                <!-- SUBMIT -->
+
+                <button type="submit"
+                        class="crm-btn-primary">
+
+
+                    {% if object %}
+
+
+                        <i class="bi bi-check-circle"></i>
+
+                        Update User
+
+
+                    {% else %}
+
+
+                        <i class="bi bi-person-plus-fill"></i>
+
+                        Create User
+
+
+                    {% endif %}
+
+
+                </button>
+
+
+            </div>
+
+
+        </form>
+
 
     </div>
-  </div>
+
 
 </div>
 

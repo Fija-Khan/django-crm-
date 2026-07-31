@@ -1,152 +1,244 @@
-{% extends "base.html" %} {% block title %} {% if object %} Edit Task {% else %}
-Create Task {% endif %} {% endblock %} {% block content %}
+{% extends "base.html" %}
 
-<div class="container py-4">
-  <!-- Messages -->
 
-  {% if messages %} {% for message in messages %}
+{% block title %}
 
-  <div class="alert alert-{{ message.tags }} alert-dismissible fade show">
-    {{ message }}
+{% if object %}
+Edit Task
+{% else %}
+Add Task
+{% endif %}
 
-    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-  </div>
+{% endblock %}
 
-  {% endfor %} {% endif %}
 
-  <div class="row justify-content-center">
-    <div class="col-lg-9">
-      <div class="card shadow-sm border-0">
-        <div class="card-header bg-primary text-white">
-          <h4 class="mb-0">
-            {% if object %}
 
-            <i class="bi bi-pencil-square me-2"></i>
-            Edit Task {% else %}
+{% block content %}
 
-            <i class="bi bi-plus-circle me-2"></i>
-            Create Task {% endif %}
-          </h4>
-        </div>
 
-        <div class="card-body">
-          <form method="post" novalidate>
-            {% csrf_token %} {% if form.non_field_errors %}
+<div class="container-fluid">
 
-            <div class="alert alert-danger">{{ form.non_field_errors }}</div>
 
-            {% endif %}
+    <div class="row justify-content-center">
 
-            <div class="row">
-              <!-- Task Title -->
 
-              <div class="col-md-12 mb-3">
-                <label class="form-label fw-semibold"> Task Title </label>
+        <div class="col-lg-8">
 
-                {{ form.title }}
 
-                <div class="text-danger">{{ form.title.errors }}</div>
-              </div>
+            <!-- HEADER -->
 
-              <!-- Description -->
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
 
-              <div class="col-md-12 mb-3">
-                <label class="form-label fw-semibold"> Description </label>
 
-                {{ form.description }}
+                <div>
 
-                <div class="text-danger">{{ form.description.errors }}</div>
-              </div>
 
-              <!-- Assigned To -->
+                    <h2 class="crm-title mb-1">
 
-              <div class="col-md-6 mb-3">
-                <label class="form-label fw-semibold"> Assigned To </label>
 
-                {{ form.assigned_to }}
+                        {% if object %}
 
-                <div class="text-danger">{{ form.assigned_to.errors }}</div>
-              </div>
+                        <i class="bi bi-pencil-square me-2"></i>
+                        Edit Task
 
-              <!-- Due Date -->
 
-              <div class="col-md-6 mb-3">
-                <label class="form-label fw-semibold"> Due Date </label>
+                        {% else %}
 
-                {{ form.due_date }}
+                        <i class="bi bi-plus-circle me-2"></i>
+                        Add New Task
 
-                <div class="text-danger">{{ form.due_date.errors }}</div>
-              </div>
-              <!-- Related Contact -->
 
-              <div class="col-md-6 mb-3">
-                <label class="form-label fw-semibold"> Related Contact </label>
+                        {% endif %}
 
-                {{ form.related_contact }}
 
-                <div class="text-danger">{{ form.related_contact.errors }}</div>
-              </div>
+                    </h2>
 
-              <!-- Related Lead -->
 
-              <div class="col-md-6 mb-3">
-                <label class="form-label fw-semibold"> Related Lead </label>
 
-                {{ form.related_lead }}
+                    <p class="crm-page-subtitle mb-0">
 
-                <div class="text-danger">{{ form.related_lead.errors }}</div>
-              </div>
 
-              <!-- Priority -->
+                        {% if object %}
 
-              <div class="col-md-6 mb-3">
-                <label class="form-label fw-semibold"> Priority </label>
+                        Update task information and assignments.
 
-                {{ form.priority }}
 
-                <div class="text-danger">{{ form.priority.errors }}</div>
-              </div>
+                        {% else %}
 
-              <!-- Status -->
+                        Create a new task and assign it to your team.
 
-              <div class="col-md-6 mb-3">
-                <label class="form-label fw-semibold"> Status </label>
 
-                {{ form.status }}
+                        {% endif %}
 
-                <div class="text-danger">{{ form.status.errors }}</div>
-              </div>
+
+                    </p>
+
+
+                </div>
+
+
+
+                <a
+                    href="{% url 'tasks:task_list' %}"
+                    class="crm-btn-secondary"
+                >
+
+                    <i class="bi bi-arrow-left me-1"></i>
+
+                    Back to Tasks
+
+                </a>
+
+
             </div>
 
-            <hr class="my-4" />
 
-            <div class="d-flex justify-content-end gap-2">
-              <a
-                href="{% url 'tasks:task_list' %}"
-                class="btn btn-outline-secondary"
-              >
-                <i class="bi bi-arrow-left"></i>
 
-                Back
-              </a>
+            <!-- FORM CARD -->
 
-              <button type="submit" class="btn btn-primary">
-                {% if object %}
 
-                <i class="bi bi-check-circle"></i>
+            <div class="crm-card">
 
-                Update Task {% else %}
 
-                <i class="bi bi-plus-circle"></i>
+                <div class="card-body p-4">
 
-                Create Task {% endif %}
-              </button>
+
+                    <form method="POST">
+
+
+                        {% csrf_token %}
+
+
+                        <!-- NON FIELD ERRORS -->
+
+
+                        {% if form.non_field_errors %}
+
+                        <div class="crm-form-error mb-3">
+
+                            <i class="bi bi-exclamation-circle me-2"></i>
+
+                            {{ form.non_field_errors }}
+
+                        </div>
+
+                        {% endif %}
+
+
+
+                        <!-- TASK FIELDS -->
+
+
+                        {% for field in form %}
+
+
+                        <div class="mb-3">
+
+
+                            <label
+                                for="{{ field.id_for_label }}"
+                                class="crm-label"
+                            >
+
+                                {{ field.label }}
+
+                                {% if field.field.required %}
+
+                                <span class="crm-required">*</span>
+
+                                {% endif %}
+
+                            </label>
+
+
+                            {{ field }}
+
+
+
+                            {% if field.errors %}
+
+                            <div class="crm-field-error small mt-1">
+
+                                {{ field.errors }}
+
+                            </div>
+
+                            {% endif %}
+
+
+                        </div>
+
+
+                        {% endfor %}
+
+
+
+                        <!-- DIVIDER -->
+
+
+                        <hr class="my-4">
+
+
+
+                        <!-- BUTTONS -->
+
+
+                        <div class="d-flex gap-2">
+
+
+                            <button
+                                type="submit"
+                                class="crm-btn-primary"
+                            >
+
+                                <i class="bi bi-check-circle me-1"></i>
+
+
+                                {% if object %}
+
+                                Update Task
+
+                                {% else %}
+
+                                Save Task
+
+                                {% endif %}
+
+                            </button>
+
+
+
+                            <a
+                                href="{% url 'tasks:task_list' %}"
+                                class="crm-btn-secondary"
+                            >
+
+                                <i class="bi bi-x-circle me-1"></i>
+
+                                Cancel
+
+                            </a>
+
+
+                        </div>
+
+
+                    </form>
+
+
+                </div>
+
+
             </div>
-          </form>
+
+
         </div>
-      </div>
+
+
     </div>
-  </div>
+
+
 </div>
+
 
 {% endblock %}
