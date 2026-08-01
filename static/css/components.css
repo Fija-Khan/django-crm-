@@ -511,22 +511,15 @@
 
 
 .crm-btn-secondary {
-
-    background:#27213f;
-
-    color:#e5e7eb;
-
-    border:1px solid rgba(255,255,255,.15);
-
+    background: #7c3aed;
+    color: #ffffff;
+    border: 1px solid #7c3aed;
 }
 
-
 .crm-btn-secondary:hover {
-
-    background:#33285a;
-
-    color:white;
-
+    background: #6d28d9;
+    color: #ffffff;
+    border-color: #6d28d9;
 }
 
 

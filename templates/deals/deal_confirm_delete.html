@@ -1,217 +1,132 @@
 {% extends "base.html" %}
 
-{% block title %}
-Delete Deal
-{% endblock %}
-
+{% block title %}Delete Deal{% endblock %}
 
 {% block content %}
 
-<div class="container-fluid">
+<div class="container mt-4">
+
+    <div class="crm-delete-page">
+
+        <div class="crm-card text-center">
+
+            <div class="card-body">
+
+                <div class="crm-delete-icon">
+                    <i class="bi bi-trash-fill"></i>
+                </div>
+
+                <h2 class="crm-title mt-3">
+                    Delete Deal
+                </h2>
+
+                <p class="crm-page-subtitle">
+                    This action cannot be undone.
+                </p>
 
 
-    <!-- PAGE HEADER -->
+                <!-- LEAD -->
 
-    <div class="crm-page-header">
+                <div class="crm-detail-box mt-4">
 
-        <div>
+                    <strong>
+                        Lead:
+                    </strong>
 
-            <h2 class="crm-page-title text-danger">
-                <i class="bi bi-trash3-fill me-2"></i>
-                Delete Deal
-            </h2>
-
-
-            <p class="crm-page-subtitle">
-                This action cannot be undone.
-            </p>
-
-        </div>
-
-    </div>
-
-
-
-
-    <!-- DELETE CARD -->
-
-    <div class="crm-card crm-delete-card">
-
-
-        <div class="crm-card-body text-center">
-
-
-            <div class="crm-delete-icon">
-
-                <i class="bi bi-exclamation-triangle-fill"></i>
-
-            </div>
-
-
-
-            <h4 class="mt-4 mb-3">
-
-                Are you sure?
-
-            </h4>
-
-
-
-            <p class="text-white mb-4">
-
-                You are about to permanently delete this deal.
-
-            </p>
-
-
-
-
-
-            <!-- DEAL INFORMATION -->
-
-            <div class="crm-delete-details">
-
-
-                <div class="crm-detail-item">
-
-                    <label class="crm-label">
-                        Lead
-                    </label>
-
-
-                    <div class="crm-detail-box">
-
+                    <span class="ms-2">
                         {{ deal.lead.title }}
-
-                    </div>
+                    </span>
 
                 </div>
 
 
+                <!-- STAGE -->
 
+                <div class="crm-detail-box mt-3">
 
+                    <strong>
+                        Stage:
+                    </strong>
 
-                <div class="crm-detail-item">
-
-                    <label class="crm-label">
-                        Stage
-                    </label>
-
-
-                    <div class="crm-detail-box">
-
+                    <span class="ms-2">
                         {{ deal.get_stage_display }}
-
-                    </div>
+                    </span>
 
                 </div>
 
 
+                <!-- AMOUNT -->
 
+                <div class="crm-detail-box mt-3">
 
+                    <strong>
+                        Amount:
+                    </strong>
 
-                <div class="crm-detail-item">
-
-                    <label class="crm-label">
-                        Amount
-                    </label>
-
-
-                    <div class="crm-detail-box">
-
+                    <span class="ms-2">
                         ₹ {{ deal.amount|floatformat:2 }}
-
-                    </div>
+                    </span>
 
                 </div>
 
 
+                <!-- CLOSE DATE -->
 
+                <div class="crm-detail-box mt-3">
 
+                    <strong>
+                        Close Date:
+                    </strong>
 
-                <div class="crm-detail-item">
-
-                    <label class="crm-label">
-                        Close Date
-                    </label>
-
-
-                    <div class="crm-detail-box">
-
+                    <span class="ms-2">
 
                         {% if deal.close_date %}
-
                             {{ deal.close_date|date:"d M Y" }}
-
                         {% else %}
-
                             -
-
                         {% endif %}
 
-
-                    </div>
+                    </span>
 
                 </div>
 
 
-
-            </div>
-
-
-
+                <p class="mt-4 text-light">
+                    Are you sure you want to permanently delete this deal?
+                </p>
 
 
+                <!-- ACTIONS -->
 
+                <form method="POST" class="d-flex justify-content-center gap-2 mt-4">
 
-            <!-- ACTION BUTTONS -->
-
-            <form method="POST" class="mt-4">
-
-                {% csrf_token %}
-
-
-                <div class="crm-form-actions justify-content-center">
-
+                    {% csrf_token %}
 
                     <button type="submit" class="crm-btn-danger">
 
-                        <i class="bi bi-trash me-1"></i>
-
-                        Yes, Delete
+                        <i class="bi bi-trash"></i>
+                        Delete
 
                     </button>
 
 
+                    <a
+                        href="{% url 'deals:deal_detail' deal.id %}"
+                        class="crm-btn-secondary">
 
-
-
-                    <a href="{% url 'deals:deal_detail' deal.id %}"
-                       class="crm-btn-secondary">
-
-                        <i class="bi bi-arrow-left me-1"></i>
-
+                        <i class="bi bi-arrow-left"></i>
                         Cancel
 
                     </a>
 
+                </form>
 
-
-                </div>
-
-
-            </form>
-
-
+            </div>
 
         </div>
 
-
     </div>
 
-
-
 </div>
-
 
 {% endblock %}

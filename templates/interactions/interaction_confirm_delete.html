@@ -1,132 +1,87 @@
 {% extends "base.html" %}
 
-
-{% block title %}
-    Delete Interaction
-{% endblock %}
-
+{% block title %}Delete Interaction{% endblock %}
 
 {% block content %}
 
-<div class="container-fluid mt-4">
+<div class="container mt-4">
+
+    <div class="crm-delete-page">
+
+        <div class="crm-card text-center">
+
+            <div class="card-body">
+
+                <div class="crm-delete-icon">
+                    <i class="bi bi-trash-fill"></i>
+                </div>
+
+                <h2 class="crm-title mt-3">
+                    Delete Interaction
+                </h2>
+
+                <p class="crm-page-subtitle">
+                    This action cannot be undone.
+                </p>
 
 
-    <!-- ================= HEADER ================= -->
+                <!-- INTERACTION -->
 
-    <div class="mb-4">
+                <div class="crm-detail-box mt-4">
 
-        <h2 class="crm-title mb-1">
+                    <strong>
+                        Interaction:
+                    </strong>
 
-            <i class="bi bi-trash3 me-2"></i>
+                    <span class="ms-2">
+                        {{ object }}
+                    </span>
 
-            Delete Interaction
-
-        </h2>
-
-
-        <p class="crm-page-subtitle mb-0">
-
-            Permanently remove this interaction from your CRM.
-
-        </p>
-
-    </div>
+                </div>
 
 
-
-    <!-- ================= DELETE CARD ================= -->
-
-    <div class="crm-card">
-
-
-        <div class="text-center py-4">
+                <p class="mt-4 text-light">
+                    Are you sure you want to permanently delete this interaction?
+                </p>
 
 
-            <!-- WARNING ICON -->
+                <!-- ACTIONS -->
 
-            <div class="mb-4">
+                <form
+                    method="POST"
+                    class="d-flex justify-content-center gap-2 mt-4"
+                >
 
-                <i class="bi bi-exclamation-triangle-fill text-danger"
-                   style="font-size: 55px;">
-                </i>
+                    {% csrf_token %}
 
-            </div>
+                    <button
+                        type="submit"
+                        class="crm-btn-danger"
+                    >
 
+                        <i class="bi bi-trash"></i>
+                        Delete
 
-
-            <!-- MESSAGE -->
-
-            <h4 class="text-white mb-3">
-
-                Are you sure?
-
-            </h4>
-
-
-            <p class="text-secondary mb-4">
-
-                Are you sure you want to delete this interaction?
-                This action cannot be undone.
-
-            </p>
+                    </button>
 
 
+                    <a
+                        href="{% url 'interactions:interaction_list' %}"
+                        class="crm-btn-secondary"
+                    >
 
-            <!-- INTERACTION DETAILS -->
+                        <i class="bi bi-arrow-left"></i>
+                        Cancel
 
-            <div class="crm-detail-box mb-4 mx-auto"
-                 style="max-width:600px;">
+                    </a>
 
-                <strong class="text-white">
-
-                    {{ object }}
-
-                </strong>
+                </form>
 
             </div>
-
-
-
-            <!-- ACTIONS -->
-
-            <form method="post">
-
-                {% csrf_token %}
-
-
-                <!-- DELETE -->
-
-                <button type="submit"
-                        class="crm-btn-danger">
-
-                    <i class="bi bi-trash"></i>
-
-                    Yes, Delete
-
-                </button>
-
-
-
-                <!-- CANCEL -->
-
-                <a href="{% url 'interactions:interaction_list' %}"
-                   class="crm-btn-secondary ms-2">
-
-                    <i class="bi bi-x-lg"></i>
-
-                    Cancel
-
-                </a>
-
-
-            </form>
-
 
         </div>
 
-
     </div>
-
 
 </div>
 

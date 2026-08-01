@@ -1,281 +1,81 @@
-{% extends "base.html" %}
-
-
-{% block title %}
-
-{% if lead %}
-Edit Lead
-{% else %}
-Add Lead
-{% endif %}
-
-{% endblock %}
-
-
-
-{% block content %}
-
+{% extends "base.html" %} {% block title %} {% if lead %} Edit Lead {% else %}
+Add Lead {% endif %} {% endblock %} {% block content %}
 
 <div class="container-fluid">
-
-
-    <div class="row justify-content-center">
-
-
-        <div class="col-lg-8">
-
-
-
-            <!-- HEADER -->
-
-            <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
-
-
-                <div>
-
-
-                    <h2 class="crm-title mb-1">
-
-
-                        {% if lead %}
-
-                        <i class="bi bi-pencil-square me-2"></i>
-                        Edit Lead
-
-
-                        {% else %}
-
-
-                        <i class="bi bi-person-plus-fill me-2"></i>
-                        Add New Lead
-
-
-                        {% endif %}
-
-
-                    </h2>
-
-
-
-                    <p class="text-muted mb-0">
-
-
-                        {% if lead %}
-
-                        Update lead information and pipeline status.
-
-
-                        {% else %}
-
-                        Create a new lead and assign it to sales pipeline.
-
-
-                        {% endif %}
-
-
-                    </p>
-
-
-                </div>
-
-
-
-
-
-                <a href="{% url 'leads:lead_list' %}"
-                   class="crm-btn-secondary">
-
-
-                    <i class="bi bi-arrow-left me-1"></i>
-
-                    Back to Leads
-
-
-                </a>
-
-
-
-            </div>
-
-
-
-
-
-
-
-
-            <!-- FORM CARD -->
-
-
-            <div class="crm-card shadow-sm">
-
-
-
-                <div class="card-body p-4">
-
-
-
-                    <form method="POST">
-
-
-                        {% csrf_token %}
-
-
-
-
-                        {% if form.non_field_errors %}
-
-
-                        <div class="alert alert-danger">
-
-                            {{ form.non_field_errors }}
-
-                        </div>
-
-
-                        {% endif %}
-
-
-
-
-
-
-                        {% for field in form %}
-
-
-                        <div class="mb-3">
-
-
-                            <label class="crm-label">
-
-                                {{ field.label }}
-
-                            </label>
-
-
-
-
-                            {{ field }}
-
-
-
-
-
-
-                            {% if field.errors %}
-
-
-                            <div class="text-danger small mt-1">
-
-
-                                {{ field.errors }}
-
-
-                            </div>
-
-
-                            {% endif %}
-
-
-
-
-
-                        </div>
-
-
-
-                        {% endfor %}
-
-
-
-
-
-
-
-                        <hr class="my-4">
-
-
-
-
-
-                        <div class="d-flex gap-2">
-
-
-
-
-
-                            <button type="submit"
-                                    class="crm-btn-primary">
-
-
-                                <i class="bi bi-check-circle me-1"></i>
-
-
-                                {% if lead %}
-
-                                Update Lead
-
-
-                                {% else %}
-
-                                Save Lead
-
-
-                                {% endif %}
-
-
-                            </button>
-
-
-
-
-
-
-                            <a href="{% url 'leads:lead_list' %}"
-                               class="crm-btn-secondary">
-
-
-                                <i class="bi bi-x-circle me-1"></i>
-
-                                Cancel
-
-
-                            </a>
-
-
-
-
-
-                        </div>
-
-
-
-
-                    </form>
-
-
-
-
-                </div>
-
-
-
-            </div>
-
-
-
-
-
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <!-- HEADER -->
+
+      <div
+        class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4"
+      >
+        <div>
+          <h2 class="crm-title mb-1">
+            {% if lead %}
+
+            <i class="bi bi-pencil-square me-2"></i>
+            Edit Lead {% else %}
+
+            <i class="bi bi-person-plus-fill me-2"></i>
+            Add New Lead {% endif %}
+          </h2>
+
+          <p class="mb-0">
+            {% if lead %} Update lead information and pipeline status. {% else
+            %} Create a new lead and assign it to sales pipeline. {% endif %}
+          </p>
         </div>
 
+        <a href="{% url 'leads:lead_list' %}" class="crm-btn-secondary">
+          <i class="bi bi-arrow-left me-1"></i>
 
+          Back to Leads
+        </a>
+      </div>
 
+      <!-- FORM CARD -->
+
+      <div class="crm-card shadow-sm">
+        <div class="card-body p-4">
+          <form method="POST">
+            {% csrf_token %} {% if form.non_field_errors %}
+
+            <div class="alert alert-danger">{{ form.non_field_errors }}</div>
+
+            {% endif %} {% for field in form %}
+
+            <div class="mb-3">
+              <label class="crm-label"> {{ field.label }} </label>
+
+              {{ field }} {% if field.errors %}
+
+              <div class="text-danger small mt-1">{{ field.errors }}</div>
+
+              {% endif %}
+            </div>
+
+            {% endfor %}
+
+            <hr class="my-4" />
+
+            <div class="d-flex gap-2">
+              <button type="submit" class="crm-btn-primary">
+                <i class="bi bi-check-circle me-1"></i>
+
+                {% if lead %} Update Lead {% else %} Save Lead {% endif %}
+              </button>
+
+              <a href="{% url 'leads:lead_list' %}" class="crm-btn-danger">
+                <i class="bi bi-x-circle me-1"></i>
+
+                Cancel
+              </a>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
-
-
-
+  </div>
 </div>
-
-
 
 {% endblock %}
