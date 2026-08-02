@@ -2572,34 +2572,6 @@ canvas {
 ===================================== */
 
 
-/* ==========================
-        PAGE TITLES
-========================== */
-
-.crm-title {
-
-    color: #ffffff;
-
-    font-size: 28px;
-
-    font-weight: 700;
-
-    letter-spacing: .3px;
-
-    margin-bottom: 6px;
-
-}
-
-
-.crm-page-subtitle {
-
-    color: #a1a1aa !important;
-
-    font-size: 14px;
-
-    margin-bottom: 0;
-
-}
 
 
 
@@ -3250,443 +3222,7 @@ canvas {
     border-radius: 10px;
 }
 
-/* =====================================================
-   TASK MANAGEMENT PAGE
-===================================================== */
 
-/* Page spacing */
-.crm-task-list-page {
-    width: 100%;
-    padding-top: 10px;
-}
-
-
-/* =========================
-   PAGE HEADER
-========================= */
-
-.crm-task-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
-    margin-bottom: 25px;
-}
-
-
-/* =========================
-   SUMMARY CARD
-========================= */
-
-.crm-task-summary {
-    margin-bottom: 24px;
-}
-
-.crm-task-stat-card {
-    width: 280px;
-    padding: 20px;
-}
-
-.crm-task-stat-content {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.crm-task-stat-label {
-    color: #a1a1aa;
-    font-size: 13px;
-}
-
-.crm-task-stat-content h2 {
-    color: #ffffff;
-    font-size: 28px;
-}
-
-.crm-task-stat-icon {
-    width: 48px;
-    height: 48px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 12px;
-
-    background: rgba(124, 58, 237, .15);
-    color: #a78bfa;
-
-    font-size: 21px;
-}
-
-
-/* =========================
-   TABLE
-========================= */
-
-.crm-task-table-card {
-    padding: 0;
-    overflow: hidden;
-}
-
-.crm-task-table-wrapper {
-    width: 100%;
-    overflow-x: auto;
-}
-
-.crm-task-table {
-    width: 100%;
-    min-width: 1050px;
-    margin: 0;
-    color: #e5e7eb;
-}
-
-.crm-task-table thead th {
-    background: #21163d;
-    color: #a78bfa;
-
-    font-size: 12px;
-    font-weight: 600;
-
-    padding: 14px;
-
-    border-bottom: 1px solid rgba(255,255,255,.08);
-
-    white-space: nowrap;
-}
-
-.crm-task-table tbody td {
-    background: #1a1330;
-    color: #e5e7eb;
-
-    padding: 14px;
-
-    font-size: 13px;
-
-    border-bottom: 1px solid rgba(255,255,255,.06);
-
-    vertical-align: middle;
-}
-
-.crm-task-table tbody tr:hover td {
-    background: #21163d;
-}
-
-
-/* =========================
-   TITLE
-========================= */
-
-.task-title-column {
-    width: 230px;
-}
-
-.task-title {
-    color: #ffffff;
-    font-weight: 600;
-    line-height: 1.3;
-}
-
-.task-description {
-    display: block;
-    color: #71717a;
-    font-size: 12px;
-    margin-top: 4px;
-
-    max-width: 190px;
-
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-
-/* =========================
-   USER / LEAD / DATE
-========================= */
-
-.task-user,
-.task-lead,
-.task-date {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    white-space: nowrap;
-}
-
-.task-user i {
-    color: #a78bfa;
-}
-
-.task-lead i {
-    color: #38bdf8;
-}
-
-.task-date i {
-    color: #a78bfa;
-}
-
-.task-muted {
-    color: #71717a;
-}
-
-
-/* =========================
-   BADGES
-========================= */
-
-.task-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-
-    padding: 6px 10px;
-
-    border-radius: 20px;
-
-    font-size: 11px;
-    font-weight: 600;
-
-    white-space: nowrap;
-}
-
-.task-urgent {
-    background: rgba(239,68,68,.15);
-    color: #f87171;
-}
-
-.task-high {
-    background: rgba(250,204,21,.15);
-    color: #facc15;
-}
-
-.task-medium {
-    background: rgba(56,189,248,.15);
-    color: #38bdf8;
-}
-
-.task-low {
-    background: rgba(148,163,184,.15);
-    color: #94a3b8;
-}
-
-.task-completed {
-    background: rgba(34,197,94,.15);
-    color: #4ade80;
-}
-
-.task-progress {
-    background: rgba(124,58,237,.18);
-    color: #a78bfa;
-}
-
-.task-pending {
-    background: rgba(250,204,21,.15);
-    color: #facc15;
-}
-
-
-/* =========================
-   ACTION BUTTONS
-========================= */
-
-.crm-task-actions {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 7px;
-}
-
-.crm-task-actions .btn {
-    width: 36px;
-    height: 36px;
-    min-width: 36px;
-
-    padding: 0;
-
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 9px;
-
-    background: transparent;
-
-    transition: .2s ease;
-}
-
-.crm-task-actions .btn:hover {
-    transform: translateY(-2px);
-}
-
-
-/* View */
-
-.task-action-view {
-    color: #22d3ee;
-    border: 1px solid #0891b2;
-}
-
-.task-action-view:hover {
-    background: rgba(34,211,238,.12);
-    color: #67e8f9;
-}
-
-
-/* Edit */
-
-.task-action-edit {
-    color: #facc15;
-    border: 1px solid #ca8a04;
-}
-
-.task-action-edit:hover {
-    background: rgba(250,204,21,.12);
-    color: #fde047;
-}
-
-
-/* Complete */
-
-.task-action-complete {
-    color: #4ade80;
-    border: 1px solid #16a34a;
-}
-
-.task-action-complete:hover {
-    background: rgba(74,222,128,.12);
-    color: #86efac;
-}
-
-
-/* Delete */
-
-.task-action-delete {
-    color: #f87171;
-    border: 1px solid #dc2626;
-}
-
-.task-action-delete:hover {
-    background: rgba(248,113,113,.12);
-    color: #fca5a5;
-}
-
-
-/* =========================
-   MOBILE
-========================= */
-
-@media (max-width: 991px) {
-
-    .crm-task-header {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .crm-task-stat-card {
-        width: 100%;
-    }
-
-}
-
-/* =====================================================
-   TASK DETAIL HEADER FIX
-===================================================== */
-
-.crm-task-detail-page .crm-detail-header {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: space-between !important;
-    width: 100%;
-    margin-bottom: 25px;
-}
-
-
-/* EDIT + BACK BUTTONS */
-
-.crm-task-detail-page .crm-detail-header-actions {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: flex-end !important;
-    gap: 10px !important;
-    flex-shrink: 0;
-}
-
-
-/* BUTTON SIZE */
-
-.crm-task-detail-page .crm-detail-header-actions .crm-btn-secondary {
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    gap: 7px !important;
-
-    min-width: 95px;
-    height: 44px;
-
-    padding: 10px 18px !important;
-
-    background: #27213f !important;
-    color: #e5e7eb !important;
-
-    border: 1px solid rgba(255,255,255,.15) !important;
-    border-radius: 10px !important;
-
-    text-decoration: none !important;
-    white-space: nowrap;
-
-    transition: .25s ease;
-}
-
-
-/* EDIT / BACK HOVER */
-
-.crm-task-detail-page .crm-detail-header-actions .crm-btn-secondary:hover {
-
-    background: #7c3aed !important;
-
-    border-color: #7c3aed !important;
-
-    color: #ffffff !important;
-
-    transform: translateY(-2px);
-
-    box-shadow: 0 8px 20px rgba(124,58,237,.25);
-
-}
-
-
-/* ICON */
-
-.crm-task-detail-page .crm-detail-header-actions .crm-btn-secondary i {
-
-    font-size: 15px;
-
-}
-
-
-/* MOBILE */
-
-@media (max-width: 768px) {
-
-    .crm-task-detail-page .crm-detail-header {
-
-        align-items: flex-start !important;
-
-        flex-direction: column !important;
-
-    }
-
-
-    .crm-task-detail-page .crm-detail-header-actions {
-
-        width: 100%;
-
-        justify-content: flex-start !important;
-
-    }
-
-}
 
 /* =========================================================
    LEAD KANBAN BOARD
@@ -4158,4 +3694,894 @@ canvas {
 
 .crm-kanban-page .crm-kanban-board::-webkit-scrollbar-thumb:hover {
     background: #7c3aed;
+}
+
+.interaction-table {
+    width: 100%;
+    margin-bottom: 0;
+    color: #e5e7eb;
+}
+
+.interaction-table thead th {
+    background: #1a1330 !important;
+    color: #e5e7eb !important;
+    padding: 14px 16px;
+    border-bottom: 1px solid #7c3aed !important;
+    font-weight: 600;
+}
+
+.interaction-table tbody td {
+    background: #0f0b1a !important;
+    color: #d1d5db !important;
+    padding: 14px 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.06) !important;
+}
+
+.interaction-table tbody tr:hover td {
+    background: rgba(124, 58, 237, 0.10) !important;
+    color: #fff !important;
+}
+
+.interaction-table tbody td strong {
+    color: #fff !important;
+}
+
+/* =====================================================
+   TASK MANAGEMENT PAGE
+===================================================== */
+
+
+/* =========================
+   PAGE SPACING
+========================= */
+
+.crm-task-list-page {
+    width: 100%;
+    padding-top: 10px;
+}
+
+
+/* =========================
+   PAGE HEADER
+========================= */
+
+.crm-task-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+
+/* =========================
+   SUMMARY CARD
+========================= */
+
+.crm-task-summary {
+    margin-bottom: 24px;
+}
+
+.crm-task-stat-card {
+    width: 280px;
+    padding: 20px;
+}
+
+.crm-task-stat-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.crm-task-stat-label {
+    color: #a1a1aa;
+    font-size: 13px;
+}
+
+.crm-task-stat-content h2 {
+    margin: 0;
+    color: #ffffff;
+    font-size: 28px;
+}
+
+.crm-task-stat-icon {
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background: rgba(124, 58, 237, .15);
+    color: #a78bfa;
+
+    font-size: 21px;
+}
+
+
+/* =====================================================
+   TASK TABLE CARD
+===================================================== */
+
+.crm-task-table-card {
+    width: 100%;
+    margin: 0;
+    color: #e5e7eb;
+}
+
+
+/* =========================
+   TASK TABLE WRAPPER
+========================= */
+
+.crm-task-list-page .crm-task-table-wrapper {
+    width: 100%;
+    overflow: hidden;
+}
+
+
+/* =====================================================
+   TASK TABLE
+   Existing HTML uses .crm-contact-table
+   Scoped only to Task page
+===================================================== */
+
+.crm-task-list-page .crm-contact-table {
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+
+    color: #e5e7eb;
+
+    table-layout: fixed;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+
+/* =====================================================
+   TABLE HEADER
+===================================================== */
+
+.crm-task-list-page .crm-contact-table thead th {
+    background: #21163d;
+    color: #a78bfa;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    padding: 12px 9px;
+
+    border-bottom: 1px solid rgba(255, 255, 255, .08);
+
+    white-space: nowrap;
+    vertical-align: middle;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+/* =====================================================
+   TABLE BODY
+===================================================== */
+
+.crm-task-list-page .crm-contact-table tbody td {
+    background: #1a1330;
+    color: #e5e7eb;
+
+    padding: 12px 9px;
+
+    font-size: 13px;
+
+    border-bottom: 1px solid rgba(255, 255, 255, .06);
+
+    vertical-align: middle;
+
+    overflow: hidden;
+}
+
+
+/* =========================
+   TABLE HOVER
+========================= */
+
+.crm-task-list-page .crm-contact-table tbody tr:hover td {
+    background: #21163d;
+}
+
+
+/* =====================================================
+   COLUMN WIDTHS
+   Total = 100%
+===================================================== */
+
+
+/* # */
+.crm-task-list-page .crm-contact-table th:nth-child(1),
+.crm-task-list-page .crm-contact-table td:nth-child(1) {
+    width: 4%;
+    text-align: center;
+    white-space: nowrap;
+}
+
+
+/* Title */
+.crm-task-list-page .crm-contact-table th:nth-child(2),
+.crm-task-list-page .crm-contact-table td:nth-child(2) {
+    width: 20%;
+}
+
+
+/* Assigned To */
+.crm-task-list-page .crm-contact-table th:nth-child(3),
+.crm-task-list-page .crm-contact-table td:nth-child(3) {
+    width: 15%;
+}
+
+
+/* Related Lead */
+.crm-task-list-page .crm-contact-table th:nth-child(4),
+.crm-task-list-page .crm-contact-table td:nth-child(4) {
+    width: 15%;
+}
+
+
+/* Priority */
+.crm-task-list-page .crm-contact-table th:nth-child(5),
+.crm-task-list-page .crm-contact-table td:nth-child(5) {
+    width: 8%;
+}
+
+
+/* Status */
+.crm-task-list-page .crm-contact-table th:nth-child(6),
+.crm-task-list-page .crm-contact-table td:nth-child(6) {
+    width: 10%;
+}
+
+
+/* Due Date */
+.crm-task-list-page .crm-contact-table th:nth-child(7),
+.crm-task-list-page .crm-contact-table td:nth-child(7) {
+    width: 11%;
+}
+
+
+/* Actions */
+.crm-task-list-page .crm-contact-table th:nth-child(8),
+.crm-task-list-page .crm-contact-table td:nth-child(8) {
+    width: 17%;
+
+    text-align: center;
+    white-space: nowrap;
+
+    overflow: visible;
+}
+
+
+/* =====================================================
+   TITLE
+===================================================== */
+
+.crm-task-list-page .task-title-column {
+    width: auto;
+}
+
+.crm-task-list-page .task-title {
+    display: block;
+
+    color: #ffffff;
+    font-weight: 600;
+    line-height: 1.3;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.crm-task-list-page .task-description {
+    display: block;
+
+    color: #71717a;
+
+    font-size: 12px;
+
+    margin-top: 4px;
+
+    max-width: 100%;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+/* =====================================================
+   USER / LEAD / DATE
+===================================================== */
+
+.crm-task-list-page .task-user,
+.crm-task-list-page .task-lead,
+.crm-task-list-page .task-date {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 5px;
+
+    max-width: 100%;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.crm-task-list-page .task-user i {
+    color: #a78bfa;
+    flex-shrink: 0;
+}
+
+.crm-task-list-page .task-lead i {
+    color: #38bdf8;
+    flex-shrink: 0;
+}
+
+.crm-task-list-page .task-date i {
+    color: #a78bfa;
+    flex-shrink: 0;
+}
+
+.crm-task-list-page .task-muted {
+    color: #71717a;
+}
+
+
+/* =====================================================
+   BADGES
+===================================================== */
+
+.crm-task-list-page .task-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 4px;
+
+    padding: 5px 8px;
+
+    border-radius: 20px;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    white-space: nowrap;
+
+    max-width: 100%;
+}
+
+
+/* =========================
+   PRIORITY
+========================= */
+
+.crm-task-list-page .task-urgent {
+    background: rgba(239, 68, 68, .15);
+    color: #f87171;
+}
+
+.crm-task-list-page .task-high {
+    background: rgba(250, 204, 21, .15);
+    color: #facc15;
+}
+
+.crm-task-list-page .task-medium {
+    background: rgba(56, 189, 248, .15);
+    color: #38bdf8;
+}
+
+.crm-task-list-page .task-low {
+    background: rgba(148, 163, 184, .15);
+    color: #94a3b8;
+}
+
+
+/* =========================
+   STATUS
+========================= */
+
+.crm-task-list-page .task-completed {
+    background: rgba(34, 197, 94, .15);
+    color: #4ade80;
+}
+
+.crm-task-list-page .task-progress {
+    background: rgba(124, 58, 237, .18);
+    color: #a78bfa;
+}
+
+.crm-task-list-page .task-pending {
+    background: rgba(250, 204, 21, .15);
+    color: #facc15;
+}
+
+
+/* =====================================================
+   ACTION BUTTON GROUP
+   Actual HTML uses Bootstrap .btn-group
+===================================================== */
+
+.crm-task-list-page .btn-group {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 4px;
+
+    white-space: nowrap;
+}
+
+
+/* =====================================================
+   ACTION BUTTON BASE
+===================================================== */
+
+.crm-task-list-page .btn-group .btn {
+    width: 30px;
+    height: 30px;
+    min-width: 30px;
+
+    padding: 0;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    flex: 0 0 30px;
+
+    border-radius: 7px !important;
+
+    background: transparent;
+
+    font-size: 12px;
+
+    transition: .2s ease;
+}
+
+.crm-task-list-page .btn-group .btn:hover {
+    transform: translateY(-2px);
+}
+
+
+/* =====================================================
+   VIEW
+===================================================== */
+
+.crm-task-list-page .task-action-view {
+    color: #22d3ee;
+    border: 1px solid #0891b2;
+}
+
+.crm-task-list-page .task-action-view:hover {
+    background: rgba(34, 211, 238, .12);
+    color: #67e8f9;
+}
+
+
+/* =====================================================
+   EDIT
+===================================================== */
+
+.crm-task-list-page .task-action-edit {
+    color: #facc15;
+    border: 1px solid #ca8a04;
+}
+
+.crm-task-list-page .task-action-edit:hover {
+    background: rgba(250, 204, 21, .12);
+    color: #fde047;
+}
+
+
+/* =====================================================
+   COMPLETE
+===================================================== */
+
+.crm-task-list-page .task-action-complete {
+    color: #4ade80;
+    border: 1px solid #16a34a;
+}
+
+.crm-task-list-page .task-action-complete:hover {
+    background: rgba(74, 222, 128, .12);
+    color: #86efac;
+}
+
+
+/* =====================================================
+   DELETE
+===================================================== */
+
+.crm-task-list-page .task-action-delete {
+    color: #f87171;
+    border: 1px solid #dc2626;
+}
+
+.crm-task-list-page .task-action-delete:hover {
+    background: rgba(248, 113, 113, .12);
+    color: #fca5a5;
+}
+
+
+/* =====================================================
+   TASK DETAIL HEADER
+===================================================== */
+
+.crm-task-detail-page .crm-detail-header {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+
+    width: 100%;
+    margin-bottom: 25px;
+}
+
+
+/* =====================================================
+   DETAIL HEADER ACTIONS
+===================================================== */
+
+.crm-task-detail-page .crm-detail-header-actions {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+
+    gap: 10px !important;
+
+    flex-shrink: 0;
+}
+
+
+/* =====================================================
+   DETAIL BUTTONS
+===================================================== */
+
+.crm-task-detail-page .crm-detail-header-actions .crm-btn-secondary {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    gap: 7px !important;
+
+    min-width: 95px;
+    height: 44px;
+
+    padding: 10px 18px !important;
+
+    background: #27213f !important;
+    color: #e5e7eb !important;
+
+    border: 1px solid rgba(255, 255, 255, .15) !important;
+    border-radius: 10px !important;
+
+    text-decoration: none !important;
+
+    white-space: nowrap;
+
+    transition: .25s ease;
+}
+
+
+/* =====================================================
+   DETAIL BUTTON HOVER
+===================================================== */
+
+.crm-task-detail-page .crm-detail-header-actions .crm-btn-secondary:hover {
+    background: #7c3aed !important;
+
+    border-color: #7c3aed !important;
+
+    color: #ffffff !important;
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 8px 20px rgba(124, 58, 237, .25);
+}
+
+
+/* =========================
+   DETAIL ICON
+========================= */
+
+.crm-task-detail-page .crm-detail-header-actions .crm-btn-secondary i {
+    font-size: 15px;
+}
+
+
+/* =====================================================
+   TASK DETAIL CARD
+===================================================== */
+
+.crm-task-detail-page .crm-task-detail-card {
+    width: 100%;
+    padding: 28px;
+
+    background: #1a1330;
+
+    border: 1px solid rgba(255, 255, 255, .07);
+    border-radius: 14px;
+
+    box-sizing: border-box;
+}
+
+
+/* =====================================================
+   TASK DETAIL TOP
+===================================================== */
+
+.crm-task-detail-page .crm-task-detail-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    margin-bottom: 24px;
+}
+
+
+/* =====================================================
+   TASK DETAIL TITLE
+===================================================== */
+
+.crm-task-detail-page .crm-task-detail-title {
+    color: #ffffff;
+
+    font-size: 20px;
+    font-weight: 600;
+
+    line-height: 1.4;
+
+    margin: 0;
+}
+
+
+/* =====================================================
+   TASK DETAIL ITEMS
+===================================================== */
+
+.crm-task-detail-page .crm-detail-item {
+    display: flex;
+    align-items: flex-start;
+
+    gap: 14px;
+
+    min-width: 0;
+
+    padding: 16px;
+
+    background: #21163d;
+
+    border: 1px solid rgba(255, 255, 255, .06);
+    border-radius: 11px;
+
+    box-sizing: border-box;
+}
+
+
+/* =====================================================
+   TASK DETAIL ICON
+===================================================== */
+
+.crm-task-detail-page .crm-detail-icon {
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 9px;
+
+    background: rgba(124, 58, 237, .14);
+
+    color: #a78bfa;
+
+    font-size: 15px;
+}
+
+
+/* =====================================================
+   TASK DETAIL CONTENT
+===================================================== */
+
+.crm-task-detail-page .crm-detail-item > div {
+    min-width: 0;
+}
+
+
+/* =====================================================
+   TASK DETAIL LABEL
+===================================================== */
+
+.crm-task-detail-page .crm-detail-label {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: #a1a1aa;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    line-height: 1.4;
+}
+
+
+/* =====================================================
+   TASK DETAIL VALUE
+===================================================== */
+
+.crm-task-detail-page .crm-detail-value {
+    display: block;
+
+    color: #e5e7eb;
+
+    font-size: 14px;
+    font-weight: 500;
+
+    line-height: 1.5;
+
+    word-break: break-word;
+}
+
+
+/* =====================================================
+   TASK DETAIL DIVIDER
+===================================================== */
+
+.crm-task-detail-page .crm-detail-divider {
+    width: 100%;
+
+    height: 1px;
+
+    margin: 24px 0;
+
+    background: rgba(255, 255, 255, .07);
+}
+
+
+/* =====================================================
+   TASK DETAIL ACTIONS
+===================================================== */
+
+.crm-task-detail-page .crm-detail-actions {
+    display: flex;
+
+    align-items: center;
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    margin-top: 24px;
+}
+
+
+/* =====================================================
+   TASK DETAIL ACTION BUTTONS
+===================================================== */
+
+.crm-task-detail-page .crm-detail-actions .crm-btn-primary,
+.crm-task-detail-page .crm-detail-actions .crm-btn-secondary,
+.crm-task-detail-page .crm-detail-actions .crm-btn-danger {
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 7px;
+
+    min-height: 40px;
+
+    padding: 9px 16px;
+
+    border-radius: 9px;
+
+    white-space: nowrap;
+}
+
+
+/* =====================================================
+   TASK DETAIL DESCRIPTION
+===================================================== */
+
+.crm-task-detail-page .crm-detail-description {
+    color: #d4d4d8;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+
+    white-space: pre-line;
+
+    word-break: break-word;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 991px) {
+
+    .crm-task-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .crm-task-stat-card {
+        width: 100%;
+    }
+
+    .crm-task-list-page .crm-contact-table {
+        table-layout: fixed;
+    }
+
+    .crm-task-list-page .crm-contact-table thead th,
+    .crm-task-list-page .crm-contact-table tbody td {
+        padding: 10px 7px;
+    }
+
+    .crm-task-list-page .btn-group {
+        gap: 3px;
+    }
+
+    .crm-task-list-page .btn-group .btn {
+        width: 28px;
+        height: 28px;
+        min-width: 28px;
+
+        flex-basis: 28px;
+
+        font-size: 11px;
+    }
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 768px) {
+
+    .crm-task-detail-page .crm-detail-header {
+        align-items: flex-start !important;
+        flex-direction: column !important;
+    }
+
+    .crm-task-detail-page .crm-detail-header-actions {
+        width: 100%;
+        justify-content: flex-start !important;
+    }
+
+    .crm-task-list-page .crm-contact-table thead th,
+    .crm-task-list-page .crm-contact-table tbody td {
+        padding: 9px 6px;
+        font-size: 12px;
+    }
+
+    .crm-task-list-page .task-badge {
+        padding: 4px 6px;
+        font-size: 10px;
+    }
+
+    .crm-task-list-page .task-description {
+        font-size: 11px;
+    }
+
 }
