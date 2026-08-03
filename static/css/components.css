@@ -663,253 +663,349 @@
 
 
 /* =====================================================
-   RESPONSIVE
+   RESPONSIVE — CRM NAVBAR
 ===================================================== */
 
+/* TABLET + MOBILE */
+@media (max-width: 991px){
 
-@media(max-width:991px){
+    /* Navbar full width */
+    .crm-navbar{
+        margin-left:0;
+        width:100%;
+        height:auto;
+        min-height:70px;
+        padding:12px 20px;
+    }
 
+    .crm-navbar .container-fluid{
+        height:auto;
+        display:flex;
+        align-items:center;
+        flex-wrap:wrap;
+        gap:10px;
+    }
 
-.crm-navbar {
+    /* =========================
+       HAMBURGER
+    ========================= */
 
-    margin-left:0;
+    .crm-navbar-toggler{
+        display:flex;
+        align-items:center;
+        justify-content:center;
 
-    height:auto;
+        width:44px;
+        height:44px;
 
-    padding:15px;
+        padding:0;
+        margin-right:4px;
 
-}
+        border:1px solid rgba(255,255,255,.12);
+        border-radius:10px;
 
+        background:#0f0b1a;
+        color:#fff;
+    }
 
-.crm-navbar .container-fluid {
+    .crm-navbar-toggler:hover{
+        background:#7c3aed;
+        border-color:#7c3aed;
+    }
 
-    flex-wrap:wrap;
+    .crm-navbar-toggler:focus{
+        box-shadow:0 0 0 3px rgba(124,58,237,.20);
+    }
 
-}
-
-
-.crm-search {
-
-    width:100%;
-
-    margin:15px 0;
-
-}
-
-
-.crm-navbar-actions {
-
-    width:100%;
-
-    justify-content:space-between;
-
-}
-
-
-}
-
-
-
-@media(max-width:576px){
-
-
-.crm-brand-text {
-
-    display:none;
-
-}
-
-
-.crm-user-info {
-
-    display:none;
-
-}
+    .crm-navbar-toggler .navbar-toggler-icon{
+        filter:invert(1);
+    }
 
 
-.crm-nav-icon {
+    /* =========================
+       LOGO
+    ========================= */
 
-    width:42px;
+    .crm-brand{
+        flex:1;
+        min-width:0;
+    }
 
-    height:42px;
-
-}
-
-
-}
-
-/* ==========================
-        EMPTY STATE
-========================== */
-
-.crm-empty-state {
-
-    padding: 50px 20px;
-
-    text-align: center;
-
-    color: #a1a1aa;
-
-}
+    .crm-brand-icon{
+        flex-shrink:0;
+    }
 
 
-.crm-empty-state i {
+    /* =========================
+       NAV ACTIONS
+       Bell + Message + Profile
+    ========================= */
 
-    width: 70px;
-    height: 70px;
+    .crm-navbar-actions{
+        display:flex;
+        align-items:center;
+        justify-content:flex-end;
+        gap:8px;
+        margin-left:auto;
+        flex-shrink:0;
+    }
 
-    display: flex;
 
-    align-items: center;
-    justify-content: center;
+    /* =========================
+       SEARCH
+    ========================= */
 
-    margin: 0 auto 15px;
+    .crm-search{
+        width:100%;
+        max-width:none;
+        order:5;
+        flex:0 0 100%;
+        margin:8px 0 2px;
+    }
 
-    background: rgba(124,58,237,.12);
-
-    color: #a78bfa;
-
-    border-radius: 50%;
-
-    font-size: 28px;
+    .crm-search .input-group{
+        width:100%;
+    }
 
 }
 
 
-.crm-empty-state h5 {
+/* =====================================================
+   MOBILE
+===================================================== */
 
-    color: #ffffff;
+@media (max-width: 767px){
 
-    font-weight: 600;
+    .crm-navbar{
+        padding:10px 14px;
+    }
 
-    margin-bottom: 6px;
-
-}
-
-
-.crm-empty-state p {
-
-    color: #a1a1aa;
-
-    margin-bottom: 0;
-
-}
+    .crm-navbar .container-fluid{
+        gap:8px;
+    }
 
 
+    /* Hamburger */
+    .crm-navbar-toggler{
+        width:42px;
+        height:42px;
+        flex-shrink:0;
+    }
 
 
+    /* Logo */
+    .crm-brand{
+        gap:9px;
+    }
+
+    .crm-brand-icon{
+        width:42px;
+        height:42px;
+        border-radius:11px;
+    }
+
+    .crm-brand-icon i{
+        font-size:18px;
+    }
+
+    .crm-brand-title{
+        font-size:18px;
+        white-space:nowrap;
+    }
 
 
+    /* Bell + Message + Profile */
+    .crm-navbar-actions{
+        gap:6px;
+    }
+
+    .crm-nav-icon{
+        width:40px;
+        height:40px;
+        border-radius:10px;
+        flex-shrink:0;
+    }
+
+    .crm-nav-badge{
+        top:2px;
+        right:2px;
+
+        width:17px;
+        height:17px;
+
+        font-size:9px;
+    }
 
 
+    /* Profile */
+    .crm-user{
+        padding:4px;
+        border:none;
+        background:transparent;
+        gap:0;
+    }
+
+    .crm-user-info{
+        display:none;
+    }
+
+    .crm-avatar{
+        width:40px;
+        height:40px;
+    }
 
 
-/* ==========================
-      ACTION BUTTON GROUP
-========================== */
+    /* Search below top row */
+    .crm-search{
+        margin:8px 0 0;
+    }
 
-.crm-contact-table .btn-group {
-
-    display: flex !important;
-
-    align-items: center;
-
-    justify-content: center;
-
-    gap: 8px;
-
-}
-
-
-/* ==========================
-      ACTION BUTTONS
-========================== */
-
-.crm-contact-table .btn-group .btn {
-
-    width: 36px;
-
-    height: 36px;
-
-    min-width: 36px;
-
-    flex: 0 0 36px;
-
-    padding: 0 !important;
-
-    display: inline-flex !important;
-
-    align-items: center;
-
-    justify-content: center;
-
-    margin: 0 !important;
-
-    border-radius: 9px !important;
-
-    line-height: 1;
-
-    transition:
-        transform .2s ease,
-        box-shadow .2s ease,
-        background-color .2s ease,
-        border-color .2s ease;
-
-}
-
-
-/* ==========================
-      ACTION BUTTON ICONS
-========================== */
-
-.crm-contact-table .btn-group .btn i {
-
-    font-size: 14px;
-
-    line-height: 1;
-
-}
-
-
-/* ==========================
-      ACTION BUTTON HOVER
-========================== */
-
-.crm-contact-table .btn-group .btn:hover {
-
-    transform: translateY(-2px);
+    .crm-search .input-group{
+        height:42px;
+        border-radius:10px;
+    }
 
 }
 
 
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
+
+@media (max-width: 480px){
+
+    .crm-navbar{
+        padding:9px 10px;
+    }
+
+    .crm-navbar .container-fluid{
+        gap:6px;
+    }
 
 
-/* ==========================
-        PAGE TITLES
-========================== */
+    /* Hamburger */
+    .crm-navbar-toggler{
+        width:40px;
+        height:40px;
+        margin-right:0;
+    }
 
-.crm-title {
 
-    color: #ffffff;
+    /* Logo */
+    .crm-brand{
+        gap:7px;
+    }
 
-    font-size: 28px;
+    .crm-brand-icon{
+        width:38px;
+        height:38px;
+        border-radius:10px;
+    }
 
-    font-weight: 700;
+    .crm-brand-icon i{
+        font-size:16px;
+    }
 
-    letter-spacing: .3px;
+    .crm-brand-title{
+        font-size:16px;
+    }
 
-    margin-bottom: 6px;
+    .crm-brand-text{
+        display:none;
+    }
+
+
+    /* Actions */
+    .crm-navbar-actions{
+        gap:4px;
+    }
+
+    .crm-nav-icon{
+        width:38px;
+        height:38px;
+    }
+
+    .crm-nav-badge{
+        width:16px;
+        height:16px;
+        font-size:8px;
+    }
+
+
+    /* Profile */
+    .crm-avatar{
+        width:38px;
+        height:38px;
+    }
+
+
+    /* Search */
+    .crm-search .input-group{
+        height:40px;
+    }
 
 }
+/* =====================================================
+   CRM NAVBAR — MOBILE RESPONSIVE FIX
+===================================================== */
 
+@media (max-width: 767px) {
 
-.crm-page-subtitle {
+    .crm-navbar {
+        margin-left: 0;
+        width: 100%;
+        height: auto;
+        min-height: 70px;
+        padding: 10px 14px;
+    }
 
-    color: #a1a1aa !important;
+    .crm-navbar .container-fluid {
+        height: auto;
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+    }
 
-    font-size: 14px;
+    /* Logo */
+    .crm-brand-icon {
+        flex-shrink: 0;
+    }
 
-    margin-bottom: 0;
+    /* Hamburger */
+    .crm-navbar .navbar-toggler {
+        margin-left: auto;
+        flex-shrink: 0;
+    }
+
+    /* Search */
+    .crm-navbar .crm-search,
+    .crm-navbar .navbar-search,
+    .crm-navbar form {
+        width: 100%;
+        max-width: 100%;
+        flex: 0 0 100%;
+        margin: 10px 0 0;
+    }
+
+    .crm-navbar input {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* Right side icons */
+    .crm-navbar .navbar-nav {
+        width: 100%;
+        margin-top: 8px;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .crm-navbar .nav-item {
+        flex-shrink: 0;
+    }
 
 }
-
