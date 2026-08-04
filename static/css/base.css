@@ -263,101 +263,363 @@ body{
    RESPONSIVE — SIDEBAR + MAIN CONTENT
 ===================================================== */
 
-/* ---------- TABLET & MOBILE ---------- */
+/* ---------- TABLET ---------- */
 
 @media (max-width:991px){
 
+    /* Sidebar hidden by default */
     .sidebar{
+
         left:-270px;
+
         width:270px;
+
+        height:100vh;
+
+        z-index:1100;
+
+        transition:left .35s ease;
+
     }
 
+
+    /* Sidebar opens */
     .sidebar.show{
+
         left:0;
+
     }
 
+
+    /* Main content full width */
     .main-wrapper{
+
         margin-left:0;
+
         padding:20px;
+
     }
 
 }
 
 
-/* ---------- MOBILE ---------- */
+/* =====================================================
+   MOBILE
+===================================================== */
 
 @media (max-width:767px){
 
     .main-wrapper{
+
+        margin-left:0;
+
         padding:16px;
+
     }
+
+
+    /* ================================================
+       MOBILE SIDEBAR DRAWER
+    ================================================= */
+
+    .sidebar{
+
+        position:fixed;
+
+        top:0;
+
+        left:-235px;
+
+        width:235px;
+
+        height:100vh;
+
+        z-index:1100;
+
+        overflow-y:auto;
+
+        overflow-x:hidden;
+
+        background:linear-gradient(
+            180deg,
+            #1b1433 0%,
+            #18112e 60%,
+            #141022 100%
+        );
+
+        border-right:1px solid rgba(124,58,237,.25);
+
+        box-shadow:
+            15px 0 40px rgba(0,0,0,.50);
+
+        transition:left .35s ease;
+
+    }
+
+
+    /* OPEN SIDEBAR */
+
+    .sidebar.show{
+
+        left:0;
+
+    }
+
+
+    /* ================================================
+       SIDEBAR LOGO
+    ================================================= */
 
     .sidebar-logo{
-        padding:28px 20px;
+
+        padding:26px 18px;
+
+        text-align:center;
+
     }
+
 
     .sidebar-logo i{
-        font-size:42px;
+
+        font-size:40px;
+
+        margin-bottom:10px;
+
     }
+
 
     .sidebar-logo h3{
-        font-size:26px;
+
+        font-size:23px;
+
+        margin-bottom:5px;
+
     }
+
 
     .sidebar-logo p{
-        font-size:12px;
+
+        font-size:11px;
+
+        line-height:1.5;
+
     }
 
+
+    /* ================================================
+       SECTION TITLES
+    ================================================= */
+
+    .sidebar small{
+
+        margin:18px 16px 8px;
+
+        font-size:10px;
+
+        letter-spacing:1px;
+
+    }
+
+
+    /* ================================================
+       NAVIGATION
+    ================================================= */
+
+    .sidebar .nav{
+
+        display:flex;
+
+        flex-direction:column;
+
+        gap:5px;
+
+        padding:0 12px 18px;
+
+    }
+
+
+    .sidebar .nav-item{
+
+        width:100%;
+
+    }
+
+
     .sidebar .nav-link{
-        padding:13px 16px;
+
+        width:100%;
+
+        display:flex;
+
+        align-items:center;
+
+        gap:12px;
+
+        padding:11px 14px;
+
         font-size:14px;
+
+        border-radius:11px;
+
+        white-space:nowrap;
+
+    }
+
+
+    .sidebar .nav-link i{
+
+        width:24px;
+
+        min-width:24px;
+
+        font-size:16px;
+
+        text-align:center;
+
+    }
+
+
+    /* Don't move menu item horizontally on mobile */
+
+    .sidebar .nav-link:hover{
+
+        transform:none;
+
+    }
+
+
+    /* Active item */
+
+    .sidebar .nav-link.active{
+
+        background:linear-gradient(
+            90deg,
+            #7c3aed,
+            #5b21b6
+        );
+
+        box-shadow:
+            0 8px 20px rgba(124,58,237,.25);
+
     }
 
 }
 
 
-/* ---------- SMALL MOBILE ---------- */
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
 
 @media (max-width:480px){
 
     .main-wrapper{
+
         padding:12px;
+
     }
+
+
+    /* ================================================
+       COMPACT SIDEBAR
+    ================================================= */
 
     .sidebar{
+
         width:250px;
+
         left:-250px;
+
     }
+
 
     .sidebar.show{
+
         left:0;
+
     }
+
+
+    /* ================================================
+       LOGO
+    ================================================= */
 
     .sidebar-logo{
-        padding:24px 16px;
+
+        padding:22px 15px;
+
     }
+
 
     .sidebar-logo i{
-        font-size:38px;
+
+        font-size:36px;
+
+        margin-bottom:8px;
+
     }
+
 
     .sidebar-logo h3{
-        font-size:24px;
+
+        font-size:21px;
+
     }
+
 
     .sidebar-logo p{
-        font-size:12px;
+
+        font-size:10px;
+
     }
+
+
+    /* ================================================
+       SECTION TITLES
+    ================================================= */
+
+    .sidebar small{
+
+        margin:16px 14px 7px;
+
+        font-size:9px;
+
+    }
+
+
+    /* ================================================
+       NAV
+    ================================================= */
 
     .sidebar .nav{
-        padding-left:10px;
-        padding-right:10px;
+
+        padding:0 10px 16px;
+
+        gap:4px;
+
     }
 
+
     .sidebar .nav-link{
-        padding:12px 14px;
-        gap:12px;
-        font-size:14px;
+
+        padding:10px 12px;
+
+        gap:11px;
+
+        font-size:13px;
+
+        border-radius:10px;
+
+    }
+
+
+    .sidebar .nav-link i{
+
+        width:22px;
+
+        min-width:22px;
+
+        font-size:15px;
+
     }
 
 }

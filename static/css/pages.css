@@ -4511,78 +4511,98 @@
         word-break: break-word;
     }
 
-/* =====================================================
-   CRM RESPONSIVE DESIGN
-   Mobile + Tablet
-   Existing Desktop CSS remains unchanged
-===================================================== */
+/* =========================================================
+   CRM FINAL RESPONSIVE OVERRIDES
+   Mobile + Tablet + Small Devices
+   Add this at the VERY END of pages.css
+========================================================= */
 
 
-/* =====================================================
-   LARGE TABLET / SMALL DESKTOP
+/* =========================================================
+   GLOBAL RESPONSIVE SAFETY
+========================================================= */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+.crm-import-page,
+.crm-contact-page,
+.crm-delete-page,
+.crm-contact-detail-page,
+.crm-contact-list-page,
+.crm-task-list-page,
+.crm-task-detail-page,
+.crm-kanban-page {
+    max-width: 100%;
+    min-width: 0;
+}
+
+.crm-card {
+    max-width: 100%;
+}
+
+img,
+canvas,
+svg {
+    max-width: 100%;
+}
+
+button,
+a,
+input,
+select,
+textarea {
+    max-width: 100%;
+}
+
+
+/* =========================================================
    1200px
-===================================================== */
+========================================================= */
 
 @media (max-width: 1200px) {
 
-    /* ==========================
-       DASHBOARD
-    ========================== */
+    /* -------------------------
+       COMMON PAGE SPACING
+    ------------------------- */
 
-    .dashboard-kpi .card-body {
-        padding: 20px;
+    .crm-contact-list-page {
+        padding-left: 18px;
+        padding-right: 18px;
     }
-
-    .dashboard-kpi h3 {
-        font-size: 30px;
-    }
-
-    .dashboard-kpi .card-body i {
-        width: 58px;
-        height: 58px;
-        font-size: 24px;
-    }
-
-
-    /* ==========================
-       CONTACT DETAIL
-    ========================== */
 
     .crm-contact-detail-page {
-        max-width: 100%;
+        padding-left: 0;
+        padding-right: 0;
     }
 
 
-    /* ==========================
-       REGISTER
-    ========================== */
+    /* -------------------------
+       PAGE HEADER
+    ------------------------- */
 
-    .register-card {
-        max-width: 850px;
-        padding: 35px;
+    .crm-page-header,
+    .crm-task-header {
+        gap: 15px;
     }
 
 
-    /* ==========================
-       LOGIN
-    ========================== */
+    /* -------------------------
+       KANBAN
+    ------------------------- */
 
-    .login-container {
-        max-width: 1000px;
-    }
-
-    .login-left {
-        padding: 40px;
-    }
-
-    .login-brand h1 {
-        font-size: 36px;
+    .crm-kanban-page .crm-kanban-board {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
     }
 
 
-    /* ==========================
+    /* -------------------------
        TASK TABLE
-    ========================== */
+    ------------------------- */
 
     .crm-task-list-page .crm-task-table-wrapper {
         overflow-x: auto;
@@ -4591,148 +4611,106 @@
 
     .crm-task-list-page .crm-contact-table {
         min-width: 900px;
-        table-layout: fixed;
     }
 
 }
 
 
-/* =====================================================
-   TABLET
+/* =========================================================
    992px
-===================================================== */
+========================================================= */
 
 @media (max-width: 991.98px) {
 
-    /* ==========================
-       DASHBOARD HEADER
-    ========================== */
-
-    .dashboard-title {
-        font-size: 25px;
-    }
-
-    .text-end small {
-        padding: 8px 12px;
-        font-size: 12px;
-    }
-
-
-    /* ==========================
-       DASHBOARD KPI
-    ========================== */
-
-    .dashboard-kpi .card-body {
-        padding: 18px;
-    }
-
-    .dashboard-kpi h3 {
-        font-size: 28px;
-    }
-
-    .dashboard-kpi .card-body i {
-        width: 52px;
-        height: 52px;
-        font-size: 22px;
-    }
-
-
-    /* ==========================
-       CONTACT DETAIL
-    ========================== */
-
-    .crm-contact-detail-page .contact-detail-header {
-        gap: 15px;
-        margin-bottom: 25px;
-    }
-
-    .crm-contact-detail-page .contact-detail-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 18px;
-    }
-
-
-    /* ==========================
-       CONTACT LIST
-    ========================== */
+    /* =====================================================
+       COMMON
+    ===================================================== */
 
     .crm-contact-list-page {
         padding: 15px;
     }
 
-    .crm-contact-list-page .table-responsive {
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-    }
-
-    .crm-contact-list-page .crm-contact-table {
-        min-width: 850px;
+    .crm-card {
+        max-width: 100%;
     }
 
 
-    /* ==========================
-       COMPANY HEADER
-    ========================== */
+    /* =====================================================
+       PAGE HEADER
+    ===================================================== */
 
     .crm-page-header {
         gap: 15px;
     }
 
-
-    /* ==========================
-       COMPANY SEARCH
-    ========================== */
-
-    .crm-search-row {
+    .crm-page-actions {
         gap: 8px;
     }
 
 
-    /* ==========================
-       COMPANY DETAIL
-    ========================== */
+    /* =====================================================
+       CONTACT DETAIL
+    ===================================================== */
 
-    .crm-section-header {
-        gap: 15px;
+    .crm-contact-detail-page .contact-detail-grid {
+        gap: 16px;
+    }
+
+    .crm-contact-detail-page .crm-detail-box {
+        min-width: 0;
     }
 
 
-    /* ==========================
-       LEAD KANBAN
-    ========================== */
+    /* =====================================================
+       COMPANY SEARCH
+    ===================================================== */
+
+    .crm-search-row {
+        width: 100%;
+    }
+
+    .crm-search-row .form-control {
+        min-width: 0;
+    }
+
+
+    /* =====================================================
+       KANBAN
+    ===================================================== */
 
     .crm-kanban-page .crm-kanban-board {
+        display: flex;
+        flex-wrap: nowrap;
         overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
+        gap: 0;
         padding-bottom: 12px;
     }
 
     .crm-kanban-page .crm-kanban-board > [class*="col-"] {
-        min-width: 260px;
-    }
-
-
-    /* ==========================
-       TASK HEADER
-    ========================== */
-
-    .crm-task-header {
-        gap: 15px;
-    }
-
-    .crm-task-stat-card {
-        width: 100%;
+        flex: 0 0 280px;
+        width: 280px;
         max-width: 280px;
     }
 
 
-    /* ==========================
+    /* =====================================================
+       TASK HEADER
+    ===================================================== */
+
+    .crm-task-header {
+        align-items: center;
+    }
+
+
+    /* =====================================================
        TASK TABLE
-    ========================== */
+    ===================================================== */
 
     .crm-task-list-page .crm-task-table-wrapper {
+        width: 100%;
+        max-width: 100%;
         overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
+        overflow-y: hidden;
     }
 
     .crm-task-list-page .crm-contact-table {
@@ -4740,110 +4718,84 @@
     }
 
 
-    /* ==========================
+    /* =====================================================
        TASK DETAIL
-    ========================== */
+    ===================================================== */
 
     .crm-task-detail-page .crm-task-detail-card {
         padding: 22px;
     }
 
+    .crm-task-detail-page .crm-detail-item {
+        min-width: 0;
+    }
+
 }
 
 
-/* =====================================================
-   MOBILE / SMALL TABLET
+/* =========================================================
    768px
-===================================================== */
+========================================================= */
 
 @media (max-width: 767.98px) {
 
-    /* ==========================
-       COMMON PAGE WIDTH
-    ========================== */
+    /* =====================================================
+       COMMON PAGE CONTAINERS
+    ===================================================== */
 
     .crm-import-page,
     .crm-contact-page,
     .crm-delete-page,
-    .crm-contact-detail-page {
+    .crm-contact-detail-page,
+    .crm-contact-list-page,
+    .crm-task-list-page,
+    .crm-task-detail-page,
+    .crm-kanban-page {
         width: 100%;
         max-width: 100%;
     }
 
 
-    /* ==========================
-       DASHBOARD
-    ========================== */
+    /* =====================================================
+       COMMON CARD
+    ===================================================== */
 
-    .dashboard-title {
-        font-size: 23px;
-    }
-
-    .dashboard-title + p {
-        font-size: 13px;
-    }
-
-    .text-end {
-        text-align: left !important;
-        margin-top: 12px;
-    }
-
-    .text-end small {
-        font-size: 12px;
-    }
-
-    .dashboard-kpi .card-body {
-        padding: 18px;
-    }
-
-    .dashboard-kpi h3 {
-        font-size: 26px;
-    }
-
-    .dashboard-kpi .card-body i {
-        width: 50px;
-        height: 50px;
-        font-size: 21px;
+    .crm-card {
+        width: 100%;
     }
 
 
-    /* ==========================
-       CONTACT DETAIL
-    ========================== */
+    /* =====================================================
+       PAGE HEADER
+    ===================================================== */
 
-    .crm-contact-detail-page .contact-detail-header {
+    .crm-page-header,
+    .crm-task-header {
+        width: 100%;
         flex-direction: column;
-        align-items: flex-start;
-        gap: 15px;
+        align-items: stretch;
+        gap: 14px;
     }
 
-    .crm-contact-detail-page .contact-detail-name {
+    .crm-page-actions {
         width: 100%;
-    }
-
-    .crm-contact-detail-page .contact-detail-grid {
-        grid-template-columns: 1fr;
-        gap: 16px;
-    }
-
-    .crm-contact-detail-page .contact-created {
-        max-width: 100%;
-    }
-
-    .crm-contact-detail-page .contact-detail-actions {
+        margin-left: 0;
+        display: flex;
+        align-items: stretch;
+        justify-content: flex-start;
         flex-wrap: wrap;
-        margin-top: 22px;
+        gap: 8px;
     }
 
-    .crm-contact-detail-page .crm-detail-box {
-        min-height: 58px;
-        padding: 14px;
+    .crm-page-actions .crm-btn-primary,
+    .crm-page-actions .crm-btn-secondary {
+        min-height: 42px;
     }
 
 
-    /* ==========================
+    /* =====================================================
        CONTACT LIST
-    ========================== */
+    ===================================================== */
 
     .crm-contact-list-page {
         padding: 10px 0;
@@ -4853,8 +4805,41 @@
         border-radius: 14px;
     }
 
+
+    /* =====================================================
+       CONTACT SEARCH
+    ===================================================== */
+
+    .crm-search-row {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        gap: 8px;
+    }
+
+    .crm-search-row .form-control {
+        flex: 1 1 100%;
+        width: 100%;
+        min-width: 0;
+    }
+
+    .crm-search-row .crm-btn-primary,
+    .crm-search-row .crm-btn-secondary {
+        flex: 1 1 calc(50% - 4px);
+        width: auto;
+        min-width: 0;
+    }
+
+
+    /* =====================================================
+       CONTACT TABLE
+    ===================================================== */
+
     .crm-contact-list-page .table-responsive {
+        width: 100%;
+        max-width: 100%;
         overflow-x: auto;
+        overflow-y: hidden;
         -webkit-overflow-scrolling: touch;
     }
 
@@ -4863,91 +4848,97 @@
     }
 
 
-    /* ==========================
-       SEARCH ROW
-    ========================== */
+    /* =====================================================
+       CONTACT DETAIL
+    ===================================================== */
 
-    .crm-search-row {
-        flex-wrap: wrap;
-    }
-
-    .crm-search-row .form-control {
-        flex: 1 1 100%;
+    .crm-contact-detail-page .contact-detail-header {
         width: 100%;
-    }
-
-    .crm-search-row .crm-btn-primary,
-    .crm-search-row .crm-btn-secondary {
-        flex: 1 1 0;
-    }
-
-
-    /* ==========================
-       COMPANY HEADER
-    ========================== */
-
-    .crm-page-header {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 15px;
-    }
-
-    .crm-page-actions {
-        width: 100%;
-        margin-left: 0;
-        justify-content: flex-start;
-        flex-wrap: wrap;
-    }
-
-
-    /* ==========================
-       COMPANY SECTION
-    ========================== */
-
-    .crm-section-header {
         flex-direction: column;
         align-items: flex-start;
+        gap: 14px;
+    }
+
+    .crm-contact-detail-page .contact-detail-name {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .crm-contact-detail-page .contact-source {
+        align-self: flex-start;
+    }
+
+    .crm-contact-detail-page .contact-detail-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .crm-contact-detail-page .contact-created {
+        max-width: 100%;
+    }
+
+    .crm-contact-detail-page .contact-detail-actions {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 20px;
+    }
+
+    .crm-contact-detail-page .contact-detail-actions .crm-btn-primary,
+    .crm-contact-detail-page .contact-detail-actions .crm-btn-danger,
+    .crm-contact-detail-page .contact-detail-back {
+        flex: 1 1 calc(50% - 4px);
+        min-width: 0;
     }
 
 
-    /* ==========================
+    /* =====================================================
+       COMPANY HEADER
+    ===================================================== */
+
+    .crm-section-header {
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+
+
+    /* =====================================================
        COMPANY FORM
-    ========================== */
+    ===================================================== */
 
     .crm-form-actions {
-        justify-content: stretch;
+        width: 100%;
+        display: flex;
         flex-wrap: wrap;
+        gap: 8px;
     }
 
     .crm-form-actions .crm-btn-primary,
     .crm-form-actions .crm-btn-secondary {
-        flex: 1;
+        flex: 1 1 calc(50% - 4px);
+        min-width: 0;
     }
 
 
-    /* ==========================
+    /* =====================================================
        REGISTER
-    ========================== */
+    ===================================================== */
 
     .register-page {
-        padding: 30px 15px;
-        align-items: flex-start;
+        width: 100%;
+        padding: 25px 12px;
     }
 
     .register-card {
+        width: 100%;
         padding: 28px 20px;
-        border-radius: 18px;
-    }
-
-    .register-title {
-        font-size: 28px;
-    }
-
-    .register-header {
-        margin-bottom: 30px;
     }
 
     .register-row {
+        display: flex;
         flex-direction: column;
         gap: 0;
         margin-bottom: 0;
@@ -4955,37 +4946,21 @@
 
     .register-column {
         width: 100%;
-        margin-bottom: 20px;
-    }
-
-    .register-checkbox {
-        margin-top: 5px;
+        margin-bottom: 18px;
     }
 
 
-    /* ==========================
+    /* =====================================================
        PROFILE
-    ========================== */
+    ===================================================== */
 
     .profile-card {
+        width: 100%;
         padding: 25px 20px;
     }
 
-    .profile-header {
-        margin-bottom: 25px;
-    }
-
-    .profile-avatar-section {
-        margin-bottom: 25px;
-    }
-
-    .profile-avatar {
-        width: 110px;
-        height: 110px;
-    }
-
     .profile-btn-wrapper {
-        justify-content: stretch;
+        width: 100%;
     }
 
     .profile-btn-wrapper .crm-btn-primary {
@@ -4993,16 +4968,18 @@
     }
 
 
-    /* ==========================
+    /* =====================================================
        LOGIN
-    ========================== */
+    ===================================================== */
 
     .crm-login-page {
-        padding: 25px 15px;
-        align-items: flex-start;
+        width: 100%;
+        min-height: 100vh;
+        padding: 20px 12px;
     }
 
     .login-container {
+        width: 100%;
         min-height: auto;
         flex-direction: column;
         border-radius: 18px;
@@ -5011,57 +4988,45 @@
     .login-left,
     .login-right {
         width: 100%;
-        box-sizing: border-box;
+        min-width: 0;
     }
 
     .login-left {
-        padding: 35px 25px;
+        padding: 30px 22px;
     }
 
     .login-right {
-        padding: 30px 20px;
+        padding: 28px 20px;
     }
 
-    .login-brand h1 {
-        font-size: 32px;
-    }
-
-    .login-brand p {
-        font-size: 14px;
-    }
-
-    .login-features {
-        margin-top: 25px;
-    }
-
-    .feature-item {
-        font-size: 14px;
-    }
-
-    .login-header h2 {
-        font-size: 27px;
+    .login-card {
+        width: 100%;
+        max-width: 100%;
     }
 
 
-    /* ==========================
+    /* =====================================================
        TASK HEADER
-    ========================== */
+    ===================================================== */
 
     .crm-task-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 12px;
+        align-items: stretch;
     }
 
     .crm-task-header .crm-btn-primary,
     .crm-task-header .crm-btn-secondary {
         width: 100%;
+        min-height: 42px;
     }
 
 
-    /* ==========================
+    /* =====================================================
        TASK SUMMARY
-    ========================== */
+    ===================================================== */
+
+    .crm-task-summary {
+        width: 100%;
+    }
 
     .crm-task-stat-card {
         width: 100%;
@@ -5069,113 +5034,186 @@
     }
 
 
-    /* ==========================
+    /* =====================================================
        TASK TABLE
-    ========================== */
+    ===================================================== */
 
     .crm-task-list-page .crm-task-table-wrapper {
-        overflow-x: auto;
         width: 100%;
+        max-width: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
         -webkit-overflow-scrolling: touch;
+        border-radius: 12px;
     }
 
     .crm-task-list-page .crm-contact-table {
+        width: 900px;
         min-width: 900px;
+        table-layout: fixed;
+    }
+
+    .crm-task-list-page .crm-contact-table th,
+    .crm-task-list-page .crm-contact-table td {
+        white-space: nowrap;
+    }
+
+    .crm-task-list-page .crm-contact-table .task-title,
+    .crm-task-list-page .crm-contact-table .task-description {
+        max-width: 180px;
     }
 
 
-    /* ==========================
+    /* =====================================================
+       TASK ACTION BUTTONS
+    ===================================================== */
+
+    .crm-task-list-page .btn-group {
+        display: inline-flex !important;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+        white-space: nowrap;
+    }
+
+    .crm-task-list-page .btn-group .btn {
+        width: 32px;
+        height: 32px;
+        min-width: 32px;
+        flex: 0 0 32px;
+    }
+
+
+    /* =====================================================
        TASK DETAIL HEADER
-    ========================== */
+    ===================================================== */
 
     .crm-task-detail-page .crm-detail-header {
+        width: 100%;
         flex-direction: column;
-        align-items: flex-start !important;
-        gap: 15px;
+        align-items: stretch !important;
+        gap: 14px;
     }
 
     .crm-task-detail-page .crm-detail-header-actions {
         width: 100%;
+        display: flex !important;
+        align-items: stretch !important;
         justify-content: flex-start !important;
         flex-wrap: wrap;
+        gap: 8px !important;
     }
 
     .crm-task-detail-page .crm-detail-header-actions .crm-btn-secondary {
+        flex: 1 1 calc(50% - 4px);
         min-width: 0;
-        flex: 1;
+        height: 42px;
     }
 
 
-    /* ==========================
-       TASK DETAIL
-    ========================== */
+    /* =====================================================
+       TASK DETAIL CARD
+    ===================================================== */
 
     .crm-task-detail-page .crm-task-detail-card {
+        width: 100%;
         padding: 18px;
+        border-radius: 14px;
     }
 
     .crm-task-detail-page .crm-task-detail-top {
         flex-direction: column;
-        gap: 15px;
+        gap: 14px;
     }
 
     .crm-task-detail-page .crm-detail-item {
+        width: 100%;
         padding: 13px;
+        gap: 11px;
     }
 
+    .crm-task-detail-page .crm-detail-item > div {
+        min-width: 0;
+        overflow-wrap: anywhere;
+    }
+
+    .crm-task-detail-page .crm-detail-value {
+        overflow-wrap: anywhere;
+    }
+
+
+    /* =====================================================
+       TASK DETAIL ACTIONS
+    ===================================================== */
+
     .crm-task-detail-page .crm-detail-actions {
+        width: 100%;
+        display: flex;
         flex-wrap: wrap;
+        gap: 8px;
         justify-content: stretch;
     }
 
     .crm-task-detail-page .crm-detail-actions .crm-btn-primary,
     .crm-task-detail-page .crm-detail-actions .crm-btn-secondary,
     .crm-task-detail-page .crm-detail-actions .crm-btn-danger {
-        flex: 1;
+        flex: 1 1 calc(50% - 4px);
+        min-width: 0;
     }
 
 
-    /* ==========================
+    /* =====================================================
        KANBAN
-    ========================== */
+    ===================================================== */
 
     .crm-kanban-page .crm-kanban-page-header {
+        width: 100%;
         display: flex;
         flex-direction: column;
-        align-items: flex-start !important;
-        gap: 15px;
-        margin-bottom: 18px !important;
+        align-items: stretch !important;
+        gap: 12px;
     }
 
     .crm-kanban-page .crm-kanban-page-header .d-flex {
         width: 100%;
+        display: flex;
         flex-wrap: wrap;
+        gap: 8px;
     }
 
     .crm-kanban-page .crm-kanban-page-header .crm-btn-primary,
     .crm-kanban-page .crm-kanban-page-header .crm-btn-secondary {
-        flex: 1;
+        flex: 1 1 calc(50% - 4px);
+        min-width: 0;
     }
 
     .crm-kanban-page .crm-kanban-board {
+        width: 100%;
+        display: flex;
+        flex-wrap: nowrap;
         overflow-x: auto;
+        gap: 0;
         -webkit-overflow-scrolling: touch;
     }
 
     .crm-kanban-page .crm-kanban-board > [class*="col-"] {
-        min-width: 275px;
+        flex: 0 0 275px;
+        width: 275px;
+        max-width: 275px;
     }
 
 
-    /* ==========================
+    /* =====================================================
        INTERACTION TABLE
-    ========================== */
+    ===================================================== */
 
     .interaction-table {
         min-width: 700px;
     }
 
     .table-responsive {
+        width: 100%;
+        max-width: 100%;
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
     }
@@ -5183,48 +5221,63 @@
 }
 
 
-/* =====================================================
-   SMALL MOBILE
+/* =========================================================
    576px
-===================================================== */
+========================================================= */
 
 @media (max-width: 575.98px) {
 
-    /* ==========================
-       DASHBOARD
-    ========================== */
+    /* =====================================================
+       COMMON
+    ===================================================== */
 
-    .dashboard-title {
-        font-size: 21px;
+    .crm-contact-list-page {
+        padding: 8px 0;
     }
-
-    .dashboard-kpi .card-body {
-        padding: 16px;
-    }
-
-    .dashboard-kpi h3 {
-        font-size: 24px;
-    }
-
-    .dashboard-kpi .card-body i {
-        width: 46px;
-        height: 46px;
-        font-size: 19px;
-    }
-
-
-    /* ==========================
-       COMMON CARDS
-    ========================== */
 
     .crm-card {
         border-radius: 14px;
     }
 
 
-    /* ==========================
-       CONTACT DETAIL
-    ========================== */
+    /* =====================================================
+       PAGE HEADER BUTTONS
+    ===================================================== */
+
+    .crm-page-actions {
+        flex-direction: column;
+        width: 100%;
+        gap: 8px;
+    }
+
+    .crm-page-actions .crm-btn-primary,
+    .crm-page-actions .crm-btn-secondary {
+        width: 100%;
+        flex: none;
+    }
+
+
+    /* =====================================================
+       SEARCH
+    ===================================================== */
+
+    .crm-search-row {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+    }
+
+    .crm-search-row .form-control,
+    .crm-search-row .crm-btn-primary,
+    .crm-search-row .crm-btn-secondary {
+        width: 100%;
+        flex: none;
+    }
+
+
+    /* =====================================================
+       CONTACT DETAIL ACTIONS
+    ===================================================== */
 
     .crm-contact-detail-page .contact-detail-actions {
         flex-direction: column;
@@ -5235,59 +5288,36 @@
     .crm-contact-detail-page .contact-detail-actions .crm-btn-danger,
     .crm-contact-detail-page .contact-detail-back {
         width: 100%;
+        flex: none;
     }
 
 
-    /* ==========================
-       CONTACT SEARCH
-    ========================== */
-
-    .crm-search-row .crm-btn-primary,
-    .crm-search-row .crm-btn-secondary {
-        flex: 1 1 100%;
-        width: 100%;
-    }
-
-
-    /* ==========================
-       COMPANY HEADER
-    ========================== */
-
-    .crm-page-actions {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .crm-page-actions .crm-btn-primary,
-    .crm-page-actions .crm-btn-secondary {
-        width: 100%;
-    }
-
-
-    /* ==========================
-       COMPANY FORM
-    ========================== */
+    /* =====================================================
+       COMPANY FORM ACTIONS
+    ===================================================== */
 
     .crm-form-actions {
         flex-direction: column;
+        align-items: stretch;
     }
 
     .crm-form-actions .crm-btn-primary,
     .crm-form-actions .crm-btn-secondary {
         width: 100%;
+        flex: none;
     }
 
 
-    /* ==========================
+    /* =====================================================
        REGISTER
-    ========================== */
+    ===================================================== */
 
     .register-page {
-        padding: 20px 10px;
+        padding: 18px 10px;
     }
 
     .register-card {
-        padding: 22px 16px;
+        padding: 22px 15px;
         border-radius: 16px;
     }
 
@@ -5299,47 +5329,26 @@
         font-size: 13px;
     }
 
-    .register-input,
-    .register-select {
-        padding: 12px 13px;
-        font-size: 14px;
-    }
 
-    .register-file {
-        padding: 10px;
-        font-size: 13px;
-    }
-
-    .register-file::file-selector-button {
-        padding: 8px 12px;
-        margin-right: 8px;
-    }
-
-
-    /* ==========================
+    /* =====================================================
        PROFILE
-    ========================== */
+    ===================================================== */
 
     .profile-card {
         padding: 20px 15px;
     }
 
-    .profile-avatar {
-        width: 95px;
-        height: 95px;
-    }
-
-    .profile-remove-box {
-        padding: 12px;
+    .profile-btn-wrapper .crm-btn-primary {
+        width: 100%;
     }
 
 
-    /* ==========================
+    /* =====================================================
        LOGIN
-    ========================== */
+    ===================================================== */
 
     .crm-login-page {
-        padding: 15px 10px;
+        padding: 12px 8px;
     }
 
     .login-container {
@@ -5347,44 +5356,19 @@
     }
 
     .login-left {
-        padding: 28px 20px;
+        padding: 26px 18px;
     }
 
     .login-right {
-        padding: 25px 16px;
-    }
-
-    .brand-icon {
-        width: 58px;
-        height: 58px;
-        font-size: 28px;
-        border-radius: 16px;
-        margin-bottom: 18px;
+        padding: 24px 15px;
     }
 
     .login-brand h1 {
-        font-size: 28px;
-    }
-
-    .login-brand p {
-        font-size: 13px;
-    }
-
-    .login-features {
-        margin-top: 20px;
-    }
-
-    .feature-item {
-        font-size: 13px;
-        margin-bottom: 13px;
-    }
-
-    .login-header {
-        margin-bottom: 25px;
+        font-size: 27px;
     }
 
     .login-header h2 {
-        font-size: 24px;
+        font-size: 23px;
     }
 
     .login-input-box {
@@ -5393,26 +5377,17 @@
 
     .login-btn {
         height: 50px;
-        font-size: 15px;
-    }
-
-    .login-options {
-        gap: 10px;
-        flex-wrap: wrap;
     }
 
 
-    /* ==========================
-       TASK DETAIL
-    ========================== */
-
-    .crm-task-detail-page .crm-task-detail-card {
-        padding: 15px;
-    }
+    /* =====================================================
+       TASK DETAIL HEADER
+    ===================================================== */
 
     .crm-task-detail-page .crm-detail-header-actions {
         flex-direction: column;
         width: 100%;
+        gap: 8px !important;
     }
 
     .crm-task-detail-page .crm-detail-header-actions .crm-btn-secondary {
@@ -5420,8 +5395,28 @@
         flex: none;
     }
 
+
+    /* =====================================================
+       TASK DETAIL
+    ===================================================== */
+
+    .crm-task-detail-page .crm-task-detail-card {
+        padding: 15px;
+    }
+
+    .crm-task-detail-page .crm-detail-item {
+        padding: 12px;
+    }
+
+
+    /* =====================================================
+       TASK DETAIL ACTIONS
+    ===================================================== */
+
     .crm-task-detail-page .crm-detail-actions {
         flex-direction: column;
+        width: 100%;
+        gap: 8px;
     }
 
     .crm-task-detail-page .crm-detail-actions .crm-btn-primary,
@@ -5432,17 +5427,14 @@
     }
 
 
-    /* ==========================
+    /* =====================================================
        KANBAN
-    ========================== */
-
-    .crm-kanban-page .crm-kanban-board > [class*="col-"] {
-        min-width: 250px;
-    }
+    ===================================================== */
 
     .crm-kanban-page .crm-kanban-page-header .d-flex {
         flex-direction: column;
         width: 100%;
+        gap: 8px;
     }
 
     .crm-kanban-page .crm-kanban-page-header .crm-btn-primary,
@@ -5451,40 +5443,42 @@
         flex: none;
     }
 
+    .crm-kanban-page .crm-kanban-board > [class*="col-"] {
+        flex: 0 0 255px;
+        width: 255px;
+        max-width: 255px;
+    }
+
 }
 
 
-/* =====================================================
-   VERY SMALL MOBILE
+/* =========================================================
    400px
-===================================================== */
+========================================================= */
 
 @media (max-width: 400px) {
 
-    /* ==========================
-       DASHBOARD
-    ========================== */
+    /* =====================================================
+       GLOBAL
+    ===================================================== */
 
-    .dashboard-title {
-        font-size: 19px;
+    body {
+        overflow-x: hidden;
     }
 
-    .dashboard-title + p {
-        font-size: 12px;
-    }
-
-    .dashboard-kpi h3 {
-        font-size: 22px;
+    .crm-card {
+        border-radius: 12px;
     }
 
 
-    /* ==========================
+    /* =====================================================
        CONTACT DETAIL
-    ========================== */
+    ===================================================== */
 
     .crm-contact-detail-page .crm-detail-box {
-        padding: 12px;
-        gap: 9px;
+        min-height: 54px;
+        padding: 11px 12px;
+        gap: 8px;
         font-size: 13px;
     }
 
@@ -5493,53 +5487,181 @@
     }
 
 
-    /* ==========================
-       REGISTER
-    ========================== */
-
-    .register-card {
-        padding: 20px 13px;
-    }
-
-    .register-title {
-        font-size: 23px;
-    }
-
-
-    /* ==========================
-       LOGIN
-    ========================== */
-
-    .login-left {
-        padding: 24px 17px;
-    }
-
-    .login-right {
-        padding: 22px 13px;
-    }
-
-    .login-brand h1 {
-        font-size: 25px;
-    }
-
-    .login-header h2 {
-        font-size: 22px;
-    }
-
-
-    /* ==========================
+    /* =====================================================
        TASK DETAIL
-    ========================== */
+    ===================================================== */
+
+    .crm-task-detail-page .crm-task-detail-card {
+        padding: 13px;
+    }
 
     .crm-task-detail-page .crm-detail-item {
-        gap: 10px;
-        padding: 11px;
+        gap: 9px;
+        padding: 10px;
     }
 
     .crm-task-detail-page .crm-detail-icon {
         width: 34px;
         height: 34px;
         min-width: 34px;
+        font-size: 13px;
+    }
+
+    .crm-task-detail-page .crm-detail-label {
+        font-size: 11px;
+    }
+
+    .crm-task-detail-page .crm-detail-value {
+        font-size: 13px;
+    }
+
+    .crm-task-detail-page .crm-detail-description {
+        font-size: 13px;
+    }
+
+
+    /* =====================================================
+       KANBAN
+    ===================================================== */
+
+    .crm-kanban-page .crm-kanban-board > [class*="col-"] {
+        flex: 0 0 245px;
+        width: 245px;
+        max-width: 245px;
+    }
+
+}
+
+
+/* =========================================================
+   375px
+   iPhone SE / Small Mobile
+========================================================= */
+
+@media (max-width: 375px) {
+
+    /* =====================================================
+       CONTACT / COMPANY
+    ===================================================== */
+
+    .crm-contact-list-page {
+        padding: 5px 0;
+    }
+
+    .crm-page-actions,
+    .crm-form-actions,
+    .crm-search-row {
+        gap: 7px;
+    }
+
+
+    /* =====================================================
+       CONTACT DETAIL
+    ===================================================== */
+
+    .crm-contact-detail-page .contact-detail-actions {
+        gap: 7px;
+    }
+
+    .crm-contact-detail-page .crm-detail-box {
+        padding: 10px;
+        gap: 7px;
+    }
+
+
+    /* =====================================================
+       TASK DETAIL
+    ===================================================== */
+
+    .crm-task-detail-page .crm-task-detail-card {
+        padding: 11px;
+        border-radius: 12px;
+    }
+
+    .crm-task-detail-page .crm-detail-header {
+        gap: 10px;
+    }
+
+    .crm-task-detail-page .crm-detail-item {
+        padding: 9px;
+        gap: 8px;
+    }
+
+    .crm-task-detail-page .crm-detail-icon {
+        width: 32px;
+        height: 32px;
+        min-width: 32px;
+        font-size: 12px;
+    }
+
+    .crm-task-detail-page .crm-detail-label {
+        font-size: 10px;
+    }
+
+    .crm-task-detail-page .crm-detail-value {
+        font-size: 12px;
+    }
+
+    .crm-task-detail-page .crm-detail-actions {
+        gap: 7px;
+    }
+
+
+    /* =====================================================
+       LOGIN
+    ===================================================== */
+
+    .crm-login-page {
+        padding: 10px 7px;
+    }
+
+    .login-left {
+        padding: 23px 15px;
+    }
+
+    .login-right {
+        padding: 21px 12px;
+    }
+
+    .login-brand h1 {
+        font-size: 24px;
+    }
+
+    .login-header h2 {
+        font-size: 21px;
+    }
+
+    .login-input-box {
+        height: 48px;
+        padding: 0 12px;
+    }
+
+    .login-btn {
+        height: 48px;
+        font-size: 15px;
+    }
+
+
+    /* =====================================================
+       REGISTER
+    ===================================================== */
+
+    .register-page {
+        padding: 12px 7px;
+    }
+
+    .register-card {
+        padding: 19px 12px;
+        border-radius: 14px;
+    }
+
+    .register-title {
+        font-size: 22px;
+    }
+
+    .register-input,
+    .register-select {
+        padding: 11px 12px;
         font-size: 13px;
     }
 

@@ -1,9 +1,8 @@
 /* =====================================================
-   CRM NAVBAR COMPONENT
+   CRM NAVBAR
 ===================================================== */
 
-
-.crm-navbar {
+.crm-navbar{
 
     position:sticky;
 
@@ -26,7 +25,7 @@
 }
 
 
-.crm-navbar .container-fluid {
+.crm-navbar .container-fluid{
 
     height:100%;
 
@@ -39,13 +38,11 @@
 }
 
 
-
 /* =====================================================
    BRAND
 ===================================================== */
 
-
-.crm-brand {
+.crm-brand{
 
     display:flex;
 
@@ -58,7 +55,7 @@
 }
 
 
-.crm-brand-icon {
+.crm-brand-icon{
 
     width:48px;
 
@@ -72,14 +69,19 @@
 
     border-radius:14px;
 
-    background:linear-gradient(135deg,#7c3aed,#5b21b6);
+    background:linear-gradient(
+        135deg,
+        #7c3aed,
+        #5b21b6
+    );
 
-    box-shadow:0 10px 20px rgba(124,58,237,.30);
+    box-shadow:
+        0 10px 20px rgba(124,58,237,.30);
 
 }
 
 
-.crm-brand-icon i {
+.crm-brand-icon i{
 
     color:#fff;
 
@@ -88,7 +90,7 @@
 }
 
 
-.crm-brand-title {
+.crm-brand-title{
 
     color:#fff;
 
@@ -99,29 +101,34 @@
 }
 
 
-.crm-brand-text small {
+.crm-brand-text{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+
+.crm-brand-text small{
 
     color:#94a3b8;
 
 }
 
 
-
 /* =====================================================
    SEARCH
 ===================================================== */
 
-
-.crm-search {
+.crm-search{
 
     width:430px;
-
-    max-width:100%;
 
 }
 
 
-.crm-search .input-group {
+.crm-search .input-group{
 
     height:46px;
 
@@ -136,16 +143,17 @@
 }
 
 
-.crm-search .input-group:focus-within {
+.crm-search .input-group:focus-within{
 
     border-color:#7c3aed;
 
-    box-shadow:0 0 0 4px rgba(124,58,237,.12);
+    box-shadow:
+        0 0 0 4px rgba(124,58,237,.12);
 
 }
 
 
-.crm-search .input-group-text {
+.crm-search .input-group-text{
 
     background:#0f0b1a;
 
@@ -156,47 +164,44 @@
 }
 
 
-.crm-search input {
+.crm-search input{
 
-    background:#0f0b1a!important;
+    background:#0f0b1a !important;
 
-    border:none!important;
+    border:none !important;
 
-    color:#fff!important;
+    color:#fff !important;
 
 }
 
 
-.crm-search input::placeholder {
+.crm-search input::placeholder{
 
     color:#94a3b8;
 
 }
 
 
-
 /* =====================================================
    NAV ACTIONS
 ===================================================== */
 
-
-.crm-navbar-actions {
+.crm-navbar-actions{
 
     display:flex;
 
     align-items:center;
 
-    gap:14px;
+    gap:10px;
 
 }
 
 
+.crm-nav-icon{
 
-.crm-nav-icon {
+    width:44px;
 
-    width:46px;
-
-    height:46px;
+    height:44px;
 
     border-radius:12px;
 
@@ -219,28 +224,28 @@
 }
 
 
-.crm-nav-icon:hover {
+.crm-nav-icon:hover{
 
     background:#7c3aed;
 
     color:#fff;
 
-    transform:translateY(-3px);
+    transform:translateY(-2px);
 
 }
 
 
+/* =====================================================
+   BADGE
+===================================================== */
 
-/* Badge */
-
-
-.crm-nav-badge {
+.crm-nav-badge{
 
     position:absolute;
 
-    top:5px;
+    top:3px;
 
-    right:5px;
+    right:3px;
 
     width:18px;
 
@@ -265,21 +270,19 @@
 }
 
 
-
 /* =====================================================
    USER PROFILE
 ===================================================== */
 
-
-.crm-user {
+.crm-user{
 
     display:flex;
 
     align-items:center;
 
-    gap:12px;
+    gap:10px;
 
-    padding:8px 12px;
+    padding:6px 10px;
 
     background:#0f0b1a;
 
@@ -287,15 +290,14 @@
 
     border:1px solid rgba(255,255,255,.06);
 
-    color:white;
+    color:#fff;
 
     text-decoration:none;
 
 }
 
 
-
-.crm-user:hover {
+.crm-user:hover{
 
     background:#21163d;
 
@@ -304,12 +306,11 @@
 }
 
 
+.crm-avatar{
 
-.crm-avatar {
+    width:42px;
 
-    width:44px;
-
-    height:44px;
+    height:42px;
 
     border-radius:50%;
 
@@ -319,20 +320,23 @@
 
     justify-content:center;
 
-    background:linear-gradient(135deg,#7c3aed,#5b21b6);
+    background:linear-gradient(
+        135deg,
+        #7c3aed,
+        #5b21b6
+    );
 
 }
 
 
-.crm-avatar i {
+.crm-avatar i{
 
-    color:white;
+    color:#fff;
 
 }
 
 
-
-.crm-user-info {
+.crm-user-info{
 
     display:flex;
 
@@ -341,27 +345,34 @@
 }
 
 
-.crm-user-name {
+.crm-user-name{
 
     font-weight:600;
 
 }
 
 
-.crm-user-info small {
+.crm-user-info small{
 
     color:#94a3b8;
 
 }
 
 
+.crm-arrow{
+
+    font-size:11px;
+
+    color:#94a3b8;
+
+}
+
 
 /* =====================================================
    DROPDOWN
 ===================================================== */
 
-
-.crm-dropdown {
+.crm-dropdown{
 
     margin-top:14px;
 
@@ -375,13 +386,13 @@
 
     overflow:hidden;
 
-    box-shadow:0 20px 35px rgba(0,0,0,.35);
+    box-shadow:
+        0 20px 35px rgba(0,0,0,.35);
 
 }
 
 
-
-.crm-dropdown .dropdown-item {
+.crm-dropdown .dropdown-item{
 
     display:flex;
 
@@ -396,22 +407,20 @@
 }
 
 
-.crm-dropdown .dropdown-item:hover {
+.crm-dropdown .dropdown-item:hover{
 
     background:#7c3aed;
 
-    color:white;
+    color:#fff;
 
 }
-
 
 
 /* =====================================================
    COMMON CRM CARD
 ===================================================== */
 
-
-.crm-card {
+.crm-card{
 
     background:#1a1330;
 
@@ -419,7 +428,8 @@
 
     border:1px solid rgba(255,255,255,.08);
 
-    box-shadow:0 15px 35px rgba(0,0,0,.25);
+    box-shadow:
+        0 15px 35px rgba(0,0,0,.25);
 
     padding:25px;
 
@@ -428,13 +438,11 @@
 }
 
 
-
 /* =====================================================
    TITLES
 ===================================================== */
 
-
-.crm-title {
+.crm-title{
 
     color:#e5e7eb;
 
@@ -445,7 +453,7 @@
 }
 
 
-.crm-page-subtitle {
+.crm-page-subtitle{
 
     color:#a1a1aa;
 
@@ -454,15 +462,13 @@
 }
 
 
-
 /* =====================================================
    BUTTONS
 ===================================================== */
 
-
 .crm-btn-primary,
 .crm-btn-secondary,
-.crm-btn-danger {
+.crm-btn-danger{
 
     display:inline-flex;
 
@@ -485,71 +491,69 @@
 }
 
 
-
-/* Primary */
-
-.crm-btn-primary {
+.crm-btn-primary{
 
     background:#7c3aed;
 
-    color:white;
+    color:#fff;
 
 }
 
 
-.crm-btn-primary:hover {
+.crm-btn-primary:hover{
 
     background:#6d28d9;
 
-    color:white;
+    color:#fff;
 
 }
 
 
+.crm-btn-secondary{
 
-/* Secondary */
+    background:#7c3aed;
 
+    color:#fff;
 
-.crm-btn-secondary {
-    background: #7c3aed;
-    color: #ffffff;
-    border: 1px solid #7c3aed;
-}
+    border:1px solid #7c3aed;
 
-.crm-btn-secondary:hover {
-    background: #6d28d9;
-    color: #ffffff;
-    border-color: #6d28d9;
 }
 
 
+.crm-btn-secondary:hover{
 
-/* Danger */
+    background:#6d28d9;
+
+    color:#fff;
+
+    border-color:#6d28d9;
+
+}
 
 
-.crm-btn-danger {
+.crm-btn-danger{
 
     background:#dc2626;
 
-    color:white;
+    color:#fff;
 
 }
 
 
-.crm-btn-danger:hover {
+.crm-btn-danger:hover{
 
     background:#b91c1c;
 
-}
+    color:#fff;
 
+}
 
 
 /* =====================================================
    FORMS
 ===================================================== */
 
-
-.crm-label {
+.crm-label{
 
     color:#d4d4d8;
 
@@ -562,11 +566,9 @@
 }
 
 
-
 .crm-form .form-control,
 .crm-form .form-select,
-.crm-input {
-
+.crm-input{
 
     background:#0f0b1a;
 
@@ -579,29 +581,26 @@
 }
 
 
-
 .crm-form .form-control:focus,
-.crm-form .form-select:focus {
-
+.crm-form .form-select:focus{
 
     background:#0f0b1a;
 
-    color:white;
+    color:#fff;
 
     border-color:#7c3aed;
 
-    box-shadow:0 0 0 .2rem rgba(124,58,237,.25);
+    box-shadow:
+        0 0 0 .2rem rgba(124,58,237,.25);
 
 }
-
 
 
 /* =====================================================
    DETAIL BOX
 ===================================================== */
 
-
-.crm-detail-box {
+.crm-detail-box{
 
     background:#0f0b1a;
 
@@ -616,13 +615,11 @@
 }
 
 
-
 /* =====================================================
    ALERTS
 ===================================================== */
 
-
-.crm-alert-success {
+.crm-alert-success{
 
     background:#052e16;
 
@@ -635,8 +632,7 @@
 }
 
 
-
-.crm-alert-info {
+.crm-alert-info{
 
     background:#172554;
 
@@ -649,8 +645,7 @@
 }
 
 
-
-.crm-message-alert {
+.crm-message-alert{
 
     border:none;
 
@@ -661,351 +656,538 @@
 }
 
 
-
 /* =====================================================
-   RESPONSIVE — CRM NAVBAR
+   RESPONSIVE — TABLET
 ===================================================== */
 
-/* TABLET + MOBILE */
-@media (max-width: 991px){
+@media (max-width:991px){
 
-    /* Navbar full width */
     .crm-navbar{
+
         margin-left:0;
+
         width:100%;
+
         height:auto;
+
         min-height:70px;
-        padding:12px 20px;
+
+        padding:10px 20px;
+
     }
+
 
     .crm-navbar .container-fluid{
+
         height:auto;
+
         display:flex;
-        align-items:center;
+
         flex-wrap:wrap;
+
+        align-items:center;
+
         gap:10px;
+
+        padding:0;
+
     }
 
-    /* =========================
+
+    /* =================================================
        HAMBURGER
-    ========================= */
+    ================================================= */
 
     .crm-navbar-toggler{
-        display:flex;
-        align-items:center;
-        justify-content:center;
+
+        order:-1;
 
         width:44px;
+
         height:44px;
 
         padding:0;
-        margin-right:4px;
 
-        border:1px solid rgba(255,255,255,.12);
-        border-radius:10px;
+        display:flex;
 
-        background:#0f0b1a;
-        color:#fff;
+        align-items:center;
+
+        justify-content:center;
+
+        border:1px solid rgba(124,58,237,.35);
+
+        border-radius:11px;
+
+        background:#1a1330;
+
+        flex-shrink:0;
+
     }
+
 
     .crm-navbar-toggler:hover{
+
         background:#7c3aed;
+
         border-color:#7c3aed;
+
     }
+
 
     .crm-navbar-toggler:focus{
-        box-shadow:0 0 0 3px rgba(124,58,237,.20);
+
+        box-shadow:
+            0 0 0 3px rgba(124,58,237,.20);
+
     }
+
+
+    /* Make hamburger icon visible */
 
     .crm-navbar-toggler .navbar-toggler-icon{
-        filter:invert(1);
+
+    filter: invert(27%) sepia(96%) saturate(4000%) hue-rotate(260deg) brightness(90%) contrast(95%);
+
     }
 
 
-    /* =========================
-       LOGO
-    ========================= */
+    /* =================================================
+       BRAND
+    ================================================= */
 
     .crm-brand{
-        flex:1;
-        min-width:0;
-    }
 
-    .crm-brand-icon{
+        order:0;
+
         flex-shrink:0;
+
     }
 
 
-    /* =========================
-       NAV ACTIONS
-       Bell + Message + Profile
-    ========================= */
+    /* =================================================
+       NAVBAR COLLAPSE
+       Keep items in same flex row
+    ================================================= */
+
+    .crm-navbar .navbar-collapse{
+
+        display:contents !important;
+
+    }
+
+
+    /* =================================================
+       ACTIONS
+    ================================================= */
 
     .crm-navbar-actions{
+
+        order:1;
+
         display:flex;
+
         align-items:center;
+
         justify-content:flex-end;
+
         gap:8px;
+
         margin-left:auto;
+
         flex-shrink:0;
+
     }
 
 
-    /* =========================
-       SEARCH
-    ========================= */
+    /* =================================================
+       SEARCH → NEXT LINE
+    ================================================= */
 
     .crm-search{
+
+        order:10;
+
         width:100%;
+
         max-width:none;
-        order:5;
+
         flex:0 0 100%;
-        margin:8px 0 2px;
+
+        margin:8px 0 2px !important;
+
     }
 
+
     .crm-search .input-group{
+
         width:100%;
+
     }
 
 }
 
 
 /* =====================================================
-   MOBILE
+   RESPONSIVE — MOBILE
 ===================================================== */
 
-@media (max-width: 767px){
+@media (max-width:767px){
 
     .crm-navbar{
-        padding:10px 14px;
+
+        padding:9px 14px;
+
     }
+
 
     .crm-navbar .container-fluid{
-        gap:8px;
-    }
 
-
-    /* Hamburger */
-    .crm-navbar-toggler{
-        width:42px;
-        height:42px;
-        flex-shrink:0;
-    }
-
-
-    /* Logo */
-    .crm-brand{
-        gap:9px;
-    }
-
-    .crm-brand-icon{
-        width:42px;
-        height:42px;
-        border-radius:11px;
-    }
-
-    .crm-brand-icon i{
-        font-size:18px;
-    }
-
-    .crm-brand-title{
-        font-size:18px;
-        white-space:nowrap;
-    }
-
-
-    /* Bell + Message + Profile */
-    .crm-navbar-actions{
-        gap:6px;
-    }
-
-    .crm-nav-icon{
-        width:40px;
-        height:40px;
-        border-radius:10px;
-        flex-shrink:0;
-    }
-
-    .crm-nav-badge{
-        top:2px;
-        right:2px;
-
-        width:17px;
-        height:17px;
-
-        font-size:9px;
-    }
-
-
-    /* Profile */
-    .crm-user{
-        padding:4px;
-        border:none;
-        background:transparent;
-        gap:0;
-    }
-
-    .crm-user-info{
-        display:none;
-    }
-
-    .crm-avatar{
-        width:40px;
-        height:40px;
-    }
-
-
-    /* Search below top row */
-    .crm-search{
-        margin:8px 0 0;
-    }
-
-    .crm-search .input-group{
-        height:42px;
-        border-radius:10px;
-    }
-
-}
-
-
-/* =====================================================
-   SMALL MOBILE
-===================================================== */
-
-@media (max-width: 480px){
-
-    .crm-navbar{
-        padding:9px 10px;
-    }
-
-    .crm-navbar .container-fluid{
-        gap:6px;
-    }
-
-
-    /* Hamburger */
-    .crm-navbar-toggler{
-        width:40px;
-        height:40px;
-        margin-right:0;
-    }
-
-
-    /* Logo */
-    .crm-brand{
         gap:7px;
+
     }
+
+
+    /* =================================================
+       HAMBURGER
+    ================================================= */
+
+    .crm-navbar-toggler{
+
+        order:-1;
+
+        width:40px;
+
+        height:40px;
+
+        margin:0;
+
+        padding:0;
+
+        border-radius:10px;
+
+        background:#1a1330;
+
+        border-color:rgba(124,58,237,.35);
+
+        flex-shrink:0;
+
+    }
+
+
+    .crm-navbar-toggler:hover{
+
+        background:#7c3aed;
+
+        border-color:#7c3aed;
+
+    }
+
+
+    .crm-navbar-toggler .navbar-toggler-icon{
+
+    filter: invert(27%) sepia(96%) saturate(4000%) hue-rotate(260deg) brightness(90%) contrast(95%);
+
+    }
+
+
+    /* =================================================
+       BRAND
+    ================================================= */
+
+    .crm-brand{
+
+        order:0;
+
+        gap:8px;
+
+        min-width:0;
+
+        flex-shrink:0;
+
+    }
+
 
     .crm-brand-icon{
-        width:38px;
-        height:38px;
+
+        width:40px;
+
+        height:40px;
+
         border-radius:10px;
+
     }
+
 
     .crm-brand-icon i{
-        font-size:16px;
+
+        font-size:17px;
+
     }
+
 
     .crm-brand-title{
-        font-size:16px;
+
+        font-size:17px;
+
+        white-space:nowrap;
+
     }
 
-    .crm-brand-text{
+
+    .crm-brand-text small{
+
         display:none;
+
     }
 
 
-    /* Actions */
+    /* =================================================
+       ACTIONS
+    ================================================= */
+
     .crm-navbar-actions{
-        gap:4px;
+
+        order:1;
+
+        gap:5px;
+
+        margin-left:auto;
+
+        flex-shrink:0;
+
     }
+
 
     .crm-nav-icon{
+
         width:38px;
+
         height:38px;
+
+        border-radius:10px;
+
+        flex-shrink:0;
+
     }
+
 
     .crm-nav-badge{
+
+        top:1px;
+
+        right:1px;
+
         width:16px;
+
         height:16px;
+
         font-size:8px;
+
     }
 
 
-    /* Profile */
+    /* =================================================
+       PROFILE → AVATAR ONLY
+    ================================================= */
+
+    .crm-user{
+
+        padding:0;
+
+        border:none;
+
+        background:transparent;
+
+        gap:0;
+
+    }
+
+
+    .crm-user:hover{
+
+        background:transparent;
+
+        border-color:transparent;
+
+    }
+
+
+    .crm-user-info,
+    .crm-arrow{
+
+        display:none;
+
+    }
+
+
     .crm-avatar{
+
         width:38px;
+
         height:38px;
+
     }
 
 
-    /* Search */
+    /* =================================================
+       SEARCH → SECOND ROW
+    ================================================= */
+
+    .crm-search{
+
+        order:10;
+
+        width:100%;
+
+        flex:0 0 100%;
+
+        margin-top:8px !important;
+
+        margin-bottom:0 !important;
+
+    }
+
+
     .crm-search .input-group{
-        height:40px;
+
+        height:42px;
+
+        border-radius:10px;
+
     }
 
 }
+
+
 /* =====================================================
-   CRM NAVBAR — MOBILE RESPONSIVE FIX
+   RESPONSIVE — SMALL MOBILE
 ===================================================== */
 
-@media (max-width: 767px) {
+@media (max-width:480px){
 
-    .crm-navbar {
-        margin-left: 0;
-        width: 100%;
-        height: auto;
-        min-height: 70px;
-        padding: 10px 14px;
+    .crm-navbar{
+
+        padding:8px 10px;
+
     }
 
-    .crm-navbar .container-fluid {
-        height: auto;
-        padding: 0;
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
+
+    .crm-navbar .container-fluid{
+
+        gap:5px;
+
     }
 
-    /* Logo */
-    .crm-brand-icon {
-        flex-shrink: 0;
+
+    /* =================================================
+       HAMBURGER
+    ================================================= */
+
+    .crm-navbar-toggler{
+
+        order:-1;
+
+        width:38px;
+
+        height:38px;
+
+        border-radius:10px;
+
     }
 
-    /* Hamburger */
-    .crm-navbar .navbar-toggler {
-        margin-left: auto;
-        flex-shrink: 0;
+
+    /* =================================================
+       BRAND
+    ================================================= */
+
+    .crm-brand{
+
+        order:0;
+
+        gap:6px;
+
     }
 
-    /* Search */
-    .crm-navbar .crm-search,
-    .crm-navbar .navbar-search,
-    .crm-navbar form {
-        width: 100%;
-        max-width: 100%;
-        flex: 0 0 100%;
-        margin: 10px 0 0;
+
+    .crm-brand-icon{
+
+        width:36px;
+
+        height:36px;
+
+        border-radius:9px;
+
     }
 
-    .crm-navbar input {
-        width: 100%;
-        max-width: 100%;
-        box-sizing: border-box;
+
+    .crm-brand-icon i{
+
+        font-size:15px;
+
     }
 
-    /* Right side icons */
-    .crm-navbar .navbar-nav {
-        width: 100%;
-        margin-top: 8px;
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        gap: 6px;
+
+    .crm-brand-title{
+
+        font-size:15px;
+
     }
 
-    .crm-navbar .nav-item {
-        flex-shrink: 0;
+
+    /* =================================================
+       ACTIONS
+    ================================================= */
+
+    .crm-navbar-actions{
+
+        order:1;
+
+        gap:3px;
+
+    }
+
+
+    .crm-nav-icon{
+
+        width:36px;
+
+        height:36px;
+
+        border-radius:9px;
+
+    }
+
+
+    .crm-avatar{
+
+        width:36px;
+
+        height:36px;
+
+    }
+
+
+    /* =================================================
+       SEARCH
+    ================================================= */
+
+    .crm-search{
+
+        order:10;
+
+        width:100%;
+
+        flex:0 0 100%;
+
+    }
+
+
+    .crm-search .input-group{
+
+        height:40px;
+
+        border-radius:10px;
+
     }
 
 }
