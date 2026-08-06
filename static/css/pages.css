@@ -3431,14 +3431,13 @@
     ========================= */
 
     .crm-kanban-page .kanban-count {
-        min-width: 26px;
-        height: 25px;
-        padding: 0 7px;
+        min-width: 28px;
+        height: 28px;
         display: inline-flex;
         align-items: center;
         justify-content: center;
 
-        border-radius: 7px;
+        border-radius: 8px;
 
         background: rgba(124, 58, 237, 0.15);
         border: 1px solid rgba(124, 58, 237, 0.2);
