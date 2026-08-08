@@ -3330,8 +3330,10 @@
         overflow: hidden;
         box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
         min-height: 390px;
+        padding: 0 !important;
         transition: border-color 0.2s ease,
                     box-shadow 0.2s ease;
+                    
     }
 
     .crm-kanban-page .kanban-column-card:hover {
@@ -3348,6 +3350,7 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
+            
         min-height: 55px;
         padding: 13px 14px;
         border-bottom: 1px solid rgba(255, 255, 255, 0.06);
@@ -3386,12 +3389,15 @@
     ========================= */
 
     .crm-kanban-page .kanban-column-title {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        color: #e5e7eb;
-        font-size: 13px;
-        font-weight: 600;
+           display: flex;
+    align-items: center;
+    gap: 8px;
+
+   
+
+    color: #e5e7eb;
+    font-size: 13px;
+    font-weight: 600;
     }
 
     .crm-kanban-page .kanban-column-title i {
