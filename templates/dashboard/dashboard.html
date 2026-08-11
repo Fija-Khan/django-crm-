@@ -1,761 +1,372 @@
-{% extends 'base.html' %}
-
-{% block title %}
-Dashboard
-{% endblock %}
-
-
+{% extends 'base.html' %} {% block title %} Dashboard {% endblock %} 
 {% block content %}
 
 <div class="container-fluid">
-
-
-    <!-- ==========================
+  <!-- ==========================
             PAGE HEADER
     ========================== -->
 
-    <div class="d-flex justify-content-between align-items-center mb-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+      <h2 class="dashboard-title mb-1">
+        Welcome, {{ request.user.first_name|default:request.user.username }} 👋
+      </h2>
 
-
-        <div>
-
-            <h2 class="dashboard-title mb-1">
-
-                Welcome,
-                {{ request.user.first_name|default:request.user.username }}
-                👋
-
-            </h2>
-
-
-            <p class="mb-0">
-
-                Here's what's happening in your CRM today.
-
-            </p>
-
-
-        </div>
-
-
-
-        <div class="text-end">
-
-            <small>
-
-                {{ today|date:"l, d F Y" }}
-
-            </small>
-
-        </div>
-
-
+      <p class="mb-0">Here's what's happening in your CRM today.</p>
     </div>
 
-
-
-
-
-    <!-- ==========================
-            KPI CARDS
-    ========================== -->
-
-
-    <div class="row g-4 mb-4">
-
-
-
-        <!-- Contacts -->
-
-        <div class="col-xl-3 col-md-6">
-
-
-            <div class="card crm-card h-100">
-
-
-                <div class="card-body d-flex justify-content-between align-items-center">
-
-
-                    <div>
-
-                        <h3 class="fw-bold text-crm-success">
-
-                            {{ total_contacts }}
-
-                        </h3>
-
-
-                        <p class="mb-0">
-
-                            Total Contacts
-
-                        </p>
-
-
-                    </div>
-
-
-
-                    <i class="bi bi-people-fill display-5 text-crm-success"></i>
-
-
-
-                </div>
-
-
-            </div>
-
-
-        </div>
-
-
-
-
-
-        <!-- Leads -->
-
-
-        <div class="col-xl-3 col-md-6">
-
-
-            <div class="card crm-card h-100">
-
-
-                <div class="card-body d-flex justify-content-between align-items-center">
-
-
-                    <div>
-
-
-                        <h3 class="fw-bold text-crm-primary">
-
-                            {{ total_leads }}
-
-                        </h3>
-
-
-                        <p class="mb-0">
-
-                            Total Leads
-
-                        </p>
-
-
-                    </div>
-
-
-
-                    <i class="bi bi-bullseye display-5 text-crm-primary"></i>
-
-
-
-                </div>
-
-
-            </div>
-
-
-        </div>
-
-
-
-
-
-        <!-- Won Deals -->
-
-
-        <div class="col-xl-3 col-md-6">
-
-
-            <div class="card crm-card h-100">
-
-
-                <div class="card-body d-flex justify-content-between align-items-center">
-
-
-                    <div>
-
-
-                        <h3 class="fw-bold text-warning">
-
-                            {{ won_deals }}
-
-                        </h3>
-
-
-                        <p class="mb-0">
-
-                            Won Deals
-
-                        </p>
-
-
-                    </div>
-
-
-
-                    <i class="bi bi-currency-rupee display-5 text-warning"></i>
-
-
-
-                </div>
-
-
-            </div>
-
-
-        </div>
-
-
-
-
-
-        <!-- Tasks Today -->
-
-
-        <div class="col-xl-3 col-md-6">
-
-
-            <div class="card crm-card h-100">
-
-
-                <div class="card-body d-flex justify-content-between align-items-center">
-
-
-                    <div>
-
-
-                        <h3 class="fw-bold text-danger">
-
-
-                            {{ today_tasks|length }}
-
-
-                        </h3>
-
-
-                        <p class="mb-0">
-
-                            Tasks Due Today
-
-                        </p>
-
-
-                    </div>
-
-
-
-                    <i class="bi bi-list-check display-5 text-danger"></i>
-
-
-
-                </div>
-
-
-            </div>
-
-
-        </div>
-
-
-
+    <div class="text-end">
+      <small> {{ today|date:"l, d F Y" }} </small>
     </div>
-<!-- ==========================
+  </div>
+
+  <!-- ==========================
+        KPI CARDS
+========================== -->
+
+  <div class="row g-4 mb-4">
+    <!-- Contacts -->
+    <div class="col-xl-3 col-md-6">
+      <div class="card crm-card h-100">
+        <div
+          class="card-body d-flex justify-content-between align-items-center"
+        >
+          <div>
+            <h3 class="fw-bold text-crm-success">{{ total_contacts }}</h3>
+
+            <p class="mb-0">Total Contacts</p>
+          </div>
+
+          <i class="bi bi-people-fill display-5 text-crm-success"></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- Leads -->
+    <div class="col-xl-3 col-md-6">
+      <div class="card crm-card h-100">
+        <div
+          class="card-body d-flex justify-content-between align-items-center"
+        >
+          <div>
+            <h3 class="fw-bold text-crm-primary">{{ total_leads }}</h3>
+
+            <p class="mb-0">Total Leads</p>
+          </div>
+
+          <i class="bi bi-bullseye display-5 text-crm-primary"></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- Won Deals -->
+    <div class="col-xl-3 col-md-6">
+      <div class="card crm-card h-100">
+        <div
+          class="card-body d-flex justify-content-between align-items-center"
+        >
+          <div>
+            <h3 class="fw-bold text-warning">{{ won_deals }}</h3>
+
+            <p class="mb-0">Won Deals</p>
+          </div>
+
+          <i class="bi bi-currency-rupee display-5 text-warning"></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tasks Today -->
+    <div class="col-xl-3 col-md-6">
+      <div class="card crm-card h-100">
+        <div
+          class="card-body d-flex justify-content-between align-items-center"
+        >
+          <div>
+            <h3 class="fw-bold text-danger">{{ today_tasks|length }}</h3>
+
+            <p class="mb-0">Tasks Due Today</p>
+          </div>
+
+          <i class="bi bi-list-check display-5 text-danger"></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- Overdue Tasks -->
+    <div class="col-xl-3 col-md-6">
+      <div class="card crm-card h-100">
+        <div
+          class="card-body d-flex justify-content-between align-items-center"
+        >
+          <div>
+            <h3 class="fw-bold text-danger">{{ overdue_tasks }}</h3>
+
+            <p class="mb-0">Overdue Tasks</p>
+          </div>
+
+          <i class="bi bi-exclamation-triangle-fill display-5 text-danger"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================
         TASKS & RECENT ACTIVITY
 ========================== -->
 
-
-<div class="row g-4 mb-4">
-
-
+  <div class="row g-5 mb-4">
     <!-- TODAY TASKS -->
 
-
     <div class="col-lg-6">
-
-
-        <div class="card crm-card h-100">
-
-
-            <div class="card-header crm-header">
-
-
-                <i class="bi bi-list-task me-2"></i>
-
-                Today's Tasks
-
-
-            </div>
-
-
-
-            <div class="card-body">
-
-
-
-                {% for task in today_tasks %}
-
-
-
-                <div class="border rounded p-3 mb-3">
-
-
-
-                    <div class="d-flex justify-content-between">
-
-
-
-                        <strong>
-
-                            {{ task.title }}
-
-                        </strong>
-
-
-
-
-                        <span class="badge bg-primary">
-
-                            {{ task.status|title }}
-
-                        </span>
-
-
-
-                    </div>
-
-
-
-
-
-                    <small>
-
-
-                        Priority :
-
-                        <strong>
-
-                            {{ task.priority|title }}
-
-                        </strong>
-
-
-                    </small>
-
-
-
-                    <br>
-
-
-
-                    <small>
-
-
-                        Due :
-
-                        {{ task.due_date }}
-
-
-                    </small>
-
-
-
-                </div>
-
-
-
-                {% empty %}
-
-
-
-                <div class="text-center py-4">
-
-
-                    <i class="bi bi-check-circle display-5 text-success"></i>
-
-
-
-                    <p class="mt-3 mb-0">
-
-
-                        No pending tasks for today.
-
-
-                    </p>
-
-
-                </div>
-
-
-
-                {% endfor %}
-
-
-
-            </div>
-
-
+      <div class="card crm-card h-100">
+        <div class="card-header crm-header">
+          <i class="bi bi-list-task me-2"></i>
+
+          Today's Tasks
         </div>
 
+        <div class="card-body">
+          {% for task in today_tasks %}
 
+          <div class="border rounded p-3 mb-3">
+            <div class="d-flex justify-content-between">
+              <strong> {{ task.title }} </strong>
+
+              <span class="badge bg-primary"> {{ task.status|title }} </span>
+            </div>
+
+            <small>
+              Priority :
+
+              <strong> {{ task.priority|title }} </strong>
+            </small>
+
+            <br />
+
+            <small> Due : {{ task.due_date }} </small>
+          </div>
+
+          {% empty %}
+
+          <div class="text-center py-4">
+            <i class="bi bi-check-circle display-5 text-success"></i>
+
+            <p class="mt-3 mb-0">No pending tasks for today.</p>
+          </div>
+
+          {% endfor %}
+        </div>
+      </div>
     </div>
-
-
-
-
-
-
 
     <!-- RECENT ACTIVITY -->
 
-
     <div class="col-lg-6">
-
-
-
-        <div class="card crm-card h-100">
-
-
-            <div class="card-header crm-header-alt">
-
-
-                <i class="bi bi-clock-history me-2"></i>
-
-
-                Recent Activity
-
-
-
-            </div>
-
-
-
-
-            <div class="card-body">
-
-
-
-                {% for activity in recent_activities %}
-
-
-
-                <div class="border-start border-4 border-primary ps-3 mb-3">
-
-
-
-                    <strong>
-
-
-                        {{ activity.type|title }}
-
-
-                    </strong>
-
-
-
-                    <p class="mb-1">
-
-
-                        {{ activity.summary }}
-
-
-                    </p>
-
-
-
-
-                    <small>
-
-
-                        {{ activity.interaction_date|date:"d M Y, h:i A" }}
-
-
-                    </small>
-
-
-
-                </div>
-
-
-
-
-                {% empty %}
-
-
-
-                <div class="text-center py-4">
-
-
-                    <i class="bi bi-clock-history display-5 text-secondary"></i>
-
-
-
-                    <p class="mt-3">
-
-
-                        No recent activity found.
-
-
-                    </p>
-
-
-
-                </div>
-
-
-
-                {% endfor %}
-
-
-
-
-            </div>
-
-
-
+      <div class="card crm-card h-100">
+        <div class="card-header crm-header-alt">
+          <i class="bi bi-clock-history me-2"></i>
+
+          Recent Activity
         </div>
 
+        <div class="card-body">
+          {% for activity in recent_activities %}
 
+          <div class="border-start border-4 border-primary ps-3 mb-3">
+            <strong> {{ activity.type|title }} </strong>
 
+            <p class="mb-1">{{ activity.summary }}</p>
+
+            <small> {{ activity.interaction_date|date:"d M Y, h:i A" }} </small>
+          </div>
+
+          {% empty %}
+
+          <div class="text-center py-4">
+            <i class="bi bi-clock-history display-5 text-secondary"></i>
+
+            <p class="mt-3">No recent activity found.</p>
+          </div>
+
+          {% endfor %}
+        </div>
+      </div>
     </div>
+  </div>
 
-
-
-</div>
-
-
-
-
-
-
-
-<!-- ==========================
+  <!-- ==========================
         PIPELINE CHART
 ========================== -->
 
-
-<div class="card crm-card mb-4">
-
-
+  <div class="card crm-card mb-4">
     <div class="card-header crm-header">
+      <i class="bi bi-bar-chart-line me-2"></i>
 
-
-        <i class="bi bi-bar-chart-line me-2"></i>
-
-
-        Lead Pipeline
-
-
-
+      Lead Pipeline
     </div>
-
-
 
     <div class="card-body">
-
-
-        <div style="height:350px;">
-
-
-            <canvas id="pipelineChart"></canvas>
-
-
-        </div>
-
-
+      <div style="height: 350px">
+        <canvas id="pipelineChart"></canvas>
+      </div>
     </div>
+  </div>
 
-
-</div>
-
-
-
-
-
-
-
-<!-- ==========================
+  <!-- ==========================
         REVENUE CHART
 ========================== -->
 
-
-<div class="card crm-card">
-
-
+  <div class="card crm-card">
     <div class="card-header crm-header">
+      <i class="bi bi-graph-up-arrow me-2"></i>
 
-
-        <i class="bi bi-graph-up-arrow me-2"></i>
-
-
-        Monthly Revenue
-
-
-
+      Monthly Revenue
     </div>
-
-
-
 
     <div class="card-body">
-
-
-        <div style="height:350px;">
-
-
-            <canvas id="revenueChart"></canvas>
-
-
-        </div>
-
-
+      <div style="height: 350px">
+        <canvas id="revenueChart"></canvas>
+      </div>
     </div>
-
-
-
+  </div>
 </div>
 
-
-</div>
-
-
-
-{% endblock %}
-{% block extra_js %}
+{% endblock %} {% block extra_js %}
 
 <script>
 
 
-// ==========================
-// Lead Pipeline Chart
-// ==========================
+  // ==========================
+  // Lead Pipeline Chart
+  // ==========================
 
 
-const pipelineCtx = document.getElementById("pipelineChart");
+  const pipelineCtx = document.getElementById("pipelineChart");
 
 
-if (pipelineCtx) {
+  if (pipelineCtx) {
 
 
-    new Chart(pipelineCtx, {
+      new Chart(pipelineCtx, {
 
 
-        type: "bar",
+          type: "bar",
 
 
 
-        data: {
+          data: {
 
 
-            labels: {{ pipeline_labels|safe }},
+              labels: {{ pipeline_labels|safe }},
 
 
 
-            datasets: [{
+              datasets: [{
 
 
 
-                label: "Leads",
+                  label: "Leads",
 
 
 
-                data: {{ pipeline_counts|safe }},
+                  data: {{ pipeline_counts|safe }},
 
 
 
-                backgroundColor: "#7c3aed",
+                  backgroundColor: "#7c3aed",
 
 
 
-                borderRadius: 8,
+                  borderRadius: 8,
 
 
 
-                borderWidth: 0
+                  borderWidth: 0
 
 
 
-            }]
+              }]
 
 
 
-        },
+          },
 
 
 
-        options: {
+          options: {
 
 
 
-            responsive: true,
+              responsive: true,
 
 
 
-            maintainAspectRatio: false,
+              maintainAspectRatio: false,
 
 
 
-            plugins: {
+              plugins: {
 
 
 
-                legend: {
+                  legend: {
 
 
 
-                    display: false
+                      display: false
 
 
 
-                }
+                  }
 
 
 
-            },
+              },
 
 
 
-            scales: {
+              scales: {
 
 
 
-                y: {
+                  y: {
 
 
 
-                    beginAtZero: true,
+                      beginAtZero: true,
 
 
 
-                    ticks: {
+                      ticks: {
 
 
 
-                        precision: 0
+                          precision: 0
 
 
 
-                    }
+                      }
 
 
 
-                }
+                  }
 
 
 
-            }
+              }
 
 
 
-        }
+          }
 
 
 
-    });
+      });
 
 
 
-}
+  }
 
 
 
@@ -764,153 +375,149 @@ if (pipelineCtx) {
 
 
 
-// ==========================
-// Monthly Revenue Chart
-// ==========================
+  // ==========================
+  // Monthly Revenue Chart
+  // ==========================
 
 
-const revenueCtx = document.getElementById("revenueChart");
+  const revenueCtx = document.getElementById("revenueChart");
 
 
 
-if (revenueCtx) {
+  if (revenueCtx) {
 
 
 
-    new Chart(revenueCtx, {
+      new Chart(revenueCtx, {
 
 
 
-        type: "line",
+          type: "line",
 
 
 
 
-        data: {
+          data: {
 
 
 
-            labels: {{ revenue_labels|safe }},
+              labels: {{ revenue_labels|safe }},
 
 
 
-            datasets: [{
+              datasets: [{
 
 
 
-                label: "Revenue",
+                  label: "Revenue",
 
 
 
-                data: {{ revenue_totals|safe }},
+                  data: {{ revenue_totals|safe }},
 
 
 
-                borderColor: "#22c55e",
+                  borderColor: "#22c55e",
 
 
 
-                backgroundColor: "rgba(34,197,94,0.20)",
+                  backgroundColor: "rgba(34,197,94,0.20)",
 
 
 
-                fill: true,
+                  fill: true,
 
 
 
-                tension: 0.4,
+                  tension: 0.4,
 
 
 
-                borderWidth: 3,
+                  borderWidth: 3,
 
 
 
-                pointRadius: 4,
+                  pointRadius: 4,
 
 
 
-                pointHoverRadius: 6
+                  pointHoverRadius: 6
 
 
 
-            }]
+              }]
 
 
 
-        },
+          },
 
 
 
-        options: {
+          options: {
 
 
 
-            responsive: true,
+              responsive: true,
 
 
 
-            maintainAspectRatio: false,
+              maintainAspectRatio: false,
 
 
 
-            plugins: {
+              plugins: {
 
 
 
-                legend: {
+                  legend: {
 
 
 
-                    display: true,
+                      display: true,
 
 
 
-                    position: "top"
+                      position: "top"
 
 
 
-                }
+                  }
 
 
 
-            },
+              },
 
 
 
-            scales: {
+              scales: {
 
 
 
-                y: {
+                  y: {
 
 
 
-                    beginAtZero: true
+                      beginAtZero: true
 
 
 
-                }
+                  }
 
 
 
-            }
+              }
 
 
 
-        }
+          }
 
 
 
-    });
+      });
 
 
 
-}
-
-
-
+  }
 </script>
-
 
 {% endblock %}
