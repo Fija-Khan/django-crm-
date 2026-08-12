@@ -623,3 +623,54 @@ body{
     }
 
 }
+
+/* =====================================================
+   GLOBAL DATE INPUT CALENDAR ICON
+===================================================== */
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    opacity: 0.9;
+    cursor: pointer;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator:hover {
+    opacity: 1;
+}
+
+/* =====================================================
+   NAVBAR AUTH BUTTONS
+   ===================================================== */
+
+.crm-navbar .btn-outline-light {
+    color: #ffffff;
+    border: 1px solid #7c3aed;
+    background: transparent;
+    border-radius: 8px;
+    padding: 9px 18px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.crm-navbar .btn-outline-light:hover {
+    color: #ffffff;
+    background: #7c3aed;
+    border-color: #7c3aed;
+}
+
+
+.crm-navbar .btn-primary {
+    color: #ffffff;
+    background: #7c3aed;
+    border: 1px solid #7c3aed;
+    border-radius: 8px;
+    padding: 9px 18px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.crm-navbar .btn-primary:hover {
+    color: #ffffff;
+    background: #6d28d9;
+    border-color: #6d28d9;
+}
