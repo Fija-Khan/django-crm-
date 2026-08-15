@@ -1,275 +1,96 @@
-{% extends "base.html" %}
-
-
-{% block title %}
-Convert Lead
+{% extends "base.html" %} 
+{% block title %} 
+Convert Lead 
 {% endblock %}
 
-
-
-{% block content %}
-
+ {% block content %}
 
 <div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-lg-6 col-md-8">
+      <div class="crm-card shadow-sm">
+        <div class="card-body text-center p-5">
+          <div class="mb-4">
+            <i class="bi bi-arrow-repeat display-3 text-primary"></i>
+          </div>
 
+          <h2 class="crm-title mb-3">Convert Lead</h2>
 
-    <div class="row justify-content-center">
+          <p class="mb-4">
+            This action will create a new deal from this lead.
+          </p>
 
+          <div class="crm-detail-box text-start mb-4">
+            <p class="mb-3">
+              <strong> Lead Title: </strong>
 
-        <div class="col-lg-6 col-md-8">
+              <br />
 
+              {{ lead.title }}
+            </p>
 
+            <p class="mb-3">
+              <strong> Contact: </strong>
 
-            <div class="crm-card shadow-sm">
+              <br />
 
+              {% if lead.contact %} {{ lead.contact }} {% else %} No Contact {% endif %}
+            </p>
 
-                <div class="card-body text-center p-5">
+            <p class="mb-3">
+              <strong> Status: </strong>
 
+              <br />
 
+              {% if lead.status == "won" %}
 
-                    <div class="mb-4">
+              <span class="crm-badge-success"> Won </span>
 
-                        <i class="bi bi-arrow-repeat display-3 text-primary"></i>
+              {% elif lead.status == "lost" %}
 
-                    </div>
+              <span class="crm-badge-danger"> Lost </span>
 
+              {% else %}
 
+              <span class="crm-badge-primary">
+                {{ lead.get_status_display }}
+              </span>
 
+              {% endif %}
+            </p>
 
+            <p class="mb-0">
+              <strong> Deal Amount: </strong>
 
-                    <h2 class="crm-title mb-3">
+              <br />
 
-                        Convert Lead
+              ₹ {{ lead.estimated_value|floatformat:2 }}
+            </p>
+          </div>
 
-                    </h2>
+          <form method="POST">
+            {% csrf_token %}
 
+            <div class="d-flex justify-content-center gap-3">
+              <button type="submit" class="crm-btn-success">
+                <i class="bi bi-check-circle me-1"></i>
 
+                Create Deal
+              </button>
 
+              <a
+                href="{% url 'leads:lead_detail' lead.id %}"
+                class="crm-btn-secondary"
+              >
+                <i class="bi bi-arrow-left me-1"></i>
 
-
-                    <p class="text-muted mb-4">
-
-                        This action will create a new deal from this lead.
-
-                    </p>
-
-
-
-
-
-
-
-
-                    <div class="crm-detail-box text-start mb-4">
-
-
-
-
-
-                        <p class="mb-3">
-
-                            <strong>
-                                Lead Title:
-                            </strong>
-
-                            <br>
-
-                            {{ lead.title }}
-
-                        </p>
-
-
-
-
-
-
-                        <p class="mb-3">
-
-                            <strong>
-                                Contact:
-                            </strong>
-
-                            <br>
-
-
-                            {% if lead.contact %}
-
-                                {{ lead.contact }}
-
-                            {% else %}
-
-                                No Contact
-
-                            {% endif %}
-
-
-                        </p>
-
-
-
-
-
-
-                        <p class="mb-3">
-
-
-                            <strong>
-                                Status:
-                            </strong>
-
-
-                            <br>
-
-
-                            {% if lead.status == "won" %}
-
-
-                                <span class="crm-badge-success">
-                                    Won
-                                </span>
-
-
-
-                            {% elif lead.status == "lost" %}
-
-
-                                <span class="crm-badge-danger">
-                                    Lost
-                                </span>
-
-
-                            {% else %}
-
-
-                                <span class="crm-badge-primary">
-                                    {{ lead.get_status_display }}
-                                </span>
-
-
-                            {% endif %}
-
-
-
-                        </p>
-
-
-
-
-
-
-
-                        <p class="mb-0">
-
-                            <strong>
-                                Deal Amount:
-                            </strong>
-
-
-                            <br>
-
-
-                            ₹ {{ lead.estimated_value|floatformat:2 }}
-
-
-                        </p>
-
-
-
-
-
-                    </div>
-
-
-
-
-
-
-
-
-
-                    <form method="POST">
-
-
-                        {% csrf_token %}
-
-
-
-
-
-                        <div class="d-flex justify-content-center gap-3">
-
-
-
-
-
-                            <button type="submit"
-                                    class="crm-btn-success">
-
-
-                                <i class="bi bi-check-circle me-1"></i>
-
-
-                                Create Deal
-
-
-                            </button>
-
-
-
-
-
-
-
-
-                            <a href="{% url 'leads:lead_detail' lead.id %}"
-                               class="crm-btn-secondary">
-
-
-                                <i class="bi bi-arrow-left me-1"></i>
-
-
-                                Cancel
-
-
-                            </a>
-
-
-
-
-
-                        </div>
-
-
-
-
-
-
-                    </form>
-
-
-
-
-
-
-                </div>
-
-
-
+                Cancel
+              </a>
             </div>
-
-
-
-
+          </form>
         </div>
-
-
-
+      </div>
     </div>
-
-
-
+  </div>
 </div>
-
-
-
 {% endblock %}

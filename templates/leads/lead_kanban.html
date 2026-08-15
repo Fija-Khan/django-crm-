@@ -541,7 +541,6 @@
     </div>
 
 </div>
-```
 
 </div>
 
@@ -588,6 +587,10 @@ document.querySelectorAll(".lead-card").forEach(card => {
 document.querySelectorAll(".kanban-column").forEach(column => {
 
 
+    /* -----------------------------
+            DRAG OVER
+    ----------------------------- */
+
     column.addEventListener("dragover", function(e) {
 
         e.preventDefault();
@@ -596,6 +599,10 @@ document.querySelectorAll(".kanban-column").forEach(column => {
 
     });
 
+
+    /* -----------------------------
+            DRAG LEAVE
+    ----------------------------- */
 
     column.addEventListener("dragleave", function(e) {
 
@@ -607,6 +614,10 @@ document.querySelectorAll(".kanban-column").forEach(column => {
 
     });
 
+
+    /* -----------------------------
+            DROP
+    ----------------------------- */
 
     column.addEventListener("drop", function(e) {
 
@@ -621,6 +632,25 @@ document.querySelectorAll(".kanban-column").forEach(column => {
         const status =
             this.dataset.status;
 
+
+        /* -----------------------------
+                VALIDATION
+        ----------------------------- */
+
+        if (!lead_id || !status) {
+
+            alert(
+                "Unable to update lead."
+            );
+
+            return;
+
+        }
+
+
+        /* -----------------------------
+                SEND AJAX REQUEST
+        ----------------------------- */
 
         fetch(updateUrl, {
 
@@ -637,25 +667,106 @@ document.querySelectorAll(".kanban-column").forEach(column => {
             },
 
             body:
-                `lead_id=${lead_id}&status=${status}`
+                `lead_id=${encodeURIComponent(lead_id)}&status=${encodeURIComponent(status)}`
 
         })
 
 
-        .then(response => response.json())
+        /* -----------------------------
+                HANDLE RESPONSE
+        ----------------------------- */
+
+        .then(response => {
+
+            if (!response.ok) {
+
+                throw new Error(
+                    "Server error"
+                );
+
+            }
+
+            return response.json();
+
+        })
 
 
         .then(data => {
 
+
+            /* -----------------------------
+                    SUCCESS
+            ----------------------------- */
+
             if (data.success) {
 
-                location.reload();
 
-            } else {
+                /* =========================
+                        WON LEAD
+                ========================= */
+
+                if (data.is_won) {
+
+
+                    const confirmConversion = confirm(
+
+                        "This lead has been marked as Won.\n\n" +
+
+                        "Do you want to convert this lead into a Deal?"
+
+                    );
+
+
+                    /* -------------------------
+                            YES
+                    ------------------------- */
+
+                    if (confirmConversion) {
+
+                        window.location.href =
+                            `/leads/${lead_id}/convert/`;
+
+                    }
+
+
+                    /* -------------------------
+                            NO
+                    ------------------------- */
+
+                    else {
+
+                        location.reload();
+
+                    }
+
+                }
+
+
+                /* =========================
+                        OTHER STATUS
+                ========================= */
+
+                else {
+
+                    location.reload();
+
+                }
+
+            }
+
+
+            /* -----------------------------
+                    UPDATE FAILED
+            ----------------------------- */
+
+            else {
 
                 alert(
+
                     data.message ||
+
                     "Unable to update lead."
+
                 );
 
             }
@@ -663,9 +774,20 @@ document.querySelectorAll(".kanban-column").forEach(column => {
         })
 
 
-        .catch(() => {
+        /* -----------------------------
+                AJAX ERROR
+        ----------------------------- */
 
-            alert("Something went wrong.");
+        .catch(error => {
+
+            console.error(
+                "Lead status update error:",
+                error
+            );
+
+            alert(
+                "Something went wrong while updating the lead."
+            );
 
         });
 
@@ -688,6 +810,7 @@ function getCookie(name) {
         document.cookie !== ""
     ) {
 
+
         const cookies =
             document.cookie.split(";");
 
@@ -697,6 +820,7 @@ function getCookie(name) {
             i < cookies.length;
             i++
         ) {
+
 
             const cookie =
                 cookies[i].trim();
@@ -708,12 +832,16 @@ function getCookie(name) {
                 )
             ) {
 
+
                 cookieValue =
                     decodeURIComponent(
+
                         cookie.substring(
                             name.length + 1
                         )
+
                     );
+
 
                 break;
 

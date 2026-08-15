@@ -12,6 +12,7 @@ from .forms import LeadForm
 from .models import Lead
 
 from deals.models import Deal
+from django.utils import timezone
 
 
 User = get_user_model()
@@ -460,7 +461,9 @@ def update_stage(request):
         {
             "success":True,
             "old_status":old_status,
-            "new_status":status
+            "new_status":status,
+            "is_won": status == "won"
+
         }
     )
 
@@ -527,7 +530,10 @@ def lead_convert(request,pk):
                 amount=
                 lead.estimated_value,
 
-                stage="negotiation"
+                stage="closed_won",
+                close_date=timezone.now().date()
+
+     
 
             )
 

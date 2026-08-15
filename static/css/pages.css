@@ -6000,3 +6000,27 @@ textarea {
     }
 
 }
+.crm-btn-warning {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+
+    padding: 10px 18px;
+    border-radius: 10px;
+
+    font-weight: 600;
+    text-decoration: none;
+
+    background: #7c3aed;
+    color: #fff;
+    border: 1px solid #7c3aed;
+
+    transition: .3s;
+}
+
+.crm-btn-warning:hover {
+    background: #6d28d9;
+    color: #fff;
+    border-color: #6d28d9;
+}

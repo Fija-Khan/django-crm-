@@ -105,8 +105,8 @@
               <label class="crm-label"> Expected Close Date </label>
 
               <div class="crm-detail-box">
-                {% if lead.expected_close %} {{ lead.expected_close|date:"d M Y"
-                }} {% else %} - {% endif %}
+                        {{ lead.expected_close }}
+
               </div>
             </div>
 
@@ -165,32 +165,33 @@
             Status Activity
           </h4>
 
-          {% for activity in lead.activities.all %}
+    {% for activity in lead.activities.all %}
 
-          <div class="border-start ps-3 mb-3">
-            <strong>
-              {{ activity.get_old_status_display }} → {{
-              activity.get_new_status_display }}
-            </strong>
+<div class="border-start ps-3 mb-3">
 
-            <p class="mb-1 text-muted">
-              Changed By: {{ activity.changed_by|default:"System" }}
-            </p>
+    <strong>
+        {{ activity.old_status }} → {{ activity.new_status }}
+    </strong>
 
-            {% if activity.note %}
+    <p class="mb-1">
+        Changed By: {{ activity.changed_by|default:"System" }}
+    </p>
 
-            <p class="mb-1">{{ activity.note }}</p>
+    {% if activity.note %}
+        <p class="mb-1">{{ activity.note }}</p>
+    {% endif %}
 
-            {% endif %}
+    <small>
+        {{ activity.changed_at|date:"d M Y H:i" }}
+    </small>
 
-            <small> {{ activity.changed_at|date:"d M Y H:i" }} </small>
-          </div>
+</div>
 
-          {% empty %}
+{% empty %}
 
-          <p>No status changes yet.</p>
+<p>No status changes yet.</p>
 
-          {% endfor %}
+{% endfor %}
         </div>
       </div>
     </div>
